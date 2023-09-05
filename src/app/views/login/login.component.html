@@ -11,7 +11,7 @@
 <div class="flex justify-center items-center top-7 p-1">
     <form class="mt-10 items-center">
         <div class="flex flex-col mb-4">
-            <label class="font-semibold">Entrar</label>
+            <label class="font-semibold">Login</label>
             <input type="text" class="border rounded-lg h-55 w-314 px-3 mt-1">
         </div>
         <div class="flex flex-col mb-4">
@@ -19,12 +19,21 @@
             <input type="password" class="border rounded-lg h-55 w-314 px-3 mt-1">
         </div>
         <btn-filled label="Entrar" class="h-55 w-314 items-center hover:bg-green-200"></btn-filled>
-        <btn-outline id="btn-google" label="Entrar com Google" class="h-55 w-314 items-center">
+        <div class="flex items-center mt-1">
+            <div class="text-left text-12">Não possui cadastro?</div>
+            <button id="btn-register" routerLink="/create-account" 
+                class="text-left text-10 ml-1 hover:bg-blue-200">
+                Clique aqui!
+            </button>
+        </div>
+        <div class="mt-2 mb-3 text-center text-15 font-semibold">OU</div> 
+        <btn-outline id="btn-google" label="Entrar com Google" class="h-55 w-314 items-center" [addMarginBottom]="true"> 
             <img src="../../../assets/icons/google-icon.svg" alt="google-icon">
         </btn-outline>
-        <btn-filled id="btn-facebook"label="Entrar com Facebook" class="h-55 w-314 items-center hover" [customColor]="'blueDark'">
+        <btn-filled id="btn-facebook" label="Entrar com Facebook" class="h-55 w-314 mt-3 items-center hover" [customColor]="'blueDark'" [addMarginBottom]="true" >
             <img src="../../../assets/icons/facebook-icon.svg" alt="facebook-icon">
         </btn-filled>
+        
     </form>
 </div>
 
