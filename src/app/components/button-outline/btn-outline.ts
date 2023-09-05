@@ -1,15 +1,15 @@
 import { Component, Input } from "@angular/core";
 
 @Component({
-	selector: "btn-google",
+	selector: "btn-outline",
 	template: `<button
-		class=" flex items-center gap-3 px-6 py-4 rounded-lg w-full justify-center border border-baseGray text-baseGray"
+		class=" flex items-center gap-3 w-314 h-55 mb-3  hover:border-blue-600 transition duration-300 ease-in-out rounded-lg w-full justify-center border border-baseGray text-baseGray"
 	>
 		<ng-content></ng-content>
 		{{ label }}
 	</button> `,
 	styles: [],
 })
-export class ButtonGoogleComponent {
+export class ButtonOutlineComponent {
 	@Input() label!: string;
 }
