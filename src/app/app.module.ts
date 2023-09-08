@@ -10,7 +10,9 @@ import { LoginComponent } from './views/login/login.component';
 import { HeaderComponent } from './template/header/header.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { CreateAccountComponent } from './views/create-account/create-account.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormatPipesModule } from './pipes/format-pipes'; 
 
 @NgModule({
   declarations: [
@@ -22,12 +24,15 @@ import { CreateAccountComponent } from './views/create-account/create-account.co
     ButtonFilledComponent,
     ButtonOutlineComponent,
     CreateAccountComponent,
-
-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FormatPipesModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
