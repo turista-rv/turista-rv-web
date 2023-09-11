@@ -17,6 +17,8 @@ module.exports = {
         greenMid: '#CBE4B4',
         greenLight: '#E5F0DB',
 
+        orangeDark: '#F8931F',
+
         //BASE
         grays1: '#1B1D1E',
         grays2: '#333638',
