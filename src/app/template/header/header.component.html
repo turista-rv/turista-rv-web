@@ -6,9 +6,40 @@
         <a>
             <img src="../../../assets/img/turistaText.svg" alt="Logo" class="w-30 h-30">
         </a>
-        <p>Campings de Sonho, Viagens sem Limites...</p>
+        <p class="text-white ml-3">Campings de Sonho, Viagens sem Limites...</p>
+    </div>
+    <div class="flex items-center space-x-3">
+        <a routerLink="/"href="mount-icon" class="group inline-block">
+            <img src="../../../assets/icons/mountain-icon2.png" alt="icone de montanha" class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:invert" width="35" height="35">
+        </a>
+        
+        <a routerLink="/" href="motorhome-icon" class="group inline-block">
+            <img src="../../../assets/icons/motorhome-icon.png" alt="icone motorhome"class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:invert" width="35" height="35">
+        </a>
+        <a routerLink="/" href="mount-icon" class="group inline-block">
+            <img src="../../../assets/icons/mountain-icon.png" alt="" class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:invert" width="35" height="35">
+        </a>
     </div>
     <div class="flex items-center">
-        <a routerLink="/login" class="text-red-600 no-underline hover:text-red-800 hover:underline">Login</a>
+        <a routerLink="/login" class="text-orangeDark no-underline hover:text-red-300">Entrar</a>
     </div>
 </header>
+
+<section id="search-adventure" class="fixed top-32 left-0 right-0 flex justify-center items-center z-50">
+    <div class="relative">
+        <input type="search" placeholder="Encontre sua aventura"
+            class="border rounded-md pr-7 focus:outline-none focus:border-orangeDark text-sm"
+            style="width: 230px; height: 27px; padding-left: 28px;">
+        <div class="absolute inset-y-0 right-0 flex items-center pr-1">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="25" height="25" viewBox="0,0,256,256">
+                <g fill="#f8931f" fill-rule="nonzero">
+                    <g transform="scale(5.33333,5.33333)">
+                        <path
+                            d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z">
+                        </path>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+</section>
