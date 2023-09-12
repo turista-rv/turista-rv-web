@@ -78,19 +78,19 @@
   </div>
 
   <div class="mb-4">
-    <label for="rvGreeting" class="block text-gray-700 text-sm font-bold mb-2">RV Greeting</label>
-    <input type="text" id="rvGreeting" name="rvGreeting" [(ngModel)]="user.rvGreeting" required
+    <label for="rvLength" class="block text-gray-700 text-sm font-bold mb-2">Comprimento do RV </label>
+    <input type="text" id="rvLength" name="rvLength" [(ngModel)]="user.rvLength" required
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
   </div>
 
   <div class="mb-4">
-    <label for="rvPlate" class="block text-gray-700 text-sm font-bold mb-2">RV Plate</label>
+    <label for="rvPlate" class="block text-gray-700 text-sm font-bold mb-2">Placa do RV</label>
     <input type="text" id="rvPlate" name="rvPlate" [(ngModel)]="user.rvPlate" required
       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
   </div>
 
   <div class="mb-4">
-    <label for="towPlate" class="block text-gray-700 text-sm font-bold mb-2">Tow Plate</label>
+    <label for="towPlate" class="block text-gray-700 text-sm font-bold mb-2">Placa Reboque/Rebocador</label>
     <input type="text" id="towPlate" name="towPlate" [(ngModel)]="user.towPlate" required
       class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
   </div>
@@ -104,7 +104,7 @@
     </select>
   </div>
 
-  <div class="mb-4">
+  <div class="mb-6">
     <label class="block text-gray-700 text-sm font-bold mb-2">Tipo de Veículo</label>
     <div class="flex">
       <label for="motorhome" class="mr-2">
@@ -126,18 +126,22 @@
     </div>
   </div>
 
-  <div class="mb-4">
-    <label for="acceptedPrivacyPolicy" class="block text-gray-700 text-sm font-bold">
-      <input type="checkbox" id="acceptedPrivacyPolicy" name="acceptedPrivacyPolicy" [(ngModel)]="acceptedPrivacyPolicy"
-        required>
-      Estou de acordo com os termos de uso.
-    </label>
-  </div>
-
   <div class="mb-4 flex justify-center items-center">
     <btn-filled id="btn-submit" type="submit"
       class="h-55 w-314 items-center hover:bg-green-200">
       Cadastrar
     </btn-filled>
   </div>
+  
+  <div class="mb-8 text-center">
+    Ao preencher o formulário acima, você concorda com os nossos  
+    <div class="inline-flex items-center">
+      <a href="http://link-para-termos-de-uso.com" target="_blank" rel="noopener noreferrer"><u>Termos de uso </u></a> 
+      <span class="mx-1">e nossa</span>
+      <a href="http://link-para-politica-de-privacidade.com" target="_blank" rel="noopener noreferrer"><u> Política de Privacidade</u></a>.
+    </div>
+  </div>
+  
+  
+
 </form>
