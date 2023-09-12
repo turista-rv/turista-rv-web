@@ -14,7 +14,7 @@ export class CreateAccountComponent {
     email: '',
     whatsapp: '',
     password: '',
-    rvGreeting: '',
+    rvLength: '',
     rvPlate: '',
     towPlate: '',
     isCaravanist: '',
