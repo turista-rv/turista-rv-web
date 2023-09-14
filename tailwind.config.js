@@ -18,6 +18,7 @@ module.exports = {
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
     },
+
     keyframes: {
       'open-menu': {
         '0%': {
@@ -29,7 +30,7 @@ module.exports = {
       },
 
       fontFamily: {
-        roboto: ['Roboto', 'sans'],
+        niveau: ['Niveau Grotesk', 'sans'],
       },
 
       colors: {
@@ -57,31 +58,31 @@ module.exports = {
         white: '#FFFFFF',
 
       },
-
       fontSize: {
-        '7': '7px',
-        '10': '10px',
-        '12': '12px',
-        '14': '14px',
-        '16': '16px',
-        '18': '18px',
-        '24': '24px',
-
+        '7': '0.4375rem',  // 7px / 16px = 0.4375rem
+        '10': '0.625rem',  // 10px / 16px = 0.625rem
+        '12': '0.75rem',   // 12px / 16px = 0.75rem
+        '14': '0.875rem',  // 14px / 16px = 0.875rem
+        '16': '1rem',      // 16px / 16px = 1rem
+        '18': '1.125rem',  // 18px / 16px = 1.125rem
+        '24': '1.5rem',    // 24px / 16px = 1.5rem
       },
-
       width: {
-        '41': '41px',
-        '200': '200px',
-        '314': '314px',
-        '500': '500px',
+        '41': '2.5625rem',  // 41px / 16px = 2.5625rem
+        '200': '12.5rem',   // 200px / 16px = 12.5rem
+        '314': '19.625rem', // 314px / 16px = 19.625rem
+        '500': '31.25rem',  // 500px / 16px = 31.25rem
       },
-
       height: {
-        '24': '24px',
-        '55': '55px',
+        '24': '1.5rem',     // 24px / 16px = 1.5rem
+        '55': '3.4375rem',  // 55px / 16px = 3.4375rem
+      },
+      margin: {
+        '35': '2.1875rem',  // 35px / 16px = 2.1875rem
       },
     },
   },
-  plugins: [],
 }
+
+
 
