@@ -18,7 +18,15 @@ module.exports = {
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
     },
-    extend: {
+    keyframes: {
+      'open-menu': {
+        '0%': {
+          transform: 'translateX(-100%)',
+        },
+        '100%': {
+          transform: 'translateX(0)',
+        },
+      },
 
       fontFamily: {
         roboto: ['Roboto', 'sans'],
@@ -41,7 +49,7 @@ module.exports = {
         grays2: '#333638',
         grays3: '#5C6265',
         grays4: '#B9BBBC',
-        
+
 
         grays5: '#DDDEDF',
         grays6: '#EFF0F0',
@@ -58,7 +66,7 @@ module.exports = {
         '16': '16px',
         '18': '18px',
         '24': '24px',
-          
+
       },
 
       width: {
