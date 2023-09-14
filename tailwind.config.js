@@ -2,6 +2,22 @@
 module.exports = {
   content: ["./**/*.html", "./**/*.ts"],
   theme: {
+    screens: {
+      'sm': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
     extend: {
 
       fontFamily: {
@@ -9,6 +25,7 @@ module.exports = {
       },
 
       colors: {
+        transparent: 'transparent',
         blueDark: '#0D7ABF',
         blueMid: '#118FCF',
         blueLight: '#1397D6',
@@ -16,6 +33,8 @@ module.exports = {
         greenDark: '#2BA245',
         greenMid: '#CBE4B4',
         greenLight: '#E5F0DB',
+
+        orangeDark: '#F8931F',
 
         //BASE
         grays1: '#1B1D1E',
@@ -39,16 +58,18 @@ module.exports = {
         '16': '16px',
         '18': '18px',
         '24': '24px',
-        '32': '32px',
+          
       },
 
       width: {
+        '41': '41px',
         '200': '200px',
         '314': '314px',
         '500': '500px',
       },
 
       height: {
+        '24': '24px',
         '55': '55px',
       },
     },
