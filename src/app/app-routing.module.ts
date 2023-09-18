@@ -4,6 +4,7 @@ import { HomeComponent } from "./views/home/home.component";
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from './views/about/about.component';
 const routes: Routes = [
   {
     path: "",
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: "create-account",
     component: CreateAccountComponent,
+  },
+  {
+    path: "about",
+    component: AboutComponent,
   },
 ];
 

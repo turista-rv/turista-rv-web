@@ -5,6 +5,23 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'sm': '640px',
+        // => @media (min-width: 640px) { ... }
+  
+        'md': '768px',
+        // => @media (min-width: 768px) { ... }
+  
+        'lg': '1024px',
+        // => @media (min-width: 1024px) { ... }
+  
+        'xl': '1280px',
+        // => @media (min-width: 1280px) { ... }
+  
+        '2xl': '1536px',
+        // => @media (min-width: 1536px) { ... }
+      },
+      
       colors: {
         transparent: 'transparent',
         blueDark: '#0D7ABF',
@@ -50,14 +67,6 @@ module.exports = {
       height: {
         '24': '24px',
         '55': '55px',
-      },
-      margin: {
-        '12': '12px',  // 35px / 16px = 2.1875rem
-        '20': '20px',  // 35px / 16px = 2.1875rem
-        '25': '25px',  // 35px / 16px = 2.1875rem
-        '35': '35px',  // 35px / 16px = 2.1875rem
-        '40': '40px',     // 35px / 16px = 2.1875rem
-  
       },
     },
   },
