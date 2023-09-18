@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './template/header/header.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { CreateAccountComponent } from './views/create-account/create-account.component';
-
+import { AboutComponent } from './views/about/about.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,12 @@ import { CreateAccountComponent } from './views/create-account/create-account.co
     HeaderComponent,
     FooterComponent,
     CreateAccountComponent,
+    AboutComponent,
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
