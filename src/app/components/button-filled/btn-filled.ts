@@ -6,6 +6,7 @@ import { Component, Input } from "@angular/core";
     class="flex items-center text-white rounded-lg gap-3 text-18 w-314 h-55 
            {{ customColor ? 'bg-' + customColor : 'bg-greenDark' }} hover:brightness-110
            transition duration-300 ease-in-out justify-center text-center font-bold"
+           [ngClass]="{ 'mb-3': addMarginBottom }"
   >
     <ng-content></ng-content>
     {{ label }}
