@@ -13,6 +13,7 @@ import { FooterComponent } from './template/footer/footer.component';
 import { CreateAccountComponent } from './views/create-account/create-account.component';
 import { AboutComponent } from './views/about/about.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NavbarComponent } from './template/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     FooterComponent,
     CreateAccountComponent,
     AboutComponent,
+    NavbarComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -9,32 +9,6 @@
         </a>
     </div>
     <p class="text-white ml-3 flex items-center justify-center">Campings de Sonho, Viagens sem Limites...</p>
-
-    <section class="flex items-center space-x-3 mt-3">
-       
-        <a routerLink="/" href="mount-icon" class="group inline-block relative">
-            <img src="../../../assets/icons/mountain-icon.png" alt="menu de lugares"
-                class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:invert" width="35"
-                height="35">
-            <div class="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-6 left-1/2 transform -translate-x-1/2">Lugares</div>
-        </a>
-
-        <a routerLink="/" href="motorhome-icon" class="group inline-block relative">
-            <img src="../../../assets/icons/motorhome-icon.png" alt="menu motorhome"
-                class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:invert" width="35"
-                height="35">
-            <div class="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-6 left-1/2 transform -translate-x-1/2">Motorhome</div>
-        </a>
-        <a routerLink="/about" href="mount-icon" class="group inline-block relative">
-            <img src="../../../assets/icons/about-icon.png" alt="menu sobre"
-                class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:invert" width="35"
-                height="35">
-            <div class="text-xs mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-6 left-1/2 transform -translate-x-1/2">Sobre</div>
-        </a>
-    </section>
-    <div class="flex items-center">
-        <a routerLink="/login" class="text-orangeDark no-underline hover:text-red-300">Entrar</a>
-    </div>
     <!-- campo de busca -->
     <!-- <section id="search-adventure" class="fixed top-32 left-0 right-0 flex justify-center items-center z-50">
         <div class="relative">
@@ -54,28 +28,9 @@
             </div>
         </div>
     </section> -->
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
 
-    <!-- Ícone do Menu Sanduíche (Hamburguer) -->
-    <div class="flex items-center md:hidden">
-        <button id="mobile-menu-button" class="text-black">
-            &#9776;
-        </button>
-    </div>
 
-    <!-- Menu Sanduíche (Hamburguer) -->
-    <section id="mobile-menu"
-        class="absolute top-35 right-full h-40 bg-black-200 w-screen flex flex-col justify-content-center md:block animate-open-menu">
-
-        <button class="text-8x1 self-end px-6">
-            &times;
-        </button>
-        <nav class="flex flex-col min-h-screen items-center py-8" aria-label="mobile">
-
-            <a href="">Sobre</a>
-            <a href="">Sobre</a>
-            <a href="">Sobre</a>
-
-        </nav>
-    </section>
 
 </header>
