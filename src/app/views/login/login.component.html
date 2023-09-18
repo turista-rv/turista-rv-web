@@ -20,7 +20,7 @@
             <label class="font-semibold">Senha</label>
             <input type="password" class="border rounded-lg h-55 w-314 px-3 mt-1">
         </div>
-        <btn-filled label="Entrar" class="h-55 w-314 items-center hover:bg-green-200"></btn-filled>
+        <btn-filled label="Entrar" [customColor]="'greenDark'" class="h-55 w-314 items-center"></btn-filled>
         <div class="flex items-center mt-1">
             <div class="text-left text-12">Não possui cadastro?</div>
             <button id="btn-register" routerLink="/create-account" 
@@ -32,7 +32,7 @@
         <btn-outline id="btn-google" label="Entrar com Google" class="h-55 w-314 items-center" [addMarginBottom]="true"> 
             <img src="../../../assets/icons/google-icon.svg" alt="google-icon">
         </btn-outline>
-        <btn-filled id="btn-facebook" label="Entrar com Facebook" class="h-55 w-314 mt-3 items-center hover" [customColor]="'blueDark'" [addMarginBottom]="true" >
+      <btn-filled id="btn-facebook" label="Entrar com Facebook" class="h-55 w-314 mt-3 items-center hover" [customColor]="'blueDark'" [addMarginBottom]="true" >
             <img src="../../../assets/icons/facebook-icon.svg" alt="facebook-icon">
         </btn-filled>
         <btn-filled id="btn-apple" label="Entrar com Apple" class="h-55 w-314 mt-3 items-center hover" [customColor]="'grays1'" >

@@ -17,10 +17,10 @@ export class HeaderComponent implements OnInit {
         mobileMenu.classList.toggle("hidden");
   
         // Verificar se a tela é móvel e ocultar a div space-x-3, se necessário
-        if (window.innerWidth <= 768) { // Defina a largura de tela desejada para considerar como móvel
+        if (window.innerWidth <= 768) { 
           spaceX3Div.style.display = "none";
         } else {
-          spaceX3Div.style.display = "flex"; // Ou defina o estilo desejado para mostrar a div
+          spaceX3Div.style.display = "flex"; 
         }
       });
     }
