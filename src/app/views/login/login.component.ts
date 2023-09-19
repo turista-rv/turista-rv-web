@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
   credentials = {
-    username: '',
+    email: '',
     password: ''
   };
 
@@ -19,12 +19,12 @@ export class LoginComponent {
   ) { }
 
   onSubmit() {
-	console.log('Botão Entrar clicado.');
+	
     this.authService
       .loginUser(this.credentials)
       .subscribe((isLogged) => {
         if (isLogged) {
-          this.router.navigateByUrl('/home'); // Redirecionar para a página de home após o login bem-sucedido
+          this.router.navigateByUrl('/'); 
         } else {
           console.error('Email ou senha incorretos.');
         }

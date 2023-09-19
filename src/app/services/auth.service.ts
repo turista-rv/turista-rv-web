@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://api-olharlaser.onrender.com/api/users/login';
+  // private apiUrl = 'https://api-olharlaser.onrender.com/api/users';
+  private apiUrl = 'https://api-turistarv-0xio.onrender.com/api/users';
 
   constructor(private http: HttpClient) {}
 
@@ -14,7 +15,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 
-  loginUser(credentials: { username: string, password: string }): Observable<any> {
+  loginUser(credentials: { email: string, password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials);
   }
 }
