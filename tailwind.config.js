@@ -54,8 +54,14 @@ module.exports = {
         '16': '16px',
         '18': '18px',
         '24': '24px',
+        'small': '14px', // Tamanho da fonte menor
+
+       
       },
       
+      padding: {
+        'small': '8px 16px', // Espaçamento menor 
+      },
   
       width: {
         '41': '41px',
@@ -67,6 +73,11 @@ module.exports = {
       height: {
         '24': '24px',
         '55': '55px',
+        '170': '170px',
+        '200': '200px',
+        '300': '300px',
+        '400': '400px',
+        '600': '600px',
       },
     },
   },
