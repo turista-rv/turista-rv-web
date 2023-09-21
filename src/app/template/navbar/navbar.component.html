@@ -1,16 +1,8 @@
 <nav class="p-4">
-    <div class="flex items-center justify-between">
-        <!-- Botão do menu hamburguer (exibido em telas menores) -->
-        <button class="md:hidden text-black focus:outline-none" (click)="toggleMenu()">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
+ 
     <!-- Menu de navegação (exibido em telas maiores) -->
     <section class="flex items-center space-x-3 mt-3">
         <ul id="menuHamburguer" class="hidden md:flex md:space-x-4 md:text-white" [ngClass]="{'active': isMenuOpen}">
-  
             <li>
                 <a routerLink="/" href="mount-icon" class="group inline-block relative">
                     <img src="../../../assets/icons/mountain-icon.png" alt="menu de lugares"
