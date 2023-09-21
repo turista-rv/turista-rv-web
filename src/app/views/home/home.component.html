@@ -1,10 +1,29 @@
 <body>
-    <header class="my-60">
+    <header class="my-40">
         <app-header></app-header>
     </header>
-    <section class="">
 
-        <h1 id="welcome-message" class="mb-4 text-center font-medium">
+        <!-- campo de busca -->
+        <section id="search-adventure" class="flex justify-center items-center z-50">
+            <div class="relative">
+                <input type="search" placeholder="Encontre sua próxima aventura..."
+                    class="border text-center rounded-md pr-7 focus:outline-none focus:border-orangeDark text-md"
+                    style="width: 400px; height: 55px;">
+
+                <div class="absolute inset-y-0 right-0 flex items-center pr-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="35" height="35" viewBox="0,0,256,256">
+                        <g fill="#f8931f" fill-rule="nonzero">
+                            <g transform="scale(5.33333,5.33333)">
+                                <path
+                                    d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z">
+                                </path>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        <h1 id="welcome-message" class="mt-7 mb-4 text-center font-medium">
             Encontre experiências em campings para <br>motorhomes, trailers e campers. <br><br>
             É simples, rápido e econômico!
         </h1>
@@ -231,17 +250,23 @@
                 <div class="flex">
                     <!-- Card da esquerda -->
                     <div class="bg-grays5 w-1/2 h-400 rounded p-4">
-                        <h2 class="text-xl font-bold">Newsletter</h2>
-                        <p class="text-grays1 mb-4">Receba nossas novidades em primeira mão no seu e-mail!!</p>
-                        <input type="text" placeholder="Digite seu nome"
-                            class="w-full px-4 py-2 mb-2 rounded border border-grays4 focus:outline-none focus:border-blueMid">
-                        <input type="email" placeholder="Digite seu melhor e-mail"
-                            class="w-full px-4 py-2 mb-2 rounded border border-grays4 focus:outline-none focus:border-blueMid">
-
-                        <button class="bg-greenDark flex items-center text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110
-                        transition duration-300 ease-in-out justify-center text-center font-bold"
-                            type="button">Cadastrar</button>
+                        <h2 class="text-32 font-bold mb-2">Newsletter</h2>
+                        <p class="mb-10">Receba nossas novidades em primeira mão no seu e-mail!!</p>
+                    
+                        <div class="flex flex-col items-center"> <!-- Centralize os elementos -->
+                            <input type="text" placeholder="Digite seu nome"
+                                class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
+                    
+                            <input type="email" placeholder="Digite seu melhor e-mail"
+                                class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
+                    
+                            <button class="bg-green-700 flex items-center text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110
+                                            transition duration-300 ease-in-out justify-center text-center font-bold"
+                                type="button">Cadastrar</button>
+                        </div>
                     </div>
+                    
+                    
 
                     <!-- Espaço entre os cards (opcional) -->
                     <div class="w-4"></div>
@@ -252,6 +277,4 @@
             </section>
 
         </div>
-    </section>
-
 </body>
