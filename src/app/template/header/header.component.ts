@@ -7,26 +7,6 @@ import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 })
 export class HeaderComponent  {
 
-  // constructor(private renderer: Renderer2, private el: ElementRef) {}
-  // ngOnInit(): void {
-  //   const mobileMenuButton = document.getElementById("mobile-menu-button");
-  //   const mobileMenu = document.getElementById("mobile-menu");
-  //   const spaceX3Div = document.querySelector(".space-x-3") as HTMLElement; 
-  //   if (mobileMenuButton && mobileMenu) {
-  //     mobileMenuButton.addEventListener("click", () => {
-  //       console.log('botao clicado')
-  //       mobileMenu.classList.toggle("hidden");
-  
-  //       // Verificar se a tela é móvel e ocultar a div space-x-3, se necessário
-  //       if (window.innerWidth <= 768) { 
-  //         spaceX3Div.style.display = "none";
-  //       } else {
-  //         spaceX3Div.style.display = "flex"; 
-  //       }
-  //     });
-  //   }
-  // }  
-
   isMenuOpen = false;
 
   constructor(private renderer: Renderer2, private el: ElementRef) {}
