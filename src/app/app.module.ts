@@ -14,6 +14,7 @@ import { CreateAccountComponent } from './views/create-account/create-account.co
 import { AboutComponent } from './views/about/about.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NavbarComponent } from './template/navbar/navbar.component';
+import { HostessComponent } from './views/hostess/hostess.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NavbarComponent } from './template/navbar/navbar.component';
     CreateAccountComponent,
     AboutComponent,
     NavbarComponent,
+    HostessComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
