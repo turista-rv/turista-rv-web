@@ -1,3 +1,4 @@
+import { HostessComponent } from './views/hostess/hostess.component';
 import { CreateAccountComponent } from './views/create-account/create-account.component';
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from "./views/home/home.component";
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "about",
     component: AboutComponent,
+  },
+  {
+    path: "hostess",
+    component: HostessComponent,
   },
 ];
 
