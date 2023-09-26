@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
@@ -8,50 +9,81 @@ import { AuthService } from '../../services/auth.service';
 })
 export class CreateAccountComponent {
   user = {
-    firstName: '',
-    lastName: '',
+    // firstName: 'Felipe',
+    // lastName: 'Silva',
+    name: 'Felipe Silva',
+    gender: 'MASCULINO',
     documentNumber: '',
-    email: '',
-    whatsapp: '',
-    password: '',
-    rvLength: '',
-    rvPlate: '',
-    towPlate: '',
-    isCaravanist: '',
+    cpf: '407.583.555-11',
+    email: 'flipe.silva@terra.com.br',
+    emailActive: 'flipe.silva@terra.com.br',
+    dateBirth: '06/10/1990',
+    phone: '11964509988',
+    password: '123456',
+    rvLength: 10,
+    rvPlate: 'ABD5555',
+    tugPlate: 'ABD5555',
+    touristType: 'CARAVANISTA',
     vehicleType: '',
   };
 
   confirmEmail = '';
   confirmPassword = '';
-  acceptedPrivacyPolicy = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+  invalidFields: string[] = [];
 
   createAccount() {
-    if (this.validateFields()) {
+    this.invalidFields = this.getInvalidFields();
+    if (this.invalidFields.length === 0) {
       this.authService.registerUser(this.user).subscribe(
         (response) => {
-          // Lidar com a resposta da API e redirecionar após o login bem-sucedido
+          this.router.navigateByUrl('/login');
+          console.log('Conta criada com sucesso!');
         },
         (error) => {
-          // Lidar com erros e exibir mensagens de erro
+          console.log("Erro, verifique os campos e preencha corretamente")
+          console.log(error)
+          console.error('Erro ao conectar à API:', error);
+         
         }
       );
     }
   }
-
+  private getInvalidFields(): string[] {
+    const invalidFields: string[] = [];
+  
+    if (!this.user.name) {
+      invalidFields.push('Nome');
+    }
+    if (!this.user.email) {
+      invalidFields.push('Email');
+    }
+    if (!this.user.emailActive) {
+      invalidFields.push('Confirme o Email');
+    }
+   
+  
+    return invalidFields;
+  }
+  
   private validateFields(): boolean {
-    // Exemplo de validação simples para fins de demonstração
     if (
-      !this.user.firstName ||
-      !this.user.lastName ||
+      // !this.user.firstName ||
+      // !this.user.lastName ||
+      !this.user.name ||
       !this.user.email ||
-      !this.user.password ||
+      !this.user.emailActive ||
+      !this.user.dateBirth ||
+      !this.user.dateBirth ||
+      !this.user.phone ||
       this.user.email !== this.confirmEmail ||
-      this.user.password !== this.confirmPassword ||
-      !this.acceptedPrivacyPolicy
+      this.user.password !== this.confirmPassword 
     ) {
-      // Exibir uma mensagem de erro ou tratar a validação de acordo com seus requisitos
       console.error('Campos inválidos ou não preenchidos.');
       return false;
     }

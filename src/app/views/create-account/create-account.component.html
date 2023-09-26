@@ -18,14 +18,14 @@
         </div>
     </header>
     <div class="max-w-lg mx-auto bg-white p-6 rounded shadow-md">
-        <form (ngSubmit)="createAccount()" class="w-full max-w-md mx-auto">
+        <form class="w-full max-w-md mx-auto">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">
                     Estrangeiro?
                 </label>
                 <div class="flex items-center">
                     <label for="toggle" (click)="toggleDocumentType()"
-                        class="toggle-switch bg-grays6 w-41 h-24 rounded-full p-1">
+                        class="toggle-switch bg-grays6 w-41 h-6 rounded-full p-1">
                         <div class="flex items-center">
                             <div [class]="isPassport ? 'toggle-dot bg-blueDark w-4 h-4 rounded-full ml-4' : 'toggle-dot bg-blueDark w-4 h-4 rounded-full'"></div>
                             <span class="absolute ml-10 font-semibold" [class.hidden]="isPassport">Não</span>
@@ -36,16 +36,46 @@
             </div>
 
             <div class="mb-4">
-                <label for="firstName" class="block text-gray-700 text-sm font-bold mb-2">Nome</label>
-                <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nome</label>
+                <input type="text" id="name" name="name" [(ngModel)]="user.name" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
             </div>
-
-            <div class="mb-4">
+         <div class="mb-4">
+                <label for="gender" class="block text-gray-700 text-sm font-bold mb-2">Nome</label>
+                <input type="text" id="gender" name="gender" [(ngModel)]="user.gender" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
+            </div>
+            <!-- <div class="mb-4">
                 <label for="lastName" class="block text-gray-700 text-sm font-bold mb-2">Sobrenome</label>
                 <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
+            </div> -->
 
             <div class="mb-4">
                 <label for="documentNumber" class="block text-gray-700 text-sm font-bold mb-2">
@@ -53,61 +83,208 @@
                 </label>
                 <input type="text" id="documentNumber" name="documentNumber" [(ngModel)]="user.documentNumber" required
                     [ngClass]="{ 'cpf-mask': !isPassport, 'passport-mask': isPassport }"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
             </div>
 
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
                 <input type="email" id="email" name="email" [(ngModel)]="user.email" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
             </div>
 
             <div class="mb-4">
-                <label for="confirmEmail" class="block text-gray-700 text-sm font-bold mb-2">Confirme o Email</label>
-                <input type="email" id="confirmEmail" name="confirmEmail" [(ngModel)]="confirmEmail" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label for="emailActive" class="block text-gray-700 text-sm font-bold mb-2">Confirme o Email</label>
+                <input type="email" id="emailActive" name="emailActive" [(ngModel)]="user.emailActive" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
             </div>
-
             <div class="mb-4">
-                <label for="whatsapp" class="block text-gray-700 text-sm font-bold mb-2">WhatsApp</label>
-                <input type="tel" id="whatsapp" name="whatsapp" [(ngModel)]="user.whatsapp" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label for="dateBirth" class="block text-gray-700 text-sm font-bold mb-2">Data de Nascimento</label>
+                <input type="date" id="dateBirth" name="dateBirth" [(ngModel)]="user.dateBirth" required
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  [ngClass]="{
+                    'shadow': true,
+                    'border': true,
+                    'rounded': true,
+                    'w-full': true,
+                    'py-2': true,
+                    'px-3': true,
+                    'text-gray-700': true,
+                    'leading-tight': true,
+                    'focus:outline-none': true,
+                    'focus:shadow-outline': true,
+                    'border-red-500': invalidFields.includes('email')
+                  }">
+              </div>
+            <div class="mb-4">
+                <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">WhatsApp</label>
+                <input type="phone" id="phone" name="phone" [(ngModel)]="user.phone" required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
             </div>
 
             <div class="mb-4">
                 <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
                 <input type="password" id="password" name="password" [(ngModel)]="user.password" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
             </div>
 
             <div class="mb-4">
                 <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirme a Senha</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
             </div>
-
+<!-- 
             <div class="mb-4">
                 <label for="rvLength" class="block text-gray-700 text-sm font-bold mb-2">Comprimento do RV </label>
                 <input type="text" id="rvLength" name="rvLength" [(ngModel)]="user.rvLength" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
+            </div> -->
 
             <div class="mb-4">
                 <label for="rvPlate" class="block text-gray-700 text-sm font-bold mb-2">Placa do RV</label>
                 <input type="text" id="rvPlate" name="rvPlate" [(ngModel)]="user.rvPlate" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
             </div>
 
             <div class="mb-4">
-                <label for="towPlate" class="block text-gray-700 text-sm font-bold mb-2">Placa Reboque/Rebocador</label>
-                <input type="text" id="towPlate" name="towPlate" [(ngModel)]="user.towPlate" required
-                    class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label for="tugPlate" class="block text-gray-700 text-sm font-bold mb-2">Placa Reboque/Rebocador</label>
+                <input type="text" id="tugPlate" name="tugPlate" [(ngModel)]="user.tugPlate" required
+                    class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
             </div>
 
             <div class="mb-4">
-                <label for="isCaravanist" class="block text-gray-700 text-sm font-bold mb-2">Você é um Caravanista?</label>
-                <select id="isCaravanist" name="isCaravanist" [(ngModel)]="user.isCaravanist" required
-                    class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <label for="touristType" class="block text-gray-700 text-sm font-bold mb-2">Você é um Caravanista?</label>
+                <select id="touristType" name="touristType" [(ngModel)]="user.touristType" required
+                    class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                        'shadow': true,
+                        'border': true,
+                        'rounded': true,
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                        'text-gray-700': true,
+                        'leading-tight': true,
+                        'focus:outline-none': true,
+                        'focus:shadow-outline': true,
+                        'border-red-500': invalidFields.includes('email')
+                      }">
                     <option value="Yes">Sim</option>
                     <option value="No">Não</option>
                 </select>
@@ -117,27 +294,81 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2">Tipo de Veículo</label>
                 <div class="flex">
                     <label for="motorhome" class="mr-2">
-                        <input type="radio" id="motorhome" name="vehicleType" value="Motorhome" [(ngModel)]="user.vehicleType">
-                        Motorhome
+                        <input type="radio" id="motorhome" name="vehicleType" value="MOTORHOME" [(ngModel)]="user.vehicleType"
+                        [ngClass]="{
+                            'shadow': true,
+                            'border': true,
+                            'rounded': true,
+                            'w-full': true,
+                            'py-2': true,
+                            'px-3': true,
+                            'text-gray-700': true,
+                            'leading-tight': true,
+                            'focus:outline-none': true,
+                            'focus:shadow-outline': true,
+                            'border-red-500': invalidFields.includes('email')
+                          }">
+                        MOTORHOME
                     </label>
                     <label for="trailer" class="mr-2">
-                        <input type="radio" id="trailer" name="vehicleType" value="Trailer" [(ngModel)]="user.vehicleType">
-                        Trailer
+                        <input type="radio" id="trailer" name="vehicleType" value="TRAILER" [(ngModel)]="user.vehicleType"
+                        [ngClass]="{
+                            'shadow': true,
+                            'border': true,
+                            'rounded': true,
+                            'w-full': true,
+                            'py-2': true,
+                            'px-3': true,
+                            'text-gray-700': true,
+                            'leading-tight': true,
+                            'focus:outline-none': true,
+                            'focus:shadow-outline': true,
+                            'border-red-500': invalidFields.includes('email')
+                          }">
+                        TRAILER
                     </label>
                     <label for="camper" class="mr-2">
-                        <input type="radio" id="camper" name="vehicleType" value="Camper" [(ngModel)]="user.vehicleType">
-                        Camper
+                        <input type="radio" id="camper" name="vehicleType" value="CAMPER" [(ngModel)]="user.vehicleType"
+                        [ngClass]="{
+                            'shadow': true,
+                            'border': true,
+                            'rounded': true,
+                            'w-full': true,
+                            'py-2': true,
+                            'px-3': true,
+                            'text-gray-700': true,
+                            'leading-tight': true,
+                            'focus:outline-none': true,
+                            'focus:shadow-outline': true,
+                            'border-red-500': invalidFields.includes('email')
+                          }">
+                        CAMPER
                     </label>
                     <label for="roofTent">
-                        <input type="radio" id="roofTent" name="vehicleType" value="Roof Tent" [(ngModel)]="user.vehicleType">
-                        Barrca de Teto
+                        <input type="radio" id="roofTent" name="vehicleType" value="TENT" [(ngModel)]="user.vehicleType"
+                        [ngClass]="{
+                            'shadow': true,
+                            'border': true,
+                            'rounded': true,
+                            'w-full': true,
+                            'py-2': true,
+                            'px-3': true,
+                            'text-gray-700': true,
+                            'leading-tight': true,
+                            'focus:outline-none': true,
+                            'focus:shadow-outline': true,
+                            'border-red-500': invalidFields.includes('email')
+                          }">
+                        BARRACA DE TETO
                     </label>
                 </div>
             </div>
         </form>
         <div class="mb-4 mt-4 flex justify-center items-center">
             <button id="btn-submit" type="submit"
-                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Cadastrar</button>
+                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300" (click)="createAccount()">
+                Cadastrar
+            </button>
         </div>
     </div>
     <div class="mb-4 mt-4 text-center">
