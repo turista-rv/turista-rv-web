@@ -5,35 +5,31 @@ header {
   left: 0;
   right: 0;
   height: 140px;
-  padding: 1rem 2rem;
+  padding: 0.2rem;
   display: flex;
   
   align-items: center;
   z-index: 50;
 }
 
-/* CSS para o botão de hambúrguer */
-button.md:hidden {
-  position: absolute;
-  background-color: transparent;
-  z-index: 1000;
-  color: white;
-}
+/* NAVBAR */
 
 /* Posição do menu quando está aberto */
 nav {
   position: fixed;
   top: 20px;
-  left: 0; 
+  right: -100%; 
   background-color: #ffffff;
   z-index: 999;
   transition: top 0.3s ease, right 0.3s ease; 
 }
-
+.navbar-opened {
+  right: -100%; /* Move o navbar para a posição direita da tela */
+}
 /* Oculte o menu quando não estiver aberto */
 nav:not(.active) {
-  top: -100px;
-  left: -100%; 
+  right: -100%;
+  
 }
 
 /* Posição do menu quando está aberto */
@@ -59,11 +55,10 @@ nav.active li {
   margin: 0 20px; /* Espaço igual entre os itens do menu */
 }
 
-
-
-
-
 /* Estilo para a opção "Entrar" na navbar */
 nav.active a[href="/login"] {
   margin-left: auto;
 }
+
+
+

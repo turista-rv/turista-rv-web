@@ -1,20 +1,15 @@
-<header class="fixed top-0 left-0 right-0 h-40 bg-gray-500 bg-opacity-90 p-4 flex justify-between items-center z-50">
+<header class="fixed top-0 left-0 right-0 h-40 bg-gray-500 bg-opacity-90 justify-between">
 
-  <div class="flex items-center mt-7" style="width: 400px;">
-    <!-- <a>
-      <img src="../../../assets/img/Logo.svg" alt="Logo" class="w-30 h-35 md:w-70 md:h-95 top-7">
-    </a>
-    <a>
-      <img src="../../../assets/img/turistaText.svg" alt="Logo" class="w-30 h-30">
-    </a> -->
-    
-      <img src="../../../assets/img/LogoWtext.png" alt="">
-    
+  <div class="mt-5 mr-n12" style="width: 415px;">
+    <img src="../../../assets/img/LogoWtext.png" alt="logo">
   </div>
-  <p class="text-white ml-10 flex items-center justify-center text-22">Campings de Sonho, Viagens sem Limites...</p>
+
+  <p class="text-white flex items-center justify-center md:text-22 text-sm ">
+    Campings de Sonho, Viagens
+    sem Limites...</p>
 
   <!-- Botão do menu hamburguer (exibido em telas menores) -->
-  <div class="md:hidden flex items-center justify-between">
+  <div class="md:hidden flex items-center justify-between ml-10">
     <button class="md:hidden text-black focus:outline-none" (click)="toggleMenu()">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -26,42 +21,38 @@
   <nav [ngClass]="{'active': isMenuOpen}">
     <ul id="menuHamburguer" class="hidden md:flex md:text-white bg-white">
       <li>
-        <a routerLink="/" href="mount-icon" class="group inline-block relative">
-          <img src="../../../assets/icons/mountain-icon.png" alt="menu de lugares"
-            class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:invert" width="35"
-            height="35">
-          <div class="text-xs ml-1 group-hover:opacity-100 transition-opacity duration-300">
+        <a routerLink="/" href="mount-icon" class=" relative">
+          <div class="text-center md:text-xs ml-1">
             Lugares
           </div>
         </a>
       </li>
       <li>
-        <a routerLink="/" href="motorhome-icon" class="group inline-block relative">
-          <img src="../../../assets/icons/motorhome-icon.png" alt="menu motorhome"
-            class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:invert" width="35"
-            height="35">
-          <div class="text-xs ml-1 group-hover:opacity-100 transition-opacity duration-300">
+        <a routerLink="/" href="motorhome-icon" class="relative">
+          <div class="text-center md:text-xs ml-1 group-hover:opacity-100 transition-opacity duration-300">
             Motorhome
           </div>
         </a>
       </li>
       <li>
-        <a routerLink="/about" href="mount-icon" class="group inline-block relative">
-          <img src="../../../assets/icons/about-icon.png" alt="menu sobre"
-            class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:invert" width="35"
-            height="35">
-          <div class="text-xs ml-1 group-hover:opacity-100 transition-opacity duration-300">
+        <a routerLink="/about" href="mount-icon" class=" relative">
+          <div class="text-center md:text-xs ml-1 group-hover:opacity-100 transition-opacity duration-300">
             Sobre
           </div>
         </a>
       </li>
       <li>
-        <a routerLink="/login" class="group inline-block relative">
-          Entrar
-        </a>
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full relative">
+          <a routerLink="/login" class="group inline-block relative">
+            <div class="text-center md:text-xs">
+              Entrar
+            </div>
+          </a>
+        </button>
       </li>
     </ul>
   </nav>
+
 
 
   <app-navbar></app-navbar>

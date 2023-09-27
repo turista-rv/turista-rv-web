@@ -1,8 +1,9 @@
 <nav class="p-4">
- 
-    <!-- Menu de navegação (exibido em telas maiores) -->
+
+    <!-- Menu de navegação (exibido em telas menores) -->
     <section class="flex items-center space-x-3 mt-3">
-        <ul id="menuHamburguer" class="hidden md:flex md:space-x-4 md:text-white" [ngClass]="{'active': isMenuOpen}">
+        <ul id="menuHamburguer" class="hidden md:flex md:space-x-5 md:text-white" [ngClass]="{'active': isMenuOpen}">
+            
             <li>
                 <a routerLink="/" href="mount-icon" class="group inline-block relative">
                     <img src="../../../assets/icons/mountain-icon.png" alt="menu de lugares"
@@ -35,10 +36,14 @@
                         Sobre
                     </div>
                 </a>
-                <div class="items-end group inline-block ml-48">
-                    <a routerLink="/login" class="text-orangeDark no-underline hover:text-red-300 text-24">Entrar</a>
-                </div>
             </li>
+            <div class="items-end group inline-block">
+                <button class="bg-blueDark hover:brightness-110 text-white font-bold py-2 px-4 rounded-full relative">
+                    <a routerLink="/login" class="group inline-block relative">
+                        Entrar
+                    </a>
+                </button>
+            </div>
         </ul>
     </section>
 </nav>

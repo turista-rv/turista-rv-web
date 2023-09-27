@@ -47,7 +47,6 @@ export class CreateAccountComponent {
         },
         (error) => {
           console.log("Erro, verifique os campos e preencha corretamente")
-          console.log(error)
           console.error('Erro ao conectar à API:', error);
          
         }
