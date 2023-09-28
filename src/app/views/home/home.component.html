@@ -1,15 +1,16 @@
 <body>
-    <header class="my-40">
+    <!-- class="my-40" -->
+    <header>
         <app-header></app-header>
     </header>
-
-        <!-- campo de busca -->
-        <section id="search-adventure" class="flex justify-center items-center z-50">
+    <div class="bg-cover bg-center h-screen" style="background-image: url('../../../assets/img/aaa.fw.png');">
+       <!-- campo de busca -->
+        <section class="search-adventure flex justify-center items-center absolute top-0 left-0 right-0">
             <div class="relative">
                 <input type="search" placeholder="Encontre sua próxima aventura..."
                     class="border text-center rounded-md pr-7 focus:outline-none focus:border-orangeDark text-md"
                     style="width: 400px; height: 55px;">
-
+    
                 <div class="absolute inset-y-0 right-0 flex items-center pr-1">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="35" height="35" viewBox="0,0,256,256">
                         <g fill="#f8931f" fill-rule="nonzero">
@@ -22,8 +23,16 @@
                     </svg>
                 </div>
             </div>
+            
         </section>
-        <h1 id="welcome-message" class="mt-7 mb-4 text-center font-medium">
+        <section class="container-card-explore absolute top-0 left-0 right-0 mt-50">
+
+            <div class="card-explore bg-white shadow-lg p-4 flex justify-center items-center ">
+    
+            </div>
+        </section>
+    </div>
+      <h1 id="welcome-message" class="mt-7 mb-4 text-center font-medium">
             Encontre experiências em campings para <br>motorhomes, trailers e campers. <br><br>
             É simples, rápido e econômico!
         </h1>
@@ -38,91 +47,7 @@
                 </btn-filled>
 
             </section>
-            <section class="container mx-auto px-4 py-4">
-                <!-- <h3 class="text-3xl font-semibold mb-3 text-center">Campings em destaque:</h3> -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div class="relative">
-                        <a href="pagina-de-campings.html" class="group">
-                            <img src="../../../assets/img/campings/pomerode.jpg" alt="imagem camping Pomerode"
-                                class="w-full h-auto transform transition-transform group-hover:brightness-70">
-                        </a>
-                        <div class="absolute inset-x-0 bottom-0 flex flex-col items-center p-4 bg-opacity-70 bg-black">
-                            <div class="flex items-center justify-between mb-2 w-full">
-                                <h3 class="text-white text-lg font-semibold">Pomerode</h3>
-                                <div class="flex items-center">
-                                    <img src="../../../assets/icons/fullstar-icon.svg" alt="" srcset=""
-                                        class="w-4 h-4 text-yellow-500 mr-1">
-                                    <span class="text-yellow-500 text-sm">4.5</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <a href="pagina-de-campings.html" class="group">
-                            <img src="../../../assets/img/campings/pomerode.jpg" alt="imagem camping Pomerode"
-                                class="w-full h-auto transform transition-transform group-hover:brightness-70">
-                        </a>
-                        <div class="absolute inset-x-0 bottom-0 flex flex-col items-center p-4 bg-opacity-70 bg-black">
-                            <div class="flex items-center justify-between mb-2 w-full">
-                                <h3 class="text-white text-lg font-semibold">Pomerode</h3>
-                                <div class="flex items-center">
-                                    <img src="../../../assets/icons/fullstar-icon.svg" alt="" srcset=""
-                                        class="w-4 h-4 border-opacity-50 text-yellow-500 mr-1">
-                                    <span class="text-yellow-500 text-sm">4.5</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <a href="pagina-de-campings.html" class="group">
-                            <img src="../../../assets/img/campings/pomerode.jpg" alt="imagem camping Pomerode"
-                                class="w-full h-auto transform transition-transform group-hover:brightness-70">
-                        </a>
-                        <div class="absolute inset-x-0 bottom-0 flex flex-col items-center p-4 bg-opacity-70 bg-black">
-                            <div class="flex items-center justify-between mb-2 w-full">
-                                <h3 class="text-white text-lg font-semibold">Pomerode</h3>
-                                <div class="flex items-center">
-                                    <img src="../../../assets/icons/fullstar-icon.svg" alt="" srcset=""
-                                        class="w-4 h-4 border-opacity-50 text-yellow-500 mr-1">
-                                    <span class="text-yellow-500 text-sm">4.5</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <a href="pagina-de-campings.html" class="group">
-                            <img src="../../../assets/img/campings/pomerode.jpg" alt="imagem camping Pomerode"
-                                class="w-full h-auto transform transition-transform group-hover:brightness-70">
-                        </a>
-                        <div class="absolute inset-x-0 bottom-0 flex flex-col items-center p-4 bg-opacity-70 bg-black">
-                            <div class="flex items-center justify-between mb-2 w-full">
-                                <h3 class="text-white text-lg font-semibold">Pomerode</h3>
-                                <div class="flex items-center">
-                                    <img src="../../../assets/icons/fullstar-icon.svg" alt="" srcset=""
-                                        class="w-4 h-4 border-opacity-50 text-yellow-500 mr-1">
-                                    <span class="text-yellow-500 text-sm">4.5</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <a href="pagina-de-campings.html" class="group">
-                            <img src="../../../assets/img/campings/pomerode.jpg" alt="imagem camping Pomerode"
-                                class="w-full h-auto transform transition-transform group-hover:brightness-70">
-                        </a>
-                        <div class="absolute inset-x-0 bottom-0 flex flex-col items-center p-4 bg-opacity-70 bg-black">
-                            <div class="flex items-center justify-between mb-2 w-full">
-                                <h3 class="text-white text-lg font-semibold">Pomerode</h3>
-                                <div class="flex items-center">
-                                    <img src="../../../assets/icons/fullstar-icon.svg" alt="" srcset=""
-                                        class="w-4 h-4 border-opacity-50 text-yellow-500 mr-1">
-                                    <span class="text-yellow-500 text-sm">4.5</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+         
             <!-- Novidades -->
             <section class="container mx-auto px-4 py-4">
                 <div class="bg-grays5 w-full max-h-[400px] rounded overflow-y-scroll">

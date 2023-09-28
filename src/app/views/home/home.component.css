@@ -1,0 +1,38 @@
+
+
+.search-adventure{
+    margin-top: 9rem;
+}
+.container-card-explore{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-explore{
+    display: flex;
+    margin-top: 13rem;
+   
+    opacity: 70%;
+
+    border-radius: 0.5rem;
+    height: 22rem;
+    width: 60rem;
+    padding: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+   
+
+    .container-card-explore {
+        flex-direction: column; /* Alinhar verticalmente para telas menores */
+        align-items: center;
+    }
+
+    .card-explore {
+     
+        width: 90%; /* Redimensionar para telas menores */
+        max-width: 400px; /* Definir largura máxima */
+        height: 21rem; /* Ajustar altura automaticamente */
+        padding: 1rem;
+    }
+}

@@ -40,9 +40,6 @@
                 <input type="text" id="name" name="name" [(ngModel)]="user.name" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -58,9 +55,6 @@
                 <input type="text" id="gender" name="gender" [(ngModel)]="user.gender" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -85,9 +79,6 @@
                     [ngClass]="{ 'cpf-mask': !isPassport, 'passport-mask': isPassport }"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -104,9 +95,6 @@
                 <input type="email" id="email" name="email" [(ngModel)]="user.email" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -123,9 +111,6 @@
                 <input type="email" id="emailActive" name="emailActive" [(ngModel)]="user.emailActive" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -141,9 +126,6 @@
                 <input type="date" id="dateBirth" name="dateBirth" [(ngModel)]="user.dateBirth" required
                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   [ngClass]="{
-                    'shadow': true,
-                    'border': true,
-                    'rounded': true,
                     'w-full': true,
                     'py-2': true,
                     'px-3': true,
@@ -159,9 +141,6 @@
                 <input type="phone" id="phone" name="phone" [(ngModel)]="user.phone" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -178,9 +157,6 @@
                 <input type="password" id="password" name="password" [(ngModel)]="user.password" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -197,9 +173,6 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -216,9 +189,6 @@
                 <input type="text" id="rvLength" name="rvLength" [(ngModel)]="user.rvLength" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -235,9 +205,6 @@
                 <input type="text" id="rvPlate" name="rvPlate" [(ngModel)]="user.rvPlate" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -254,9 +221,6 @@
                 <input type="text" id="tugPlate" name="tugPlate" [(ngModel)]="user.tugPlate" required
                     class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -273,9 +237,6 @@
                 <select id="touristType" name="touristType" [(ngModel)]="user.touristType" required
                     class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
-                        'shadow': true,
-                        'border': true,
-                        'rounded': true,
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -296,9 +257,7 @@
                     <label for="motorhome" class="mr-2">
                         <input type="radio" id="motorhome" name="vehicleType" value="MOTORHOME" [(ngModel)]="user.vehicleType"
                         [ngClass]="{
-                            'shadow': true,
-                            'border': true,
-                            'rounded': true,
+                         
                             'w-full': true,
                             'py-2': true,
                             'px-3': true,
@@ -313,9 +272,7 @@
                     <label for="trailer" class="mr-2">
                         <input type="radio" id="trailer" name="vehicleType" value="TRAILER" [(ngModel)]="user.vehicleType"
                         [ngClass]="{
-                            'shadow': true,
-                            'border': true,
-                            'rounded': true,
+                            
                             'w-full': true,
                             'py-2': true,
                             'px-3': true,
@@ -330,9 +287,7 @@
                     <label for="camper" class="mr-2">
                         <input type="radio" id="camper" name="vehicleType" value="CAMPER" [(ngModel)]="user.vehicleType"
                         [ngClass]="{
-                            'shadow': true,
-                            'border': true,
-                            'rounded': true,
+                            
                             'w-full': true,
                             'py-2': true,
                             'px-3': true,
@@ -346,10 +301,7 @@
                     </label>
                     <label for="roofTent">
                         <input type="radio" id="roofTent" name="vehicleType" value="TENT" [(ngModel)]="user.vehicleType"
-                        [ngClass]="{
-                            'shadow': true,
-                            'border': true,
-                            'rounded': true,
+                        [ngClass]="{                        
                             'w-full': true,
                             'py-2': true,
                             'px-3': true,
@@ -366,7 +318,7 @@
         </form>
         <div class="mb-4 mt-4 flex justify-center items-center">
             <button id="btn-submit" type="submit"
-                class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300" (click)="createAccount()">
+                class="bg-greenDark text-white px-4 py-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out" (click)="createAccount()">
                 Cadastrar
             </button>
         </div>
