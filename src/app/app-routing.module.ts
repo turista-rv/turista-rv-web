@@ -1,3 +1,4 @@
+import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
 import { HostessComponent } from './views/hostess/hostess.component';
 import { CreateAccountComponent } from './views/create-account/create-account.component';
 import { LoginComponent } from './views/login/login.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: "hostess",
     component: HostessComponent,
+  },
+  {
+    path: "admin-panel",
+    component: AdminPanelComponent,
   },
 ];
 
