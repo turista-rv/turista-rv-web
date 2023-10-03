@@ -1,0 +1,26 @@
+<div class="container mx-auto mt-6 p-6 bg-gray-100 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4">Adicionar Novidade</h2>
+    
+    <div class="mb-4">
+      <label for="image">URL da Imagem:</label>
+      <input [(ngModel)]="post.image" id="image" name="image" type="text" class="w-full p-2 border rounded">
+    </div>
+    
+    <div class="mb-4">
+      <label for="title">Título:</label>
+      <input [(ngModel)]="post.title" id="title" name="title" type="text" class="w-full p-2 border rounded">
+    </div>
+    
+    <div class="mb-4">
+      <label for="description">Descrição:</label>
+      <textarea [(ngModel)]="post.description" id="description" name="description" rows="4" class="w-full p-2 border rounded"></textarea>
+    </div>
+    
+    <button (click)="addPost()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Enviar</button>
+  </div>
+  
+  <div class="container mx-auto mt-6">
+    <h2 class="text-2xl font-bold mb-4">Posts Novos:</h2>
+    <!-- Lista de posts aqui -->
+  </div>
+  

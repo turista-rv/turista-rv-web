@@ -1,38 +1,51 @@
-
-
-.search-adventure{
-    margin-top: 9rem;
+.search-adventure {
+    margin-top: 8rem;
 }
-.container-card-explore{
+
+.bg-card-explore{
+    border-radius: 5px;
+    background-color: white;
+    height: 30rem;
+}
+.container-card-explore {
+    margin-top: 12rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
-.card-explore{
-    display: flex;
-    margin-top: 13rem;
-   
-    opacity: 70%;
 
+.card-explore {
+    display: flex;
+    margin-top: 10rem;
+    border-radius: 5px;
+    opacity: 85%;
+    align-items: center;
+    justify-content: space-between;
     border-radius: 0.5rem;
     height: 22rem;
     width: 60rem;
-    padding: 1rem;
+    padding: 4rem;
 }
 
-@media screen and (max-width: 768px) {
-   
+/* Você pode personalizar as classes geradas pelo Tailwind CSS conforme necessário */
 
-    .container-card-explore {
-        flex-direction: column; /* Alinhar verticalmente para telas menores */
-        align-items: center;
-    }
-
-    .card-explore {
-     
-        width: 90%; /* Redimensionar para telas menores */
-        max-width: 400px; /* Definir largura máxima */
-        height: 21rem; /* Ajustar altura automaticamente */
-        padding: 1rem;
-    }
+.card {
+    width: 250px; /* Largura do card */
 }
+
+.text {
+    height: 40px; /* Altura do texto */
+    /* background-color: rgba(0, 0, 0, 0.7) !important; */
+}
+
+img {
+    max-width: 100%; 
+    height: auto; 
+}
+
+.fc-event {
+    background-color: #333333;
+    color: #ffffff;
+  }
+  

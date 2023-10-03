@@ -1,3 +1,5 @@
+import { FullCalendarModule } from '@fullcalendar/angular';
+
 import { ButtonOutlineComponent } from './components/button-outline/btn-outline';
 import { ButtonFilledComponent } from './components/button-filled/btn-filled';
 import { NgModule } from '@angular/core';
@@ -15,6 +17,8 @@ import { AboutComponent } from './views/about/about.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { HostessComponent } from './views/hostess/hostess.component';
+import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +33,8 @@ import { HostessComponent } from './views/hostess/hostess.component';
     AboutComponent,
     NavbarComponent,
     HostessComponent,
+    AdminPanelComponent,
+    
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -40,7 +46,7 @@ import { HostessComponent } from './views/hostess/hostess.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-
+    FullCalendarModule 
     
   ],
   providers: [],
