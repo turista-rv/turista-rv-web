@@ -59,6 +59,10 @@ module.exports = {
         '28': '28px',
         '32': '32px',
         '40': '40px',
+        '50': '40px',
+        '60': '40px',
+        '70': '40px',
+        '80': '40px',
         'small': '14px', // Tamanho da fonte menor
       },
       

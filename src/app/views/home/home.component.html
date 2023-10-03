@@ -4,218 +4,313 @@
         <app-header></app-header>
     </header>
     <div class="bg-cover bg-center h-screen" style="background-image: url('../../../assets/img/aaa.fw.png');">
-       <!-- campo de busca -->
-        <section class="search-adventure flex justify-center items-center absolute top-0 left-0 right-0">
-            <div class="relative">
-                <input type="search" placeholder="Encontre sua próxima aventura..."
-                    class="border text-center rounded-md pr-7 focus:outline-none focus:border-orangeDark text-md"
-                    style="width: 400px; height: 55px;">
-    
-                <div class="absolute inset-y-0 right-0 flex items-center pr-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="35" height="35" viewBox="0,0,256,256">
-                        <g fill="#f8931f" fill-rule="nonzero">
-                            <g transform="scale(5.33333,5.33333)">
-                                <path
-                                    d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z">
-                                </path>
-                            </g>
-                        </g>
-                    </svg>
-                </div>
-            </div>
-            
-        </section>
-        <section class="container-card-explore absolute top-0 left-0 right-0 mt-50">
+        <section class="container-card-explore absolute top-0 left-0 right-0 mt-5">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6 mb-6 relative">
+                <!-- Menu Suspenso -->
+                <div class=" flex justify-center items-center mt-2 space-x-6">
+                    <div class="relative">
+                        <button class="text-black hover:text-gray-600 font-semibold">Menu1</button>
+                        <div class="absolute top-full left-0 bg-white p-2 rounded-lg shadow-lg hidden">
+                            <!-- Conteúdo do Menu Suspenso -->
+                            <a href="#" class="block hover:text-blue-500 py-1">Opção 1</a>
+                            <a href="#" class="block hover:text-blue-500 py-1">Opção 2</a>
+                            <a href="#" class="block hover:text-blue-500 py-1">Opção 3</a>
+                            <a href="#" class="block hover:text-blue-500 py-1">Opção 4</a>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <button class="text-black hover:text-gray-600 font-semibold">Menu2</button>
+                        <div class="absolute top-full left-0 bg-white p-2 rounded-lg shadow-lg hidden">
+                            <!-- Conteúdo do Menu Suspenso -->
+                            <a href="#" class="block hover:text-blue-500 py-1">Opção 1</a>
+                            <a href="#" class="block hover:text-blue-500 py-1">Opção 2</a>
+                            <a href="#" class="block hover:text-blue-500 py-1">Opção 3</a>
+                            <a href="#" class="block hover:text-blue-500 py-1">Opção 4</a>
+                        </div>
+                    </div>
 
-            <div class="card-explore bg-white shadow-lg p-4 flex justify-center items-center ">
-    
+                </div>
+
+                <!-- Cards Menores dentro do Card Grande -->
+                <div class="flex justify-center items-center mt-6 space-x-6">
+                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
+                            class="w-full h-32 object-cover">
+                        <div class="text bg-black bg-opacity-70 text-white p-2">
+                            Pomerode
+                        </div>
+                    </div>
+
+                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
+                            class="w-full h-32 object-cover">
+                        <div class="text bg-black bg-opacity-70 text-white p-2">
+                            Pomerode
+                        </div>
+                    </div>
+
+                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
+                            class="w-full h-32 object-cover">
+                        <div class="text bg-black bg-opacity-70 text-white p-2">
+                            Pomerode
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
         </section>
     </div>
-      <h1 id="welcome-message" class="mt-7 mb-4 text-center font-medium">
-            Encontre experiências em campings para <br>motorhomes, trailers e campers. <br><br>
-            É simples, rápido e econômico!
-        </h1>
 
-        <div class="relative z-10">
+    <!-- campo de busca -->
+    <section class="search-adventure flex justify-center items-center absolute top-0 left-0 right-0">
+        <div class="relative">
+            <input type="search" placeholder="Encontre sua próxima aventura..."
+                class="border text-center rounded-md pr-7 focus:outline-none focus:border-orangeDark text-md"
+                style="width: 400px; height: 55px;" id="searchInput" [(ngModel)]="searchTerm" (input)="filterCards()">
+            <div class="absolute inset-y-0 right-0 flex items-center pr-1">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="35" height="35" viewBox="0,0,256,256">
+                    <g fill="#f8931f" fill-rule="nonzero">
+                        <g transform="scale(5.33333,5.33333)">
+                            <path
+                                d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z">
+                            </path>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <h1 id="welcome-message" class="mt-7 mb-4 text-center font-medium">
+        Encontre experiências em campings para <br>motorhomes, trailers e campers. <br><br>
+        É simples, rápido e econômico!
+    </h1>
+
+    <div class="relative z-10">
 
 
-            <section class="flex flex-col items-center justify-center text-center mb-2">
+        <section class="flex flex-col items-center justify-center text-center mb-2">
 
-                <btn-filled class="filled " label="Nova reserva">
-                    <img src="../../../assets/icons/cross-Icon.svg" alt="">
-                </btn-filled>
+            <button
+                class="bg-greenDark flex items-center text-white rounded-lg gap-3 text-18 w-150 h-55 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center font-bold p-5">
+                <img src="../../../assets/icons/cross-Icon.svg" alt="">
+                Nova reserva
+            </button>
 
-            </section>
-         
-            <!-- Novidades -->
-            <section class="container mx-auto px-4 py-4">
-                <div class="bg-grays5 w-full max-h-[400px] rounded overflow-y-scroll">
-                    <h4 class="text-blueMid font-bold p-3">Novidades:</h4>
-                    <div class="mx-4 mr-4">
-                        <!-- Notícia 1 -->
-                        <div class="news-item border-b border-grays4 pb-4">
-                            <div class="flex justify-between items-center mb-1">
-                                <h5 class="text-grays1 font-semibold text-2xl">Novo Camping em Santa Catarina</h5>
-                                <div class="text-grays4 text-sm">05/08/2023</div>
+        </section>
+
+        <!-- Novidades -->
+        <section class="container mx-auto px-4 py-4 mt-12">
+            <div class="overflow-y-scroll">
+                <h4 class="text-blueMid mb-12 text-22 font-bold">Novidades:</h4>
+
+                <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
+                    
+
+                   
+                    <div class="mb-2">
+                        <div
+                            class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                            <div class="flex">
+                                <div class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+                                    data-te-ripple-init data-te-ripple-color="light">
+                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/024.webp"
+                                        class="object-cover w-full h-full" />
+                                    <a href="#!">
+                                        <div
+                                            class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                            <p class="">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                unknown printer took a galley of type and scrambled it to make a type specimen book. It
-                                has survived not only five centuries, but also the leap into electronic typesetting,
-                                remaining essentially unchanged.
-                            </p>
-                            <a href="link_da_noticia_1" class="flex items-center p-2">
-                                Saiba Mais
-                                <img src="../../../assets/icons/arrow-icon.svg" alt="Ícone de seta"
-                                    class="ml-2 w-4 h-4">
-                            </a>
+                            <div class="p-6">
+                                <h5 class="mb-3 text-lg font-bold">Meu Paraíso</h5>
+                                <p class="mb-4 text-neutral-500 dark:text-neutral-300">
+                                    <small>Publicado em <u>25.09.2023</u></small>
+                                </p>
+                                <p class="mb-4 pb-2">
+                                    Ipsum tristique, mi a mollis sagittis, metus felis mattis
+                                    arcu, non vehicula nisl dui quis diam. Mauris ut risus eget
+                                    massa volutpat feugiat. Donec.
+                                </p>
+                                <a href="#!" data-te-ripple-init data-te-ripple-color="light"
+                                    class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
+                             text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid 
+                             hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
+                             focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
+                             focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
+                             dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] 
+                            dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
+                            dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
+                            dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                                    Saiba Mais
+                                </a>
+                            </div>
+
                         </div>
+                    </div>
 
-                        <!-- Notícia 2 -->
-                        <div class="news-item border-b border-grays4 pb-4">
-                            <div class="flex justify-between items-center mb-1">
-                                <h5 class="text-grays1 font-semibold text-2xl">Melhores destinos de 2023</h5>
-                                <div class="text-grays4 text-sm">15/09/2023</div>
+                    <div class="mb-6 lg:mb-2">
+                        <div class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                            <div class="flex">
+                                <div class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+                                    data-te-ripple-init data-te-ripple-color="light">
+                                    <img src="https://www.segueviagem.com.br/wp-content/uploads/2022/04/pomerode-Credito-editorial-William-Avila-Shutterstock.com-shutterstock_2109732470.jpg"
+                                        class="w-full" />
+                                    <a href="#!">
+                                        <div
+                                            class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum is simply.
-                            </p>
-                            <a href="link_da_noticia_2" class="flex items-center p-2">
-                                Saiba Mais
-                                <img src="../../../assets/icons/arrow-icon.svg" alt="Ícone de seta"
-                                    class="ml-2 w-4 h-4">
-                            </a>
+                            <div class="p-6">
+                                <h5 class="mb-3 text-lg font-bold">Destinos ao ar livre</h5>
+                                <p class="mb-4 text-neutral-500 dark:text-neutral-300">
+                                    <small>Publicado em <u>20.09.2023</u></small>
+                                </p>
+                                <p class="mb-4 pb-2">
+                                    Suspendisse in volutpat massa. Nulla facilisi. Sed aliquet
+                                    diam orci, nec ornare metus semper sed. Integer volutpat
+                                    ornare erat sit amet rutrum.
+                                </p>
+                                <a href="#!" data-te-ripple-init data-te-ripple-color="light"
+                                    class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
+                                 text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid 
+                                 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
+                                 focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
+                                 focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
+                                 dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] 
+                                dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
+                                dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
+                                dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                                    Saiba Mais
+                                </a>
+                            </div>
                         </div>
+                    </div>
 
-                        <!-- Notícia 3 -->
-                        <div class="news-item border-b border-grays4 pb-4">
-                            <div class="flex justify-between items-center mb-1">
-                                <h5 class="text-grays1 font-semibold text-2xl">Notícia Adicional 1</h5>
-                                <div class="text-grays4 text-sm">15/09/2023</div>
-                            </div>
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum is simply. Lorem Ipsum is simply.
-                            </p>
-                            <a href="link_da_noticia_2" class="flex items-center p-2">
-                                Saiba Mais
-                                <img src="../../../assets/icons/arrow-icon.svg" alt="Ícone de seta"
-                                    class="ml-2 w-4 h-4">
-                            </a>
-                        </div>
 
-                        <!-- Notícia 4 -->
-                        <div class="news-item border-b border-grays4 pb-4">
-                            <div class="flex justify-between items-center mb-1">
-                                <h5 class="text-grays1 font-semibold text-2xl">Notícia Adicional 2</h5>
-                                <div class="text-grays4 text-sm">20/09/2023</div>
+                    <div class="mb-2">
+                        <div
+                            class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                            <div class="flex">
+                                <div class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+                                    data-te-ripple-init data-te-ripple-color="light">
+                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/081.webp" class="w-full" />
+                                    <a href="#!">
+                                        <div
+                                            class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum is simply.
-                            </p>
-                            <a href="link_da_noticia_3" class="flex items-center p-2">
-                                Saiba Mais
-                                <img src="../../../assets/icons/arrow-icon.svg" alt="Ícone de seta"
-                                    class="ml-2 w-4 h-4">
-                            </a>
-                        </div>
+                            <div class="p-6">
+                                <h5 class="mb-3 text-lg font-bold">Restaurante em Santa Catarina</h5>
+                                <p class="mb-4 text-neutral-500 dark:text-neutral-300">
+                                    <small>Publicado em <u>13.09.2023</u></small>
+                                </p>
+                                <p class="mb-4 pb-2">
+                                    Curabitur tristique, mi a mollis sagittis, metus felis mattis
+                                    arcu, non vehicula nisl dui quis diam. Mauris ut risus eget
+                                    massa volutpat feugiat. Donec.
+                                </p>
+                                <a href="#!" data-te-ripple-init data-te-ripple-color="light"
+                                    class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
+                             text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid 
+                             hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
+                             focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
+                             focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
+                             dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] 
+                            dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
+                            dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
+                            dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                                    Saiba Mais
+                                </a>
+                            </div>
 
-                        <!-- Notícia 5 -->
-                        <div class="news-item border-b border-grays4 pb-4">
-                            <div class="flex justify-between items-center mb-1">
-                                <h5 class="text-grays1 font-semibold text-2xl">Notícia Adicional 3</h5>
-                                <div class="text-grays4 text-sm">22/09/2023</div>
-                            </div>
-                            <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum is simply.
-                            </p>
-                            <a href="link_da_noticia_4" class="flex items-center p-2">
-                                Saiba Mais
-                                <img src="../../../assets/icons/arrow-icon.svg" alt="Ícone de seta"
-                                    class="ml-2 w-4 h-4">
-                            </a>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Seja um Afiliado -->
-            <section class="container mx-auto px-4 py-2">
-                <div class="bg-black w-full rounded-tl-md rounded-bl-md flex">
-                    <div class="w-2/3">
-                        <img src="../../../assets/img/motorhomeNight.jpg" alt="motorhome estacionado a noite"
-                            class="h-full w-full">
+        </section>
+
+        <!-- Seja um Afiliado -->
+        <section class="container mx-auto px-4 py-4">
+            <div class="bg-black w-full rounded-tl-md rounded-bl-md flex">
+                <div class="w-2/3">
+                    <img src="../../../assets/img/motorhomeNight.jpg" alt="motorhome estacionado a noite"
+                        class="h-full w-full">
+                </div>
+                <div class="w-2/3 flex flex-col justify-between p-4 mx-4">
+                    <div class="mb-3">
+                        <h2 class="text-white text-2xl font-bold font-50px">Seja um Afiliado:</h2>
+                        <p class="text-white mt-4">
+                            VOCÊ TEM TERRENO OCIOSO E QUER TRANSFORMAR
+                            CUSTO EM LUCRO?
+                        </p>
+                        <p class="text-white mt-4">Entre em contato e venha fazer parte... </p>
                     </div>
-                    <div class="w-2/3 flex flex-col justify-between p-4 mx-4">
-                        <div class="mb-3">
-                            <h2 class="text-white text-2xl font-bold font-50px">Seja um Afiliado:</h2>
-                            <p class="text-white mt-4">
-                                VOCÊ TEM TERRENO OCIOSO E QUER TRANSFORMAR
-                                CUSTO EM LUCRO?
-                            </p>
-                            <p class="text-white mt-4">Entre em contato e venha fazer parte... </p>
-                        </div>
-                        <div class="w-full sm:w-2/3 flex justify-center sm:justify-end items-center p-4">
-                            <button routerLink="/hostess" class="bg-greenDark flex items-center text-white rounded-lg gap-3 text-18 w-150 h-55 hover:brightness-110
+                    <div class="w-full sm:w-2/3 flex justify-center sm:justify-end items-center p-4">
+                        <button routerLink="/hostess" class="bg-greenDark flex items-center text-white rounded-lg gap-3 text-18 w-150 h-55 hover:brightness-110
                                 transition duration-300 ease-in-out justify-center text-center font-bold
                                  p-5" label="">Entre em Contato
-                            </button>
-                        </div>
+                        </button>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Newsletter -->
-            <section>
-                <div>
-
-                </div>
-            </section>
-            <!-- Eventos -->
-            <section class="container mx-auto px-4 py-2">
-                <h2 class="text-32 font-bold mb-2">Explore e colecione momentos...</h2>
-                <div>
-                    <img src="../../../assets/img/backpackers-adventure.jpg" alt="imagem mochileiros">
-                </div>
-
-                <h3 class="text-28 font-bold mb-2">Eventos:</h3>
-                <p>GASTRONOMIA</p>
-                <p>GASTRONOMIA</p>
-            </section>
+        <!-- Eventos -->
+        <section class="container mx-auto px-4 py-2">
+            <h2 class="text-32 font-bold mb-2">Explore e colecione momentos...</h2>
+            <div>
+                <img src="../../../assets/img/backpackers-adventure.jpg" alt="imagem mochileiros">
+            </div>
 
 
-            <!-- Newsletter -->
-            <section class="container mx-auto px-4 py-2">
-                <div class="flex">
-                    <!-- Card da esquerda -->
-                    <div class="bg-grays5 w-1/2 h-400 rounded p-4">
-                        <h2 class="text-32 font-bold mb-2">Newsletter</h2>
-                        <p class="mb-10">Receba nossas novidades em primeira mão no seu e-mail!!</p>
-                    
-                        <div class="flex flex-col mx-auto items-center"> 
-                            <input type="text" placeholder="Digite seu nome"
-                                class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
-                    
-                            <input type="email" placeholder="Digite seu melhor e-mail"
-                                class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
-                    
-                            <button class="bg-green-700 flex items-center text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110
+        </section>
+
+
+        <!-- Newsletter -->
+        <section class="container mx-auto px-4 py-4 w-full">
+            <div class="flex flex-col sm:flex-row ">
+                <!-- Card da esquerda -->
+                <div class="bg-grays5 w-full h-400 rounded p-4 mb-4">
+                    <h2 class="text-32 font-bold mb-2">Newsletter</h2>
+                    <p class="mb-10">Receba nossas novidades em primeira mão no seu e-mail!!</p>
+
+                    <div class="flex flex-col mx-auto items-center">
+                        <input type="text" placeholder="Digite seu nome"
+                            class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
+
+                        <input type="email" placeholder="Digite seu melhor e-mail"
+                            class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
+
+                        <button class="bg-green-700 flex items-center py-2 text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110
                                             transition duration-300 ease-in-out justify-center text-center font-bold"
-                                type="button">Cadastrar</button>
-                        </div>
+                            type="button">Cadastrar</button>
                     </div>
-
-                    <div class="w-4"></div>
-
-                    <!-- Card da direita -->
-                    <div class="bg-grays5 w-1/2 h-400 rounded"></div>
                 </div>
-            </section>
 
-        </div>
+                <div class="w-4"></div>
+
+                <!-- Card da direita -->
+                <div class="bg-grays5 w-full h-400 rounded p-4 mb-4">
+                    <h2 class="text-32 font-bold mb-2">Eventos</h2>
+                    <p class="mb-10">Próximos eventos:</p>
+                    <div id="calendario">
+                        <full-calendar [options]="calendarOptions" (dateClick)="handleDateClick($event)">
+                        </full-calendar>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <h3 class="text-28 font-bold mb-2">Eventos:</h3>
+            <p>GASTRONOMIA</p>
+            <p>GASTRONOMIA</p> -->
+    </div>
 </body>
