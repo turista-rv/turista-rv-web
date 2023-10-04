@@ -8,10 +8,19 @@
     height: 30rem;
 }
 .container-card-explore {
-    margin-top: 12rem;
+    margin-top: 11rem;
+    margin-left: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+  
+/* CARD IMG SECTION NOVIDADES */
+.card img {
+    object-fit: cover;
+    width: 400px;
+    height: 235px;
 }
 
 .card-explore {
@@ -27,13 +36,14 @@
     padding: 4rem;
 }
 
+/* CONTAINER PRINCIPAL COM POSICIONAMENTO NOVO CONTEUDO HOME */
+
 .relative2{
     margin-top: 20rem;
 }
 
-.card {
-    width: 250px; /* Largura do card */
-}
+
+/* CARD SEJA UM AFILIADO */
 
 .text {
     height: 40px; /* Altura do texto */

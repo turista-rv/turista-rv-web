@@ -11,8 +11,8 @@ export class CreateAccountComponent {
   user = {
     // firstName: 'Felipe',
     // lastName: 'Silva',
-    name: 'Felipe Silva',
-    gender: 'MASCULINO',
+    name: '',
+    gender: '',
     documentNumber: '',
     cpf: '407.583.555-11',
     email: 'flipe.silva@terra.com.br',
@@ -23,7 +23,7 @@ export class CreateAccountComponent {
     rvLength: 10,
     rvPlate: 'ABD5555',
     tugPlate: 'ABD5555',
-    touristType: 'CARAVANISTA',
+    touristType: 'No',
     vehicleType: '',
   };
 

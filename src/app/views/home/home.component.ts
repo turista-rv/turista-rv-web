@@ -10,7 +10,11 @@ export class HomeComponent  {
   searchTerm: string = ''; // Variável para armazenar o termo de pesquisa
   cards: any[] = [/* Seus dados de cards aqui */];
  
+  isDropdownVisible: boolean = false;
 
+  toggleDropdown(): void {
+    this.isDropdownVisible = !this.isDropdownVisible;
+  }
 
   filterCards() {
     const lowerSearchTerm = this.searchTerm.toLowerCase();
