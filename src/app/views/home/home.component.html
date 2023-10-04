@@ -4,8 +4,8 @@
         <app-header></app-header>
     </header>
     <div class="bg-cover bg-center h-screen" style="background-image: url('../../../assets/img/aaa.fw.png');">
-        <section class="container-card-explore absolute top-0 left-0 right-0 mt-5">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden p-6 mb-6 relative">
+        <section class="container-card-explore absolute top-72 left-0 right-0">
+            <div class="bg-white bg-opacity-80 rounded-lg shadow-lg overflow-hidden p-2 mb-6 relative">
                 <!-- Menu Suspenso -->
                 <div class=" flex justify-center items-center mt-2 space-x-6">
                     <div class="relative">
@@ -30,9 +30,37 @@
                     </div>
 
                 </div>
-
+                <!-- campo de busca -->
+                <section class="search-adventure flex justify-center items-center top-0 left-0 right-0">
+                    <div class="relative">
+                        <input type="search" placeholder="Encontre sua próxima aventura..."
+                            class="border text-center rounded-lg pr-7 focus:outline-none focus:border-orangeDark text-md"
+                            style="width: 400px; height: 40px;" id="searchInput" [(ngModel)]="searchTerm"
+                            (input)="filterCards()">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="35" height="35"
+                                viewBox="0,0,256,256">
+                                <g fill="#f8931f" fill-rule="nonzero">
+                                    <g transform="scale(5.33333,5.33333)">
+                                        <path
+                                            d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </section>
                 <!-- Cards Menores dentro do Card Grande -->
-                <div class="flex justify-center items-center mt-6 space-x-6">
+                <div class="flex justify-center items-center mt-10 space-x-6">
+                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
+                            class="w-full h-32 object-cover">
+                        <div class="text bg-black bg-opacity-70 text-white p-2">
+                            Pomerode
+                        </div>
+                    </div>
+
                     <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
                         <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
                             class="w-full h-32 object-cover">
@@ -63,35 +91,15 @@
         </section>
     </div>
 
-    <!-- campo de busca -->
-    <section class="search-adventure flex justify-center items-center absolute top-0 left-0 right-0">
-        <div class="relative">
-            <input type="search" placeholder="Encontre sua próxima aventura..."
-                class="border text-center rounded-md pr-7 focus:outline-none focus:border-orangeDark text-md"
-                style="width: 400px; height: 55px;" id="searchInput" [(ngModel)]="searchTerm" (input)="filterCards()">
-            <div class="absolute inset-y-0 right-0 flex items-center pr-1">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="35" height="35" viewBox="0,0,256,256">
-                    <g fill="#f8931f" fill-rule="nonzero">
-                        <g transform="scale(5.33333,5.33333)">
-                            <path
-                                d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z">
-                            </path>
-                        </g>
-                    </g>
-                </svg>
-            </div>
-        </div>
-    </section>
 
-    <h1 id="welcome-message" class="mt-7 mb-4 text-center font-medium">
-        Encontre experiências em campings para <br>motorhomes, trailers e campers. <br><br>
-        É simples, rápido e econômico!
-    </h1>
-
-    <div class="relative z-10">
-
-
-        <section class="flex flex-col items-center justify-center text-center mb-2">
+    <div class="relative2 z-10">
+        
+        
+        <section class="flex flex-col items-center justify-center text-center mt-50 mb-2">
+            <h1 id="welcome-message" class="mt-55 mb-4 text-center font-medium">
+                Encontre experiências em campings para <br>motorhomes, trailers e campers. <br><br>
+                É simples, rápido e econômico!
+            </h1>
 
             <button
                 class="bg-greenDark flex items-center text-white rounded-lg gap-3 text-18 w-150 h-55 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center font-bold p-5">
@@ -107,9 +115,9 @@
                 <h4 class="text-blueMid mb-12 text-22 font-bold">Novidades:</h4>
 
                 <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
-                    
 
-                   
+
+
                     <div class="mb-2">
                         <div
                             class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
@@ -153,7 +161,8 @@
                     </div>
 
                     <div class="mb-6 lg:mb-2">
-                        <div class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                        <div
+                            class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
                             <div class="flex">
                                 <div class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                                     data-te-ripple-init data-te-ripple-color="light">
@@ -303,8 +312,7 @@
                     <h2 class="text-32 font-bold mb-2">Eventos</h2>
                     <p class="mb-10">Próximos eventos:</p>
                     <div id="calendario">
-                        <full-calendar [options]="calendarOptions" (dateClick)="handleDateClick($event)">
-                        </full-calendar>
+                        
                     </div>
                 </div>
             </div>

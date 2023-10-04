@@ -18,7 +18,7 @@ export class AdminPanelComponent {
   constructor(private postService: PostService) {}
 
   addPost() {
-    // Adicionar lógica para gerar a data automaticamente (new Date())
+    // lógica para gerar a data automaticamente (new Date())
     this.postService.addPost({ ...this.post, date: new Date() });
     this.clearForm();
   }
