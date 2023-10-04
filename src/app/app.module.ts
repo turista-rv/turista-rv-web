@@ -1,4 +1,3 @@
-import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { ButtonOutlineComponent } from './components/button-outline/btn-outline';
 import { ButtonFilledComponent } from './components/button-filled/btn-filled';
@@ -46,7 +45,7 @@ import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    FullCalendarModule 
+    
     
   ],
   providers: [],
