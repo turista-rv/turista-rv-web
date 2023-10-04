@@ -8,12 +8,14 @@
     height: 30rem;
 }
 .container-card-explore {
-    margin-top: 12rem;
+    margin-top: 11rem;
+    margin-left: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+  
 /* CARD IMG SECTION NOVIDADES */
 .card img {
     object-fit: cover;

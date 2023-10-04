@@ -1,33 +1,38 @@
 <body>
-    <!-- class="my-40" -->
     <header>
         <app-header></app-header>
     </header>
-    <div class="bg-cover bg-center h-screen" style="background-image: url('../../../assets/img/aaa.fw.png');">
-        <section class="container-card-explore absolute top-72 left-0 right-0">
+    <div class="bg-cover bg-center h-screen mx-auto" style="background-image: url('../../../assets/img/aaa.fw.png');">
+        <section class="container-card-explore absolute top-72 left-0 right-0" style="width: 90%;">
             <div class="bg-white bg-opacity-80 rounded-lg shadow-lg overflow-hidden p-2 mb-6 relative">
                 <!-- Menu Suspenso -->
-                <div class=" flex justify-center items-center mt-2 space-x-6">
-                    <div class="relative">
-                        <button class="text-black hover:text-gray-600 font-semibold">Menu1</button>
-                        <div class="absolute top-full left-0 bg-white p-2 rounded-lg shadow-lg hidden">
-                            <!-- Conteúdo do Menu Suspenso -->
-                            <a href="#" class="block hover:text-blue-500 py-1">Opção 1</a>
-                            <a href="#" class="block hover:text-blue-500 py-1">Opção 2</a>
-                            <a href="#" class="block hover:text-blue-500 py-1">Opção 3</a>
-                            <a href="#" class="block hover:text-blue-500 py-1">Opção 4</a>
+                <div class="flex justify-center items-center mt-2 space-x-6">
+
+                    <div class="relative inline-block text-left">
+                        <button type="button"
+                            class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50"
+                            (click)="toggleDropdown()">
+                            Menu1
+                            <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <div *ngIf="isDropdownVisible"
+                            class="origin-top-right absolute right-0 mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Opção1</a>
+                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Opção2</a>
+                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Opção3</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="relative">
-                        <button class="text-black hover:text-gray-600 font-semibold">Menu2</button>
-                        <div class="absolute top-full left-0 bg-white p-2 rounded-lg shadow-lg hidden">
-                            <!-- Conteúdo do Menu Suspenso -->
-                            <a href="#" class="block hover:text-blue-500 py-1">Opção 1</a>
-                            <a href="#" class="block hover:text-blue-500 py-1">Opção 2</a>
-                            <a href="#" class="block hover:text-blue-500 py-1">Opção 3</a>
-                            <a href="#" class="block hover:text-blue-500 py-1">Opção 4</a>
-                        </div>
-                    </div>
+
+
+
 
                 </div>
                 <!-- campo de busca -->
@@ -51,6 +56,7 @@
                         </div>
                     </div>
                 </section>
+
                 <!-- Cards Menores dentro do Card Grande -->
                 <div class="flex justify-center items-center mt-10 space-x-6">
                     <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
@@ -84,32 +90,88 @@
                             Pomerode
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </section>
     </div>
-
-
+    <!-- VANTAGENS DO SMART CAMPING -->
     <div class="relative2 z-10">
-        
-        
-        <section class="flex flex-col items-center justify-center text-center mt-50 mb-2">
-            <h1 id="welcome-message" class="mt-55 mb-4 text-center font-medium">
-                Encontre experiências em campings para <br>motorhomes, trailers e campers. <br><br>
-                É simples, rápido e econômico!
-            </h1>
+        <h2 class="text-center text-2xl font-semibold mb-4 top-28 md:top-32">Explore sua Liberdade com Caravanismo</h2>
 
-            <button
-                class="bg-greenDark flex items-center text-white rounded-lg gap-3 text-18 w-150 h-55 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center font-bold p-5">
-                <img src="../../../assets/icons/cross-Icon.svg" alt="">
-                Nova reserva
-            </button>
+        <!-- Cards -->
+        <div class="flex justify-center items-center mt-10 space-x-6">
+            <div class="p-3 content">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                    <div class="icon-box-2 ">
+                        <i aria-hidden="true" class="fas fa-coins"></i>
+                        <h5 class="text-lg font-bold">LIBERDADE</h5>
+                        <p>O primeiro a oferecer funcionamento 24 horas, aberto o ano inteiro. Estamos trabalhando para
+                            oferecer uma rede de SMART CAMPINGs.</p>
+                    </div>
+                </div>
+            </div>
 
-        </section>
+            <div class="p-3 content">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                    <div class="icon-box-2 ">
+                        <i aria-hidden="true" class="fas fa-coins"></i>
+                        <h5 class="text-lg font-bold">AUTONOMIA</h5>
+                        <p>Reservas de vagas antecipadas ou no momento da chegada. Pagamento na Plataforma. WIFI e
+                            descarte de detritos free. Água e energia sob demanda.</p>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Novidades -->
+            <div class="p-3 content">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                    <div class="icon-box-2 ">
+                        <i aria-hidden="true" class="fas fa-coins"></i>
+                        <h5 class="text-lg font-bold">ECONOMIA</h5>
+                        <p>Valor de diária cobrado por veículo. Preços compatíveis com serviços oferecidos. Economia
+                            para
+                            que você viaje ainda mais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center items-center mt-6 space-x-6">
+            <div class="p-6 content">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                    <div class="icon-box-2 ">
+                        <i aria-hidden="true" class="fas fa-coins"></i>
+                        <h5 class="text-lg font-bold">EXPERIÊNCIAS</h5>
+                        <p>Atividades para sua viagem ou passeio. Atrativos, restaurantes, bares, delivery, parques.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 content">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                    <div class="icon-box-2 ">
+                        <i aria-hidden="true" class="fas fa-coins"></i>
+                        <h5 class="text-lg font-bold">TRANQUILIDADE</h5>
+                        <p>Local cercado e com câmeras de monitoramento, com armazenamento de dados em nuvem, para proporcionar ambientes mais tranquilos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 content">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                    <div class="icon-box-2 ">
+                        <i aria-hidden="true" class="fas fa-coins"></i>
+                        <h5 class="text-lg font-bold">ECONOMIA</h5>
+                        <p>Valor de diária cobrado por veículo. Preços compatíveis com serviços oferecidos. Economia
+                            para
+                            que você viaje ainda mais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Novidades -->
+    <div class="relative2 z-10">
         <section class="container mx-auto px-4 py-4 mt-12">
             <div class="overflow-y-scroll">
                 <h4 class="text-blueMid mb-12 text-22 font-bold">Novidades:</h4>
@@ -142,7 +204,7 @@
                                     massa volutpat feugiat. Donec.
                                 </p>
                                 <a href="#!" data-te-ripple-init data-te-ripple-color="light"
-                                class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
+                                    class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
                                 text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid 
                                 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
                                 focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
@@ -182,7 +244,7 @@
                                     Suspendisse in volutpat massa. Nulla facilisi. Sed aliquet
                                     diam orci, nec ornare metus semper sed. Integer volutpat
                                     ornare erat sit amet rutrum.
-                                    
+
                                 </p>
                                 <a href="#!" data-te-ripple-init data-te-ripple-color="light"
                                     class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
@@ -310,9 +372,7 @@
                 <div class="bg-grays5 w-full h-400 rounded p-4 mb-4">
                     <h2 class="text-32 font-bold mb-2">Eventos</h2>
                     <p class="mb-10">Próximos eventos:</p>
-                    <div id="calendario">
-                        
-                    </div>
+
                 </div>
             </div>
         </section>
