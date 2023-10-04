@@ -15,16 +15,20 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router 
+    private router: Router
   ) { }
 
   onSubmit() {
-	
+
     this.authService
       .loginUser(this.credentials)
-      .subscribe((isLogged) => {
-        if (isLogged) {
-          this.router.navigateByUrl('/'); 
+      .subscribe((userLogged) => {
+        if (userLogged) {
+          localStorage.setItem('token', userLogged.accessToken);
+          localStorage.setItem('idUser', userLogged.user.id as string);
+
+          this.router.navigateByUrl('/');
+          console.error(userLogged);
         } else {
           console.error('Email ou senha incorretos.');
         }
