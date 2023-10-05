@@ -1,163 +1,157 @@
-<body>
-    <header>
-        <app-header></app-header>
-    </header>
-    <div class="bg-cover bg-center h-screen mx-auto" style="background-image: url('../../../assets/img/aaa.fw.png');">
-        <section class="container-card-explore absolute top-72 left-0 right-0" style="width: 90%;">
-            <div class="bg-white bg-opacity-80 rounded-lg shadow-lg overflow-hidden p-2 mb-6 relative">
-                <!-- Menu Suspenso -->
-                <div class="flex justify-center items-center mt-2 space-x-6">
-
-                    <div class="relative inline-block text-left">
-                        <button type="button"
-                            class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-none focus:ring focus:ring-opacity-50"
-                            (click)="toggleDropdown()">
-                            Menu1
-                            <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
-                                aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
-
-                        <div *ngIf="isDropdownVisible"
-                            class="origin-top-right absolute right-0 mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
-                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Opção1</a>
-                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Opção2</a>
-                                <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Opção3</a>
-                            </div>
+<header>
+    <app-header></app-header>
+</header>
+<div class="bg-cover bg-center h-screen mx-auto" style="background-image: url('../../../assets/img/aaa.fw.png');">
+    <!-- Menu Suspenso -->
+    <!-- <div class="flex justify-center items-center mt-12">
+        <div class="tabs mx-auto text-indigo-800 m-10" style="max-width: 450px;">
+            <div class="top flex text-gray-100 rounded-t-md overflow-hidden">
+                <div class="buttons ml-auto my-auto flex">
+                    <span *ngFor="let tab of tabs; let i = index" (click)="activeTab = i"
+                        [class.active-tab]="activeTab === i" class="btn bg-indigo-800 cursor-pointer p-2 px-3">{{
+                        tab.title }}</span>
+                </div>
+            </div>
+            <div class="center text-gray-800 relative">
+                <ng-container *ngFor="let tab of tabs; let i = index">
+                    <div class="tab bg-white rounded-b-md w-full border border-t-0 absolute top-0"
+                        [class.active-tab]="activeTab === i">
+                        <p class="text-xl p-3 px-5 font-semibold">Welcome To {{ tab.title }}</p>
+                        <img *ngIf="i === 0" class="p-5 w-96"
+                            src="https://images.pexels.com/photos/635705/pexels-photo-635705.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                            alt="">
+                        <div class="p-3 px-5">
+                            <div class="long-text">{{ tab.content }}</div>
                         </div>
                     </div>
+                </ng-container>
+            </div>
+        </div>
+    </div> -->
 
 
-
-
-                </div>
-                <!-- campo de busca -->
-                <section class="search-adventure flex justify-center items-center top-0 left-0 right-0">
-                    <div class="relative">
-                        <input type="search" placeholder="Encontre sua próxima aventura..."
-                            class="border text-center rounded-lg pr-7 focus:outline-none focus:border-orangeDark text-md"
-                            style="width: 400px; height: 40px;" id="searchInput" [(ngModel)]="searchTerm"
-                            (input)="filterCards()">
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="35" height="35"
-                                viewBox="0,0,256,256">
-                                <g fill="#f8931f" fill-rule="nonzero">
-                                    <g transform="scale(5.33333,5.33333)">
-                                        <path
-                                            d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z">
-                                        </path>
-                                    </g>
+    <section class="container-card-explore absolute top-72 left-0 right-0" style="width: 90%;">
+        <div class="bg-white bg-opacity-80 rounded-lg shadow-lg overflow-hidden p-2 mb-6 relative">
+            <!-- campo de busca -->
+            <section class="search-adventure flex justify-center items-center top-0 left-0 right-0">
+                <div class="relative">
+                    <input type="search" placeholder="Encontre sua próxima aventura..."
+                        class="border text-center rounded-lg pr-7 focus:outline-none focus:border-orangeDark text-md"
+                        style="width: 400px; height: 40px;" id="searchInput" [(ngModel)]="searchTerm"
+                        (input)="filterCards()">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="35" height="35"
+                            viewBox="0,0,256,256">
+                            <g fill="#f8931f" fill-rule="nonzero">
+                                <g transform="scale(5.33333,5.33333)">
+                                    <path
+                                        d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z">
+                                    </path>
                                 </g>
-                            </svg>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Cards Menores dentro do Card Grande -->
-                <div class="flex justify-center items-center mt-10 space-x-6">
-                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
-                        <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
-                            class="w-full h-32 object-cover">
-                        <div class="text bg-black bg-opacity-70 text-white p-2">
-                            Pomerode
-                        </div>
-                    </div>
-
-                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
-                        <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
-                            class="w-full h-32 object-cover">
-                        <div class="text bg-black bg-opacity-70 text-white p-2">
-                            Pomerode
-                        </div>
-                    </div>
-
-                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
-                        <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
-                            class="w-full h-32 object-cover">
-                        <div class="text bg-black bg-opacity-70 text-white p-2">
-                            Pomerode
-                        </div>
-                    </div>
-
-                    <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
-                        <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
-                            class="w-full h-32 object-cover">
-                        <div class="text bg-black bg-opacity-70 text-white p-2">
-                            Pomerode
-                        </div>
+                            </g>
+                        </svg>
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
-    <!-- VANTAGENS DO SMART CAMPING -->
-    <div class="relative2 z-10">
-        <h2 class="text-center text-2xl font-semibold mb-4 top-28 md:top-32">Explore sua Liberdade com Caravanismo</h2>
+            </section>
 
-        <!-- Cards -->
-        <div class="flex justify-center items-center mt-10 space-x-6">
-            <div class="p-3 content">
-                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
-                    <div class="icon-box-2 ">
-                        <i aria-hidden="true" class="fas fa-coins"></i>
-                        <h5 class="text-lg font-bold">LIBERDADE</h5>
-                        <p>O primeiro a oferecer funcionamento 24 horas, aberto o ano inteiro. Estamos trabalhando para
-                            oferecer uma rede de SMART CAMPINGs.</p>
+            <!-- Cards Menores dentro do Card Grande -->
+            <div class="flex justify-center items-center mt-10 space-x-6">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
+                        class="w-full h-32 object-cover">
+                    <div class="text bg-black bg-opacity-70 text-white p-2">
+                        Pomerode
                     </div>
                 </div>
-            </div>
 
-            <div class="p-3 content">
-                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
-                    <div class="icon-box-2 ">
-                        <i aria-hidden="true" class="fas fa-coins"></i>
-                        <h5 class="text-lg font-bold">AUTONOMIA</h5>
-                        <p>Reservas de vagas antecipadas ou no momento da chegada. Pagamento na Plataforma. WIFI e
-                            descarte de detritos free. Água e energia sob demanda.</p>
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
+                        class="w-full h-32 object-cover">
+                    <div class="text bg-black bg-opacity-70 text-white p-2">
+                        Pomerode
                     </div>
                 </div>
-            </div>
 
-            <div class="p-3 content">
-                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
-                    <div class="icon-box-2 ">
-                        <i aria-hidden="true" class="fas fa-coins"></i>
-                        <h5 class="text-lg font-bold">ECONOMIA</h5>
-                        <p>Valor de diária cobrado por veículo. Preços compatíveis com serviços oferecidos. Economia
-                            para
-                            que você viaje ainda mais.</p>
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
+                        class="w-full h-32 object-cover">
+                    <div class="text bg-black bg-opacity-70 text-white p-2">
+                        Pomerode
+                    </div>
+                </div>
+
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img src="../../../assets/img/campings/pomerode.jpg" alt="Imagem do card"
+                        class="w-full h-32 object-cover">
+                    <div class="text bg-black bg-opacity-70 text-white p-2">
+                        Pomerode
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+</div>
+<!-- VANTAGENS DO SMART CAMPING -->
+<div class="relative2 z-10">
+    <h2 class="text-center text-2xl font-semibold mb-4 top-28 md:top-32">Explore sua Liberdade com Caravanismo</h2>
 
-        <div class="flex justify-center items-center mt-6 space-x-6">
-            <div class="p-6 content">
-                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
-                    <div class="icon-box-2 ">
-                        <i aria-hidden="true" class="fas fa-coins"></i>
-                        <h5 class="text-lg font-bold">EXPERIÊNCIAS</h5>
-                        <p>Atividades para sua viagem ou passeio. Atrativos, restaurantes, bares, delivery, parques.</p>
-                    </div>
+    <!-- Cards -->
+    <div class="flex justify-center items-center mt-10 space-x-6">
+        <div class="p-3 content">
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                <div class="icon-box-2 ">
+                    <i aria-hidden="true" class="fas fa-coins"></i>
+                    <h5 class="text-lg font-bold">LIBERDADE</h5>
+                    <p>O primeiro a oferecer funcionamento 24 horas, aberto o ano inteiro. Estamos trabalhando para
+                        oferecer uma rede de SMART CAMPINGs.</p>
                 </div>
             </div>
+        </div>
 
-            <div class="p-6 content">
-                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
-                    <div class="icon-box-2 ">
-                        <i aria-hidden="true" class="fas fa-coins"></i>
-                        <h5 class="text-lg font-bold">TRANQUILIDADE</h5>
-                        <p>Local cercado e com câmeras de monitoramento, com armazenamento de dados em nuvem, para proporcionar ambientes mais tranquilos.</p>
-                    </div>
+        <div class="p-3 content">
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                <div class="icon-box-2 ">
+                    <i aria-hidden="true" class="fas fa-coins"></i>
+                    <h5 class="text-lg font-bold">AUTONOMIA</h5>
+                    <p>Reservas de vagas antecipadas ou no momento da chegada. Pagamento na Plataforma. WIFI e
+                        descarte de detritos free. Água e energia sob demanda.</p>
                 </div>
             </div>
+        </div>
 
-            <div class="p-6 content">
-                <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+        <div class="p-3 content">
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                <div class="icon-box-2 ">
+                    <i aria-hidden="true" class="fas fa-coins"></i>
+                    <h5 class="text-lg font-bold">ECONOMIA</h5>
+                    <p>Valor de diária cobrado por veículo. Preços compatíveis com serviços oferecidos. Economia
+                        para
+                        que você viaje ainda mais.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex justify-center items-center mt-6 space-x-6">
+        <div class="p-6 content">
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                <div class="icon-box-2 ">
+                    <i aria-hidden="true" class="fas fa-coins"></i>
+                    <h5 class="text-lg font-bold">EXPERIÊNCIAS</h5>
+                    <p>Atividades para sua viagem ou passeio. Atrativos, restaurantes, bares, delivery, parques.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6 content">
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-400 h-80">
+                <div class="icon-box-2 ">
+                    <i aria-hidden="true" class="fas fa-coins"></i>
+                    <h5 class="text-lg font-bold">TRANQUILIDADE</h5>
+                    <p>Local cercado e com câmeras de monitoramento, com armazenamento de dados em nuvem, para
+                        proporcionar ambientes mais tranquilos.</p>
+                    /p>
+                    overflow-hidden w-400 h-80">
                     <div class="icon-box-2 ">
                         <i aria-hidden="true" class="fas fa-coins"></i>
                         <h5 class="text-lg font-bold">ECONOMIA</h5>
@@ -334,17 +328,6 @@
             </div>
         </section>
 
-        <!-- Eventos -->
-        <section class="container mx-auto px-4 py-2">
-            <h2 class="text-32 font-bold mb-2">Explore e colecione momentos...</h2>
-            <div>
-                <img src="../../../assets/img/backpackers-adventure.jpg" alt="imagem mochileiros">
-            </div>
-
-
-        </section>
-
-
         <!-- Newsletter -->
         <section class="container mx-auto px-4 py-4 w-full">
             <div class="flex flex-col sm:flex-row ">
@@ -377,4 +360,3 @@
             </div>
         </section>
     </div>
-</body>
