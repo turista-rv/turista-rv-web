@@ -23,7 +23,7 @@ export class CreateAccountComponent {
     rvLength: 10,
     rvPlate: 'ABD5555',
     tugPlate: 'ABD5555',
-    touristType: 'No',
+    touristType: 'ADMIRADOR',
     vehicleType: '',
   };
 
