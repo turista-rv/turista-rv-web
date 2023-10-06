@@ -31,44 +31,47 @@
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
-                        'text-gray-700': true,
-                        'leading-tight': true,
-                        'focus:outline-none': true,
-                        'focus:shadow-outline': true,
-                        'border-red-500': invalidFields.includes('touristType')
                       }">
                     <option value="ADMIRADOR">Não</option>
                     <option value="CARAVANISTA">Sim</option>
                 </select>
             </div>
+
+            <div class="mb-4">
+
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                    <input type="email" id="email" name="email" [(ngModel)]="user.email" required
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        [ngClass]="{
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                      }">
+                </div>
+            </div>
+
+            <div *ngIf="user.touristType === 'ADMIRADOR'">
+            </div>
+
+            <div *ngIf="user.touristType === 'CARAVANISTA'">
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nome</label>
-                <input type="text" id="name" name="name" [(ngModel)]="user.name" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    <input type="text" id="name" name="name" [(ngModel)]="user.name" required
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        [ngClass]="{
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                      }">
+                </div>
+                <label for="gender" class="block text-gray-700 text-sm font-bold mb-2">Gênero</label>
+                <select type="text" id="gender" name="gender" [(ngModel)]="user.gender" required
+                    class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
                     'w-full': true,
                     'py-2': true,
                     'px-3': true,
-                    'text-gray-700': true,
-                    'leading-tight': true,
-                    'focus:outline-none': true,
-                    'focus:shadow-outline': true,
-                    'border-red-500': invalidFields.includes('name')
-                  }">
-            </div>
-            <div class="mb-4">
-                <label for="gender" class="block text-gray-700 text-sm font-bold mb-2">Gênero</label>
-                <select type="text" id="gender" name="gender" [(ngModel)]="user.gender" required
-                class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                [ngClass]="{
-                    'w-full': true,
-                    'py-2': true,
-                    'px-3': true,
-                    'text-gray-700': true,
-                    'leading-tight': true,
-                    'focus:outline-none': true,
-                    'focus:shadow-outline': true,
-                    'border-red-500': invalidFields.includes('email')
                   }">
                     <option value="MASCULINO">Masculino</option>
                     <option value="FEMININO">Feminino</option>
@@ -81,33 +84,8 @@
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
-                        'text-gray-700': true,
-                        'leading-tight': true,
-                        'focus:outline-none': true,
-                        'focus:shadow-outline': true,
-                        'border-red-500': invalidFields.includes('email')
                       }">
                 </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
-                    <input type="email" id="email" name="email" [(ngModel)]="user.email" required
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        [ngClass]="{
-                        'w-full': true,
-                        'py-2': true,
-                        'px-3': true,
-                        'text-gray-700': true,
-                        'leading-tight': true,
-                        'focus:outline-none': true,
-                        'focus:shadow-outline': true,
-                        'border-red-500': invalidFields.includes('email')
-                      }">
-                </div>
-            </div>
-            <div *ngIf="user.touristType === 'ADMIRADOR'">
-            </div>
-            <div *ngIf="user.touristType === 'CARAVANISTA'">
-
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">
@@ -127,7 +105,7 @@
                     </div>
                 </div>
 
-   
+
                 <!-- <div class="mb-4">
                 <label for="lastName" class="block text-gray-700 text-sm font-bold mb-2">Sobrenome</label>
                 <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required
@@ -144,16 +122,11 @@
                         [ngClass]="{
                         'w-full': true,
                         'py-2': true,
-                        'px-3': true,
-                        'text-gray-700': true,
-                        'leading-tight': true,
-                        'focus:outline-none': true,
-                        'focus:shadow-outline': true,
-                        'border-red-500': invalidFields.includes('documentNumber')
+                        'px-3': true,                                      
                       }">
                 </div>
 
-               
+
                 <div class="mb-4">
                     <label for="dateBirth" class="block text-gray-700 text-sm font-bold mb-2">Data de Nascimento</label>
                     <input type="date" id="dateBirth" name="dateBirth" [(ngModel)]="user.dateBirth" required
@@ -162,20 +135,16 @@
                     'w-full': true,
                     'py-2': true,
                     'px-3': true,
-                    'text-gray-700': true,
-                    'leading-tight': true,
-                    'focus:outline-none': true,
-                    'focus:shadow-outline': true,
-                    'border-red-500': invalidFields.includes('email')
+                  
                   }">
                 </div>
-         
-                
+
+
                 <div class="mb-4">
                     <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
                     <input type="password" id="password" name="password" [(ngModel)]="user.password" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    [ngClass]="{
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        [ngClass]="{
                         'w-full': true,
                         'py-2': true,
                         'px-3': true,
@@ -185,8 +154,8 @@
                         'focus:shadow-outline': true,
                         'border-red-500': invalidFields.includes('email')
                       }">
-                    </div>
-                    
+                </div>
+
                 <div class="mb-4">
                     <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirme a
                         Senha</label>
@@ -235,8 +204,8 @@
                         'focus:shadow-outline': true,
                         'border-red-500': invalidFields.includes('email')
                       }">
-                    </div>
-                    
+                </div>
+
                 <div class="mb-4">
                     <label for="tugPlate" class="block text-gray-700 text-sm font-bold mb-2">Placa
                         Reboque/Rebocador</label>
@@ -250,11 +219,8 @@
                         'leading-tight': true,
                         'focus:outline-none': true,
                         'focus:shadow-outline': true,
-                        'border-red-500': invalidFields.includes('email')
                       }">
                 </div>
-
-
 
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Tipo de Veículo</label>
@@ -270,7 +236,6 @@
                             'leading-tight': true,
                             'focus:outline-none': true,
                             'focus:shadow-outline': true,
-                            'border-red-500': invalidFields.includes('email')
                           }">
                             MOTORHOME
                         </label>
@@ -282,11 +247,10 @@
                             'py-2': true,
                             'px-3': true,
                             'text-gray-700': true,
-                        
                             'leading-tight': true,
                             'focus:outline-none': true,
                             'focus:shadow-outline': true,
-                            'border-red-500': invalidFields.includes('email')
+
                           }">
                             TRAILER
                         </label>
@@ -301,7 +265,6 @@
                             'leading-tight': true,
                             'focus:outline-none': true,
                             'focus:shadow-outline': true,
-                            'border-red-500': invalidFields.includes('email')
                           }">
                             CAMPER
                         </label>
@@ -315,7 +278,6 @@
                             'leading-tight': true,
                             'focus:outline-none': true,
                             'focus:shadow-outline': true,
-                            'border-red-500': invalidFields.includes('email')
                           }">
                             BARRACA DE TETO
                         </label>
