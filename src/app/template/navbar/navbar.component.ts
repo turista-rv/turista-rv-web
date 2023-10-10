@@ -38,21 +38,21 @@ export class NavbarComponent {
     const refreshToken = localStorage.getItem('refreshToken') as string;
     this.authService.logout(refreshToken).subscribe(
       (data: any) => {
-      console.log(data);
-      localStorage.removeItem('token');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('idUser');
-      localStorage.removeItem('isAdmin');
-      this.router.navigateByUrl('/login');
-    });
-   
+        console.log(data);
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('idUser');
+        localStorage.removeItem('isAdmin');
+        this.router.navigateByUrl('/login');
+      });
+
     this.router.navigateByUrl('/login');
   }
 }
 
 // localStorage.removeItem('token');
 // localStorage.removeItem('refreshToken');
-// this.isLoggedIn = false; 
+// this.isLoggedIn = false;
 
 // const x = localStorage.getItem('refreshToken')
 // console.log(x)

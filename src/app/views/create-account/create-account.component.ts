@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { User } from 'src/app/models/LoginUser.model';
 
 @Component({
   selector: 'app-create-account',
@@ -8,15 +9,14 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./create-account.component.css'],
 })
 export class CreateAccountComponent {
-  user = {
-    // firstName: 'Felipe',
-    // lastName: 'Silva',
+  documentNumber: string = ''
+  user: User = {
     name: '',
     gender: '',
-    documentNumber: '',
+    // documentNumber: '',
     cpf: '',
     email: '',
-    emailActive: '',
+    emailActive: false,
     dateBirth: '',
     phone: '',
     password: '',
@@ -39,23 +39,26 @@ export class CreateAccountComponent {
 
   createAccount() {
     this.invalidFields = this.getInvalidFields();
-    if (this.invalidFields.length === 0) {
+    if(this.isPassport) this.user.passport = this.documentNumber
+      else this.user.cpf = this.documentNumber
+    
       this.authService.registerUser(this.user).subscribe(
         (response) => {
           this.router.navigateByUrl('/login');
           console.log('Conta criada com sucesso!');
         },
         (error) => {
-          console.log("Erro, verifique os campos e preencha corretamente")
+          alert("Erro, verifique os campos e preencha corretamente");
+          // console.log("Erro, verifique os campos e preencha corretamente");
           console.error('Erro ao conectar à API:', error);
-         
         }
       );
-    }
   }
+  
+
   private getInvalidFields(): string[] {
     const invalidFields: string[] = [];
-  
+
     if (!this.user.name) {
       invalidFields.push('Nome');
     }
@@ -65,11 +68,11 @@ export class CreateAccountComponent {
     if (!this.user.emailActive) {
       invalidFields.push('Confirme o Email');
     }
-   
-  
+
+
     return invalidFields;
   }
-  
+
   private validateFields(): boolean {
     if (
       // !this.user.firstName ||
@@ -81,7 +84,7 @@ export class CreateAccountComponent {
       !this.user.dateBirth ||
       !this.user.phone ||
       this.user.email !== this.confirmEmail ||
-      this.user.password !== this.confirmPassword 
+      this.user.password !== this.confirmPassword
     ) {
       console.error('Campos inválidos ou não preenchidos.');
       return false;

@@ -9,22 +9,22 @@ export interface LoginUser {
 export interface User {
     id?:          string;
     gender?:      string;
-    name:        string;
+    name:         string;
     cpf?:         string;
     passport?:    string;
-    email:       string;
-    emailActive: boolean;
-    dateBirth:   string;
-    phone:       string;
+    email:        string;
+    emailActive:  boolean;
+    dateBirth:    string;
+    phone:        string;
     address?:     any[];
     posts?:       any[];
     role?:        string;
     createdAt?:   string;
-    password?:   string;
+    password?:    string;
     rvLength?:    number;
-    rvPlate?:    string;
-    tugPlate?:  string;
-    touristType: string;
-    vehicleType: string;
+    rvPlate?:     string;
+    tugPlate?:    string;
+    touristType:  string;
+    vehicleType:  string;
 
 }
