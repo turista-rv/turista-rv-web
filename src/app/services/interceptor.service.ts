@@ -19,7 +19,7 @@ export class InterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // Obtém o token de autenticação do AuthService
-    const authToken = this.authService.getToken() || ''; 
+    const authToken = localStorage.getItem('token') || ''; 
 
     // Clona a requisição original e adiciona o token ao header
     const authReq = req.clone({
