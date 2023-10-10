@@ -8,11 +8,10 @@ import {
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
-
 @Injectable({
   providedIn: 'root',
 })
-export class HttpInterceptorService implements HttpInterceptor {
+export class InterceptorService implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(
@@ -20,7 +19,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // Obtém o token de autenticação do AuthService
-    const authToken = this.authService.getToken();
+    const authToken = this.authService.getToken() || ''; 
 
     // Clona a requisição original e adiciona o token ao header
     const authReq = req.clone({
@@ -32,6 +31,4 @@ export class HttpInterceptorService implements HttpInterceptor {
     // Encaminha a requisição clonada com o token para o próximo manipulador no pipeline
     return next.handle(authReq);
   }
-
-  
 }
