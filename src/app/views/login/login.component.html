@@ -14,12 +14,12 @@
     <form class="mt-10 items-center">
         <div class="flex flex-col mb-4">
             <label class="font-semibold">Login</label>
-            <input type="text" class="border rounded-lg h-12 w-314 px-3 mt-1" [(ngModel)]="credentials.email"
+            <input type="text" class="border rounded-lg h-12 w-314 px-3 mt-1 focus:outline-none focus:border-orangeDark text-black" [(ngModel)]="credentials.email"
                 name="email">
         </div>
         <div class="flex flex-col mb-4">
             <label class="font-semibold">Senha</label>
-            <input type="password" class="border rounded-lg h-12 w-314 px-3 mt-1" [(ngModel)]="credentials.password"
+            <input type="password" class="border rounded-lg h-12 w-314 px-3 mt-1 focus:outline-none focus:border-orangeDark text-black" [(ngModel)]="credentials.password"
                 name="password">
             <div class="flex items-center mt-1">
                 <button id="btn-reset" routerLink="/create-account" class="text-left text-10 ml-1 hover:bg-blue-200">
@@ -29,7 +29,8 @@
         </div>
 
         <btn-filled label="Entrar" [customColor]="'greenDark'" class="h-12 w-314 items-center"
-            (click)="onSubmit()"></btn-filled>
+            (click)="onSubmit()">
+        </btn-filled>
 
         <div class="flex items-center mt-1">
             <div class="text-left text-12">Não possui cadastro?</div>
