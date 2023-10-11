@@ -1,5 +1,7 @@
+import { map } from 'rxjs/operators';
+import { LoginUser } from './../../models/LoginUser.model';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Importe o Router para redirecionar após o login
+import { Router } from '@angular/router'; 
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -19,19 +21,18 @@ export class LoginComponent {
   ) { }
 
   onSubmit() {
-
+    console.log(this.credentials.email, this.credentials.password)
     this.authService
-      .loginUser(this.credentials)
-      .subscribe((userLogged) => {
-        if (userLogged) {
-          localStorage.setItem('token', userLogged.accessToken);
-          localStorage.setItem('idUser', userLogged.user.id as string);
-
-          this.router.navigateByUrl('/');
-          console.error(userLogged);
-        } else {
-          console.error('Email ou senha incorretos.');
+      .loginUser(this.credentials.email, this.credentials.password) 
+      .pipe(map((data:LoginUser) => {
+        localStorage.setItem('token', data.accessToken)
+      }))
+      .subscribe((data:any) => {
+        this.router.navigateByUrl('/');
+      },
+        (error: any) => {
+          console.error('Erro durante o login:', error);
         }
-      });
+      );
   }
 }

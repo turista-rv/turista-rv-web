@@ -42,13 +42,20 @@
         </a>
       </li>
       <li>
-        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full relative">
+        <button *ngIf="!isLoggedIn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full relative">
           <a routerLink="/login" class="group inline-block relative">
             <div class="text-center md:text-xs">
               Entrar
             </div>
           </a>
         </button>
+        <button *ngIf="isLoggedIn" (click)="logout()"
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full relative">
+          <div class="text-center md:text-xs">
+            Sair
+          </div>
+        </button>
+        
       </li>
     </ul>
   </nav>
