@@ -10,6 +10,7 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 })
 export class NavbarComponent {
   isMenuOpen = false;
+  isLoggedIn: boolean = false;
 
   constructor(
     private renderer: Renderer2,
@@ -18,9 +19,6 @@ export class NavbarComponent {
     private router: Router
   ) { }
 
-  get isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
-  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -43,10 +41,9 @@ export class NavbarComponent {
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('idUser');
         localStorage.removeItem('isAdmin');
-        this.router.navigateByUrl('/login');
       });
-
-    this.router.navigateByUrl('/login');
+      this.isLoggedIn = false;
+      this.router.navigateByUrl('/login');
   }
 }
 

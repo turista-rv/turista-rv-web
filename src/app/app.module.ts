@@ -17,7 +17,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { HostessComponent } from './views/hostess/hostess.component';
 import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
-
+import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
     NavbarComponent,
     HostessComponent,
     AdminPanelComponent,
+    ResetPasswordComponent,
     
   ],
   schemas: [

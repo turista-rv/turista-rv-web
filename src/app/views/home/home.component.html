@@ -317,15 +317,19 @@
                     <p class="mb-10">Receba nossas novidades em primeira mão no seu e-mail!!</p>
 
                     <div class="flex flex-col mx-auto items-center">
-                        <input type="text" placeholder="Digite seu nome"
+                        <input type="text" [(ngModel)]="leads.name" placeholder="Digite seu nome"
                             class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
 
-                        <input type="email" placeholder="Digite seu melhor e-mail"
+                        <input type="email" [(ngModel)]="leads.email" placeholder="Digite seu melhor e-mail"
+                            class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
+
+                        <input type="text" [(ngModel)]="leads.phone" placeholder="Digite seu whatsapp"
                             class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
 
                         <button class="bg-green-700 flex items-center py-2 text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110
                                             transition duration-300 ease-in-out justify-center text-center font-bold"
-                            type="button">Cadastrar</button>
+                            (click)="submitForm()" type="button">Cadastrar
+                        </button>
                     </div>
                 </div>
 
