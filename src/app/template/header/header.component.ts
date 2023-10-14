@@ -18,9 +18,7 @@ export class HeaderComponent {
     private router: Router
   ) {}
 
-  get isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
-  }
+  isLoggedIn: boolean = false;
   
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

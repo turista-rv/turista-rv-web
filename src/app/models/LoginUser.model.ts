@@ -8,14 +8,11 @@ export interface LoginUser {
 
 export interface User {
     id?:          string;
-    gender?:      string;
     name:         string;
     cpf?:         string;
     passport?:    string;
     email:        string;
-    emailActive:  boolean;
-    dateBirth:    string;
-    phone:        string;
+    phone?:        string;
     address?:     any[];
     posts?:       any[];
     role?:        string;
@@ -25,6 +22,6 @@ export interface User {
     rvPlate?:     string;
     tugPlate?:    string;
     touristType:  string;
-    vehicleType:  string;
+    vehicleType?:  string;
 
 }

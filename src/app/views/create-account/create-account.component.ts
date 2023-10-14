@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { User } from 'src/app/models/LoginUser.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-create-account',
@@ -9,29 +9,26 @@ import { User } from 'src/app/models/LoginUser.model';
   styleUrls: ['./create-account.component.css'],
 })
 export class CreateAccountComponent {
-  documentNumber: string = ''
   user: User = {
     name: '',
-    gender: '',
     // documentNumber: '',
-    cpf: '',
+    //cpf: '',
     email: '',
-    emailActive: false,
-    dateBirth: '',
-    phone: '',
-    password: '',
+    phone: '' || undefined,
+    password: '' || undefined,
     rvLength: 0,
-    rvPlate: '',
-    tugPlate: '',
+    rvPlate: '' || undefined,
+    tugPlate: '' || undefined,
     touristType: 'ADMIRADOR',
-    vehicleType: '',
+    vehicleType: '' || undefined,
   };
-
+  
+  documentNumber: string = ''
   confirmEmail = '';
   confirmPassword = '';
 
   constructor(
-    private authService: AuthService,
+    private UserService: UserService,
     private router: Router
   ) { }
 
@@ -42,15 +39,15 @@ export class CreateAccountComponent {
     if(this.isPassport) this.user.passport = this.documentNumber
       else this.user.cpf = this.documentNumber
     
-      this.authService.registerUser(this.user).subscribe(
+      this.UserService.registerUser(this.user).subscribe(
         (response) => {
-          this.router.navigateByUrl('/login');
-          console.log('Conta criada com sucesso!');
+          this.router.navigateByUrl('/');
+          console.log('Conta criada com sucesso!', response);
+          alert('Conta criada com sucesso!');
         },
+        
         (error) => {
           alert("Erro, verifique os campos e preencha corretamente");
-          // console.log("Erro, verifique os campos e preencha corretamente");
-          console.error('Erro ao conectar à API:', error);
         }
       );
   }
@@ -65,9 +62,9 @@ export class CreateAccountComponent {
     if (!this.user.email) {
       invalidFields.push('Email');
     }
-    if (!this.user.emailActive) {
-      invalidFields.push('Confirme o Email');
-    }
+    // if (!this.user.emailActive) {
+    //   invalidFields.push('Confirme o Email');
+    // }
 
 
     return invalidFields;
@@ -79,9 +76,9 @@ export class CreateAccountComponent {
       // !this.user.lastName ||
       !this.user.name ||
       !this.user.email ||
-      !this.user.emailActive ||
-      !this.user.dateBirth ||
-      !this.user.dateBirth ||
+      // !this.user.emailActive ||
+      // !this.user.dateBirth ||
+      // !this.user.dateBirth ||
       !this.user.phone ||
       this.user.email !== this.confirmEmail ||
       this.user.password !== this.confirmPassword

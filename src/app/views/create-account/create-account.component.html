@@ -25,7 +25,7 @@
                 <label for="touristType" class="block text-gray-700 text-sm font-bold mb-2">
                     Você é um Caravanista?
                 </label>
-                <select id="touristType" name="touristType" [(ngModel)]="user.touristType" required
+                <select id="touristType" name="touristType" [(ngModel)]="user.touristType" 
                     class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
                         'w-full': true,
@@ -38,6 +38,16 @@
             </div>
 
             <div class="mb-4">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nome</label>
+                    <input type="text" id="name" name="name" [(ngModel)]="user.name" 
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        [ngClass]="{
+                        'w-full': true,
+                        'py-2': true,
+                        'px-3': true,
+                      }">
+                </div>
 
                 <div class="mb-4">
                     <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
@@ -50,23 +60,47 @@
                       }">
                 </div>
             </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
+                <input type="password" id="password" name="password" [(ngModel)]="user.password" 
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                    'w-full': true,
+                    'py-2': true,
+                    'px-3': true,
+                    'text-gray-700': true,
+                    'leading-tight': true,
+                    'focus:outline-none': true,
+                    'focus:shadow-outline': true,
+                    'border-red-500': invalidFields.includes('email')
+                  }">
+            </div>
+
+            <div class="mb-4">
+                <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirme a
+                    Senha</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword"
+                    required
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    [ngClass]="{
+                    'w-full': true,
+                    'py-2': true,
+                    'px-3': true,
+                    'text-gray-700': true,
+                    'leading-tight': true,
+                    'focus:outline-none': true,
+                    'focus:shadow-outline': true,
+                    'border-red-500': invalidFields.includes('email')
+                  }">
+            </div>
 
             <div *ngIf="user.touristType === 'ADMIRADOR'">
             </div>
 
             <div *ngIf="user.touristType === 'CARAVANISTA'">
-                <div class="mb-4">
-                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nome</label>
-                    <input type="text" id="name" name="name" [(ngModel)]="user.name" required
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        [ngClass]="{
-                        'w-full': true,
-                        'py-2': true,
-                        'px-3': true,
-                      }">
-                </div>
-                <label for="gender" class="block text-gray-700 text-sm font-bold mb-2">Gênero</label>
-                <select type="text" id="gender" name="gender" [(ngModel)]="user.gender" required
+              
+                <!-- <label for="gender" class="block text-gray-700 text-sm font-bold mb-2">Gênero</label>
+                <select type="text" id="gender" name="gender" [(ngModel)]="user.gender" 
                     class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
                     'w-full': true,
@@ -75,10 +109,10 @@
                   }">
                     <option value="MASCULINO">Masculino</option>
                     <option value="FEMININO">Feminino</option>
-                </select>
+                </select> -->
                 <div class="mb-4">
                     <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">WhatsApp</label>
-                    <input type="phone" id="phone" name="phone" [(ngModel)]="user.phone" required
+                    <input type="phone" id="phone" name="phone" [(ngModel)]="user.phone" 
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                         'w-full': true,
@@ -117,7 +151,7 @@
                         {{ isPassport ? 'Passaporte' : 'CPF' }}
                     </label>
                     <input type="text" id="documentNumber" name="documentNumber" [(ngModel)]="documentNumber"
-                        required [ngClass]="{ 'cpf-mask': !isPassport, 'passport-mask': isPassport }"
+                         [ngClass]="{ 'cpf-mask': !isPassport, 'passport-mask': isPassport }"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                         'w-full': true,
@@ -126,10 +160,10 @@
                       }">
                 </div>
 
-
+<!-- 
                 <div class="mb-4">
                     <label for="dateBirth" class="block text-gray-700 text-sm font-bold mb-2">Data de Nascimento</label>
-                    <input type="date" id="dateBirth" name="dateBirth" [(ngModel)]="user.dateBirth" required
+                    <input type="date" id="dateBirth" name="dateBirth" [(ngModel)]="user.dateBirth" 
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                     'w-full': true,
@@ -137,46 +171,13 @@
                     'px-3': true,
                   
                   }">
-                </div>
+                </div> -->
 
 
-                <div class="mb-4">
-                    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
-                    <input type="password" id="password" name="password" [(ngModel)]="user.password" required
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        [ngClass]="{
-                        'w-full': true,
-                        'py-2': true,
-                        'px-3': true,
-                        'text-gray-700': true,
-                        'leading-tight': true,
-                        'focus:outline-none': true,
-                        'focus:shadow-outline': true,
-                        'border-red-500': invalidFields.includes('email')
-                      }">
-                </div>
-
-                <div class="mb-4">
-                    <label for="confirmPassword" class="block text-gray-700 text-sm font-bold mb-2">Confirme a
-                        Senha</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword"
-                        required
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        [ngClass]="{
-                        'w-full': true,
-                        'py-2': true,
-                        'px-3': true,
-                        'text-gray-700': true,
-                        'leading-tight': true,
-                        'focus:outline-none': true,
-                        'focus:shadow-outline': true,
-                        'border-red-500': invalidFields.includes('email')
-                      }">
-                </div>
-
+               
                 <div class="mb-4">
                     <label for="rvLength" class="block text-gray-700 text-sm font-bold mb-2">Comprimento do RV </label>
-                    <input type="text" id="rvLength" name="rvLength" [(ngModel)]="user.rvLength" required
+                    <input type="text" id="rvLength" name="rvLength" [(ngModel)]="user.rvLength" 
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                         'w-full': true,
@@ -192,7 +193,7 @@
 
                 <div class="mb-4">
                     <label for="rvPlate" class="block text-gray-700 text-sm font-bold mb-2">Placa do RV</label>
-                    <input type="text" id="rvPlate" name="rvPlate" [(ngModel)]="user.rvPlate" required
+                    <input type="text" id="rvPlate" name="rvPlate" [(ngModel)]="user.rvPlate" 
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                             'w-full': true,
@@ -209,7 +210,7 @@
                 <div class="mb-4">
                     <label for="tugPlate" class="block text-gray-700 text-sm font-bold mb-2">Placa
                         Reboque/Rebocador</label>
-                    <input type="text" id="tugPlate" name="tugPlate" [(ngModel)]="user.tugPlate" required
+                    <input type="text" id="tugPlate" name="tugPlate" [(ngModel)]="user.tugPlate" 
                         class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                         'w-full': true,

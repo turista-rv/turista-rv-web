@@ -1,7 +1,7 @@
 import { map } from 'rxjs/operators';
 import { LoginUser } from './../../models/LoginUser.model';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,8 +12,10 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
   credentials = {
     email: '',
-    password: ''
+    password: '',
   };
+  
+  isLoggedIn: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -23,11 +25,13 @@ export class LoginComponent {
   onSubmit() {
     console.log(this.credentials.email, this.credentials.password)
     this.authService
-      .loginUser(this.credentials.email, this.credentials.password) 
-      .pipe(map((data:LoginUser) => {
+      .loginUser(this.credentials.email, this.credentials.password)
+      .pipe(map((data: LoginUser) => {
         localStorage.setItem('token', data.accessToken)
+        
       }))
-      .subscribe((data:any) => {
+      .subscribe((data: any) => {
+        this.isLoggedIn = true;
         this.router.navigateByUrl('/');
       },
         (error: any) => {
