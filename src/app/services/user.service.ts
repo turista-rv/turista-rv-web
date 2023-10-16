@@ -14,17 +14,14 @@ export class UserService {
   constructor( private http: HttpClient) {}
 
   registerUser(user: User): Observable<any> {
-    console.log(user)
     return this.http.post<any>(this.url, user).pipe(
       map((response: any) => response), // Mapeia a resposta para retorná-la diretamente
       catchError((error: any) => {
         alert(error);
-        console.error('Erro ao registrar usuário:', error);
         throw error; 
       })
     );
   }
-
 
   formatPhoneNumber(phone: string): string {
     return `${phone.slice(0, 2)}-${phone.slice(2, 7)}-${phone.slice(7)}`;

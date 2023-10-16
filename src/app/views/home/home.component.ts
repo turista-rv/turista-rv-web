@@ -2,6 +2,16 @@ import { Leads } from './../../models/LeadsUser.model';
 import { LeadsService } from './../../services/leads.service';
 import { Component, AfterViewInit } from '@angular/core';
 
+interface ImageInfo {
+  imageFileName: string;
+  imageTitle: string;
+}
+
+interface Tab {
+  title: string;
+  content: string;
+  images?: ImageInfo[];
+}
 
 @Component({
   selector: 'app-home',
@@ -11,6 +21,8 @@ import { Component, AfterViewInit } from '@angular/core';
 export class HomeComponent {
 
   constructor(private leadsService: LeadsService) { }
+
+  activeTab: number = 0;
 
   searchTerm: string = ''; // Variável para armazenar o termo de pesquisa
   cards: any[] = [/* Seus dados de cards aqui */];
@@ -43,11 +55,30 @@ export class HomeComponent {
     alert('Date clicked: ' + arg.dateStr);
   }
 
-  activeTab: number = 0; // A aba ativa começa do índice 0
-  tabs: any[] = [
+
+  //METODO ABAS INTERATIVAS 
+
+  activeTabClass: string = '0';
+
+
+  tabs: Tab[] = [
     {
-      title: 'Tab 1',
-      content: 'Conteúdo da Tab 1'
+      title: 'Campings',
+      content: 'Encontre o melhor lugar com conforto e segurança!  ',
+      images: [
+        {
+          imageFileName: 'pomerode.jpg',
+          imageTitle: 'Pomerode'
+        },
+        {
+          imageFileName: 'pomerode.jpg',
+          imageTitle: 'Título da Segunda Imagem'
+        },
+        {
+          imageFileName: 'pomerode.jpg',
+          imageTitle: 'Título da Terceira Imagem'
+        }
+      ]
     },
     {
       title: 'Tab 2',
@@ -67,16 +98,20 @@ export class HomeComponent {
     }
   ];
 
+
+  changeTab(index: number): void {
+    console.log('Changing tab to index:', index);
+    this.activeTab = index;
+  }
+
+
+
+
   submitForm() {
-    console.log("chegou aqui!" + this.leads.name + this.leads.email + this.leads.phone)
     if (this.leads.name && this.leads.email && this.leads.phone) {
       this.leadsService.sendLeads(this.leads).subscribe(
         (response) => {
-          
-          console.log("chegou aqui!" + response)
           alert('Dados enviados com sucesso!');
-          console.log('Resposta da API:', response);
-         
         },
         (error) => {
           alert('Erro ao enviar dados: ' + error.message);
@@ -84,7 +119,7 @@ export class HomeComponent {
         }
       );
     } else {
-      alert('Por favor, preencha todos os campos.', );
+      alert('Por favor, preencha todos os campos.',);
     }
   }
 
