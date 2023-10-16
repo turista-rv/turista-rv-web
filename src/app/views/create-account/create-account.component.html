@@ -25,7 +25,7 @@
                 <label for="touristType" class="block text-gray-700 text-sm font-bold mb-2">
                     Você é um Caravanista?
                 </label>
-                <select id="touristType" name="touristType" [(ngModel)]="user.touristType" 
+                <select id="touristType" name="touristType" [(ngModel)]="user.touristType"
                     class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
                         'w-full': true,
@@ -40,7 +40,7 @@
             <div class="mb-4">
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nome</label>
-                    <input type="text" id="name" name="name" [(ngModel)]="user.name" 
+                    <input type="text" id="name" name="name" [(ngModel)]="user.name"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                         'w-full': true,
@@ -62,7 +62,7 @@
             </div>
             <div class="mb-4">
                 <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
-                <input type="password" id="password" name="password" [(ngModel)]="user.password" 
+                <input type="password" id="password" name="password" [(ngModel)]="user.password"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     [ngClass]="{
                     'w-full': true,
@@ -98,7 +98,7 @@
             </div>
 
             <div *ngIf="user.touristType === 'CARAVANISTA'">
-              
+
                 <!-- <label for="gender" class="block text-gray-700 text-sm font-bold mb-2">Gênero</label>
                 <select type="text" id="gender" name="gender" [(ngModel)]="user.gender" 
                     class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -112,7 +112,7 @@
                 </select> -->
                 <div class="mb-4">
                     <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">WhatsApp</label>
-                    <input type="phone" id="phone" name="phone" [(ngModel)]="user.phone" 
+                    <input type="phone" id="phone" name="phone" [(ngModel)]="user.phone"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                         'w-full': true,
@@ -151,7 +151,7 @@
                         {{ isPassport ? 'Passaporte' : 'CPF' }}
                     </label>
                     <input type="text" id="documentNumber" name="documentNumber" [(ngModel)]="documentNumber"
-                         [ngClass]="{ 'cpf-mask': !isPassport, 'passport-mask': isPassport }"
+                        [ngClass]="{ 'cpf-mask': !isPassport, 'passport-mask': isPassport }"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                         'w-full': true,
@@ -160,7 +160,7 @@
                       }">
                 </div>
 
-<!-- 
+                <!-- 
                 <div class="mb-4">
                     <label for="dateBirth" class="block text-gray-700 text-sm font-bold mb-2">Data de Nascimento</label>
                     <input type="date" id="dateBirth" name="dateBirth" [(ngModel)]="user.dateBirth" 
@@ -174,10 +174,10 @@
                 </div> -->
 
 
-               
+
                 <div class="mb-4">
                     <label for="rvLength" class="block text-gray-700 text-sm font-bold mb-2">Comprimento do RV </label>
-                    <input type="text" id="rvLength" name="rvLength" [(ngModel)]="user.rvLength" 
+                    <input type="text" id="rvLength" name="rvLength" [(ngModel)]="user.rvLength"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                         'w-full': true,
@@ -193,7 +193,7 @@
 
                 <div class="mb-4">
                     <label for="rvPlate" class="block text-gray-700 text-sm font-bold mb-2">Placa do RV</label>
-                    <input type="text" id="rvPlate" name="rvPlate" [(ngModel)]="user.rvPlate" 
+                    <input type="text" id="rvPlate" name="rvPlate" [(ngModel)]="user.rvPlate"
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                             'w-full': true,
@@ -210,7 +210,7 @@
                 <div class="mb-4">
                     <label for="tugPlate" class="block text-gray-700 text-sm font-bold mb-2">Placa
                         Reboque/Rebocador</label>
-                    <input type="text" id="tugPlate" name="tugPlate" [(ngModel)]="user.tugPlate" 
+                    <input type="text" id="tugPlate" name="tugPlate" [(ngModel)]="user.tugPlate"
                         class="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         [ngClass]="{
                         'w-full': true,
@@ -293,6 +293,28 @@
                 Cadastrar
             </button>
         </div>
+    </div>
+    <div class="flex justify-center items-center mb-12">
+        <button id="btn-login"
+            class="mt-3 bg-white items-center py-2 rounded-lg gap-3 border-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out justify-center font-bold">
+            <div class="flex items-center justify-center mx-auto">
+                <img src="../../../assets/icons/google-icon.svg" alt="google-icon">
+            </div>
+        </button>
+
+        <button id="btn-login"
+            class="mt-3 bg-white items-center py-2 rounded-lg gap-3 border-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out justify-center font-bold">
+            <div class="flex items-center justify-center mx-auto">
+                <img src="../../../assets/icons/facebook-icon2.svg" alt="facebook-icon">
+            </div>
+        </button>
+
+        <button id="btn-login"
+            class="mt-3 bg-white items-center py-2 rounded-lg gap-3 border-2 border-transparent hover:border-blue-500 transition duration-300 ease-in-out justify-center font-bold">
+            <div class="flex items-center justify-center mx-auto">
+                <img src="../../../assets/icons/apple-icon2.svg" alt="apple-icon">
+            </div>
+        </button>
     </div>
     <div class="mb-4 mt-4 text-center">
         Ao preencher o formulário acima, você concorda com os nossos
