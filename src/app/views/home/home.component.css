@@ -8,11 +8,22 @@
   margin-top: 2rem;
 }
 
-
-
 .container-card-explore {
   margin-top: 22rem;
   margin-left: 8rem;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+p {
+  display: flex;
+  text-align: justify;
+  text-align: center;
 }
 
 .card-explore {
@@ -76,7 +87,6 @@ img {
   filter: brightness(120%);
 }
 
-/* Cria estilo da aba ativa/atual - tabalinks class */
-.tab button.active {
-  background-color: #ccc;
+#smart-text{
+  color: darkgreen;
 }

@@ -77,7 +77,11 @@ export class HomeComponent {
         {
           imageFileName: 'pomerode.jpg',
           imageTitle: 'Título da Terceira Imagem'
-        }
+        },
+        // {
+        //   imageFileName: 'pomerode.jpg',
+        //   imageTitle: 'Título da Terceira Imagem'
+        // },
       ]
     },
     {
