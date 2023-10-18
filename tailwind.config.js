@@ -22,6 +22,14 @@ module.exports = {
         // => @media (min-width: 1536px) { ... }
       },
       
+      minWidth: {
+        '0': '0',
+        '1/4': '25%',
+        '1/2': '50%',
+        '3/4': '75%',
+        'full': '100%',
+      },
+      
       colors: {
         transparent: 'transparent',
         blueDark: '#0D7ABF',
@@ -59,10 +67,10 @@ module.exports = {
         '28': '28px',
         '32': '32px',
         '40': '40px',
-        '50': '40px',
-        '60': '40px',
-        '70': '40px',
-        '80': '40px',
+        '50': '50px',
+        '60': '60px',
+        '70': '70px',
+        '80': '80px',
         'small': '14px', // Tamanho da fonte menor
       },
       
