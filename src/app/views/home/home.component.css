@@ -1,7 +1,7 @@
 /* CONTAINER PRINCIPAL COM POSICIONAMENTO NOVO CONTEUDO HOME */
 
 .relative2 {
-  margin-top: 33rem;
+  margin-top: 19rem;
 }
 
 .search-adventure {
@@ -73,7 +73,7 @@ img {
 
 /* Style dos botões dentro da aba */
 .tablinks {
-  float: left;
+  
   border: none;
   outline: none;
   cursor: pointer;
@@ -87,6 +87,6 @@ img {
   filter: brightness(120%);
 }
 
-#smart-text{
+.smart-text{
   color: darkgreen;
 }

@@ -64,7 +64,7 @@ export class HomeComponent {
   tabs: Tab[] = [
     {
       title: 'Campings',
-      content: 'Encontre o melhor lugar com conforto e segurança!  ',
+      content: 'Encontre o melhor lugar com conforto e segurança!',
       images: [
         {
           imageFileName: 'pomerode.jpg',
@@ -78,10 +78,6 @@ export class HomeComponent {
           imageFileName: 'pomerode.jpg',
           imageTitle: 'Título da Terceira Imagem'
         },
-        // {
-        //   imageFileName: 'pomerode.jpg',
-        //   imageTitle: 'Título da Terceira Imagem'
-        // },
       ]
     },
     {

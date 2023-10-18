@@ -10,8 +10,8 @@
                 <div class="tab flex justify-center items-center">
                     <button class="tablinks w-full" *ngFor="let tab of tabs; let i = index" (click)="changeTab(i)"
                         [ngClass]="{
-                            'bg-opacity-80 text-indigo-800 font-semibold': activeTab === i,
-                            'bg-indigo-800 text-white font-semibold': activeTab !== i
+                            'bg-opacity-80 text-indigo-800 font-bold': activeTab === i,
+                            'bg-indigo-950 text-white font-bold': activeTab !== i
                         }">
                         {{ tab.title }}
                     </button>
@@ -38,11 +38,11 @@
                         </div>
                     </div>
                 </section>
-                <div class="card-explore flex justify-center items-center">
+                <div class="card-explore flex justify-center items-center mt-4">
                     <div *ngFor="let tab of tabs; let i = index" [hidden]="activeTab !== i">
                         <h3 class="text-2xl font-semibold mb-2">{{ tab.title }}</h3>
                         <p class="text-black">{{ tab.content }}</p>
-                        <div class="p-3 grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
+                        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
                             <ng-container>
                                 <div *ngFor="let image of tab.images" class="relative">
                                     <img [src]="'../../../assets/img/campings/' + image.imageFileName" alt="Imagem do card">
@@ -60,58 +60,56 @@
 </div>
 <!-- VANTAGENS DO SMART CAMPING -->
 <div class="relative2 z-10">
-    <h2 class="text-center text-2xl font-regular mb-4">No <b id="smart-text"> Smart Camping</b> você
+    <h2 class="text-center text-2xl font-regular mb-4">No <b class="smart-text"> Smart Camping</b> você
         encontra o que realmente importa...</h2>
 
     <!-- Cards -->
     <div class="flex flex-wrap justify-center mt-10 space-x-6">
         <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-            <img src="../../../assets/icons/freedom.png" class="object-cover w-full h-full" style="width: 50px; height: 50px;" >
-            <h5 class="text-lg font-bold">LIBERDADE</h5>
-            <p>
+            <img src="../../../assets/icons/freedom.png" class="object-cover mt-7 w-full h-full" style="width: 50px; height: 50px;" >
+            <h5 class="smart-text text-lg font-bold">LIBERDADE</h5>
+            <p >
                 O primeiro a oferecer funcionamento 24 horas, aberto o ano inteiro. Estamos trabalhando para
                 oferecer uma rede de SMART CAMPINGs.
             </p>
         </div>
 
         <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-            <i aria-hidden="true" class="fas fa-coins"></i>
-            <h5 class="text-lg font-bold">AUTONOMIA</h5>
-            <p>
+            <img src="../../../assets/icons/autonomy.png" class="object-cover  mt-7 w-full h-full" style="width: 50px; height: 50px;">
+            <h5 class="smart-text text-lg font-bold">AUTONOMIA</h5>
+            <p class="p-3">
                 Reservas de vagas antecipadas ou no momento da chegada. Pagamento na Plataforma. WIFI e
                 descarte de detritos free. Água e energia sob demanda.
             </p>
         </div>
 
         <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-            <i aria-hidden="true" class="fas fa-coins"></i>
-            <h5 class="text-lg font-bold">ECONOMIA</h5>
-            <p>Valor de diária cobrado por veículo. Preços compatíveis com serviços oferecidos. Economia
+            <img src="../../../assets/icons/economy.png" class="object-cover  mt-7 w-full h-full" style="width: 50px; height: 50px;">
+            <h5 class="smart-text text-lg font-bold">ECONOMIA</h5>
+            <p class="p-3">Valor de diária cobrado por veículo. Preços compatíveis com serviços oferecidos. Economia
                 para
                 que você viaje ainda mais.</p>
         </div>
     </div>
 
     <div class="flex flex-wrap justify-center mt-10 space-x-6">
-        <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-            <div class="icon-box-2 ">
-                <i aria-hidden="true" class="fas fa-coins"></i>
-                <h5 class="text-lg font-bold">EXPERIÊNCIAS</h5>
-                <p>Atividades para sua viagem ou passeio. Atrativos, restaurantes, bares, delivery, parques.</p>
-            </div>
+        <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
+            <img src="../../../assets/icons/experiences2.png" class="object-cover  mt-7 w-full h-full" style="width: 50px; height: 50px;">
+            <h5 class="smart-text text-lg font-bold">EXPERIÊNCIAS</h5>
+            <p class="p-3">Atividades para sua viagem ou passeio. Atrativos, restaurantes, bares, delivery, parques.</p>
         </div>
 
         <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
-            <i aria-hidden="true" class="fas fa-coins"></i>
-            <h5 class="text-lg font-bold">TRANQUILIDADE</h5>
-            <p>Local cercado e com câmeras de monitoramento, com armazenamento de dados em nuvem, para
+            <img src="../../../assets/icons/peace.png" class="object-cover  mt-7 w-full h-full" style="width: 50px; height: 50px;">
+            <h5 class="smart-text text-lg font-bold">TRANQUILIDADE</h5>
+            <p class="p-3">Local cercado e com câmeras de monitoramento, com armazenamento de dados em nuvem, para
                 proporcionar ambientes mais tranquilos.</p>
         </div>
 
         <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
-            <i aria-hidden="true" class="fas fa-coins"></i>
-            <h5 class="text-lg font-bold">COMODIDADES</h5>
-            <p>Priorizamos boa localização e acesso, próximos a conveniências, mercados e transporte.
+            <img src="../../../assets/icons/confort.png" class="object-cover  mt-7 w-full h-full" style="width: 50px; height: 50px;">
+             <h5 class="smart-text text-lg font-bold">COMODIDADES</h5>
+            <p class="p-3">Priorizamos boa localização e acesso, próximos a conveniências, mercados e transporte.
                 Conectamos parceiros e prestadores de serviços aos caravanistas.</p>
         </div>
     </div>
