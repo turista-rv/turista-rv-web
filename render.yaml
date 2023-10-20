@@ -1,7 +1,8 @@
 services:
   - name: my-angular-app
     env: node
-    buildCommand: npm install && ng build --prod
+    nodeVersion: 14
+    buildCommand: npm install && /caminho/para/o/projeto/node_modules/.bin/ng build --prod
     startCommand: npm start
     github:
       branch: main
