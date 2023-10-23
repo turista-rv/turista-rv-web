@@ -9,8 +9,10 @@
 }
 
 .container-card-explore {
-  margin-top: 22rem;
-  margin-left: 8rem;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  border: 2px solid red;
 }
 
 .card{

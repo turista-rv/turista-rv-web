@@ -4,7 +4,8 @@
 <div class="bg-cover bg-center h-screen mx-auto" style="background-image: url('../../../assets/img/aaa.fw.png');">
 
     <!-- Menu Suspenso -->
-    <section class="container-card-explore absolute flex justify-center items-center" style="width: 80%;">
+    <section>
+        <div class="container-card-explore">
         <div class="bg-white bg-opacity-80 rounded-lg shadow-lg relative">
             <div class="tabs  text-indigo-800 ">
                 <div class="tab flex justify-center items-center">
@@ -42,7 +43,7 @@
                     <div *ngFor="let tab of tabs; let i = index" [hidden]="activeTab !== i">
                         <h3 class="text-2xl font-semibold mb-2">{{ tab.title }}</h3>
                         <p class="text-black">{{ tab.content }}</p>
-                        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
+                        <div class="grid grid-cols-3 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
                             <ng-container>
                                 <div *ngFor="let image of tab.images" class="relative">
                                     <img [src]="'../../../assets/img/campings/' + image.imageFileName" alt="Imagem do card">
@@ -56,6 +57,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </section>
 </div>
 <!-- VANTAGENS DO SMART CAMPING -->
