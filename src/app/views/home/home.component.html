@@ -1,11 +1,14 @@
 <header>
     <app-header></app-header>
 </header>
-<div class="bg-cover bg-center h-screen mx-auto" style="background-image: url('../../../assets/img/aaa.fw.png');">
+<main>
+
+
+    <div class="bg-cover bg-center h-screen mx-auto" style="background-image: url('../../../assets/img/aaa.fw.png');">
+    </div>
 
     <!-- Menu Suspenso -->
-    <section>
-        <div class="container-card-explore">
+    <section class="container-card-explore sm:8">
         <div class="bg-white bg-opacity-80 rounded-lg shadow-lg relative">
             <div class="tabs  text-indigo-800 ">
                 <div class="tab flex justify-center items-center">
@@ -16,7 +19,6 @@
                         }">
                         {{ tab.title }}
                     </button>
-
                 </div>
                 <!-- campo de busca -->
                 <section class="search-adventure flex justify-center items-center top-0 left-0 right-0">
@@ -46,7 +48,8 @@
                         <div class="grid grid-cols-3 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
                             <ng-container>
                                 <div *ngFor="let image of tab.images" class="relative">
-                                    <img [src]="'../../../assets/img/campings/' + image.imageFileName" alt="Imagem do card">
+                                    <img [src]="'../../../assets/img/campings/' + image.imageFileName"
+                                        alt="Imagem do card">
                                     <div class="image-title absolute bottom-0 left-0 text-white p-2">
                                         {{ image.imageTitle }}
                                     </div>
@@ -57,99 +60,106 @@
                 </div>
             </div>
         </div>
-    </div>
     </section>
-</div>
-<!-- VANTAGENS DO SMART CAMPING -->
-<div class="relative2 z-10">
-    <h2 class="text-center text-2xl font-regular mb-4">No <b class="smart-text"> Smart Camping</b> você
-        encontra o que realmente importa...</h2>
 
-    <!-- Cards -->
-    <div class="flex flex-wrap justify-center mt-10 space-x-6">
-        <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-            <img src="../../../assets/icons/freedom.png" class="object-cover mt-7 w-full h-full" style="width: 50px; height: 50px;" >
-            <h5 class="smart-text text-lg font-bold">LIBERDADE</h5>
-            <p >
-                O primeiro a oferecer funcionamento 24 horas, aberto o ano inteiro. Estamos trabalhando para
-                oferecer uma rede de SMART CAMPINGs.
-            </p>
-        </div>
+    <!-- VANTAGENS DO SMART CAMPING -->
+    <div class="relative2 z-10">
+        <h2 class="text-center text-2xl font-regular mb-4">No <b class="smart-text"> Smart Camping</b> você
+            encontra o que realmente importa...</h2>
 
-        <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-            <img src="../../../assets/icons/autonomy.png" class="object-cover  mt-7 w-full h-full" style="width: 50px; height: 50px;">
-            <h5 class="smart-text text-lg font-bold">AUTONOMIA</h5>
-            <p class="p-3">
-                Reservas de vagas antecipadas ou no momento da chegada. Pagamento na Plataforma. WIFI e
-                descarte de detritos free. Água e energia sob demanda.
-            </p>
-        </div>
+        <!-- Cards -->
+        <section class="flex flex-wrap justify-center mt-10 space-x-6">
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
+                <img src="../../../assets/icons/freedom.png" class="object-cover mt-7 w-full h-full"
+                    style="width: 50px; height: 50px;">
+                <h5 class="smart-text text-lg font-bold">LIBERDADE</h5>
+                <p>
+                    O primeiro a oferecer funcionamento 24 horas, aberto o ano inteiro. Estamos trabalhando para
+                    oferecer uma rede de SMART CAMPINGs.
+                </p>
+            </div>
 
-        <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-            <img src="../../../assets/icons/economy.png" class="object-cover  mt-7 w-full h-full" style="width: 50px; height: 50px;">
-            <h5 class="smart-text text-lg font-bold">ECONOMIA</h5>
-            <p class="p-3">Valor de diária cobrado por veículo. Preços compatíveis com serviços oferecidos. Economia
-                para
-                que você viaje ainda mais.</p>
-        </div>
-    </div>
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
+                <img src="../../../assets/icons/autonomy.png" class="object-cover  mt-7 w-full h-full"
+                    style="width: 50px; height: 50px;">
+                <h5 class="smart-text text-lg font-bold">AUTONOMIA</h5>
+                <p class="p-3">
+                    Reservas de vagas antecipadas ou no momento da chegada. Pagamento na Plataforma. WIFI e
+                    descarte de detritos free. Água e energia sob demanda.
+                </p>
+            </div>
 
-    <div class="flex flex-wrap justify-center mt-10 space-x-6">
-        <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
-            <img src="../../../assets/icons/experiences.png" class="object-cover  mt-7 w-full h-full" style="width: 50px; height: 50px;">
-            <h5 class="smart-text text-lg font-bold">EXPERIÊNCIAS</h5>
-            <p class="p-3">Atividades para sua viagem ou passeio. Atrativos, restaurantes, bares, delivery, parques.</p>
-        </div>
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
+                <img src="../../../assets/icons/economy.png" class="object-cover  mt-7 w-full h-full"
+                    style="width: 50px; height: 50px;">
+                <h5 class="smart-text text-lg font-bold">ECONOMIA</h5>
+                <p class="p-3">Valor de diária cobrado por veículo. Preços compatíveis com serviços oferecidos. Economia
+                    para
+                    que você viaje ainda mais.</p>
+            </div>
+        </section>
 
-        <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
-            <img src="../../../assets/icons/peace.png" class="object-cover  mt-7 w-full h-full" style="width: 50px; height: 50px;">
-            <h5 class="smart-text text-lg font-bold">TRANQUILIDADE</h5>
-            <p class="p-3">Local cercado e com câmeras de monitoramento, com armazenamento de dados em nuvem, para
-                proporcionar ambientes mais tranquilos.</p>
-        </div>
+        <section class="flex flex-wrap justify-center mt-10 space-x-6">
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
+                <img src="../../../assets/icons/experiences.png" class="object-cover  mt-7 w-full h-full"
+                    style="width: 50px; height: 50px;">
+                <h5 class="smart-text text-lg font-bold">EXPERIÊNCIAS</h5>
+                <p class="p-3">Atividades para sua viagem ou passeio. Atrativos, restaurantes, bares, delivery, parques.
+                </p>
+            </div>
 
-        <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
-            <img src="../../../assets/icons/confort.png" class="object-cover  mt-7 w-full h-full" style="width: 50px; height: 50px;">
-             <h5 class="smart-text text-lg font-bold">COMODIDADES</h5>
-            <p class="p-3">Priorizamos boa localização e acesso, próximos a conveniências, mercados e transporte.
-                Conectamos parceiros e prestadores de serviços aos caravanistas.</p>
-        </div>
-        
-    </div>
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
+                <img src="../../../assets/icons/peace.png" class="object-cover  mt-7 w-full h-full"
+                    style="width: 50px; height: 50px;">
+                <h5 class="smart-text text-lg font-bold">TRANQUILIDADE</h5>
+                <p class="p-3">Local cercado e com câmeras de monitoramento, com armazenamento de dados em nuvem, para
+                    proporcionar ambientes mais tranquilos.</p>
+            </div>
 
-    <!-- Novidades -->
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
+                <img src="../../../assets/icons/confort.png" class="object-cover  mt-7 w-full h-full"
+                    style="width: 50px; height: 50px;">
+                <h5 class="smart-text text-lg font-bold">COMODIDADES</h5>
+                <p class="p-3">Priorizamos boa localização e acesso, próximos a conveniências, mercados e transporte.
+                    Conectamos parceiros e prestadores de serviços aos caravanistas.</p>
+            </div>
+        </section>
 
-    <section class="container mx-auto px-4 py-4 mt-12">
-        <div class="overflow-y-scroll">
-            <h4 class="text-blueMid mb-12 text-22 font-bold">Novidades:</h4>
+        <!-- Novidades -->
 
-            <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
+        <section class="container mx-auto px-4 py-4 mt-12">
+            <div class="overflow-y-scroll">
+                <h4 class="text-blueMid mb-12 text-22 font-bold">Novidades:</h4>
 
-                <div class="mb-2 card">
-                    <div
-                        class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-                        <div class="flex">
-                            <div class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
-                                data-te-ripple-init data-te-ripple-color="light">
-                                <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/024.webp"
-                                    class="object-cover w-full h-full" />
-                                <a href="#!">
-                                    <div class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]"></div>
-                                </a>
+                <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
+
+                    <div class="mb-2 card">
+                        <div
+                            class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                            <div class="flex">
+                                <div class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+                                    data-te-ripple-init data-te-ripple-color="light">
+                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/024.webp"
+                                        class="object-cover w-full h-full" />
+                                    <a href="#!">
+                                        <div
+                                            class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="p-6 content">
-                            <h5 class="mb-3 text-lg font-bold">Meu Paraíso</h5>
-                            <p class="mb-4 text-neutral-500 dark:text-neutral-300">
-                                <small>Publicado em <u>25.09.2023</u></small>
-                            </p>
-                            <p class="mb-4 pb-2">
-                                Ipsum tristique, mi a mollis sagittis, metus felis mattis
-                                arcu, non vehicula nisl dui quis diam. Mauris ut risus eget
-                                massa volutpat feugiat. Donec.
-                            </p>
-                            <a href="#!" data-te-ripple-init data-te-ripple-color="light"
-                                class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
+                            <div class="p-6 content">
+                                <h5 class="mb-3 text-lg font-bold">Meu Paraíso</h5>
+                                <p class="mb-4 text-neutral-500 dark:text-neutral-300">
+                                    <small>Publicado em <u>25.09.2023</u></small>
+                                </p>
+                                <p class="mb-4 pb-2">
+                                    Ipsum tristique, mi a mollis sagittis, metus felis mattis
+                                    arcu, non vehicula nisl dui quis diam. Mauris ut risus eget
+                                    massa volutpat feugiat. Donec.
+                                </p>
+                                <a href="#!" data-te-ripple-init data-te-ripple-color="light"
+                                    class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
                                 text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid 
                                 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
                                 focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
@@ -158,41 +168,41 @@
                                 dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
                                 dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
                                 dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                                Saiba Mais
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="mb-2 card">
-                    <div
-                        class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-                        <div class="flex">
-                            <div class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
-                                data-te-ripple-init data-te-ripple-color="light">
-                                <img src="https://www.segueviagem.com.br/wp-content/uploads/2022/04/pomerode-Credito-editorial-William-Avila-Shutterstock.com-shutterstock_2109732470.jpg"
-                                    class="w-full" />
-                                <a href="#!">
-                                    <div
-                                        class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
-                                    </div>
+                                    Saiba Mais
                                 </a>
                             </div>
-                        </div>
-                        <div class="p-6 content">
-                            <h5 class="mb-3 text-lg font-bold">Destinos ao ar livre</h5>
-                            <p class="mb-4 text-neutral-500 dark:text-neutral-300">
-                                <small>Publicado em <u>20.09.2023</u></small>
-                            </p>
-                            <p class="mb-4 pb-2">
-                                Suspendisse in volutpat massa. Nulla facilisi. Sed aliquet
-                                diam orci, nec ornare metus semper sed. Integer volutpat
-                                ornare erat sit amet rutrum.
 
-                            </p>
-                            <a href="#!" data-te-ripple-init data-te-ripple-color="light"
-                                class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
+                        </div>
+                    </div>
+
+                    <div class="mb-2 card">
+                        <div
+                            class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                            <div class="flex">
+                                <div class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+                                    data-te-ripple-init data-te-ripple-color="light">
+                                    <img src="https://www.segueviagem.com.br/wp-content/uploads/2022/04/pomerode-Credito-editorial-William-Avila-Shutterstock.com-shutterstock_2109732470.jpg"
+                                        class="w-full" />
+                                    <a href="#!">
+                                        <div
+                                            class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-6 content">
+                                <h5 class="mb-3 text-lg font-bold">Destinos ao ar livre</h5>
+                                <p class="mb-4 text-neutral-500 dark:text-neutral-300">
+                                    <small>Publicado em <u>20.09.2023</u></small>
+                                </p>
+                                <p class="mb-4 pb-2">
+                                    Suspendisse in volutpat massa. Nulla facilisi. Sed aliquet
+                                    diam orci, nec ornare metus semper sed. Integer volutpat
+                                    ornare erat sit amet rutrum.
+
+                                </p>
+                                <a href="#!" data-te-ripple-init data-te-ripple-color="light"
+                                    class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
                                     text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid 
                                     hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
                                     focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
@@ -201,39 +211,39 @@
                                     dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
                                     dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
                                     dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                                Saiba Mais
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="mb-2 card">
-                    <div
-                        class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-                        <div class="flex">
-                            <div class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
-                                data-te-ripple-init data-te-ripple-color="light">
-                                <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/081.webp" class="w-full" />
-                                <a href="#!">
-                                    <div
-                                        class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
-                                    </div>
+                                    Saiba Mais
                                 </a>
                             </div>
                         </div>
-                        <div class="p-6 content">
-                            <h5 class="mb-3 text-lg font-bold">Restaurante em Santa Catarina</h5>
-                            <p class="mb-4 text-neutral-500 dark:text-neutral-300">
-                                <small>Publicado em <u>13.09.2023</u></small>
-                            </p>
-                            <p class="mb-4 pb-2">
-                                Curabitur tristique, mi a mollis sagittis, metus felis mattis
-                                arcu, non vehicula nisl dui quis diam. Mauris ut risus eget
-                                massa volutpat feugiat. Donec.
-                            </p>
-                            <a href="#!" data-te-ripple-init data-te-ripple-color="light"
-                                class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
+                    </div>
+
+
+                    <div class="mb-2 card">
+                        <div
+                            class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                            <div class="flex">
+                                <div class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+                                    data-te-ripple-init data-te-ripple-color="light">
+                                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/081.webp" class="w-full" />
+                                    <a href="#!">
+                                        <div
+                                            class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-6 content">
+                                <h5 class="mb-3 text-lg font-bold">Restaurante em Santa Catarina</h5>
+                                <p class="mb-4 text-neutral-500 dark:text-neutral-300">
+                                    <small>Publicado em <u>13.09.2023</u></small>
+                                </p>
+                                <p class="mb-4 pb-2">
+                                    Curabitur tristique, mi a mollis sagittis, metus felis mattis
+                                    arcu, non vehicula nisl dui quis diam. Mauris ut risus eget
+                                    massa volutpat feugiat. Donec.
+                                </p>
+                                <a href="#!" data-te-ripple-init data-te-ripple-color="light"
+                                    class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal
                                     text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid 
                                     hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
                                     focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] 
@@ -242,75 +252,74 @@
                                     dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
                                     dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] 
                                     dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-                                Saiba Mais
-                            </a>
-                        </div>
+                                    Saiba Mais
+                                </a>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-    </section>
-
-    <!-- Seja um Afiliado -->
-    <section class="container mx-auto px-4 py-4">
-        <div class="bg-black w-full rounded-tl-md rounded-bl-md flex">
-            <div class="w-2/3">
-                <img src="../../../assets/img/motorhomeNight.jpg" alt="motorhome estacionado a noite"
-                    class="h-full w-full">
-            </div>
-            <div class="w-2/3 flex flex-col justify-between p-4 mx-4">
-                <div class="mb-3">
-                    <h2 class="text-white text-2xl font-bold font-50px">Seja um Afiliado:</h2>
-                    <p class="text-white mt-4">
-                        VOCÊ TEM TERRENO OCIOSO E QUER TRANSFORMAR
-                        CUSTO EM LUCRO?
-                    </p>
-                    <p class="text-white mt-4">Entre em contato e venha fazer parte... </p>
+        <!-- Seja um Afiliado -->
+        <section class="container mx-auto px-4 py-4">
+            <div class="bg-black w-full rounded-tl-md rounded-bl-md flex flex-col sm:flex-row">
+                <div class="w-full sm:w-2/3">
+                    <img src="../../../assets/img/motorhomeNight.jpg" alt="motorhome estacionado a noite" class="h-full w-full">
                 </div>
-                <div class="w-full sm:w-2/3 flex justify-center sm:justify-end items-center p-4">
-                    <button routerLink="/hostess" class="bg-greenDark flex items-center text-white rounded-lg gap-3 text-18 w-150 h-55 hover:brightness-110
-                                transition duration-300 ease-in-out justify-center text-center font-bold
-                                 p-5" label="">Entre em Contato
-                    </button>
+                <div class="w-full sm:w-2/3 flex flex-col justify-between p-4 mx-4">
+                    <div class="mb-3">
+                        <h2 class="text-white text-2xl sm:text-center font-bold font-50px">Seja um Afiliado:</h2>
+                        <p class="text-white sm:text-justify mt-4">
+                            VOCÊ TEM TERRENO OCIOSO E QUER TRANSFORMAR CUSTO EM LUCRO?
+                        </p>
+                        <p class="text-white sm:text-justify mt-4">Entre em contato e venha fazer parte... </p>
+                    </div>
+                    <div class="w-full sm:w-2/3 flex justify-center sm:justify-end items-center p-4">
+                        <button routerLink="/hostess" class="bg-greenDark flex items-center text-white rounded-lg gap-3 text-18 w-150 h-55 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center font-bold p-5">
+                            Entrar em Contato
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
 
-    <!-- Newsletter -->
-    <section class="container mx-auto px-4 py-4 w-full">
-        <div class="flex flex-col sm:flex-row ">
-            <!-- Card da esquerda -->
-            <div class="bg-grays5 w-full h-400 rounded p-4 mb-4">
-                <h2 class="text-32 font-bold mb-2">Newsletter</h2>
-                <p class="mb-10">Receba nossas novidades em primeira mão no seu e-mail!!</p>
+        <!-- Newsletter -->
+        <section class="container mx-auto px-4 py-4 w-full">
+            <div class="flex flex-col sm:flex-row ">
+                <!-- Card da esquerda -->
+                <div class="bg-grays5 w-full h-400 rounded p-4 mb-4">
+                    <h2 class="text-32 font-bold mb-2">Newsletter</h2>
+                    <p class="mb-10">Receba nossas novidades em primeira mão no seu e-mail!!</p>
 
-                <div class="flex flex-col mx-auto items-center">
-                    <input type="text" [(ngModel)]="leads.name" placeholder="Digite seu nome"
-                        class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
+                    <div class="flex flex-col mx-auto items-center">
+                        <input type="text" [(ngModel)]="leads.name" placeholder="Digite seu nome"
+                            class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
 
-                    <input type="email" [(ngModel)]="leads.email" placeholder="Digite seu melhor e-mail"
-                        class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
+                        <input type="email" [(ngModel)]="leads.email" placeholder="Digite seu melhor e-mail"
+                            class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
 
-                    <input type="text" [(ngModel)]="leads.phone" placeholder="Digite seu whatsapp"
-                        class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
+                        <input type="text" [(ngModel)]="leads.phone" placeholder="Digite seu whatsapp"
+                            class="w-400 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black">
 
-                    <button class="bg-green-700 flex items-center py-2 text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110
+                        <button class="bg-green-700 flex items-center py-2 text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110
                                             transition duration-300 ease-in-out justify-center text-center font-bold"
-                        (click)="submitForm()" type="button">Cadastrar
-                    </button>
+                            (click)="submitForm()" type="button">Cadastrar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="w-4"></div>
+
+                <!-- Card da direita -->
+                <div class="bg-grays5 w-full h-400 rounded p-4 mb-4">
+                    <h2 class="text-32 font-bold mb-2">Eventos</h2>
+                    <p class="mb-10">Próximos eventos:</p>
+
                 </div>
             </div>
-
-            <div class="w-4"></div>
-
-            <!-- Card da direita -->
-            <div class="bg-grays5 w-full h-400 rounded p-4 mb-4">
-                <h2 class="text-32 font-bold mb-2">Eventos</h2>
-                <p class="mb-10">Próximos eventos:</p>
-
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
+</main>

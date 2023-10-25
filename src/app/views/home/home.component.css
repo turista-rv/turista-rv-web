@@ -10,9 +10,11 @@
 
 .container-card-explore {
   display: flex;
-  /* align-items: center; */
+  margin-top: -18rem;
+  align-items: center;
   justify-content: center;
   border: 2px solid red;
+  position: absolute;
 }
 
 .card{
@@ -49,8 +51,6 @@ p {
   -webkit-text-stroke: 0.8px black; /* contorno preto com 2 pixels de largura (para navegadores WebKit como Chrome e Safari) */
   color: white; /* cor do texto */
 }
-
-
 
 
 /* CARD IMG SECTION NOVIDADES */
