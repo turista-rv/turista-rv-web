@@ -48,7 +48,7 @@ p {
   padding: 5px;
   text-align: center;
   font-weight: bold;
-  -webkit-text-stroke: 0.8px black; /* contorno preto com 2 pixels de largura (para navegadores WebKit como Chrome e Safari) */
+  -webkit-text-stroke: 0.6px black; /* contorno preto com 2 pixels de largura (para navegadores WebKit como Chrome e Safari) */
   color: white; /* cor do texto */
 }
 
@@ -62,12 +62,6 @@ p {
 
 /* CARD SEJA UM AFILIADO */
 
-.text {
-  height: 40px;
-  /* Altura do texto */
-  /* background-color: rgba(0, 0, 0, 0.7) !important; */
-}
-
 img {
   max-width: 100%;
   height: auto;
@@ -75,7 +69,6 @@ img {
 
 /* Style dos botões dentro da aba */
 .tablinks {
-  
   border: none;
   outline: none;
   cursor: pointer;
@@ -84,11 +77,3 @@ img {
   font-size: 17px;
 }
 
-/* Muda a cor do fundo do botão on hover */
-.tab button:hover {
-  filter: brightness(120%);
-}
-
-.smart-text{
-  color: darkgreen;
-}
