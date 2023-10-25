@@ -8,7 +8,7 @@
     </div>
 
     <!-- Menu Suspenso -->
-    <section class="container-card-explore sm:w-full">
+    <!-- <section class="container-card-explore sm:w-full">
         <div class="bg-white bg-opacity-80 rounded-lg shadow-lg relative">
             <div class="tabs  text-indigo-800 ">
                 <div class="tab flex justify-center items-center">
@@ -20,27 +20,7 @@
                         {{ tab.title }}
                     </button>
                 </div>
-                <!-- campo de busca -->
-                <section class="search-adventure flex justify-center items-center top-0 left-0 right-0">
-                    <div class="relative">
-                        <input type="search" placeholder="Encontre sua próxima aventura..."
-                            class="border text-center rounded-lg pr-7 focus:outline-none focus:border-orangeDark text-md"
-                            style="width: 400px; height: 40px;" id="searchInput" [(ngModel)]="searchTerm"
-                            (input)="filterCards()">
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="35" height="35"
-                                viewBox="0,0,256,256">
-                                <g fill="#f8931f" fill-rule="nonzero">
-                                    <g transform="scale(5.33333,5.33333)">
-                                        <path
-                                            d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z">
-                                        </path>
-                                    </g>
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
-                </section>
+           
                 <div class="card-explore flex justify-center items-center mt-4">
                     <div *ngFor="let tab of tabs; let i = index" [hidden]="activeTab !== i">
                         <h3 class="text-2xl font-semibold mb-2">{{ tab.title }}</h3>
@@ -60,15 +40,15 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- VANTAGENS DO SMART CAMPING -->
     <div class="relative2 z-10">
         <h2 class="text-center text-2xl font-regular mb-4">No <b class="smart-text"> Smart Camping</b> você
             encontra o que realmente importa...</h2>
 
-        <!-- Cards -->
-        <section class="flex flex-wrap justify-center mt-10 space-x-6">
+        <!-- EXPERIENCIAS -->
+        <section class="flex flex-wrap justify-center mt-10">
             <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
                 <img src="../../../assets/icons/freedom.png" class="object-cover mt-7 w-full h-full"
                     style="width: 50px; height: 50px;">
@@ -98,10 +78,8 @@
                     que você viaje ainda mais.</p>
             </div>
         </section>
-
-        <!-- EXPERIENCIAS -->
-        <section class="flex flex-wrap justify-center mt-10 space-x-6">
-            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
+        <section class="flex flex-wrap justify-center mt-5">
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
                 <img src="../../../assets/icons/experiences.png" class="object-cover  mt-7 w-full h-full"
                     style="width: 50px; height: 50px;">
                 <h5 class="smart-text text-lg font-bold">EXPERIÊNCIAS</h5>
@@ -109,7 +87,7 @@
                 </p>
             </div>
 
-            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
                 <img src="../../../assets/icons/peace.png" class="object-cover  mt-7 w-full h-full"
                     style="width: 50px; height: 50px;">
                 <h5 class="smart-text text-lg font-bold">TRANQUILIDADE</h5>
@@ -117,7 +95,7 @@
                     proporcionar ambientes mais tranquilos.</p>
             </div>
 
-            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2">
+            <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
                 <img src="../../../assets/icons/confort.png" class="object-cover  mt-7 w-full h-full"
                     style="width: 50px; height: 50px;">
                 <h5 class="smart-text text-lg font-bold">COMODIDADES</h5>
@@ -270,7 +248,7 @@
                 </div>
                 <div class="w-full sm:w-2/3 flex flex-col justify-between p-4 mx-4">
                     <div class="mb-3">
-                        <h2 class="text-white text-2xl sm:text-center font-bold font-50px">Seja um Afiliado:</h2>
+                        <h2 class="text-white text-center font-bold text-32">Seja um Afiliado:</h2>
                         <p class="text-white sm:text-justify mt-4">
                             VOCÊ TEM TERRENO OCIOSO E QUER TRANSFORMAR CUSTO EM LUCRO?
                         </p>
