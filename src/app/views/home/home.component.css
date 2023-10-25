@@ -1,7 +1,7 @@
 /* CONTAINER PRINCIPAL COM POSICIONAMENTO NOVO CONTEUDO HOME */
 
 .relative2 {
-  margin-top: 19rem;
+  margin-top: 22rem;
 }
 
 .search-adventure {
@@ -10,7 +10,7 @@
 
 .container-card-explore {
   display: flex;
-  margin-top: -18rem;
+  margin-top: -11rem;
   align-items: center;
   justify-content: center;
   border: 2px solid red;
