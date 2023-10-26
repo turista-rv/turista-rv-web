@@ -10,10 +10,10 @@
 
 .container-card-explore {
   display: flex;
-  margin-top: -11rem;
+  margin-top: -14rem;
   align-items: center;
   justify-content: center;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   position: absolute;
 }
 
@@ -53,6 +53,29 @@ p {
 }
 
 
+/* Style dos botões dentro da aba */
+.tablinks {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+  padding: 0.4rem;
+}
+
+/* TAMANHO IMG Menu Suspenso */
+
+@media (max-width: 768px) {
+    .tabs button {
+      width: 80%; /* Faz com que os botões ocupem 100% da largura em telas menores */
+        height: 2.5rem;
+    }
+  
+    .card-explore {
+      text-align: center; /* Centraliza o conteúdo em telas menores */
+    }
+}
+
 /* CARD IMG SECTION NOVIDADES */
 .card img {
   object-fit: cover;
@@ -66,14 +89,3 @@ img {
   max-width: 100%;
   height: auto;
 }
-
-/* Style dos botões dentro da aba */
-.tablinks {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
