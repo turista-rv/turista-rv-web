@@ -63,7 +63,7 @@ export class HomeComponent {
 
   tabs: Tab[] = [
     {
-      title: 'Campings',
+      title: 'Camping',
       content: 'Encontre o melhor lugar com conforto e segurança!',
       images: [
         {
@@ -81,7 +81,7 @@ export class HomeComponent {
       ]
     },
     {
-      title: 'Tab 2',
+      title: 'Alojamento',
       content: 'Conteúdo da Tab 2'
     },
     {
@@ -98,14 +98,18 @@ export class HomeComponent {
     }
   ];
 
-
-  changeTab(index: number): void {
-    console.log('Changing tab to index:', index);
-    this.activeTab = index;
+  scrollTabs(direction: number) {
+    const newActiveTab = this.activeTab + direction;
+    if (newActiveTab >= 0 && newActiveTab < this.tabs.length) {
+      this.activeTab = newActiveTab;
+    }
   }
 
 
-
+  changeTab(index: number): void {
+    console.log('trocou de aba', index);
+    this.activeTab = index;
+  }
 
   submitForm() {
     if (this.leads.name && this.leads.email && this.leads.phone) {
