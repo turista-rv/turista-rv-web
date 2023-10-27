@@ -63,18 +63,7 @@ p {
   padding: 0.4rem;
 }
 
-/* TAMANHO IMG Menu Suspenso */
 
-@media (max-width: 768px) {
-    .tabs button {
-      width: 80%; /* Faz com que os botões ocupem 100% da largura em telas menores */
-        height: 2.5rem;
-    }
-  
-    .card-explore {
-      text-align: center; /* Centraliza o conteúdo em telas menores */
-    }
-}
 
 /* CARD IMG SECTION NOVIDADES */
 .card img {
@@ -88,4 +77,28 @@ p {
 img {
   max-width: 100%;
   height: auto;
+}
+
+
+@media only screen and (min-width: 1200px) {
+  .container-card-explore {
+      width: 100%; 
+      height: auto;
+  }
+}
+
+/* Estilos para telas médias (tablets e laptops com telas médias) */
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .container-card-explore {
+      width: 100%; 
+      height: auto;
+  }
+}
+
+/* Estilos para telas pequenas (dispositivos móveis como smartphones) */
+@media only screen and (max-width: 767px) {
+  .container-card-explore {
+      width: 100%; 
+      height: auto;
+  }
 }
