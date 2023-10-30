@@ -9,7 +9,7 @@
 
     <!-- Menu Suspenso -->
  <section class="container-card-explore grid grid-cols-3 gap-6 lg:grid-cols-3 xl:gap-x-9 sm:gap-x-4">
-        <div class="bg-white bg-opacity-80 rounded-lg shadow-lg relative">
+        <div class="background bg-white bg-opacity-80 rounded-lg shadow-lg relative">
             <div class="tabs  text-indigo-800">
                 
                 <div class="tab flex justify-center items-center">
@@ -21,16 +21,6 @@
                         {{ tab.title }}
                     </button>
                 </div>
-                <!-- <div class="arrow-left absolute left-0 top-1/2 transform -translate-y-1/2">
-                    <button class="arrow-button" (click)="changeTab(-1)">
-                        <img src="../../../assets/icons/arrow-back.svg" alt="Seta para a esquerda">
-                    </button>
-                </div>
-                <div class="arrow-right absolute right-0 top-2/1.5 transform -translate-y-1/2">
-                    <button class="arrow-button" (click)="changeTab(1)">
-                        <img src="../../../assets/icons/arrow-back.svg" alt="Seta para a direita">
-                    </button>
-                </div> -->
                 
                 <section class="search-adventure flex justify-center items-center top-0 left-0 right-0">
                     <div class="relative">
@@ -56,46 +46,12 @@
                     <div *ngFor="let tab of tabs; let i = index" [hidden]="activeTab !== i">
                         <h3 class="text-2xl font-semibold mb-2">{{ tab.title }}</h3>
                         <p class="text-black">{{ tab.content }}</p>
-                        <div class="grid grid-cols-3 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
-                            <ng-container>
-                                <div *ngFor="let image of tab.images" class="relative">
-                                    <img [src]="'../../../assets/img/campings/' + image.imageFileName"
-                                        alt="Imagem do card">
-                                    <div class="image-title absolute bottom-0 left-0 text-white p-2">
-                                        {{ image.imageTitle }}
-                                    </div>
-                                </div>
-                            </ng-container>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- <section class="container-card-explore">
-        <div class="bg-white bg-opacity-80 rounded-lg shadow-lg relative">
-            <table class="w-full">
-                <tr class="tabs text-indigo-800">
-                    <td colspan="2">
-                        <button class="tablinks w-full" *ngFor="let tab of tabs; let i = index" (click)="changeTab(i)"
-                            [ngClass]="{
-                                'bg-opacity-80 text-indigo-800 font-bold': activeTab === i,
-                                'bg-indigo-950 text-white font-bold': activeTab !== i
-                            }">
-                            {{ tab.title }}
-                        </button>
-                    </td>
-                </tr>
-                <tr class="card-explore">
-                    <td colspan="2">
-                        <div *ngFor="let tab of tabs; let i = index" [hidden]="activeTab !== i">
-                            <h3 class="text-2xl font-semibold mb-2">{{ tab.title }}</h3>
-                            <p class="text-black">{{ tab.content }}</p>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+                        <div class="image-scroll-container mt-3">
+                            <div class="grid grid-cols-3 gap-6 lg:grid-cols-3 xl:gap-x-12 mt-3">
                                 <ng-container>
                                     <div *ngFor="let image of tab.images" class="relative">
                                         <img [src]="'../../../assets/img/campings/' + image.imageFileName"
-                                            alt="Imagem do card" class="w-full h-auto">
+                                            alt="Imagem do card">
                                         <div class="image-title absolute bottom-0 left-0 text-white p-2">
                                             {{ image.imageTitle }}
                                         </div>
@@ -103,13 +59,12 @@
                                 </ng-container>
                             </div>
                         </div>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section> -->
-    
-    
+    </section>
+
     <!-- VANTAGENS DO SMART CAMPING -->
     <div class="relative2 z-10">
         <h2 class="text-center text-2xl font-regular mb-4">No <b class="smart-text"> Smart Camping</b> você
