@@ -8,6 +8,16 @@
   margin-top: 2rem;
 }
 
+.tablinks-bg {
+  position: relative;
+}
+
+/* Adicione o pseudo-elemento para manter a proporção do width */
+.tablinks-bg::before {
+  content: "";
+  display: block;
+  padding-top: 60%; /* Defina a proporção desejada (exemplo: 60% para uma proporção de 3:2) */
+}
 .container-card-explore {
   display: flex;
   margin-top: -14rem;
@@ -61,6 +71,60 @@ p {
   transition: 0.3s;
   font-size: 17px;
   padding: 0.4rem;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* Estilos para telas médias (tablets e laptops com telas médias) */
+@media only screen and (max-width: 767px) {
+  .container-card-explore {
+    width: 100%;
+   
+  }
+
+  .tablinks {
+    width: 100%;
+    font-size: small;
+  }
+
+  .search-adventure {
+    margin-top: 2rem;
+  }
+
+  .card-explore {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .image-scroll-container {
+    white-space: nowrap;
+  }
+
+  .image-scroll-container img {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+  }
+
+  .image-title {
+    font-size: 7px; 
+  }
+}
+
+
+.image-scroll-container {
+  overflow-x: auto; /* Habilita o scroll horizontal */
+  white-space: nowrap; /* Faz com que os elementos filhos fiquem na mesma linha */
+  width: 100%; /* Garante que o container ocupa 100% da largura disponível */
+}
+
+/* Estilo para os itens dentro do scroll horizontal */
+.image-scroll-container img {
+  width: 100%; 
+  height: auto; 
+  display: inline-block; 
+  margin-right: 10px; 
 }
 
 
@@ -81,22 +145,6 @@ img {
 
 
 @media only screen and (min-width: 1200px) {
-  .container-card-explore {
-      width: 100%; 
-      height: auto;
-  }
-}
-
-/* Estilos para telas médias (tablets e laptops com telas médias) */
-@media only screen and (min-width: 768px) and (max-width: 1199px) {
-  .container-card-explore {
-      width: 100%; 
-      height: auto;
-  }
-}
-
-/* Estilos para telas pequenas (dispositivos móveis como smartphones) */
-@media only screen and (max-width: 767px) {
   .container-card-explore {
       width: 100%; 
       height: auto;
