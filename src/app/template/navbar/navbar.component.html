@@ -38,19 +38,20 @@
                 </a>
             </li>
             <div class="items-end group inline-block">
-                <button *ngIf="!isLoggedIn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full relative">
+                <button *ngIf="!isLoggedIn"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full relative">
                     <a routerLink="/login" class="group inline-block relative">
-                      <div class="text-center md:text-xs">
-                        Entrar
-                      </div>
+                        <div class="text-center md:text-xs">
+                            Entrar
+                        </div>
                     </a>
-                  </button>
-                  <button *ngIf="isLoggedIn" (click)="logout()"
+                </button>
+                <button *ngIf="isLoggedIn" (click)="logout()"
                     class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full relative">
                     <div class="text-center md:text-xs">
-                      Sair
+                        Sair
                     </div>
-                  </button>
+                </button>
             </div>
         </ul>
     </section>

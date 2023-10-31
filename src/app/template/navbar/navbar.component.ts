@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({
@@ -10,47 +11,49 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 })
 export class NavbarComponent {
   isMenuOpen = false;
-  isLoggedIn: boolean = false;
+  isLoggedInSubject: BehaviorSubject<boolean>;
 
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
-    private authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.isLoggedInSubject = this.authService.getIsLoggedInSubject();
+    this.isLoggedInSubject.subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
+  }
 
+  isLoggedIn: boolean = false;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
 
     const menuElement = this.el.nativeElement.querySelector('#menuHamburguer');
     if (this.isMenuOpen) {
-      // Se o menu estiver aberto, adicione a classe para posicionar abaixo do header
       this.renderer.addClass(menuElement, 'navbar-below-header');
     } else {
-      // Se o menu estiver fechado, remova a classe
       this.renderer.removeClass(menuElement, 'navbar-below-header');
     }
   }
+
   logout(): void {
-    const refreshToken = localStorage.getItem('refreshToken') as string;
+  const refreshToken = localStorage.getItem('refreshToken');
+  if (refreshToken) {
     this.authService.logout(refreshToken).subscribe(
-      (data: any) => {
-        console.log(data);
-        localStorage.removeItem('token');
-        localStorage.removeItem('refreshToken');
-        localStorage.removeItem('idUser');
-        localStorage.removeItem('isAdmin');
-      });
-      this.isLoggedIn = false;
-      this.router.navigateByUrl('/login');
+      () => {
+        this.authService.clearLocalStorage();
+        this.authService.getIsLoggedInSubject().next(false);
+        this.router.navigateByUrl('/login');
+      },
+      (error: any) => {
+        console.error('Erro durante o logout:', error);
+      }
+    );
+  } else {
+    console.error('Refresh token não encontrado.');
   }
 }
 
-// localStorage.removeItem('token');
-// localStorage.removeItem('refreshToken');
-// this.isLoggedIn = false;
-
-// const x = localStorage.getItem('refreshToken')
-// console.log(x)
-// console.log('Tokens removidos: ', this.isLoggedIn);
+}
