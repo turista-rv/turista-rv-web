@@ -1,13 +1,13 @@
 <header class="fixed bg-gray-950 bg-opacity-90 justify-between">
 
-  <div class="mt-7 ml-2 mr-12 w-220 sm:45 md:w-52 lg:w-60 xl:w-75" >
+  <div class="mt-7 ml-2 mr-12 w-220 sm:45 md:w-52 lg:w-60 xl:w-75">
     <img src="../../../assets/img/LogoWtext.png" alt="logo">
   </div>
 
   <p class="text-white flex items-center justify-center md:text-22 sm:text-7 text-7">
     Campings de Sonho, Viagens sem Limites...
   </p>
-  
+
 
   <!-- Botão do menu hamburguer (exibido em telas menores) -->
   <div class="md:hidden flex items-center justify-between ml-10">
@@ -29,7 +29,7 @@
         </a>
       </li>
       <li>
-        <a routerLink="/" href="motorhome-icon" class="relative">
+        <a routerLink="/admin-panel" href="motorhome-icon" class="relative">
           <div class="text-center md:text-xs group-hover:opacity-100 transition-opacity duration-300">
             Motorhome
           </div>
@@ -43,7 +43,8 @@
         </a>
       </li>
       <li>
-        <button *ngIf="!isLoggedIn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full relative">
+        <button *ngIf="!isLoggedIn"
+          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full relative">
           <a routerLink="/login" class="group inline-block relative">
             <div class="text-center md:text-xs">
               Entrar
@@ -56,7 +57,7 @@
             Sair
           </div>
         </button>
-        
+
       </li>
     </ul>
   </nav>

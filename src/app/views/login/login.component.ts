@@ -37,6 +37,8 @@ export class LoginComponent {
       .loginUser(this.credentials.email, this.credentials.password)
       .pipe(map((data: LoginUser) => {
         localStorage.setItem('token', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        console.log(data)
       }))
       .subscribe((data: any) => {
         this.isLoggedIn = true;

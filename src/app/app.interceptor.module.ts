@@ -1,27 +1,43 @@
+import { AuthService } from './services/auth.service';
 import { Injectable, NgModule } from '@angular/core';
 import { HttpEvent,  HttpInterceptor,  HttpHandler,  HttpRequest} from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-@Injectable()
-export class HttpsRequestInterceptor implements HttpInterceptor {
-   intercept(req: HttpRequest<any>,next: HttpHandler): Observable<HttpEvent<any>> {
+
+@Injectable(
+   {
+      providedIn: 'root',
+    }
+)
+export class TokenInterceptorService implements HttpInterceptor {
+   constructor(private authService: AuthService) {}
+   intercept(
+     request: HttpRequest<any>,
+     next: HttpHandler
+   ): Observable<HttpEvent<any>> {
       const token = localStorage.getItem('token');
-      if(!token){
-        throw new Error("token inválido!")
-      } 
-      console.log(token)
-      const convertTokenToJSON = token;
-      const dupReq = req.clone({
-         headers: req.headers.set('authorization', 'Bearer ' + convertTokenToJSON)
-      });
-      return next.handle(dupReq);
+     if (token) {
+       request = request.clone({
+         setHeaders: {
+           Authorization: `Bearer ${token}`,
+         },
+       });
+     }
+     return next.handle(request).pipe(
+       catchError((err) => {
+       
+         const error = err.error.message || err.statusText;
+          throw Error(error);
+       })
+     );
    }
-}
+ }
 @NgModule({
    providers: [{
       provide: HTTP_INTERCEPTORS,
-      useClass: HttpsRequestInterceptor,
+      useClass: TokenInterceptorService,
       multi: true,
    }]
 })

@@ -16,10 +16,10 @@ export class HeaderComponent {
     private el: ElementRef,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   isLoggedIn: boolean = false;
-  
+
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
 
@@ -32,11 +32,31 @@ export class HeaderComponent {
       }
     }
   }
-  logout() {
-    const refreshToken = localStorage.getItem('refreshToken') as string
-    this.authService.logout('refreshToken');
-    const x =  this.authService.logout('refreshToken');
-    console.log('Logout realizado: ', x);
-    this.router.navigateByUrl('/login');
+  logout(): void {
+    console.log("ta clicando header!")
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (refreshToken) {
+      this.authService.updateRefreshToken(refreshToken).subscribe(
+        (data: any) => {
+          console.log("Fabi Here")
+          this.authService.clearLocalStorage(); 
+          this.router.navigateByUrl('/login'); 
+          console.log('Logout bem-sucedido:', data);
+
+          this.isLoggedIn = false;
+          this.authService.clearLocalStorage();
+          this.router.navigateByUrl('/login');
+         
+          console.log(data)
+  
+        },
+        (error: any) => {
+          console.error('Erro durante o logout:', error);
+        }
+      );
+    } else {
+      console.error('Refresh token não encontrado.');
+    }
   }
+  
 }

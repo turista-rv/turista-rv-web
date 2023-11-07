@@ -1,6 +1,6 @@
 import { api } from './../../api';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LoginUser, User } from './../models/LoginUser.model';
@@ -40,19 +40,32 @@ export class AuthService {
         })
       );
   }  
-  
+  // `${this.url}/logout`
 
-  logout(refreshToken: string): Observable<any> {
-    return this.http.post<any>(this.url, { refreshToken })
-      .pipe(
-        catchError((error: any) => {
-          console.error('Erro durante o logout:', error);
-          throw error;
-        }),
-        tap(() => {
-          this.isLoggedInSubject.next(false);
-        })
-      );
+  updateRefreshToken(refreshToken: string) {
+    // const token = localStorage.getItem('token');
+    // console.log(refreshToken)
+    // if(!token){
+    //   throw new Error("token inválido!")
+    // } 
+    // const convertTokenToJSON = token;
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json',
+    //   'Authorization': `Bearer ${token}`
+    // });
+    //const requestOptions = { headers: headers };
+    return this.http.post<any>(this.url + "/logout", refreshToken)
+    .pipe(
+      map((data: any) => {
+        console.log(data)
+        this.isLoggedInSubject.next(true);
+        return data;
+      }),
+      catchError((error: any) => {
+        console.error('Erro durante o login:', error);
+        throw error;
+      })
+    );
   }  
   
 
