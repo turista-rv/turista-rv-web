@@ -10,7 +10,8 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
       if(!token){
         throw new Error("token inválido!")
       } 
-      const convertTokenToJSON = JSON.parse(token);
+      console.log(token)
+      const convertTokenToJSON = token;
       const dupReq = req.clone({
          headers: req.headers.set('authorization', 'Bearer ' + convertTokenToJSON)
       });
