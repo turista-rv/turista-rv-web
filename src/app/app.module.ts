@@ -1,4 +1,4 @@
-import { InterceptorService } from './services/interceptor.service';
+import { Interceptor } from './app.interceptor.module';
 import { ButtonOutlineComponent } from './components/button-outline/btn-outline';
 import { ButtonFilledComponent } from './components/button-filled/btn-filled';
 import { NgModule } from '@angular/core';
@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './template/header/header.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { CreateAccountComponent } from './views/create-account/create-account.component';
@@ -46,15 +46,7 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    
-    
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true,
-    },
+    Interceptor,
   ],
   bootstrap: [AppComponent]
 })
