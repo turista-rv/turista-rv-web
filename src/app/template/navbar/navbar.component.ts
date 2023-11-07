@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, ElementRef, Renderer2 } from '@angular/core';
-
+import { BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -10,47 +11,69 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 })
 export class NavbarComponent {
   isMenuOpen = false;
-  isLoggedIn: boolean = false;
+  isLoggedInSubject: BehaviorSubject<boolean>;
 
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
-    private authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private AuthService: AuthService
+  ) {
+    this.isLoggedInSubject = this.AuthService.getIsLoggedInSubject();
+    this.isLoggedInSubject.subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
+  }
 
+  isLoggedIn: boolean = false;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
 
     const menuElement = this.el.nativeElement.querySelector('#menuHamburguer');
     if (this.isMenuOpen) {
-      // Se o menu estiver aberto, adicione a classe para posicionar abaixo do header
       this.renderer.addClass(menuElement, 'navbar-below-header');
     } else {
-      // Se o menu estiver fechado, remova a classe
       this.renderer.removeClass(menuElement, 'navbar-below-header');
     }
   }
+
+  //   logout(): void {
+  //   const refreshToken = localStorage.getItem('refreshToken');
+  //   if (refreshToken) {
+  //     this.authService.updateRefreshToken(refreshToken).subscribe(
+  //       () => {
+  //         this.authService.clearLocalStorage();
+  //         this.authService.getIsLoggedInSubject().next(false);
+  //         this.router.navigateByUrl('/login');
+  //       },
+  //       (error: any) => {
+  //         console.error('Erro durante o logout:', error);
+  //       }
+  //     );
+  //   } else {
+  //     console.error('Refresh token não encontrado.');
+  //   }
+  // }
   logout(): void {
-    const refreshToken = localStorage.getItem('refreshToken') as string;
-    this.authService.logout(refreshToken).subscribe(
-      (data: any) => {
-        console.log(data);
-        localStorage.removeItem('token');
-        localStorage.removeItem('refreshToken');
-        localStorage.removeItem('idUser');
-        localStorage.removeItem('isAdmin');
-      });
-      this.isLoggedIn = false;
-      this.router.navigateByUrl('/login');
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (!refreshToken) {
+      throw new Error("token inválido!")
+    }
+    this.AuthService.updateRefreshToken(refreshToken)
+      // this.AuthService.updateRefreshToken(refreshToken).subscribe(data => {
+      //   console.log(data)
+      // })
+      // .pipe(map((data: any) => {
+      //   console.log(data)
+      // }))
+      .subscribe((data: any) => {
+        console.log(data)
+      },
+
+
+        (error: any) => {
+          alert(error.message);
+        });
   }
 }
-
-// localStorage.removeItem('token');
-// localStorage.removeItem('refreshToken');
-// this.isLoggedIn = false;
-
-// const x = localStorage.getItem('refreshToken')
-// console.log(x)
-// console.log('Tokens removidos: ', this.isLoggedIn);

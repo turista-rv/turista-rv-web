@@ -1,8 +1,9 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { LoginUser } from './../../models/LoginUser.model';
-import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent {
   isLoggedIn: boolean = false;
 
   constructor(
-    private authService: AuthService,
+    private AuthService: AuthService,
     private router: Router,
     private elementRef: ElementRef
   ) {}
@@ -32,17 +33,19 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.authService
+    this.AuthService
       .loginUser(this.credentials.email, this.credentials.password)
       .pipe(map((data: LoginUser) => {
         localStorage.setItem('token', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        console.log(data)
       }))
       .subscribe((data: any) => {
         this.isLoggedIn = true;
         this.router.navigateByUrl('/');
       },
       (error: any) => {
-        console.error('Erro durante o login:', error);
+        alert(error.message);
       });
   }
 }
