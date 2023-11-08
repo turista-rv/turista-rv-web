@@ -1,0 +1,7 @@
+<div class="flex flex-row gap-5 flex-wrap items-center justify-center">
+  <app-camping
+    *ngFor="let camping of campings"
+    [url]="camping.images.url"
+    [title]="camping.name"
+  ></app-camping>
+</div>

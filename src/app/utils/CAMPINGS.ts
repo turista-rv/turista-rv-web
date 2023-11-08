@@ -19,4 +19,24 @@ export const CAMPINGS = [
       url: '../../../assets/img/campings/pomerode.jpg',
     },
   },
+  {
+    id: '123123',
+    active: true,
+    name: 'Camping 2',
+    propertyRules: 'Regras 2',
+    images: {
+      id: '1',
+      url: '../../../assets/img/campings/pomerode.jpg',
+    },
+  },
+  {
+    id: '123123',
+    active: true,
+    name: 'Camping 2',
+    propertyRules: 'Regras 2',
+    images: {
+      id: '1',
+      url: '../../../assets/img/campings/pomerode.jpg',
+    },
+  },
 ];
