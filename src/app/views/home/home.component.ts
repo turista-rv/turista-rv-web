@@ -1,6 +1,6 @@
+import { Component } from '@angular/core';
 import { Leads } from './../../models/LeadsUser.model';
 import { LeadsService } from './../../services/leads.service';
-import { Component, AfterViewInit } from '@angular/core';
 
 interface ImageInfo {
   imageFileName: string;
@@ -16,22 +16,23 @@ interface Tab {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-
-  constructor(private leadsService: LeadsService) { }
+  constructor(private leadsService: LeadsService) {}
 
   activeTab: number = 0;
 
   searchTerm: string = ''; // Variável para armazenar o termo de pesquisa
-  cards: any[] = [/* Seus dados de cards aqui */];
+  cards: any[] = [
+    /* Seus dados de cards aqui */
+  ];
 
   leads: Leads = {
     name: '',
     email: '',
     phone: '',
-  }
+  };
 
   name: string = '';
   email: string = '';
@@ -45,7 +46,7 @@ export class HomeComponent {
 
   filterCards() {
     const lowerSearchTerm = this.searchTerm.toLowerCase();
-    this.cards.forEach(card => {
+    this.cards.forEach((card) => {
       const text = card.text.toLowerCase();
       card.hidden = !text.includes(lowerSearchTerm);
     });
@@ -55,47 +56,31 @@ export class HomeComponent {
     alert('Date clicked: ' + arg.dateStr);
   }
 
-
-  //METODO ABAS INTERATIVAS 
+  //METODO ABAS INTERATIVAS
 
   activeTabClass: string = '0';
-
 
   tabs: Tab[] = [
     {
       title: 'Camping',
       content: 'Encontre o melhor lugar com conforto e segurança!',
-      images: [
-        {
-          imageFileName: 'pomerode.jpg',
-          imageTitle: 'Pomerode'
-        },
-        {
-          imageFileName: 'pomerode.jpg',
-          imageTitle: 'Título da Segunda Imagem'
-        },
-        {
-          imageFileName: 'pomerode.jpg',
-          imageTitle: 'Título da Terceira Imagem'
-        },
-      ]
     },
     {
       title: 'Alojamento',
-      content: 'Conteúdo da Tab 2'
+      content: 'Conteúdo da Tab 2',
     },
     {
       title: 'Tab 3',
-      content: 'Conteúdo da Tab 3'
+      content: 'Conteúdo da Tab 3',
     },
     {
       title: 'Tab 4',
-      content: 'Conteúdo da Tab 4'
+      content: 'Conteúdo da Tab 4',
     },
     {
       title: 'Tab 5',
-      content: 'Conteúdo da Tab 5'
-    }
+      content: 'Conteúdo da Tab 5',
+    },
   ];
 
   scrollTabs(direction: number) {
@@ -104,7 +89,6 @@ export class HomeComponent {
       this.activeTab = newActiveTab;
     }
   }
-
 
   changeTab(index: number): void {
     console.log('trocou de aba', index);
@@ -123,8 +107,7 @@ export class HomeComponent {
         }
       );
     } else {
-      alert('Por favor, preencha todos os campos.',);
+      alert('Por favor, preencha todos os campos.');
     }
   }
-
 }

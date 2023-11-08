@@ -1,9 +1,5 @@
 /* CONTAINER PRINCIPAL COM POSICIONAMENTO NOVO CONTEUDO HOME */
 
-.relative2 {
-  margin-top: 22rem;
-}
-
 .search-adventure {
   margin-top: 2rem;
 }
@@ -24,7 +20,7 @@
   align-items: center;
   justify-content: center;
   /* border: 2px solid red; */
-  position: absolute;
+  position: relative;
 }
 
 .card{
@@ -45,7 +41,7 @@ p {
   object-fit: cover;
   opacity: 85%;
   align-items: center;
-  height: 22rem;
+  height: max-content;
   width: 60rem;
   padding: 1rem;
 }
@@ -80,7 +76,7 @@ p {
 @media only screen and (max-width: 767px) {
   .container-card-explore {
     width: 100%;
-   
+
   }
 
   .tablinks {
@@ -108,7 +104,7 @@ p {
   }
 
   .image-title {
-    font-size: 7px; 
+    font-size: 7px;
   }
 }
 
@@ -121,10 +117,10 @@ p {
 
 /* Estilo para os itens dentro do scroll horizontal */
 .image-scroll-container img {
-  width: 100%; 
-  height: auto; 
-  display: inline-block; 
-  margin-right: 10px; 
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  margin-right: 10px;
 }
 
 /* CARD IMG SECTION NOVIDADES */
@@ -144,7 +140,7 @@ img {
 
 @media only screen and (min-width: 1200px) {
   .container-card-explore {
-      width: 100%; 
+      width: 100%;
       height: auto;
   }
 }

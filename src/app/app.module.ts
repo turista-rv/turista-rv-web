@@ -5,10 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Interceptor } from './app.interceptor.module';
 import { ButtonFilledComponent } from './components/button-filled/btn-filled';
 import { ButtonOutlineComponent } from './components/button-outline/btn-outline';
+import { CampingShowComponent } from './components/camping-show/camping-show.component';
 import { CampingComponent } from './components/camping/camping.component';
+import { Interceptor } from './services/app.interceptor.module';
 import { FooterComponent } from './template/footer/footer.component';
 import { HeaderComponent } from './template/header/header.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
@@ -37,6 +38,7 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
     ResetPasswordComponent,
     CampingComponent,
     CampingsComponent,
+    CampingShowComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
