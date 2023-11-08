@@ -1,8 +1,8 @@
-import { CampingsComponent } from './views/campings/campings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonFilledComponent } from './components/button-filled/btn-filled';
@@ -15,6 +15,7 @@ import { HeaderComponent } from './template/header/header.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { AboutComponent } from './views/about/about.component';
 import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
+import { CampingsComponent } from './views/campings/campings.component';
 import { CreateAccountComponent } from './views/create-account/create-account.component';
 import { HomeComponent } from './views/home/home.component';
 import { HostessComponent } from './views/hostess/hostess.component';
@@ -49,6 +50,7 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
     FormsModule,
     ReactiveFormsModule,
     Interceptor,
+    CKEditorModule,
   ],
   bootstrap: [AppComponent],
 })

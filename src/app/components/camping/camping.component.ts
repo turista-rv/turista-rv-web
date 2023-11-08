@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class CampingComponent {
   @Input() url: string = '';
   @Input() title: string = '';
+  @Input() id: string | undefined = '';
 }

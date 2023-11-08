@@ -1,24 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Camping } from 'src/app/models/camping.model';
+import { CAMPINGS } from 'src/app/utils/CAMPINGS';
 
 @Component({
   selector: 'app-campings',
   templateUrl: './campings.component.html',
-  styleUrls: ['./campings.component.css']
+  styleUrls: ['./campings.component.css'],
 })
-export class CampingsComponent {
-  imagens = [
-    { src: 'assets/img/campings/pomerode.jpg', alt: 'Camping 1' },
-    { src: 'assets/img/campings/pomerode.jpg', alt: 'Camping 2' },
-    { src: 'assets/img/campings/pomerode.jpg', alt: 'Camping 3' }
-  ];
+export class CampingsComponent implements OnInit {
+  camping!: Camping;
+
+  id: string | null = '';
+
+  teste: string = '123';
 
   currentIndex = 0;
 
-  nextSlide() {
-    this.currentIndex = (this.currentIndex + 1) % this.imagens.length;
-  }
+  public Editor = ClassicEditor;
 
-  prevSlide() {
-    this.currentIndex = this.currentIndex > 0 ? this.currentIndex - 1 : this.imagens.length - 1;
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
+    // TODO req getById
+    let c = CAMPINGS.filter((camping) => camping.id === this.id);
+    this.camping = c[0];
   }
 }

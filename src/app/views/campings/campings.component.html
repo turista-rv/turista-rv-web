@@ -1,39 +1,49 @@
 <app-header></app-header>
 <body>
-    <div class="carousel">
-        <img [src]="imagens[currentIndex].src" [alt]="imagens[currentIndex].alt" class="carousel-image">
-        <button (click)="prevSlide()">Anterior</button>
-        <button (click)="nextSlide()">Próximo</button>
+  <img [src]="camping.images.url" class="carousel-image" />
+
+  <div class="camping-details">
+    <div class="section-heading">{{ camping.name }}</div>
+    <div class="description">
+      <p>
+        Descrição do camping. Lorem ipsum dolor sit amet, consectetur adipiscing
+        elit. Sed condimentum quam eu lacinia iaculis.
+      </p>
     </div>
 
-    <div class="camping-details">
-        <div class="section-heading">Nome do Camping</div>
-        <div class="description">
-            <p>
-            Descrição do camping. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum quam eu
-            lacinia iaculis.
-            </p>
-        </div>
+    <hr
+      class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
+      data-testid="divider"
+    />
 
-        <hr class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200" data-testid="divider">
-
-        <div class="section-heading">Características da Acomodação</div>
-        <div class="features">
-            <i class="fas fa-wifi"></i>Wi-Fi gratuito<br>
-            <i class="fas fa-shower"></i>Banheiros compartilhados<br>
-            <i class="fas fa-car"></i>Estacionamento gratuito<br>
-        </div>
-
-        <hr class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200" data-testid="divider">
-
-        <div class="section-heading">Regras e Políticas</div>
-        <div class="policies">
-            <i class="fas fa-clock"></i>Check-in a partir das 14:00<br>
-            <i class="fas fa-clock"></i>Check-out até às 11:00<br>
-            <i class="fas fa-paw"></i>Animais de estimação não permitidos<br>
-        </div>
-
-        <hr class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200" data-testid="divider">
-
+    <div class="section-heading">Características da Acomodação</div>
+    <div class="features">
+      <i class="fas fa-wifi"></i>Wi-Fi gratuito<br />
+      <i class="fas fa-shower"></i>Banheiros compartilhados<br />
+      <i class="fas fa-car"></i>Estacionamento gratuito<br />
     </div>
+
+    <ckeditor [editor]="Editor" [(ngModel)]="teste"></ckeditor>
+
+    <div [innerHTML]="camping.propertyRules"></div>
+
+    <hr
+      class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
+      data-testid="divider"
+    />
+
+    <div class="section-heading">Regras e Políticas</div>
+    <div class="policies">
+      <i class="fas fa-clock"></i>Check-in a partir das 14:00<br />
+      <i class="fas fa-clock"></i>Check-out até às 11:00<br />
+      <i class="fas fa-paw"></i>Animais de estimação não permitidos<br />
+    </div>
+
+    <hr
+      class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
+      data-testid="divider"
+    />
+  </div>
+
+  <!-- ngFor pra listar os box  -->
 </body>

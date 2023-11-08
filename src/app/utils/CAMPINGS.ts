@@ -10,7 +10,7 @@ export const CAMPINGS = [
     },
   },
   {
-    id: '123123',
+    id: 'ffsf',
     active: true,
     name: 'Camping 2',
     propertyRules: 'Regras 2',
@@ -20,7 +20,7 @@ export const CAMPINGS = [
     },
   },
   {
-    id: '123123',
+    id: '3w4r3',
     active: true,
     name: 'Camping 2',
     propertyRules: 'Regras 2',
@@ -30,7 +30,7 @@ export const CAMPINGS = [
     },
   },
   {
-    id: '123123',
+    id: 'fesefww',
     active: true,
     name: 'Camping 2',
     propertyRules: 'Regras 2',

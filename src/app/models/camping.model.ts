@@ -5,7 +5,7 @@ export interface Camping {
   id?: string;
   name: string;
   images: Image;
-  box?: Box;
+  box?: Box[];
   propertyRules: string;
   active: boolean;
 }
