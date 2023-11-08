@@ -1,4 +1,4 @@
-import { CampingComponent } from './components/camping/camping.component';
+import { CampingsComponent } from './views/campings/campings.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
 import { HostessComponent } from './views/hostess/hostess.component';
@@ -40,8 +40,8 @@ const routes: Routes = [
     component: AdminPanelComponent,
   },
   {
-    path: "camping",
-    component: CampingComponent,
+    path: "campings",
+    component: CampingsComponent,
   },
 ];
 
