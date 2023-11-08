@@ -1,0 +1,150 @@
+/* CONTAINER PRINCIPAL COM POSICIONAMENTO NOVO CONTEUDO HOME */
+
+.relative2 {
+  margin-top: 22rem;
+}
+
+.search-adventure {
+  margin-top: 2rem;
+}
+
+.tablinks-bg {
+  position: relative;
+}
+
+/* Adicione o pseudo-elemento para manter a proporção do width */
+.tablinks-bg::before {
+  content: "";
+  display: block;
+  padding-top: 60%; /* Defina a proporção desejada (exemplo: 60% para uma proporção de 3:2) */
+}
+.container-card-explore {
+  display: flex;
+  margin-top: -14rem;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid red; */
+  position: absolute;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+p {
+  display: flex;
+  text-align: justify;
+  text-align: center;
+}
+
+.card-explore {
+  display: flex;
+  object-fit: cover;
+  opacity: 85%;
+  align-items: center;
+  height: 22rem;
+  width: 60rem;
+  padding: 1rem;
+}
+
+.image-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  -webkit-text-stroke: 0.6px black; /* contorno preto com 2 pixels de largura (para navegadores WebKit como Chrome e Safari) */
+  color: white; /* cor do texto */
+}
+
+
+/* Style dos botões dentro da aba */
+.tablinks {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+  padding: 0.4rem;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* Estilos para telas médias (tablets e laptops com telas médias) */
+@media only screen and (max-width: 767px) {
+  .container-card-explore {
+    width: 100%;
+
+  }
+
+  .tablinks {
+    width: 100%;
+    font-size: small;
+  }
+
+  .search-adventure {
+    margin-top: 2rem;
+  }
+
+  .card-explore {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .image-scroll-container {
+    white-space: nowrap;
+  }
+
+  .image-scroll-container img {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+  }
+
+  .image-title {
+    font-size: 7px;
+  }
+}
+
+
+.image-scroll-container {
+  overflow-x: auto; /* Habilita o scroll horizontal */
+  white-space: nowrap; /* Faz com que os elementos filhos fiquem na mesma linha */
+  width: 100%; /* Garante que o container ocupa 100% da largura disponível */
+}
+
+/* Estilo para os itens dentro do scroll horizontal */
+.image-scroll-container img {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* CARD IMG SECTION NOVIDADES */
+.card img {
+  object-fit: cover;
+  width: 400px;
+  height: 235px;
+}
+
+/* CARD SEJA UM AFILIADO */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+@media only screen and (min-width: 1200px) {
+  .container-card-explore {
+      width: 100%;
+      height: auto;
+  }
+}

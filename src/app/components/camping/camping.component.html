@@ -1,0 +1,6 @@
+<div *ngFor="let camping of campings" class="relative">
+  <a router><img [src]="camping.images.url" alt="Imagem do card" /></a>
+  <div class="image-title absolute bottom-0 left-0 text-white p-2">
+    {{ camping.name }}
+  </div>
+</div>
