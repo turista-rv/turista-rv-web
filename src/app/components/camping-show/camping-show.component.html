@@ -1,7 +1,7 @@
 <div class="flex flex-row gap-5 flex-wrap items-center justify-center">
   <app-camping
     *ngFor="let camping of campings"
-    [url]="camping.images.url"
+    [url]="camping.images[0].url"
     [title]="camping.name"
     [id]="camping.id"
   ></app-camping>
