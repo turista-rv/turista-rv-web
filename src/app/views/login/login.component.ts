@@ -38,9 +38,13 @@ export class LoginComponent {
       .pipe(map((data: LoginUser) => {
         localStorage.setItem('token', data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
-        this.isLoggedIn = true;
-        this.router.navigateByUrl('/');
-      })),
+      }))
+      .subscribe({
+        next: () => {
+          this.isLoggedIn = true;
+          this.router.navigateByUrl('/');
+        },
+    }),
       (error: any) => {
         this.AuthService.clearLocalStorage();
         alert(error.message);

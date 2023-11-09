@@ -22,7 +22,7 @@ export class CreateAccountComponent {
     touristType: 'ADMIRADOR',
     vehicleType: '' || undefined,
   };
-  
+
   documentNumber: string = ''
   confirmEmail = '';
   confirmPassword = '';
@@ -36,22 +36,21 @@ export class CreateAccountComponent {
 
   createAccount() {
     this.invalidFields = this.getInvalidFields();
-    if(this.isPassport) this.user.passport = this.documentNumber
-      else this.user.cpf = this.documentNumber
-    
-      this.UserService.registerUser(this.user).subscribe(
-        (response) => {
+    if (this.isPassport) this.user.passport = this.documentNumber
+    else this.user.cpf = this.documentNumber
+
+    this.UserService.registerUser(this.user)
+    .subscribe({
+        next: () => {
           this.router.navigateByUrl('/');
-          console.log('Conta criada com sucesso!', response);
           alert('Conta criada com sucesso!');
         },
-        
-        (error) => {
+        error: () => {
           alert("Erro, verifique os campos e preencha corretamente");
-        }
-      );
+        },
+      })
   }
-  
+
 
   private getInvalidFields(): string[] {
     const invalidFields: string[] = [];
