@@ -14,7 +14,7 @@ export class CreateCampingComponent implements OnInit {
     name: '',
     propertyRules: '',
     images: [],
-    description: '',
+    description: '123tyeste',
   };
 
   image!: File;
@@ -48,7 +48,7 @@ export class CreateCampingComponent implements OnInit {
     });
     formData.append('name', this.camping.name); // Substitua pelos seus dados
     formData.append('propertyRules', this.camping.propertyRules); // Substitua pelos seus dados
-    formData.append('propertyRules', this.camping.description ?? ''); // Substitua pelos seus dados
+    formData.append('description', this.camping.description ?? ''); // Substitua pelos seus dados
     formData.append('active', String(this.camping.active)); // Substitua pelos seus dados
 
     console.log(formData);
