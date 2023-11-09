@@ -6,14 +6,11 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LoginUser, User } from './../models/LoginUser.model';
 import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  url = api.url + '/users';
- 
   token: string | null;
   
 
@@ -29,7 +26,7 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string): Observable<LoginUser> {
-    return this.http.post<LoginUser>(this.url + "/login", { email: email, password: password })
+    return this.http.post<LoginUser>(api.url + "users/login", { email: email, password: password })
       .pipe(
         map((data: LoginUser) => {
           this.isLoggedInSubject.next(true);
@@ -50,7 +47,7 @@ export class AuthService {
 
   updateRefreshToken(refreshToken: string) {
     const body = { refreshToken };
-    return this.http.post<any>(this.url + "/logout", body)
+    return this.http.post<any>(api.url + "users/logout", body)
     .pipe(
       map((data: any) => {
         console.log(data)
