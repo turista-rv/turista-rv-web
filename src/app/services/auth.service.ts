@@ -1,3 +1,4 @@
+
 import { api } from './../../api';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -40,25 +41,21 @@ export class AuthService {
         })
       );
   }  
-  // `${this.url}/logout`
+
+  logoutUser(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    this.isLoggedInSubject.next(false); 
+  }
 
   updateRefreshToken(refreshToken: string) {
-    // const token = localStorage.getItem('token');
-    // console.log(refreshToken)
-    // if(!token){
-    //   throw new Error("token inválido!")
-    // } 
-    // const convertTokenToJSON = token;
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   'Authorization': `Bearer ${token}`
-    // });
-    //const requestOptions = { headers: headers };
-    return this.http.post<any>(this.url + "/logout", refreshToken)
+    const body = { refreshToken };
+    return this.http.post<any>(this.url + "/logout", body)
     .pipe(
       map((data: any) => {
         console.log(data)
         this.isLoggedInSubject.next(true);
+        this.clearLocalStorage();
         return data;
       }),
       catchError((error: any) => {
@@ -67,7 +64,8 @@ export class AuthService {
       })
     );
   }  
-  
+
+
 
   clearLocalStorage(): void {
     localStorage.removeItem('token');

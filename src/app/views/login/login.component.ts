@@ -22,7 +22,7 @@ export class LoginComponent {
     private AuthService: AuthService,
     private router: Router,
     private elementRef: ElementRef
-  ) {}
+  ) { }
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
@@ -38,14 +38,12 @@ export class LoginComponent {
       .pipe(map((data: LoginUser) => {
         localStorage.setItem('token', data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
-        console.log(data)
-      }))
-      .subscribe((data: any) => {
         this.isLoggedIn = true;
         this.router.navigateByUrl('/');
-      },
+      })),
       (error: any) => {
+        this.AuthService.clearLocalStorage();
         alert(error.message);
-      });
+      }
   }
 }
