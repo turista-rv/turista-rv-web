@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './views/about/about.component';
 import { affiliateGuard } from './guards/affiliate.guard';
 import { guestGuard } from './guards/guest.guard';
+import { CreateCampingComponent } from './views/admin-panel/create-camping/create-camping.component';
 
 const routes: Routes = [
   {
@@ -41,7 +42,12 @@ const routes: Routes = [
   {
     path: 'admin-panel',
     component: AdminPanelComponent,
-    canActivate: [guestGuard],
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'create-camping',
+    component: CreateCampingComponent,
+    canActivate: [adminGuard],
   },
   {
     path: 'campings/:id',

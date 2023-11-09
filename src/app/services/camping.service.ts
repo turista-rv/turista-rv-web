@@ -17,4 +17,12 @@ export class CampingService {
   getById(id: string): Observable<Camping> {
     return this.http.get<Camping>(api.url + '/campings/' + id);
   }
+
+  create(formData: FormData): Observable<Camping> {
+    return this.http.post<Camping>(api.url + '/campings', formData);
+  }
+
+  delete(id: string) {
+    return this.http.delete<Camping>(api.url + '/campings/' + id);
+  }
 }

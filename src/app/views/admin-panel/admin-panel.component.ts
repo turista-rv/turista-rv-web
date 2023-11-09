@@ -5,17 +5,23 @@ import { PostService } from '../../services/post.service';
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
-  styleUrls: ['./admin-panel.component.css']
+  styleUrls: ['./admin-panel.component.css'],
 })
 export class AdminPanelComponent {
   post = {
     image: '',
     title: '',
     description: '',
-    date: ''
+    date: '',
   };
 
   constructor(private postService: PostService) {}
+
+  isCollapsed = false; // Inicialmente, o colapso não está ativado
+
+  toggleCollapse() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 
   addPost() {
     // lógica para gerar a data automaticamente (new Date())
@@ -28,7 +34,7 @@ export class AdminPanelComponent {
       image: '',
       title: '',
       description: '',
-      date: ''
+      date: '',
     };
   }
 }

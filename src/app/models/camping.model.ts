@@ -8,4 +8,5 @@ export interface Camping {
   box?: Box[];
   propertyRules: string;
   active: boolean;
+  description?: string;
 }

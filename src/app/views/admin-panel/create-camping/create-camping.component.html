@@ -1,0 +1,64 @@
+<app-header></app-header>
+<!-- Seção cadastro -->
+
+<div class="mt-32">
+  <div class="flex gap-3">
+    <div>
+      <label for="title">Nome:</label>
+      <input
+        [(ngModel)]="camping.name"
+        id="title"
+        name="title"
+        type="text"
+        class="w-full p-2 border rounded"
+      />
+    </div>
+    <div>
+      <label for="title">Regras:</label>
+      <input
+        [(ngModel)]="camping.propertyRules"
+        id="title"
+        name="title"
+        type="text-area"
+        class="w-full p-2 border rounded"
+      />
+    </div>
+  </div>
+  <div class="flex">
+    <div>
+      <label for="title">Imagens:</label>
+      <input
+        id="title"
+        name="title"
+        type="file"
+        class="w-full p-2 border rounded"
+        (change)="onChangeArquivo($event)"
+      />
+    </div>
+    <button (click)="addFile()"><i class="fa fa-plus"></i></button>
+  </div>
+  <div *ngFor="let item of imgUrl">
+    <img [src]="item" alt="" class="w-40" />
+  </div>
+  <button (click)="submit()">Cadastrar</button>
+</div>
+
+<!-- seção listagem -->
+<table class="mt-32 border">
+  <thead>
+    <tr>
+      <th class="border">ID</th>
+      <th class="border">Nome</th>
+      <th class="border">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of campings">
+      <td class="border">{{ item.id }}</td>
+      <td class="border">{{ item.name }}</td>
+      <td class="border">
+        <button (click)="delet(item.id)"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

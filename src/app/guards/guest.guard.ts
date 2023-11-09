@@ -25,7 +25,7 @@ export class guestGuard implements CanActivate {
     if (
       localStorage.getItem('role') === 'GUEST' ||
       localStorage.getItem('role') === 'AFFILIATE' ||
-      localStorage.getItem('role') === 'ADMIN'
+      localStorage.getItem('role') === 'SUPER'
     ) {
       // O usuário está autenticado, permitir o acesso
       return true;
