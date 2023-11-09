@@ -1,16 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { api } from './../../api';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { api } from './../../api';
-import { LoginUser } from './../models/LoginUser.model';
+import { LoginUser, User } from './../models/LoginUser.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  url = api.url + '/users';
-
   token: string | null;
 
   private isLoggedInSubject: BehaviorSubject<boolean> =
@@ -28,13 +26,14 @@ export class AuthService {
 
   loginUser(email: string, password: string): Observable<LoginUser> {
     return this.http
-      .post<LoginUser>(this.url + '/login', {
+      .post<LoginUser>(api.url + '/users/login', {
         email: email,
         password: password,
       })
       .pipe(
         map((data: LoginUser) => {
           this.isLoggedInSubject.next(true);
+          console.log(data);
           return data;
         }),
         catchError((error: any) => {
@@ -43,19 +42,36 @@ export class AuthService {
         })
       );
   }
-  // `${this.url}/logout`
 
-  logout(refreshToken: string) {
-    const body = {
-      refreshToken: refreshToken,
-    };
-    return this.http.post<any>(this.url + '/logout', body);
+  logoutUser(): void {
+    this.clearLocalStorage();
+    this.isLoggedInSubject.next(false);
+  }
+
+  updateRefreshToken(refreshToken: string) {
+    const body = { refreshToken };
+    return this.http.post<any>(api.url + 'users/logout', body).pipe(
+      map((data: any) => {
+        console.log(data);
+        this.isLoggedInSubject.next(true);
+        this.clearLocalStorage();
+        return data;
+      }),
+      catchError((error: any) => {
+        console.error('Erro durante o login:', error);
+        throw error;
+      })
+    );
   }
 
   clearLocalStorage(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
-    localStorage.removeItem('idUser');
-    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('keepLogged');
+    localStorage.removeItem('role');
+  }
+
+  setIsLoggedIn() {
+    this.isLoggedInSubject.next(true);
   }
 }

@@ -1,7 +1,8 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { AuthService } from './../../services/auth.service';
+import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -37,36 +38,8 @@ export class NavbarComponent {
     }
   }
 
-  //   logout(): void {
-  //   const refreshToken = localStorage.getItem('refreshToken');
-  //   if (refreshToken) {
-  //     this.authService.updateRefreshToken(refreshToken).subscribe(
-  //       () => {
-  //         this.authService.clearLocalStorage();
-  //         this.authService.getIsLoggedInSubject().next(false);
-  //         this.router.navigateByUrl('/login');
-  //       },
-  //       (error: any) => {
-  //         console.error('Erro durante o logout:', error);
-  //       }
-  //     );
-  //   } else {
-  //     console.error('Refresh token não encontrado.');
-  //   }
-  // }
-  logout(): void {
-    const refreshToken = localStorage.getItem('refreshToken');
-    if (!refreshToken) {
-      throw new Error('token inválido!');
-    }
-    this.AuthService.logout(refreshToken).subscribe(
-      (data: any) => {
-        console.log(data);
-      },
-
-      (error: any) => {
-        alert(error.message);
-      }
-    );
+  logout() {
+    this.AuthService.logoutUser();
+    this.router.navigateByUrl('/');
   }
 }

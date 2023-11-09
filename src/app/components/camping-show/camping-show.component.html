@@ -4,5 +4,6 @@
     [url]="camping.images[0].url"
     [title]="camping.name"
     [id]="camping.id"
+    (click)="camping.id && redirectToCampingDetails(camping.id)"
   ></app-camping>
 </div>

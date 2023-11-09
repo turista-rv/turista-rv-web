@@ -1,3 +1,4 @@
+import { adminGuard } from './guards/admin.guard';
 import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
 import { CampingsComponent } from './views/campings/campings.component';
 import { CreateAccountComponent } from './views/create-account/create-account.component';
@@ -9,6 +10,8 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './views/about/about.component';
+import { affiliateGuard } from './guards/affiliate.guard';
+import { guestGuard } from './guards/guest.guard';
 
 const routes: Routes = [
   {
@@ -38,6 +41,7 @@ const routes: Routes = [
   {
     path: 'admin-panel',
     component: AdminPanelComponent,
+    canActivate: [guestGuard],
   },
   {
     path: 'campings/:id',

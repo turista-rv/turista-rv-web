@@ -1,6 +1,7 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +9,20 @@ import { AuthService } from './../../services/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  isLoggedInSubject: BehaviorSubject<boolean>;
   isMenuOpen = false;
 
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
-    private authService: AuthService,
+    private AuthService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    this.isLoggedInSubject = this.AuthService.getIsLoggedInSubject();
+    this.isLoggedInSubject.subscribe((isLoggedIn) => {
+      this.isLoggedIn = isLoggedIn;
+    });
+  }
 
   isLoggedIn: boolean = false;
 
@@ -31,29 +38,8 @@ export class HeaderComponent {
       }
     }
   }
-  logout(): void {
-    console.log('ta clicando header!');
-    const refreshToken = localStorage.getItem('refreshToken');
-    if (refreshToken) {
-      this.authService.logout(refreshToken).subscribe(
-        (data: any) => {
-          console.log('Fabi Here');
-          this.authService.clearLocalStorage();
-          this.router.navigateByUrl('/login');
-          console.log('Logout bem-sucedido:', data);
-
-          this.isLoggedIn = false;
-          this.authService.clearLocalStorage();
-          this.router.navigateByUrl('/login');
-
-          console.log(data);
-        },
-        (error: any) => {
-          console.error('Erro durante o logout:', error);
-        }
-      );
-    } else {
-      console.error('Refresh token não encontrado.');
-    }
+  logout() {
+    this.AuthService.logoutUser();
+    this.router.navigateByUrl('/login');
   }
 }

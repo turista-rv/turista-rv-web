@@ -1,72 +1,88 @@
 <header class="fixed bg-gray-950 bg-opacity-90 justify-between">
-
   <div class="mt-7 ml-2 mr-12 w-220 sm:45 md:w-52 lg:w-60 xl:w-75">
-    <img src="../../../assets/img/LogoWtext.png" alt="logo">
+    <img
+      src="../../../assets/img/LogoWtext.png"
+      alt="logo"
+      routerLink="/"
+      class="cursor-pointer"
+    />
   </div>
 
-  <p class="text-white flex items-center justify-center md:text-22 sm:text-7 text-7">
+  <p
+    class="text-white flex items-center justify-center md:text-22 sm:text-7 text-7"
+  >
     Campings de Sonho, Viagens sem Limites...
   </p>
 
-
   <!-- Botão do menu hamburguer (exibido em telas menores) -->
   <div class="md:hidden flex items-center justify-between ml-10">
-    <button class="md:hidden text-white focus:outline-none" (click)="toggleMenu()">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+    <button
+      class="md:hidden text-white focus:outline-none"
+      (click)="toggleMenu()"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        ></path>
       </svg>
     </button>
   </div>
 
   <!-- Menu de navegação (exibido em telas maiores) -->
-  <nav [ngClass]="{'active': isMenuOpen}">
+  <nav [ngClass]="{ active: isMenuOpen }">
     <ul id="menuHamburguer" class="hidden md:flex md:text-white bg-white">
       <li>
-        <a routerLink="/" href="mount-icon" class=" relative">
-          <div class="text-center md:text-xs">
-            Lugares
-          </div>
+        <a routerLink="/" href="mount-icon" class="relative">
+          <div class="text-center md:text-xs">Lugares</div>
         </a>
       </li>
       <li>
         <a routerLink="/admin-panel" href="motorhome-icon" class="relative">
-          <div class="text-center md:text-xs group-hover:opacity-100 transition-opacity duration-300">
+          <div
+            class="text-center md:text-xs group-hover:opacity-100 transition-opacity duration-300"
+          >
             Motorhome
           </div>
         </a>
       </li>
       <li>
-        <a routerLink="/about" href="mount-icon" class=" relative">
-          <div class="text-center md:text-xs group-hover:opacity-100 transition-opacity duration-300">
+        <a routerLink="/about" href="mount-icon" class="relative">
+          <div
+            class="text-center md:text-xs group-hover:opacity-100 transition-opacity duration-300"
+          >
             Sobre
           </div>
         </a>
       </li>
       <li>
-        <button *ngIf="!isLoggedIn"
-          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full relative">
+        <button
+          *ngIf="!isLoggedIn"
+          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full relative"
+        >
           <a routerLink="/login" class="group inline-block relative">
-            <div class="text-center md:text-xs">
-              Entrar
-            </div>
+            <div class="text-center md:text-xs">Entrar</div>
           </a>
         </button>
-        <button *ngIf="isLoggedIn" (click)="logout()"
-          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full relative">
-          <div class="text-center md:text-xs">
-            Sair
-          </div>
+        <button
+          *ngIf="isLoggedIn"
+          (click)="logout()"
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full relative"
+        >
+          <div class="text-center md:text-xs">Sair</div>
         </button>
-
       </li>
     </ul>
   </nav>
 
-
-
   <app-navbar></app-navbar>
   <router-outlet></router-outlet>
-
-
-
 </header>

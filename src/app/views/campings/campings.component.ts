@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Camping } from 'src/app/models/camping.model';
-import { CAMPINGS } from 'src/app/utils/CAMPINGS';
+import { CampingService } from 'src/app/services/camping.service';
 
 @Component({
   selector: 'app-campings',
@@ -11,22 +11,27 @@ import { CAMPINGS } from 'src/app/utils/CAMPINGS';
 })
 export class CampingsComponent implements OnInit {
   camping!: Camping;
-
-  id: string | null = '';
-
-  teste: string = '123';
-
-  currentIndex = 0;
+  id: string | null = null;
 
   public Editor = ClassicEditor;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private campingService: CampingService
+  ) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
-    // TODO req getById
-    let c = CAMPINGS.filter((camping) => camping.id === this.id);
-    this.camping = c[0];
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id');
+    });
+
+    if (this.id)
+      this.campingService.listCampings().subscribe((data) => {
+        let camping = data.filter((value) => value.id === this.id);
+        this.camping = camping[0];
+      });
+    // this.campingService.getById(this.id).subscribe((data) => {
+    //   this.camping = data;
+    // });
   }
 }

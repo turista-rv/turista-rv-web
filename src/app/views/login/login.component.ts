@@ -4,17 +4,18 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { LoginUser } from './../../models/LoginUser.model';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   credentials = {
     email: '',
     password: '',
   };
+
+  keepLogged: boolean = false;
 
   isLoggedIn: boolean = false;
 
@@ -26,26 +27,37 @@ export class LoginComponent {
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
-    if (event.key === 'Enter' && (event.target as HTMLElement).tagName !== 'BUTTON') {
+    if (
+      event.key === 'Enter' &&
+      (event.target as HTMLElement).tagName !== 'BUTTON'
+    ) {
       event.preventDefault();
       this.onSubmit();
     }
   }
 
   onSubmit() {
-    this.AuthService
-      .loginUser(this.credentials.email, this.credentials.password)
-      .pipe(map((data: LoginUser) => {
-        localStorage.setItem('token', data.accessToken);
-        localStorage.setItem('refreshToken', data.refreshToken);
-        console.log(data)
-      }))
-      .subscribe((data: any) => {
-        this.isLoggedIn = true;
-        this.router.navigateByUrl('/');
-      },
+    this.AuthService.loginUser(
+      this.credentials.email,
+      this.credentials.password
+    )
+      .pipe(
+        map((data: LoginUser) => {
+          localStorage.setItem('token', data.accessToken);
+          localStorage.setItem('refreshToken', data.refreshToken);
+          localStorage.setItem('role', data.user.role as string);
+          if (this.keepLogged) localStorage.setItem('keepLogged', 'true');
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.isLoggedIn = true;
+          this.router.navigateByUrl('/');
+        },
+      }),
       (error: any) => {
+        this.AuthService.clearLocalStorage();
         alert(error.message);
-      });
+      };
   }
 }
