@@ -33,6 +33,9 @@ body {
 }
 
 .features i, .policies i {
-    margin-right: 15px;
+    margin-right: 14px;
+    margin-left: 12px;
     color:#212831;
+    width: 17px;
+    height: 17px; 
 }
