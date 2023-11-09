@@ -1,23 +1,22 @@
-import { api } from './../../api';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { LoginUser, User } from './../models/LoginUser.model';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { api } from './../../api';
+import { LoginUser } from './../models/LoginUser.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   url = api.url + '/users';
- 
-  token: string | null;
-  
 
-  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
+  token: string | null;
+
+  private isLoggedInSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  public isLoggedIn$: Observable<boolean> =
+    this.isLoggedInSubject.asObservable();
 
   public getIsLoggedInSubject(): BehaviorSubject<boolean> {
     return this.isLoggedInSubject;
@@ -28,7 +27,11 @@ export class AuthService {
   }
 
   loginUser(email: string, password: string): Observable<LoginUser> {
-    return this.http.post<LoginUser>(this.url + "/login", { email: email, password: password })
+    return this.http
+      .post<LoginUser>(this.url + '/login', {
+        email: email,
+        password: password,
+      })
       .pipe(
         map((data: LoginUser) => {
           this.isLoggedInSubject.next(true);
@@ -39,35 +42,15 @@ export class AuthService {
           throw error;
         })
       );
-  }  
+  }
   // `${this.url}/logout`
 
-  updateRefreshToken(refreshToken: string) {
-    // const token = localStorage.getItem('token');
-    // console.log(refreshToken)
-    // if(!token){
-    //   throw new Error("token inválido!")
-    // } 
-    // const convertTokenToJSON = token;
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   'Authorization': `Bearer ${token}`
-    // });
-    //const requestOptions = { headers: headers };
-    return this.http.post<any>(this.url + "/logout", refreshToken)
-    .pipe(
-      map((data: any) => {
-        console.log(data)
-        this.isLoggedInSubject.next(true);
-        return data;
-      }),
-      catchError((error: any) => {
-        console.error('Erro durante o login:', error);
-        throw error;
-      })
-    );
-  }  
-  
+  logout(refreshToken: string) {
+    const body = {
+      refreshToken: refreshToken,
+    };
+    return this.http.post<any>(this.url + '/logout', body);
+  }
 
   clearLocalStorage(): void {
     localStorage.removeItem('token');

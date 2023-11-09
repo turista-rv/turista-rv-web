@@ -1,8 +1,7 @@
-import { Router } from '@angular/router';
-import { AuthService } from './../../services/auth.service';
 import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { AuthService } from './../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -58,22 +57,16 @@ export class NavbarComponent {
   logout(): void {
     const refreshToken = localStorage.getItem('refreshToken');
     if (!refreshToken) {
-      throw new Error("token inválido!")
+      throw new Error('token inválido!');
     }
-    this.AuthService.updateRefreshToken(refreshToken)
-      // this.AuthService.updateRefreshToken(refreshToken).subscribe(data => {
-      //   console.log(data)
-      // })
-      // .pipe(map((data: any) => {
-      //   console.log(data)
-      // }))
-      .subscribe((data: any) => {
-        console.log(data)
+    this.AuthService.logout(refreshToken).subscribe(
+      (data: any) => {
+        console.log(data);
       },
 
-
-        (error: any) => {
-          alert(error.message);
-        });
+      (error: any) => {
+        alert(error.message);
+      }
+    );
   }
 }
