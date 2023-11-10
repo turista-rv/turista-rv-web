@@ -33,7 +33,6 @@ export class AuthService {
       .pipe(
         map((data: LoginUser) => {
           this.isLoggedInSubject.next(true);
-          console.log(data);
           return data;
         }),
         catchError((error: any) => {
@@ -52,7 +51,6 @@ export class AuthService {
     const body = { refreshToken };
     return this.http.post<any>(api.url + 'users/logout', body).pipe(
       map((data: any) => {
-        console.log(data);
         this.isLoggedInSubject.next(true);
         this.clearLocalStorage();
         return data;
