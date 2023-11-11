@@ -26,7 +26,7 @@ nav {
 .navbar-opened {
   right: -100%; /* Move o navbar para a posição direita da tela */
 }
-/* Oculte o menu quando não estiver aberto */
+/* Oculta o menu quando não estiver aberto */
 nav:not(.active) {
   right: -100%;
   
@@ -46,8 +46,8 @@ nav.active ul {
   justify-content: center;
   align-items: center;
   height: 100%;
-  margin: 0; /* Remova as margens para centralizar horizontalmente */
-  padding: 0; /* Remova o preenchimento */
+  margin: 0; 
+  padding: 0; 
 }
 
 nav.active li {
