@@ -43,14 +43,16 @@
           <b>Esqueci minha senha</b>
         </button>
       </div>
-      <div class="text-right">
-        Permanecer conectado
+      <div class="text-left mt-4">
         <input
           type="checkbox"
           name="keepLogged"
           id="keepLogged"
           [(ngModel)]="keepLogged"
         />
+        <label for="keepLogged" class="cursor-pointer hover:">
+          Manter conectado
+        </label>
       </div>
     </div>
 
