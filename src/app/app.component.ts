@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { initFlowbite } from 'flowbite';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -15,5 +16,6 @@ export class AppComponent implements OnInit {
     if (localStorage.getItem('keepLogged') === 'true') {
       this.AuthService.setIsLoggedIn();
     }
+    initFlowbite();
   }
 }

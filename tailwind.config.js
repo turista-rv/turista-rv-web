@@ -2,26 +2,27 @@
 module.exports = {
   content: [
     './src/**/*.{html,ts}',
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {
       screens: {
         'sm': '640px',
         // => @media (min-width: 640px) { ... }
-  
+
         'md': '768px',
         // => @media (min-width: 768px) { ... }
-  
+
         'lg': '1024px',
         // => @media (min-width: 1024px) { ... }
-  
+
         'xl': '1280px',
         // => @media (min-width: 1280px) { ... }
-  
+
         '2xl': '1536px',
         // => @media (min-width: 1536px) { ... }
       },
-      
+
       minWidth: {
         '0': '0',
         '1/4': '25%',
@@ -29,26 +30,26 @@ module.exports = {
         '3/4': '75%',
         'full': '100%',
       },
-      
+
       colors: {
         transparent: 'transparent',
         blueDark: '#0D7ABF',
         blueMid: '#118FCF',
         blueLight: '#1397D6',
-  
+
         greenDark: '#2BA245',
         greenMid: '#CBE4B4',
         greenLight: '#E5F0DB',
-  
+
         orangeDark: '#F8931F',
-  
+
         //BASE
         grays1: '#1B1D1E',
         grays2: '#333638',
         grays3: '#5C6265',
         grays4: '#B9BBBC',
-  
-  
+
+
         grays5: '#DDDEDF',
         grays6: '#EFF0F0',
         grays7: '#FAFAFA',
@@ -77,11 +78,11 @@ module.exports = {
         '80': '80px',
         'small': '14px', // Tamanho da fonte menor
       },
-      
+
       padding: {
-        'small': '8px 16px', // Espaçamento menor 
+        'small': '8px 16px', // Espaçamento menor
       },
-  
+
       width: {
         '41': '41px',
         '200': '200px',
@@ -89,7 +90,7 @@ module.exports = {
         '400': '400px',
         '500': '500px',
       },
-  
+
       height: {
         '24': '24px',
         '30': '30px',
@@ -103,6 +104,8 @@ module.exports = {
     },
   },
 
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin') // add this line
+  ],
 }
 

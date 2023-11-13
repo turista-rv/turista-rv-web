@@ -1,15 +1,18 @@
-<head>
+<!-- <head>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.css" rel="stylesheet" />
-</head>
+</head> -->
 
 <div>
   <app-header class="mt-10 text-center font-bold"></app-header>
 </div>
 
 <div class="flex justify-start items-start w-10">
-  <a routerLink="/admin-panel"
-    class="bg-white bg-opacity-80 rounded-2xl ml-2 mt-28 hover:brightness-90 hover:no-underline p-3" style="width:90;">
-    <img src="../../../assets/icons/arrow-back.svg" alt="arrow-back">
+  <a
+    routerLink="/admin-panel"
+    class="bg-white bg-opacity-80 rounded-2xl ml-2 mt-28 hover:brightness-90 hover:no-underline p-3"
+    style="width: 90"
+  >
+    <img src="../../../assets/icons/arrow-back.svg" alt="arrow-back" />
   </a>
 </div>
 <!-- Seção cadastro -->
@@ -17,101 +20,144 @@
   <h2 class="text-2xl font-bold mb-4">Adicionar Camping</h2>
 
   <!-- Linha divisória -->
-  <hr class="my-4 border-t-2 border-grays5">
+  <hr class="my-4 border-t-2 border-grays5" />
 
   <div class="flex gap-3 grid-cols-2">
     <div class="w-1/2">
       <div class="">
         <label for="title" class="">Nome:</label>
-        <input [(ngModel)]="camping.name" id="title" name="title" type="text"
-          class="w-full p-2 border rounded-lg focus:outline-none focus:border-orangeDark text-black" />
+        <input
+          [(ngModel)]="camping.name"
+          id="title"
+          name="title"
+          type="text"
+          class="w-full p-2 border rounded-lg text-black"
+        />
       </div>
       <div class="mt-2">
         <label for="title" class="">Descrição:</label>
-        <textarea [(ngModel)]="camping.description" id="description" name="description" type="text"
-          class="resize-none w-full h-[120px] p-2 border rounded-lg focus:outline-none focus:border-orangeDark text-black">
+        <textarea
+          [(ngModel)]="camping.description"
+          id="description"
+          name="description"
+          type="text"
+          class="resize-none w-full h-[120px] p-2 border rounded-lg text-black"
+        >
         </textarea>
       </div>
     </div>
     <div class="w-1/3">
       <label for="rules" class="">Regras:</label>
-      <textarea [(ngModel)]="camping.propertyRules" id="rules" name="rules"
-        class="resize-none w-full h-[194px] p-2 border rounded-lg focus:outline-none focus:border-orangeDark text-black">
+      <textarea
+        [(ngModel)]="camping.propertyRules"
+        id="rules"
+        name="rules"
+        class="resize-none w-full h-[194px] p-2 border rounded-lg text-black"
+      >
       </textarea>
     </div>
   </div>
   <div class="flex items-center gap-3 mt-4">
     <!--  <label for="images" class="font-bold">Imagens:</label>
-   <label for="images" class="font-bold cursor-pointer focus:outline-none focus:border-orangeDark text-black">
+   <label for="images" class="font-bold cursor-pointer text-black">
        <span class="bg-transparent border border-blue-500 text-blue-500 p-2 rounded-md inline-flex items-center">
         Escolher Arquivo
         <i class="fas fa-file-upload ml-2"></i>
-      </span> 
+      </span>
       <input id="images" name="images" type="file" (change)="onChangeArquivo($event)" />
     </label>-->
 
     <!-- <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">Enviar imagens</label>
-<input class="block w-[400px] text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
+<input class="block w-[400px] text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
         id="multiple_files" type="file" (change)="onChangeArquivo($event)"> -->
     <div class="flex items-center justify-center w-full">
-      <label for="dropzone-file"
-        class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+      <label
+        for="dropzone-file"
+        class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+      >
         <div class="flex flex-col items-center justify-center pt-5 pb-6">
-          <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+          <svg
+            class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 16"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+            />
           </svg>
-          <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or
-            drag and drop</p>
-          <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+          <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+            <span class="font-semibold">Click to upload</span> or drag and drop
+          </p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            SVG, PNG, JPG or GIF (MAX. 800x400px)
+          </p>
         </div>
         <input id="dropzone-file" type="file" class="hidden" />
       </label>
-      <button (click)="addFile()" class="bg-blue-500 text-white p-2 rounded-md"><i
-          class="fa fa-plus p-1"></i>Adicionar</button>
+      <button (click)="addFile()" class="bg-blue-500 text-white p-2 rounded-md">
+        <i class="fa fa-plus p-1"></i>Adicionar
+      </button>
     </div>
   </div>
   <div *ngFor="let item of imgUrl">
     <img [src]="item" alt="" class="w-40 grid-row" />
   </div>
-  <button (click)="submit()"
-    class="bg-green-700 text-white px-4 py-2 mt-4 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
+  <button
+    (click)="submit()"
+    class="bg-green-700 text-white px-4 py-2 mt-4 rounded-md hover:brightness-110 transition duration-300 ease-in-out"
+  >
     Cadastrar
   </button>
 </section>
 
 <!-- Seção listagem -->
 <!--bg-[#E5E5E5] bg-grays6 -->
-<section class="camping-table mx-auto mt-8 border w-3/4 bg-[#E5E5E5] p-4 rounded shadow-lg">
+<section
+  class="camping-table mx-auto mt-8 border w-3/4 bg-[#E5E5E5] p-4 rounded shadow-lg"
+>
   <h2 class="text-2xl font-bold mb-4">Lista de Campings</h2>
 
   <!-- Linha divisória -->
-  <hr class="my-4 border-t-2 border-grays5">
+  <hr class="my-4 border-t-2 border-grays5" />
 
   <ng-template #campingsList>
-    <table class=" mt-32" id="tabela">
+    <table class="mt-32" id="tabela">
       <thead>
         <tr>
           <th></th>
-          <th class=" text-grays4 text-left">Nome</th>
-          <th class=" text-grays4">ID</th>
+          <th class="text-grays4 text-left">Nome</th>
+          <th class="text-grays4">ID</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-
         <tr *ngFor="let item of campings">
           <td class="rounded-s-[5px]">
-            <img *ngIf="item.images.length > 0" [src]="item.images[0].url" alt="Imagem do card"
-              class="h-12 w-20 object-cover rounded-[5px]" />
+            <img
+              *ngIf="item.images.length > 0"
+              [src]="item.images[0].url"
+              alt="Imagem do card"
+              class="h-12 w-20 object-cover rounded-[5px]"
+            />
           </td>
           <td class="my-4 items-left">{{ item.name }}</td>
           <td class="my-4 text-xs text-right">{{ item.id }}</td>
           <td class="my-4 rounded-e-[5px]">
-            <button class="text-[#F8931F] ml-4  hover:brightness-75"><i class="fas fa-pencil-alt"></i></button>
-            <button (click)="delet(item.id)" class="text-[#F8931F] mx-4 hover:brightness-75"><i
-                class="fas fa-trash"></i></button>
+            <button class="text-[#F8931F] ml-4 hover:brightness-75">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button
+              (click)="delet(item.id)"
+              class="text-[#F8931F] mx-4 hover:brightness-75"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
           </td>
         </tr>
       </tbody>

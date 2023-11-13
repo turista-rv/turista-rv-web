@@ -15,13 +15,13 @@ import { HeaderComponent } from './template/header/header.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { AboutComponent } from './views/about/about.component';
 import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
+import { CreateCampingComponent } from './views/admin-panel/create-camping/create-camping.component';
 import { CampingsComponent } from './views/campings/campings.component';
 import { CreateAccountComponent } from './views/create-account/create-account.component';
 import { HomeComponent } from './views/home/home.component';
 import { HostessComponent } from './views/hostess/hostess.component';
 import { LoginComponent } from './views/login/login.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
-import { CreateCampingComponent } from './views/admin-panel/create-camping/create-camping.component';
 
 @NgModule({
   declarations: [
