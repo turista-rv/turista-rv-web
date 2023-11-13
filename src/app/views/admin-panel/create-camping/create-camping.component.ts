@@ -18,42 +18,57 @@ export class CreateCampingComponent implements OnInit {
   };
 
   image!: File;
-  imgUrl: string[] = [];
+  loading = true;
+  selectedFileName: string = '';
 
-  constructor(private campingService: CampingService) {}
+  constructor(private campingService: CampingService) { }
 
   arquivoParaEnviar: File[] = [];
 
   ngOnInit(): void {
-    this.campingService.listCampings().subscribe((data) => {
-      this.campings = data;
-    });
+    this.campingService.listCampings()
+    .subscribe({
+      next:(data) => {
+        this.campings = data;
+        this.loading = false;
+      },
+    }),
+      (error:any) => {
+        console.error(error);
+        this.loading = false; // Finaliza o loading em caso de erro
+      };
   }
 
   addFile() {
     this.arquivoParaEnviar?.push(this.image);
     console.log(this.arquivoParaEnviar);
-    this.imgUrl.push(URL.createObjectURL(this.image));
+    // this.imgUrl.push(URL.createObjectURL(this.image));
   }
 
   onChangeArquivo(event: any) {
     console.log(event.target.files[0]);
     this.image = event.target.files[0];
+    const fileInput = event.target as HTMLInputElement;
+  if (fileInput.files && fileInput.files.length > 0) {
+    this.selectedFileName = fileInput.files[0].name;
+  } else {
+    this.selectedFileName = '';
   }
+}
+  
 
   submit() {
     const formData = new FormData();
-    this.arquivoParaEnviar?.map((value) => {
-      formData.append('images', value, value.name);
-    });
-    formData.append('name', this.camping.name); // Substitua pelos seus dados
-    formData.append('propertyRules', this.camping.propertyRules); // Substitua pelos seus dados
-    formData.append('description', this.camping.description ?? ''); // Substitua pelos seus dados
-    formData.append('active', String(this.camping.active)); // Substitua pelos seus dados
-
-    console.log(formData);
-    this.campingService.create(formData).subscribe((data) => {
-      console.log(data);
+    this.campingService.create(formData).subscribe({
+      next: (data) => {
+        console.log(data);
+        alert('Camping criado com sucesso!');
+      },
+      error: (error: any) => {
+        const errorMessage = `Erro ao criar camping. Detalhes: ${error?.error?.message ||
+          'Erro desconhecido.'}`;
+        alert(errorMessage);
+      },
     });
   }
 
