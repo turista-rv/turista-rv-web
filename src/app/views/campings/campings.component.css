@@ -1,41 +1,7 @@
-body {
-    font-family: Arial, sans-serif;
-    padding: 1rem;
-}
-
 .carousel {
-    width: 100%;
-    max-width: 700px;
-    height: 400px;
+    width: 80%; /* Decrease the width by 20% */
+    max-width: 500px; /* Set a maximum width if needed */
+    height: 0;
     overflow: hidden;
     margin: 0 auto;
-}
-
-.carousel img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.camping-details {
-    margin-top: 20px;
-}
-
-.section-heading {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.description, .features, .policies {
-    margin-bottom: 20px;
-    color:#212831;
-}
-
-.features i, .policies i {
-    margin-right: 14px;
-    margin-left: 12px;
-    color:#212831;
-    width: 17px;
-    height: 17px; 
 }
