@@ -18,6 +18,7 @@ export class CreateCampingComponent implements OnInit {
   };
 
   image!: File;
+  imgUrl: string[] = [];
   loading = true;
   selectedFileName: string = '';
 
@@ -42,7 +43,7 @@ export class CreateCampingComponent implements OnInit {
   addFile() {
     this.arquivoParaEnviar?.push(this.image);
     console.log(this.arquivoParaEnviar);
-    // this.imgUrl.push(URL.createObjectURL(this.image));
+    this.imgUrl.push(URL.createObjectURL(this.image));
   }
 
   onChangeArquivo(event: any) {
@@ -71,7 +72,6 @@ export class CreateCampingComponent implements OnInit {
       },
     });
   }
-
   delet(id: string | undefined) {
     this.campingService.delete(id as string);
   }
