@@ -1,38 +1,27 @@
-<div class="flex justify-start items-start w-10">
-  <a
-    routerLink="/"  
-    class="bg-white bg-opacity-80 rounded-2xl ml-2 <!-- mt-28  --> hover:brightness-90 hover:no-underline p-3"
-    style="width: 90"
-  >
-    <img src="../../../assets/icons/arrow-back.svg" alt="arrow-back" />
-  </a>
-</div>
-<section class="camping-register grid justify-items-center p-7">
+<app-header></app-header>
 
+<section class="camping-register grid justify-items-center p-7 mt-10">
   <body class="font-sans p-4">
     <div *ngIf="camping" class="relative min-h-[490px]">
-
       <!-- Imagem do camping -->
-      <img *ngIf="camping.images && camping.images.length > 0" 
-        [src]="camping.images[0].url"
-        class="carousel-image rounded-lg w-full" />
+      <app-carousel [items]="camping.images"></app-carousel>
 
-       <div class="camping-details mt-5 flex">
+      <div class="camping-details mt-5 flex">
         <!-- CARD RESERVAS  -->
-        <div class="card-booking w-[370px] h-[530px] absolute ml-[70%] p-4 bg-white rounded-lg shadow-lg">
+        <div
+          class="card-booking w-[370px] h-[530px] absolute ml-[70%] p-4 bg-white rounded-lg shadow-lg"
+        >
           <div class="price-content flex items-baseline">
             <p class="text-lg font-bold mb-2.5 mr-1">R$615</p>
             <p>noite</p>
           </div>
           <button
             routerLink="/camping-checkout"
-            class="btn-booking bg-blueMid hover:brightness-110 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded">
+            class="btn-booking bg-blueMid hover:brightness-110 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded"
+          >
             Reservar
           </button>
-          <p class="text-slate-500 p-2">
-            R$615 x 2 noites
-            R$1.230
-          </p>
+          <p class="text-slate-500 p-2">R$615 x 2 noites R$1.230</p>
           <div class="flex items-baseline">
             <p class="font-bold p-2">Total (sem impostos)</p>
             <p class="font-bold p-2">R$1.638</p>
@@ -41,7 +30,9 @@
 
         <!-- Descrição e detalhes -->
         <div class="card-camping-details flex flex-col ml-5 max-w-[65%]">
-          <div class="section-heading text-lg font-bold mb-2.5">{{ camping.name }}</div>
+          <div class="section-heading text-lg font-bold mb-2.5">
+            {{ camping.name }}
+          </div>
           <div class="description mb-5 text-gray-800">
             <p>
               Descrição do camping. Lorem ipsum dolor sit amet, consectetur
@@ -49,29 +40,43 @@
             </p>
           </div>
 
-          <hr class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
-            data-testid="divider" />
+          <hr
+            class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
+            data-testid="divider"
+          />
 
-          <div class="section-heading text-lg font-bold mb-2.5">Características da Acomodação</div>
+          <div class="section-heading text-lg font-bold mb-2.5">
+            Características da Acomodação
+          </div>
           <div class="features mb-5 text-gray-800">
             <i class="fas fa-wifi mr-3.5 ml-3 w-4 h-4"></i>Wi-Fi gratuito<br />
-            <i class="fas fa-shower mr-3.5 ml-3 w-4 h-4"></i>Banheiros compartilhados<br />
-            <i class="fas fa-car mr-3.5 ml-3 w-4 h-4"></i>Estacionamento gratuito<br />
+            <i class="fas fa-shower mr-3.5 ml-3 w-4 h-4"></i>Banheiros
+            compartilhados<br />
+            <i class="fas fa-car mr-3.5 ml-3 w-4 h-4"></i>Estacionamento
+            gratuito<br />
           </div>
 
-          <hr class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
-            data-testid="divider" />
+          <hr
+            class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
+            data-testid="divider"
+          />
 
-          <div class="section-heading text-lg font-bold mb-2.5">Regras e Políticas</div>
+          <div class="section-heading text-lg font-bold mb-2.5">
+            Regras e Políticas
+          </div>
           <div class="policies mb-5 text-gray-800">
-            <i class="fas fa-clock mr-3.5 ml-3 w-4 h-4"></i>Check-in a partir das 14:00<br />
-            <i class="fas fa-clock mr-3.5 ml-3 w-4 h-4"></i>Check-out até às 11:00<br />
-            <i class="fas fa-paw mr-3.5 ml-3 w-4 h-4"></i>Animais de estimação não permitidos<br />
+            <i class="fas fa-clock mr-3.5 ml-3 w-4 h-4"></i>Check-in a partir
+            das 14:00<br />
+            <i class="fas fa-clock mr-3.5 ml-3 w-4 h-4"></i>Check-out até às
+            11:00<br />
+            <i class="fas fa-paw mr-3.5 ml-3 w-4 h-4"></i>Animais de estimação
+            não permitidos<br />
           </div>
 
-          <hr class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
-            data-testid="divider" />
-
+          <hr
+            class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
+            data-testid="divider"
+          />
         </div>
       </div>
     </div>

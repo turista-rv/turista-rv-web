@@ -12,7 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './views/about/about.component';
 import { affiliateGuard } from './guards/affiliate.guard';
 import { guestGuard } from './guards/guest.guard';
-import { CreateCampingComponent } from './views/admin-panel/create-camping/create-camping.component';
+import { CreateCampingComponent } from './views/create-camping/create-camping.component';
 import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
 
 const routes: Routes = [

@@ -1,0 +1,3 @@
+::ng-deep .mdc-tab--active {
+  background-color: blue;
+}

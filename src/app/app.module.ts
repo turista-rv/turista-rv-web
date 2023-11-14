@@ -15,7 +15,7 @@ import { HeaderComponent } from './template/header/header.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { AboutComponent } from './views/about/about.component';
 import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
-import { CreateCampingComponent } from './views/admin-panel/create-camping/create-camping.component';
+import { CreateCampingComponent } from './views/create-camping/create-camping.component';
 import { CampingsComponent } from './views/campings/campings.component';
 import { CreateAccountComponent } from './views/create-account/create-account.component';
 import { HomeComponent } from './views/home/home.component';
@@ -24,7 +24,14 @@ import { LoginComponent } from './views/login/login.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
 import { ToaterComponent } from './components/toater/toater.component';
-import { LoadingComponent } from './components/loading/loading.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { LoadingComponent } from './components/loading.component';
+import { PostsComponent } from './views/posts/posts.component';
+import { TitleSectionComponent } from './components/title-section/title-section.component';
+import { LeadsComponent } from './views/leads/leads.component';
+import { CarouselModule } from '@coreui/angular';
+import { CaroselComponent } from './components/carosel/carosel.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +55,10 @@ import { LoadingComponent } from './components/loading/loading.component';
     CampingCheckoutComponent,
     ToaterComponent,
     LoadingComponent,
+    PostsComponent,
+    TitleSectionComponent,
+    LeadsComponent,
+    CaroselComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -59,6 +70,9 @@ import { LoadingComponent } from './components/loading/loading.component';
     ReactiveFormsModule,
     Interceptor,
     CKEditorModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    CarouselModule,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,91 +1,18 @@
 <app-header></app-header>
 <div class="flex justify-start items-start w-10">
-  <a routerLink="/" 
-  class="bg-white bg-opacity-80 rounded-2xl ml-2 mt-28 mb-7 hover:brightness-90 hover:no-underline p-3"
-    style="width: 90">
+  <a
+    routerLink="/"
+    class="bg-white bg-opacity-80 rounded-2xl ml-2 mt-28 mb-7 hover:brightness-90 hover:no-underline p-3"
+    style="width: 90"
+  >
     <img src="../../../assets/icons/arrow-back.svg" alt="arrow-back" />
   </a>
 </div>
 
-<div class="container mx-auto mt-6 p-6">
-
-  <!-- COLLAPSE 1 -->
-  <div id="accordion-color" data-accordion="collapse"
-    data-active-classes="bg-blue-100 dark:bg-gray-800 text-blue-600 dark:text-white">
-    <h2 id="accordion-color-heading-1">
-      <button type="button"
-        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800 gap-3"
-        data-accordion-target="#accordion-color-body-1" aria-expanded="true" aria-controls="accordion-color-body-1">
-        <span>Adicionar Novidade</span>
-        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M9 5 5 1 1 5" />
-        </svg>
-      </button>
-    </h2>
-    <div id="accordion-color-body-1" class="hidden" aria-labelledby="accordion-color-heading-1">
-      <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-        <div class="mb-4">
-          <label for="image">URL da Imagem:</label>
-          <input [(ngModel)]="post.image" id="image" name="image" type="text"
-            class="w-full p-2 border rounded focus:outline-none focus:border-orangeDark text-black" />
-        </div>
-
-        <div class="mb-4">
-          <label for="title">Título:</label>
-          <input [(ngModel)]="post.title" id="title" name="title" type="text"
-            class="w-full p-2 border rounded focus:outline-none focus:border-orangeDark text-black" />
-        </div>
-
-        <div class="mb-4">
-          <label for="description">Descrição:</label>
-          <textarea [(ngModel)]="post.description" id="description" name="description" rows="4"
-            class="w-full p-2 border rounded focus:outline-none focus:border-orangeDark text-black"></textarea>
-        </div>
-        <button (click)="addPost()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
-          Enviar
-        </button>
-      </div>
-    </div>
-    <!-- COLLAPSE 2 -->
-    <h2 id="accordion-color-heading-2">
-      <button type="button"
-        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800 gap-3"
-        data-accordion-target="#accordion-color-body-2" aria-expanded="false" aria-controls="accordion-color-body-2">
-        <span>Adicionar Camping</span>
-        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M9 5 5 1 1 5" />
-        </svg>
-      </button>
-    </h2>
-    <div id="accordion-color-body-2" class="hidden" aria-labelledby="accordion-color-heading-2">
-      <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-        <h2 class="text-2xl font-bold mb-4 cursor-pointer" routerLink="/create-camping">
-          Adicionar Camping
-        </h2>
-      </div>
-    </div>
-
-    <!-- COLLAPSE 3 -->
-    <h2 id="accordion-color-heading-3">
-      <button type="button"
-        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800 gap-3"
-        data-accordion-target="#accordion-color-body-3" aria-expanded="false" aria-controls="accordion-color-body-3">
-        <span>Outra Collapse</span>
-        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M9 5 5 1 1 5" />
-        </svg>
-      </button>
-    </h2>
-    <div id="accordion-color-body-3" class="hidden" aria-labelledby="accordion-color-heading-3">
-      <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-        COLLAPSE3
-      </div>
-    </div>
-  </div>
-</div>
+<mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+  <mat-tab label="CAMPINGS">
+    <app-create-camping></app-create-camping>
+  </mat-tab>
+  <mat-tab label="POSTS"> <app-posts></app-posts> </mat-tab>
+  <mat-tab label="LEADS"> <app-leads></app-leads></mat-tab>
+</mat-tab-group>
