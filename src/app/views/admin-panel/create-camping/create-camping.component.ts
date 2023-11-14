@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ToasterService } from 'src/app/components/toater/toaster.service';
 import { Camping } from 'src/app/models/camping.model';
 import { CampingService } from 'src/app/services/camping.service';
 
@@ -14,27 +16,34 @@ export class CreateCampingComponent implements OnInit {
     name: '',
     propertyRules: '',
     images: [],
-    description: '123tyeste',
+    description: '',
   };
 
+  public Editor = ClassicEditor;
   image!: File;
   imgUrl: string[] = [];
   loading = true;
   selectedFileName: string = '';
 
-  constructor(private campingService: CampingService) { }
+  constructor(
+    private campingService: CampingService,
+    private _toaster: ToasterService
+  ) {}
 
   arquivoParaEnviar: File[] = [];
 
   ngOnInit(): void {
-    this.campingService.listCampings()
-    .subscribe({
-      next:(data) => {
+    this.loadCampings();
+  }
+
+  loadCampings(): void {
+    this.campingService.listCampings().subscribe({
+      next: (data) => {
         this.campings = data;
         this.loading = false;
       },
     }),
-      (error:any) => {
+      (error: any) => {
         console.error(error);
         this.loading = false; // Finaliza o loading em caso de erro
       };
@@ -50,29 +59,61 @@ export class CreateCampingComponent implements OnInit {
     console.log(event.target.files[0]);
     this.image = event.target.files[0];
     const fileInput = event.target as HTMLInputElement;
-  if (fileInput.files && fileInput.files.length > 0) {
-    this.selectedFileName = fileInput.files[0].name;
-  } else {
-    this.selectedFileName = '';
+    if (fileInput.files && fileInput.files.length > 0) {
+      this.selectedFileName = fileInput.files[0].name;
+      this.arquivoParaEnviar?.push(this.image);
+      console.log(this.arquivoParaEnviar);
+      this.imgUrl.push(URL.createObjectURL(this.image));
+    } else {
+      this.selectedFileName = '';
+    }
   }
-}
-  
 
   submit() {
     const formData = new FormData();
+    this.arquivoParaEnviar.forEach((imagem) => {
+      formData.append('images', imagem, imagem.name);
+    });
+    formData.append('name', this.camping.name);
+    formData.append('active', 'true');
+    formData.append('description', this.camping.description as string);
+    formData.append('propertyRules', this.camping.propertyRules as string);
+
     this.campingService.create(formData).subscribe({
       next: (data) => {
         console.log(data);
-        alert('Camping criado com sucesso!');
+        // alert('Camping criado com sucesso!');
+        this._toaster.success({
+          title: 'Sucesso',
+          msg: 'Camping criado com sucesso!',
+        });
+        this.loadCampings();
       },
       error: (error: any) => {
-        const errorMessage = `Erro ao criar camping. Detalhes: ${error?.error?.message ||
-          'Erro desconhecido.'}`;
+        const errorMessage = `Erro ao criar camping. Detalhes: ${
+          error?.error?.message || 'Erro desconhecido.'
+        }`;
         alert(errorMessage);
       },
     });
   }
+
   delet(id: string | undefined) {
-    this.campingService.delete(id as string);
+    this.campingService.delete(id as string).subscribe((msg) => {
+      alert(msg.message);
+      this.loadCampings();
+    });
+  }
+
+  cancel(): void {
+    this.camping = {
+      active: true,
+      name: '',
+      propertyRules: '',
+      images: [],
+      description: '',
+    };
+    this.imgUrl = [];
+    this.arquivoParaEnviar = [];
   }
 }

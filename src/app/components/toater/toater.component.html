@@ -1,0 +1,15 @@
+<div *ngIf="toasterService.toasts">
+  <div
+    class="fixed right-0 top-25 m-6 w-56 h-32 bg-green-300"
+    *ngFor="let toast of toasterService.toasts"
+  >
+    <div class="flex flex-col">
+      <div class="font-bold">
+        {{ toast.title }}
+      </div>
+      <div>
+        {{ toast.msg }}
+      </div>
+    </div>
+  </div>
+</div>

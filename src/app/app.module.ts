@@ -23,6 +23,8 @@ import { HostessComponent } from './views/hostess/hostess.component';
 import { LoginComponent } from './views/login/login.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
+import { ToaterComponent } from './components/toater/toater.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { CampingCheckoutComponent } from './views/camping-checkout/camping-check
     CampingShowComponent,
     CreateCampingComponent,
     CampingCheckoutComponent,
+    ToaterComponent,
+    LoadingComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
