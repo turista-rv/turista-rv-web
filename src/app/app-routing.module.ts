@@ -13,6 +13,7 @@ import { AboutComponent } from './views/about/about.component';
 import { affiliateGuard } from './guards/affiliate.guard';
 import { guestGuard } from './guards/guest.guard';
 import { CreateCampingComponent } from './views/admin-panel/create-camping/create-camping.component';
+import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'campings/:id',
     component: CampingsComponent,
+  },
+  {
+    path: 'camping-checkout',
+    component: CampingCheckoutComponent,
   },
 ];
 

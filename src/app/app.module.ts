@@ -22,6 +22,7 @@ import { HomeComponent } from './views/home/home.component';
 import { HostessComponent } from './views/hostess/hostess.component';
 import { LoginComponent } from './views/login/login.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
     CampingsComponent,
     CampingShowComponent,
     CreateCampingComponent,
+    CampingCheckoutComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
