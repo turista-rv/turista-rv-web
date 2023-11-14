@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Camping } from '../models/camping.model';
-import { HttpClient } from '@angular/common/http';
 import { api } from 'src/api';
+import { Camping } from '../models/camping.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +23,6 @@ export class CampingService {
   }
 
   delete(id: string) {
-    return this.http.delete<Camping>(api.url + '/campings/' + id);
+    return this.http.delete<any>(api.url + '/campings/' + id);
   }
 }
