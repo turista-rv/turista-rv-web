@@ -2,7 +2,7 @@
   <div class="carousel">
     <ng-container *ngFor="let item of items; let i = index">
       <div class="carousel-item" [class.active]="i === currentIndex">
-        <img [src]="item.url" alt="Carousel Image {{ i + 1 }}" />
+        <img class="rounded" [src]="item.url" alt="Carousel Image {{ i + 1 }}" />
       </div>
     </ng-container>
   </div>

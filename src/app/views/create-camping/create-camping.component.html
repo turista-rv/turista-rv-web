@@ -2,7 +2,6 @@
 <app-title-section
   [title]="camping.name === '' ? 'Adicionar Camping' : camping.name"
 >
-  <!-- Linha divisória -->
 
   <div class="flex gap-3 grid-cols-2">
     <div class="w-1/2">
@@ -53,26 +52,26 @@
       </div>
     </div>
   </div>
-  <div class="flex flex-row justify-end gap-3">
+  <div class="flex flex-row justify-end mr-32 gap-3">
     <button
-      (click)="cancel()"
-      class="bg-red-700 text-white px-4 py-2 mt-4 rounded-md hover:brightness-110 transition duration-300 ease-in-out"
+    (click)="cancel()"
+    class="border border-red-600 text-red-600 px-4 py-2 mt-4 rounded-md hover:bg-red-800 hover:text-white transition duration-300 ease-in-out"
     >
-      Cancelar
-    </button>
-    <button
-      (click)="submit()"
-      class="bg-green-700 text-white px-4 py-2 mt-4 rounded-md hover:brightness-110 transition duration-300 ease-in-out"
-    >
-      Cadastrar
-    </button>
+    Cancelar
+  </button>
+  <button
+  (click)="submit()"
+  class="bg-blueMid text-white px-4 py-2 mt-4 rounded-md hover:brightness-110 transition duration-300 ease-in-out"
+  >
+  Cadastrar
+</button>
   </div>
 </app-title-section>
 
 <!-- Seção listagem -->
 <!--bg-[#E5E5E5] bg-grays6 -->
 <section
-  class="camping-table mx-auto mt-8 border w-3/4 bg-[#E5E5E5] p-4 rounded shadow-lg"
+  class="camping-table mx-auto mt-7 mb-4 border w-3/4 bg-[#E5E5E5] p-4 rounded shadow-lg"
 >
   <h2 class="text-2xl font-bold mb-4">Lista de Campings</h2>
 
