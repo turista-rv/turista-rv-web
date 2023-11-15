@@ -1,0 +1,40 @@
+<app-title-section title="Adicionar Post">
+  <div class="mb-4">
+    <label for="image">URL da Imagem:</label>
+    <input
+      [(ngModel)]="post.image"
+      id="image"
+      name="image"
+      type="text"
+      class="w-full p-2 border rounded focus:outline-none focus:border-orangeDark text-black"
+    />
+  </div>
+
+  <div class="mb-4">
+    <label for="title">Título:</label>
+    <input
+      [(ngModel)]="post.title"
+      id="title"
+      name="title"
+      type="text"
+      class="w-full p-2 border rounded focus:outline-none focus:border-orangeDark text-black"
+    />
+  </div>
+
+  <div class="mb-4">
+    <label for="description">Descrição:</label>
+    <textarea
+      [(ngModel)]="post.description"
+      id="description"
+      name="description"
+      rows="4"
+      class="w-full p-2 border rounded focus:outline-none focus:border-orangeDark text-black"
+    ></textarea>
+  </div>
+  <button
+    (click)="addPost()"
+    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+  >
+    Enviar
+  </button>
+</app-title-section>
