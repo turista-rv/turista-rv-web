@@ -84,7 +84,7 @@
         <tr>
           <th></th>
           <th class="text-grays4 text-left">Nome</th>
-          <th class="text-grays4">ID</th>
+          <th class="text-grays4">Status</th>
           <th></th>
         </tr>
       </thead>
@@ -99,7 +99,7 @@
             />
           </td>
           <td class="my-4 items-left">{{ item.name }}</td>
-          <td class="my-4 text-xs text-right">{{ item.id }}</td>
+          <td class="my-4 text-xs text-right">{{ isActiveStatus(item.active)}}</td>
           <td class="my-4 rounded-e-[5px]">
             <button class="text-[#F8931F] ml-4 hover:brightness-75">
               <i class="fas fa-pencil-alt"></i>
@@ -118,7 +118,7 @@
 
   <div *ngIf="loading; else campingsList" class="mt-4 text-center">
     <app-loading width="800px" height="200px">
-      Carregando os campings...
+      Carregando campings...
     </app-loading>
   </div>
 </section>

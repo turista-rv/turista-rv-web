@@ -49,6 +49,11 @@ export class CreateCampingComponent implements OnInit {
     this.loadCampings();
   }
 
+  isActiveStatus(active: boolean): string {
+    return active ? 'Ativado' : 'Desativado';
+  }
+  
+
   loadCampings(): void {
     this.campingService.listCampings().subscribe({
       next: (data) => {

@@ -7,18 +7,22 @@
   border-spacing: 0 10px; /* espaçamento entre as linhas needed */
 }
 
-#tabela td {
-  border: 1px solid white; /* Add border only on the sides */
-  background-color: white;
-  padding: 6px;
-}
 
 #tabela th{
   padding: 6px;
+  text-align: start;
 }
 
 #tabela tr:not(:last-child) {
-  margin-bottom: 10px; /* Creates space between rows */
+  margin-bottom: 10px; /* cria espaçamento entre as linhas */
+}
+
+#tabela td {
+  border: 1px solid white; /* borda apenas nos cantos da linha*/
+  background-color: white;
+  padding: 6px;
+  /* min-width: 100px; */
+  text-align: start;
 }
 
 input:focus {
