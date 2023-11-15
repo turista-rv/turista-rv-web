@@ -16,13 +16,7 @@ export class AdminPanelComponent {
   };
 
   constructor(private postService: PostService) {}
-
-  isCollapsed = false; // Inicialmente, o colapso não está ativado
-
-  toggleCollapse() {
-    this.isCollapsed = !this.isCollapsed;
-  }
-
+  
   addPost() {
     // lógica para gerar a data automaticamente (new Date())
     this.postService.addPost({ ...this.post, date: new Date() });
