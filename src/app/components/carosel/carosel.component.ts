@@ -9,6 +9,8 @@ import { Image } from 'src/app/models/image.model';
 export class CaroselComponent implements OnInit {
   currentIndex = 0;
   @Input() items: Image[] = [];
+  @Input() urlList: string[] = [];
+  @Input() type: 'url' | 'image' = 'image';
   currentImage: Image = this.items[0];
 
   ngOnInit(): void {}

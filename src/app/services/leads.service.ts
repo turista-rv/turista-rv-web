@@ -19,8 +19,12 @@ export class LeadsService {
       map((response: any) => response),
       catchError((error: any) => {
         console.error('Erro ao enviar leads:', error);
-        throw error; 
+        throw error;
       })
     );
+  }
+
+  listAll() {
+    return this.http.get<Leads[]>(this.url);
   }
 }

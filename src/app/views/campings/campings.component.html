@@ -9,23 +9,34 @@
       <div class="camping-details mt-5 flex">
         <!-- CARD RESERVAS  -->
         <div
-          class="card-booking w-[370px] h-[530px] absolute ml-[70%] p-4 bg-white rounded-lg shadow-lg"
+          class="card-booking flex flex-col w-[370px] absolute ml-[70%] p-4 bg-white rounded-lg shadow-lg"
         >
-          <div class="price-content flex items-baseline">
-            <p class="text-lg font-bold mb-2.5 mr-1">R$615</p>
-            <p>noite</p>
-          </div>
+          <mat-form-field>
+            <mat-label>Entrada</mat-label>
+            <input matInput [matDatepicker]="picker" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="mt-5">
+            <mat-label>Saída</mat-label>
+            <input matInput [matDatepicker]="picker" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
           <button
             routerLink="/camping-checkout"
-            class="btn-booking bg-blueMid hover:brightness-110 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded"
+            class="mt-5 btn-booking bg-blueMid hover:brightness-110 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded"
           >
             Reservar
           </button>
-          <p class="text-slate-500 p-2">R$615 x 2 noites R$1.230</p>
-          <div class="flex items-baseline">
-            <p class="font-bold p-2">Total (sem impostos)</p>
-            <p class="font-bold p-2">R$1.638</p>
-          </div>
         </div>
 
         <!-- Descrição e detalhes -->
@@ -34,28 +45,8 @@
             {{ camping.name }}
           </div>
           <div class="description mb-5 text-gray-800">
-            <p>
-              Descrição do camping. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Sed condimentum quam eu lacinia iaculis.
-            </p>
+            <div [innerHTML]="camping.description"></div>
           </div>
-
-          <hr
-            class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
-            data-testid="divider"
-          />
-
-          <div class="section-heading text-lg font-bold mb-2.5">
-            Características da Acomodação
-          </div>
-          <div class="features mb-5 text-gray-800">
-            <i class="fas fa-wifi mr-3.5 ml-3 w-4 h-4"></i>Wi-Fi gratuito<br />
-            <i class="fas fa-shower mr-3.5 ml-3 w-4 h-4"></i>Banheiros
-            compartilhados<br />
-            <i class="fas fa-car mr-3.5 ml-3 w-4 h-4"></i>Estacionamento
-            gratuito<br />
-          </div>
-
           <hr
             class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
             data-testid="divider"
@@ -65,18 +56,14 @@
             Regras e Políticas
           </div>
           <div class="policies mb-5 text-gray-800">
-            <i class="fas fa-clock mr-3.5 ml-3 w-4 h-4"></i>Check-in a partir
-            das 14:00<br />
-            <i class="fas fa-clock mr-3.5 ml-3 w-4 h-4"></i>Check-out até às
-            11:00<br />
-            <i class="fas fa-paw mr-3.5 ml-3 w-4 h-4"></i>Animais de estimação
-            não permitidos<br />
+            <div [innerHTML]="camping.propertyRules"></div>
           </div>
-
-          <hr
-            class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
-            data-testid="divider"
-          />
+        </div>
+      </div>
+      <div *ngIf="camping.areaImage" class="mt-12">
+        <h1>Visão aérea do camping</h1>
+        <div class="mt-4">
+          <img [src]="camping.areaImage" alt="" />
         </div>
       </div>
     </div>

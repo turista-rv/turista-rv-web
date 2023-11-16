@@ -2,7 +2,6 @@
 <app-title-section
   [title]="camping.name === '' ? 'Adicionar Camping' : camping.name"
 >
-
   <div class="flex gap-3 grid-cols-2">
     <div class="w-1/2">
       <div class="">
@@ -36,11 +35,41 @@
     </div>
     <div class="w-1/2">
       <div class="flex flex-col items-center gap-3 mt-4">
-        <input
+        <!-- <input
           id="dropzone-file"
           type="file"
           (change)="onChangeArquivo($event)"
-        />
+        /> -->
+        <div class="flex flex-row items-center w-full">
+          <input
+            type="file"
+            id="camping"
+            hidden
+            (change)="onChangeArquivo($event)"
+          />
+          <label
+            for="camping"
+            class="block text-center text-sm w-full text-white mr-4 py-2 px-4 rounded-md border-0 font-semibold bg-blueDark hover:bg-blue-950 cursor-pointer"
+          >
+            Adicionar imagem à Galeria do camping
+          </label>
+        </div>
+        <div class="flex flex-row items-center w-full">
+          <input
+            type="file"
+            id="areaImage"
+            hidden
+            (change)="onChangeFotoAerea($event)"
+          />
+          <label
+            for="areaImage"
+            class="block text-center text-sm w-full text-white mr-4 py-2 px-4 rounded-md border-0 font-semibold bg-blueDark hover:bg-blue-950 cursor-pointer"
+          >
+            Selecionar Mapa/Foto aérea do Camping
+          </label>
+        </div>
+
+        Galeria do Camping
         <div class="flex flex-row gap-2">
           <div
             *ngFor="let item of imgUrl"
@@ -49,22 +78,29 @@
             <img [src]="item" alt="" class="w-40" />
           </div>
         </div>
+        Foto Aérea
+        <div class="flex flex-row gap-2">
+          <div class="hover:scale-125 transition-all duration-300">
+            <img [src]="areaImageUrl" alt="" class="w-40" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
   <div class="flex flex-row justify-end mr-32 gap-3">
     <button
-    (click)="cancel()"
-    class="border border-red-600 text-red-600 px-4 py-2 mt-4 rounded-md hover:bg-red-800 hover:text-white transition duration-300 ease-in-out"
+      (click)="cancel()"
+      class="border border-red-600 text-red-600 px-4 py-2 mt-4 rounded-md hover:bg-red-800 hover:text-white transition duration-300 ease-in-out"
     >
-    Cancelar
-  </button>
-  <button
-  (click)="submit()"
-  class="bg-blueMid text-white px-4 py-2 mt-4 rounded-md hover:brightness-110 transition duration-300 ease-in-out"
-  >
-  Cadastrar
-</button>
+      Cancelar
+    </button>
+    <button
+      (click)="submit()"
+      class="bg-blueMid text-white px-4 py-2 mt-4 rounded-md hover:brightness-110 transition duration-300 ease-in-out"
+    >
+      Cadastrar
+    </button>
   </div>
 </app-title-section>
 
@@ -99,7 +135,9 @@
             />
           </td>
           <td class="my-4 items-left">{{ item.name }}</td>
-          <td class="my-4 text-xs text-right">{{ isActiveStatus(item.active)}}</td>
+          <td class="my-4 text-xs text-right">
+            {{ isActiveStatus(item.active) }}
+          </td>
           <td class="my-4 rounded-e-[5px]">
             <button class="text-[#F8931F] ml-4 hover:brightness-75">
               <i class="fas fa-pencil-alt"></i>

@@ -10,20 +10,7 @@ import { CampingService } from 'src/app/services/camping.service';
   styleUrls: ['./create-camping.component.css'],
 })
 export class CreateCampingComponent implements OnInit {
-  campings: Camping[] = [
-    {
-      active: true,
-      name: 'Camping Pomerode',
-      propertyRules: 'Regras do camping Pomerode',
-      images: [
-        {
-          id: '1',
-          url: 'https://img.freepik.com/fotos-gratis/vista-traseira-de-um-jovem-casal-de-mochileiros-sentado-para-relaxar-em-frente-a-barraca-perto-do-lago-com-um-conjunto-de-cafe-e-fazendo-um-moedor-de-cafe-fresco-durante-o-acampamento-nas-ferias-de-verao_1150-48396.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1699833600&semt=sph',
-        },
-      ],
-      description: 'Descrição do camping Pomerode',
-    },
-  ];
+  campings: Camping[] = [];
   camping: Camping = {
     active: true,
     name: '',
@@ -34,6 +21,8 @@ export class CreateCampingComponent implements OnInit {
 
   public Editor = ClassicEditor;
   image!: File;
+  areaImage!: File;
+  areaImageUrl: string = '';
   imgUrl: string[] = [];
   loading = true;
   selectedFileName: string = '';
@@ -52,12 +41,11 @@ export class CreateCampingComponent implements OnInit {
   isActiveStatus(active: boolean): string {
     return active ? 'Ativado' : 'Desativado';
   }
-  
 
   loadCampings(): void {
     this.campingService.listCampings().subscribe({
       next: (data) => {
-        // this.campings = data;
+        this.campings = data;
         this.loading = false;
       },
     }),
@@ -74,7 +62,6 @@ export class CreateCampingComponent implements OnInit {
   }
 
   onChangeArquivo(event: any) {
-    console.log(event.target.files[0]);
     this.image = event.target.files[0];
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files.length > 0) {
@@ -87,11 +74,19 @@ export class CreateCampingComponent implements OnInit {
     }
   }
 
+  onChangeFotoAerea(event: any) {
+    this.areaImage = event.target.files[0];
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0)
+      this.areaImageUrl = URL.createObjectURL(this.areaImage);
+  }
+
   submit() {
     const formData = new FormData();
     this.arquivoParaEnviar.forEach((imagem) => {
       formData.append('images', imagem, imagem.name);
     });
+    formData.append('areaImage', this.areaImage, this.areaImage.name);
     formData.append('name', this.camping.name);
     formData.append('active', 'true');
     formData.append('description', this.camping.description as string);

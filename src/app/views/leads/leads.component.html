@@ -1,1 +1,39 @@
 <app-title-section title="Leads"></app-title-section>
+
+<section
+  class="camping-table mx-auto mt-7 mb-4 border w-3/4 bg-[#E5E5E5] p-4 rounded shadow-lg"
+>
+  <h2 class="text-2xl font-bold mb-4">Lista de Campings</h2>
+
+  <!-- Linha divisória -->
+  <hr class="my-4 border-t-2 border-grays5" />
+
+  <table id="tabela">
+    <thead>
+      <tr>
+        <th class="text-grays4 text-left">Nome</th>
+        <th class="text-grays4 text-left">Email</th>
+        <th class="text-grays4 text-left">Telefone</th>
+        <th class="text-grays4">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of leads">
+        <td class="my-4 items-left">{{ item.name }}</td>
+        <td class="my-4 items-left">{{ item.email }}</td>
+        <td class="my-4 items-left">{{ item.phone }}</td>
+        <td class="my-4 rounded-e-[5px]">
+          <button class="text-[#F8931F] ml-4 hover:brightness-75">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+          <button
+            (click)="delet(item.id)"
+            class="text-[#F8931F] mx-4 hover:brightness-75"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

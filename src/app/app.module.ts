@@ -33,6 +33,10 @@ import { PostsComponent } from './views/posts/posts.component';
 import { TitleSectionComponent } from './components/title-section/title-section.component';
 import { LeadsComponent } from './views/leads/leads.component';
 import { CaroselComponent } from './components/carosel/carosel.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -74,6 +78,10 @@ import { CaroselComponent } from './components/carosel/carosel.component';
     BrowserAnimationsModule,
     MatTabsModule,
     CarouselModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   bootstrap: [AppComponent],
 })

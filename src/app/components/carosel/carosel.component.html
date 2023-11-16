@@ -1,11 +1,38 @@
 <div class="carousel-container">
-  <div class="carousel">
-    <ng-container *ngFor="let item of items; let i = index">
-      <div class="carousel-item" [class.active]="i === currentIndex">
-        <img class="rounded" [src]="item.url" alt="Carousel Image {{ i + 1 }}" />
-      </div>
+  <div class="carousel" [ngSwitch]="type">
+    <ng-container *ngSwitchCase="'image'">
+      <ng-container *ngFor="let item of items; let i = index">
+        <div class="carousel-item" [class.active]="i === currentIndex">
+          <img
+            class="rounded overflow-hidden aspect-video"
+            [src]="item.url"
+            alt="Carousel Image {{ i + 1 }}"
+          />
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'url'">
+      <ng-container *ngFor="let item of urlList; let i = index">
+        <div class="carousel-item" [class.active]="i === currentIndex">
+          <img
+            class="rounded overflow-hidden aspect-video"
+            [src]="item"
+            alt="Carousel Image {{ i + 1 }}"
+          />
+        </div>
+      </ng-container>
     </ng-container>
   </div>
-  <button (click)="prev()" class="carousel-button prev"><i class="fa fa-caret-left p-2 hover:text-red-100 hover:bg-slate-600 bg-slate-200 bg-opacity-50 rounded" aria-hidden="true"></i></button>
-  <button (click)="next()" class="carousel-button next"><i class="fa fa-caret-right p-2  hover:text-red-100 hover:bg-slate-600 bg-slate-200 bg-opacity-50 rounded" aria-hidden="true"></i></button>
+  <button (click)="prev()" class="carousel-button prev">
+    <i
+      class="fa fa-caret-left p-2 hover:text-red-100 hover:bg-slate-600 bg-slate-200 bg-opacity-50 rounded"
+      aria-hidden="true"
+    ></i>
+  </button>
+  <button (click)="next()" class="carousel-button next">
+    <i
+      class="fa fa-caret-right p-2 hover:text-red-100 hover:bg-slate-600 bg-slate-200 bg-opacity-50 rounded"
+      aria-hidden="true"
+    ></i>
+  </button>
 </div>
