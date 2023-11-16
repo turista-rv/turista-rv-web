@@ -26,6 +26,7 @@ export class CreateCampingComponent implements OnInit {
   imgUrl: string[] = [];
   loading = true;
   selectedFileName: string = '';
+  areaImageUpload!: File;
 
   constructor(
     private campingService: CampingService,
@@ -77,8 +78,10 @@ export class CreateCampingComponent implements OnInit {
   onChangeFotoAerea(event: any) {
     this.areaImage = event.target.files[0];
     const fileInput = event.target as HTMLInputElement;
-    if (fileInput.files && fileInput.files.length > 0)
+    if (fileInput.files && fileInput.files.length > 0) {
+      this.areaImageUpload = this.areaImage
       this.areaImageUrl = URL.createObjectURL(this.areaImage);
+    }
   }
 
   submit() {
@@ -86,19 +89,22 @@ export class CreateCampingComponent implements OnInit {
     this.arquivoParaEnviar.forEach((imagem) => {
       formData.append('images', imagem, imagem.name);
     });
-    formData.append('areaImage', this.areaImage, this.areaImage.name);
-    formData.append('name', this.camping.name);
+    if(this.areaImageUpload)
+      formData.append('areaImage', this.areaImageUpload, this.areaImageUpload.name);
+    
+      formData.append('name', this.camping.name);
     formData.append('active', 'true');
     formData.append('description', this.camping.description as string);
     formData.append('propertyRules', this.camping.propertyRules as string);
-
     this.campingService.create(formData).subscribe({
       next: (data) => {
-        console.log(data);
+        console.log('CHEGOU aqui');
+        console.log(`data log: ${data}`);
         this._toaster.success({
           title: 'Sucesso',
           msg: 'Camping criado com sucesso!',
         });
+        console.log(`DADOS: ${data}`)
         this.loadCampings();
       },
       error: (error: any) => {
