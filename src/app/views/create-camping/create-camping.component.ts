@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ToasterService } from 'src/app/components/toater/toaster.service';
+import { finalize } from 'rxjs';
+import { LoadingService } from 'src/app/components/loading/loading.service';
+import { ToasterService } from 'src/app/services/toaster.service';
 import { Camping } from 'src/app/models/camping.model';
 import { CampingService } from 'src/app/services/camping.service';
 
@@ -30,6 +33,7 @@ export class CreateCampingComponent implements OnInit {
 
   constructor(
     private campingService: CampingService,
+    private _loading: LoadingService,
     private _toaster: ToasterService
   ) {}
 
@@ -79,41 +83,46 @@ export class CreateCampingComponent implements OnInit {
     this.areaImage = event.target.files[0];
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files.length > 0) {
-      this.areaImageUpload = this.areaImage
+      this.areaImageUpload = this.areaImage;
       this.areaImageUrl = URL.createObjectURL(this.areaImage);
     }
   }
 
   submit() {
+    this._loading.start();
     const formData = new FormData();
     this.arquivoParaEnviar.forEach((imagem) => {
       formData.append('images', imagem, imagem.name);
     });
-    if(this.areaImageUpload)
-      formData.append('areaImage', this.areaImageUpload, this.areaImageUpload.name);
-    
-      formData.append('name', this.camping.name);
+    if (this.areaImageUpload)
+      formData.append(
+        'areaImage',
+        this.areaImageUpload,
+        this.areaImageUpload.name
+      );
+
+    formData.append('name', this.camping.name);
     formData.append('active', 'true');
     formData.append('description', this.camping.description as string);
     formData.append('propertyRules', this.camping.propertyRules as string);
-    this.campingService.create(formData).subscribe({
-      next: (data) => {
-        console.log('CHEGOU aqui');
-        console.log(`data log: ${data}`);
-        this._toaster.success({
-          title: 'Sucesso',
-          msg: 'Camping criado com sucesso!',
-        });
-        console.log(`DADOS: ${data}`)
-        this.loadCampings();
-      },
-      error: (error: any) => {
-        const errorMessage = `Erro ao criar camping. Detalhes: ${
-          error?.error?.message || 'Erro desconhecido.'
-        }`;
-        alert(errorMessage);
-      },
-    });
+    this.campingService
+      .create(formData)
+      .pipe(finalize(() => this._loading.stop()))
+      .subscribe({
+        next: (data) => {
+          console.log('CHEGOU aqui');
+          console.log(`data log: ${data}`);
+          this._toaster.success('Camping criado com sucesso');
+          console.log(`DADOS: ${data}`);
+          this.loadCampings();
+        },
+        error: (error: any) => {
+          const errorMessage = `Erro ao criar camping. Detalhes: ${
+            error?.error?.message || 'Erro desconhecido.'
+          }`;
+          this._toaster.error(errorMessage);
+        },
+      });
   }
 
   delet(id: string | undefined) {

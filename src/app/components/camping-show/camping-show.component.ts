@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camping } from 'src/app/models/camping.model';
 import { CampingService } from 'src/app/services/camping.service';
+import { LoadingService } from '../loading/loading.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-camping-show',
@@ -10,13 +12,24 @@ import { CampingService } from 'src/app/services/camping.service';
 })
 export class CampingShowComponent {
   campings: Camping[] = [];
-  constructor(private campingService: CampingService, private router: Router) {}
+  constructor(
+    private campingService: CampingService,
+    private router: Router,
+    private _loading: LoadingService
+  ) {}
 
   ngOnInit(): void {
-    this.campingService.listCampings().subscribe((data) => {
-      console.log(data);
-      this.campings = data;
-    });
+    this._loading.start();
+    this.campingService
+      .listCampings()
+      .pipe(
+        finalize(() => {
+          this._loading.stop();
+        })
+      )
+      .subscribe((data) => {
+        this.campings = data;
+      });
   }
 
   redirectToCampingDetails(campingId: string): void {

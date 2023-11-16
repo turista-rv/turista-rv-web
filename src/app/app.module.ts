@@ -25,10 +25,9 @@ import { HostessComponent } from './views/hostess/hostess.component';
 import { LoginComponent } from './views/login/login.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
-import { ToaterComponent } from './components/toater/toater.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoadingComponent } from './components/loading.component';
+import { LoadingSkeletonComponent } from './components/loading.component';
 import { PostsComponent } from './views/posts/posts.component';
 import { TitleSectionComponent } from './components/title-section/title-section.component';
 import { LeadsComponent } from './views/leads/leads.component';
@@ -37,6 +36,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingComponent } from './components/loading/loading.component';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarModule,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -58,12 +65,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     CampingShowComponent,
     CreateCampingComponent,
     CampingCheckoutComponent,
-    ToaterComponent,
-    LoadingComponent,
     PostsComponent,
     TitleSectionComponent,
     LeadsComponent,
     CaroselComponent,
+    LoadingSkeletonComponent,
+    LoadingComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -82,6 +89,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   bootstrap: [AppComponent],
 })
