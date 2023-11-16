@@ -12,27 +12,28 @@
           class="card-booking flex flex-col w-[370px] absolute ml-[70%] p-4 bg-white rounded-lg shadow-lg"
         >
           <mat-form-field>
-            <mat-label>Entrada</mat-label>
-            <input matInput [matDatepicker]="picker" />
-            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input
+              [formGroup]="range"
+              [rangePicker]="picker"
+              [matDatepickerFilter]="myFilter"
+            >
+              <input
+                matStartDate
+                formControlName="start"
+                placeholder="Start date"
+              />
+              <input matEndDate formControlName="end" placeholder="End date" />
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
               [for]="picker"
             ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <mat-form-field class="mt-5">
-            <mat-label>Saída</mat-label>
-            <input matInput [matDatepicker]="picker" />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-date-range-picker #picker></mat-date-range-picker>
           </mat-form-field>
           <button
-            routerLink="/camping-checkout"
+            (click)="sendMessageWhatsapp()"
             class="mt-5 btn-booking bg-blueMid hover:brightness-110 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded"
           >
             Reservar
