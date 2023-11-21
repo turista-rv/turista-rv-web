@@ -117,7 +117,7 @@ export class CreateCampingComponent implements OnInit {
           this.loadCampings();
         },
         error: (error: any) => {
-          const errorMessage = `Erro ao criar camping. Detalhes: ${
+          const errorMessage = `Erro ao criar camping: ${
             error?.error?.message || 'Erro desconhecido.'
           }`;
           this._toaster.error(errorMessage);
