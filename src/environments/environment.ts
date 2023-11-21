@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  URL_API: 'https://api-turistarv-development.up.railway.app/api',
+  production: true,
+  URL_API: 'https://api-turistarv-production.up.railway.app/api',
 };
