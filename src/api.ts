@@ -1,3 +1,5 @@
+import { environment } from './environments/environment';
+
 export const api = {
-    url: 'https://api-turistarv-development.up.railway.app/api',
-}
+  url: environment.URL_API,
+};

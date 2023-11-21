@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LoginUser, User } from './../models/LoginUser.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class AuthService {
 
   loginUser(email: string, password: string): Observable<LoginUser> {
     return this.http
-      .post<LoginUser>(api.url + '/users/login', {
+      .post<LoginUser>(environment.URL_API + '/users/login', {
         email: email,
         password: password,
       })
@@ -49,7 +50,7 @@ export class AuthService {
 
   updateRefreshToken(refreshToken: string) {
     const body = { refreshToken };
-    return this.http.post<any>(api.url + 'users/logout', body).pipe(
+    return this.http.post<any>(environment.URL_API + 'users/logout', body).pipe(
       map((data: any) => {
         this.isLoggedInSubject.next(true);
         this.clearLocalStorage();
