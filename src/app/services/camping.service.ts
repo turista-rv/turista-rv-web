@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { api } from 'src/api';
 import { Camping } from '../models/camping.model';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,18 +11,18 @@ export class CampingService {
   constructor(private http: HttpClient) {}
 
   listCampings(): Observable<Camping[]> {
-    return this.http.get<Camping[]>(environment.URL_API + '/campings');
+    return this.http.get<Camping[]>(api.url + '/campings');
   }
 
   getById(id: string): Observable<Camping> {
-    return this.http.get<Camping>(environment.URL_API + '/campings/' + id);
+    return this.http.get<Camping>(api.url + '/campings/' + id);
   }
 
   create(formData: FormData): Observable<Camping> {
-    return this.http.post<Camping>(environment.URL_API + '/campings', formData);
+    return this.http.post<Camping>(api.url + '/campings', formData);
   }
 
   delete(id: string) {
-    return this.http.delete<any>(environment.URL_API + '/campings/' + id);
+    return this.http.delete<any>(api.url + '/campings/' + id);
   }
 }
