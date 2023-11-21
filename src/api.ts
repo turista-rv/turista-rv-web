@@ -1,4 +1,4 @@
-import { environment } from './environment/environment.development';
+import { environment } from './environments/environment';
 
 export const api = {
   url: environment.URL_API,
