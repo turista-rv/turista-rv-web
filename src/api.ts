@@ -1,3 +1,3 @@
 export const api = {
-    url: 'https://api-turistarv.up.railway.app/api',
+    url: 'https://api-turistarv-development.up.railway.app/api',
 }
