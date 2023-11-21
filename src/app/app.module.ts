@@ -44,6 +44,7 @@ import {
   MatSnackBarModule,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import {
     MatNativeDateModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatButtonModule,
   ],
   bootstrap: [AppComponent],
 })

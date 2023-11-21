@@ -16,15 +16,16 @@ export class LoginComponent {
   };
 
   keepLogged: boolean = false;
-
   isLoggedIn: boolean = false;
+  passwordVisible = false;
+  pointerType = false;
 
   constructor(
     private AuthService: AuthService,
     private router: Router,
     private elementRef: ElementRef,
     private _toaster: ToasterService
-  ) {}
+  ) { }
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
@@ -55,11 +56,19 @@ export class LoginComponent {
           this.isLoggedIn = true;
           this.router.navigateByUrl('/');
         },
-        error: (error: any) => { 
+        error: (error: any) => {
           this.AuthService.clearLocalStorage();
           const errorMessage = `${error}`;
           this._toaster.error(errorMessage);
         }
       });
+  }
+
+  onClickRevealPassword(event:MouseEvent) {
+    event.preventDefault();
+    // Prevent revealing the password when enter button is pressed.
+  
+      this.passwordVisible = !this.passwordVisible;
+    
   }
 }
