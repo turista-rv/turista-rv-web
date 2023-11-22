@@ -13,6 +13,7 @@
 .carousel-item {
   flex: 0 0 100%;
   transition: transform 0.5s ease-in-out;
+  
 }
 
 .carousel-item.active {
@@ -21,10 +22,9 @@
   position:absolute;
 }
 
-.carousel-button {
+.carousel-container .carousel-button {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   font-size: 20px;
   cursor: pointer;
 }

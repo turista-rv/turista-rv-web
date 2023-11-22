@@ -1,7 +1,0 @@
-.carousel {
-    width: 80%; /* Decrease the width by 20% */
-    max-width: 500px; /* Set a maximum width if needed */
-    height: 0;
-    overflow: hidden;
-    margin: 0 auto;
-}
