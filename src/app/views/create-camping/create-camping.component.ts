@@ -53,11 +53,11 @@ export class CreateCampingComponent implements OnInit {
         this.campings = data;
         this.loading = false;
       },
-    }),
-      (error: any) => {
+      error: (error: any) => {
         console.error(error);
         this.loading = false; // Finaliza o loading em caso de erro
-      };
+      },
+    });
   }
 
   addFile() {
@@ -115,9 +115,10 @@ export class CreateCampingComponent implements OnInit {
           this._toaster.success('Camping criado com sucesso');
           console.log(`DADOS: ${data}`);
           this.loadCampings();
+          this.cancel(); 
         },
         error: (error: any) => {
-          const errorMessage = `Erro ao criar camping. Detalhes: ${
+          const errorMessage = `Erro ao criar camping: ${
             error?.error?.message || 'Erro desconhecido.'
           }`;
           this._toaster.error(errorMessage);

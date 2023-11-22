@@ -3,7 +3,7 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { LoginUser } from './../../models/LoginUser.model';
-
+import { ToasterService } from 'src/app/services/toaster.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,14 +16,16 @@ export class LoginComponent {
   };
 
   keepLogged: boolean = false;
-
   isLoggedIn: boolean = false;
+  passwordVisible = false;
+  pointerType = false;
 
   constructor(
     private AuthService: AuthService,
     private router: Router,
-    private elementRef: ElementRef
-  ) {}
+    private elementRef: ElementRef,
+    private _toaster: ToasterService
+  ) { }
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
@@ -54,10 +56,19 @@ export class LoginComponent {
           this.isLoggedIn = true;
           this.router.navigateByUrl('/');
         },
-      }),
-      (error: any) => {
-        this.AuthService.clearLocalStorage();
-        alert(error.message);
-      };
+        error: (error: any) => {
+          this.AuthService.clearLocalStorage();
+          const errorMessage = `${error}`;
+          this._toaster.error(errorMessage);
+        }
+      });
+  }
+
+  onClickRevealPassword(event:MouseEvent) {
+    event.preventDefault();
+    // Prevent revealing the password when enter button is pressed.
+  
+      this.passwordVisible = !this.passwordVisible;
+    
   }
 }
