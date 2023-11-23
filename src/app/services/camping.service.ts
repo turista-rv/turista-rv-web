@@ -10,6 +10,10 @@ import { Camping } from '../models/camping.model';
 export class CampingService {
   constructor(private http: HttpClient) {}
 
+  create(formData: FormData): Observable<Camping> {
+    return this.http.post<Camping>(api.url + '/campings', formData);
+  }
+
   listCampings(): Observable<Camping[]> {
     return this.http.get<Camping[]>(api.url + '/campings');
   }
@@ -17,9 +21,11 @@ export class CampingService {
   getById(id: string): Observable<Camping> {
     return this.http.get<Camping>(api.url + '/campings/' + id);
   }
-
-  create(formData: FormData): Observable<Camping> {
-    return this.http.post<Camping>(api.url + '/campings', formData);
+  
+  update(formData: FormData): Observable<Camping> {
+    // formData.append('id', id);
+   
+    return this.http.put<Camping>(api.url + '/campings', formData);
   }
 
   delete(id: string) {
