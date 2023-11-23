@@ -91,28 +91,38 @@ export class CreateCampingComponent implements OnInit {
   }
 
   submit() {
+    console.log('Submit method called');
     this._loading.start();
 
     const formData = new FormData();
 
     this.arquivoParaEnviar.forEach((imagem) => {
       formData.append('images', imagem, imagem.name);
+      console.log(`Tipo de arquivo ${imagem.name}: ${imagem.type}`);
     });
 
     if (this.areaImageUpload) {
       formData.append('areaImage', this.areaImageUpload, this.areaImageUpload.name);
+      console.log(`Tipo de arquivo da área: ${this.areaImageUpload.type}`);
     }
+
     formData.append('name', this.camping.name);
     formData.append('active', 'true');
     formData.append('description', this.camping.description as string);
     formData.append('propertyRules', this.camping.propertyRules as string);
+    console.log('descricao e outros:', this.camping.name, this.camping.description, this.camping.propertyRules)
+    console.log('entrando no modo editar:', this.isEditMode, this.editingIndex);
 
     if (this.isEditMode && this.editingIndex !== null) {
       const campingId = this.campings[this.editingIndex]?.id ?? '';
+      console.log('Camping ID:', campingId);
+
       // Adiciona os IDs das imagens a serem removidas
       const imagesToRemove = this.campings[this.editingIndex]?.images
         .filter((image) => !this.imgUrl.includes(image.url))
         .map((image) => image.id);
+
+      console.log('Imagens para remover:', imagesToRemove);
 
       // Adiciona os IDs das imagens removidas ao FormData
       if (imagesToRemove.length > 0) {
@@ -120,10 +130,12 @@ export class CreateCampingComponent implements OnInit {
       }
 
       // Utilizando a URL completa para a atualização
+      console.log('Form Data antes do update request:', formData);
       this.campingService.update(formData)
         .pipe(finalize(() => this._loading.stop()))
         .subscribe({
           next: (data: any) => {
+            console.log('Update success:', data);
             this._toaster.success('Camping atualizado com sucesso');
             this.loadCampings();
             this.cancel();
@@ -134,10 +146,12 @@ export class CreateCampingComponent implements OnInit {
           },
         });
     } else {
+      console.log('Form Data antes da criação da request:', formData);
       this.campingService.create(formData)
         .pipe(finalize(() => this._loading.stop()))
         .subscribe({
           next: (data) => {
+            console.log('Create success:', data);
             this._toaster.success('Camping criado com sucesso');
             this.loadCampings();
             this.cancel();
@@ -148,6 +162,36 @@ export class CreateCampingComponent implements OnInit {
           },
         });
     }
+  }
+
+
+
+
+  edit(campingToEdit: Camping): void {
+    this.isEditMode = true;
+    this.editingIndex = this.campings.indexOf(campingToEdit);
+    this.camping = { ...campingToEdit };
+
+    // Limpar a lista de imagens
+    this.imgUrl = [];
+    this.areaImageUrl = '';
+    for (let image of campingToEdit.images) {
+      this.imgUrl.push(image.url);
+    }
+
+    if (campingToEdit.areaImage) {
+      this.areaImageUrl = campingToEdit.areaImage as unknown as string;
+    }
+
+    // const formData = new FormData();
+    // formData.append('name', this.camping.name);
+    // formData.append('active', 'true');
+    // formData.append('description', this.camping.description as string);
+    // formData.append('propertyRules', this.camping.propertyRules as string);
+
+    // console.log('Conteúdo do FormData:', formData);
+
+    window.scrollTo(0, 200);
   }
 
   delet(id: string | undefined) {
@@ -172,25 +216,6 @@ export class CreateCampingComponent implements OnInit {
     }
   }
 
-
-  edit(campingToEdit: Camping): void {
-    this.isEditMode = true;
-    this.editingIndex = this.campings.indexOf(campingToEdit);
-    this.camping = { ...campingToEdit };
-
-    // Limpar a lista de imagens
-    this.imgUrl = [];
-    this.areaImageUrl = '';
-    for (let image of campingToEdit.images) {
-      this.imgUrl.push(image.url);
-    }
-
-    if (campingToEdit.areaImage) {
-      this.areaImageUrl = campingToEdit.areaImage as unknown as string;
-    }
-    window.scrollTo(0, 200);
-  }
-
   cancel(): void {
     this.isEditMode = false;
     this.editingIndex = null;
@@ -203,7 +228,7 @@ export class CreateCampingComponent implements OnInit {
     };
     this.imgUrl = [];
     this.arquivoParaEnviar = [];
-    this.areaImage = null;
+    this.areaImageUrl = '';
   }
 
   removeImage(imageUrl: string): void {
@@ -216,7 +241,6 @@ export class CreateCampingComponent implements OnInit {
 
   removeAreaImage() {
     this.areaImageUrl = '';
-    this.areaImageUpload = null;
     const fileInput = document.getElementById('areaImageUpload') as HTMLInputElement;
     if (fileInput) {
       fileInput.value = '';

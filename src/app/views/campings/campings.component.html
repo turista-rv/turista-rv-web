@@ -1,72 +1,49 @@
 <app-header routerLink="/" class="cursor-pointer"></app-header>
 
-<section class="camping-register grid justify-items-center mt-14 p-7">
-  <body class="font-sans p-4">
-    <div *ngIf="camping" class="relative min-h-[490px]">
-      <!-- Imagem do camping -->
-      <app-carousel [items]="camping.images"></app-carousel>
+<section class="mt-28 ">
+  <div class="flex justify-center items-center">
+    <app-carousel [items]="camping.images"></app-carousel>
+  </div>
 
-      <div class="camping-details mt-5 flex">
-        <!-- CARD RESERVAS  -->
-        <div
-          class="card-booking flex flex-col w-[370px] absolute ml-[70%] p-4 bg-white rounded-lg shadow-lg"
-        >
-          <mat-form-field>
-            <mat-label>Enter a date range</mat-label>
-            <mat-date-range-input
-              [formGroup]="range"
-              [rangePicker]="picker"
-              [matDatepickerFilter]="myFilter"
-            >
-              <input
-                matStartDate
-                formControlName="start"
-                placeholder="Start date"
-              />
-              <input matEndDate formControlName="end" placeholder="End date" />
-            </mat-date-range-input>
-            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-date-range-picker #picker></mat-date-range-picker>
-          </mat-form-field>
-          <button
-            (click)="sendMessageWhatsapp()"
-            class="mt-5 btn-booking bg-blueMid hover:brightness-110 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded"
-          >
-            Reservar
-          </button>
-        </div>
+  <div class="card-booking w-[370px] absolute ml-[50%] mr-7 mt-[10%] p-4
+   bg-white rounded-lg shadow-lg sm:[150px] md:w-[300px]">
+    <mat-form-field>
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker" [matDatepickerFilter]="myFilter">
+        <input matStartDate formControlName="start" placeholder="Start date" />
+        <input matEndDate formControlName="end" placeholder="End date" />
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <button (click)="sendMessageWhatsapp()"
+      class="mt-5 btn-booking bg-blueMid hover:brightness-110 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded">
+      Reservar
+    </button>
+  </div>
 
-        <!-- Descrição e detalhes -->
-        <div class="card-camping-details flex flex-col ml-5 max-w-[65%]">
-          <div class="section-heading text-lg font-bold mb-2.5">
-            {{ camping.name }}
-          </div>
-          <div class="description mb-5 text-gray-800">
-            <div [innerHTML]="camping.description"></div>
-          </div>
-          <hr
-            class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200"
-            data-testid="divider"
-          />
-
-          <div class="section-heading text-lg font-bold mb-2.5">
-            Regras e Políticas
-          </div>
-          <div class="policies mb-5 text-gray-800">
-            <div [innerHTML]="camping.propertyRules"></div>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="camping.areaImage" class="mt-12">
-        <h1>Visão aérea do camping</h1>
-        <div class="mt-4">
-          <img [src]="camping.areaImage" alt="" />
-        </div>
-      </div>
+  <div class="ml-16 mt-[10%]">
+    <div class="section-heading text-lg font-bold mb-2.5">
+      {{ camping.name }}
     </div>
-  </body>
+    <div class="description mb-5 text-gray-800">
+      <div [innerHTML]="camping.description"></div>
+    </div>
+    <hr class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200" data-testid="divider" />
+
+    <div class="section-heading text-lg font-bold mb-2.5">
+      Regras e Políticas
+    </div>
+    <div class="policies mb-5 text-gray-800">
+      <div [innerHTML]="camping.propertyRules"></div>
+    </div>
+  </div>
+
+  <h3 class="text-center mt-7">Visão aérea do camping</h3>
+  <div *ngIf="camping.areaImage" class="flex justify-center items-center mb-7">
+    <div class="mt-4">
+      <img [src]="camping.areaImage" alt="imagem aerea do"/>
+    </div>
+  </div>
 </section>
