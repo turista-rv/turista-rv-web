@@ -7,6 +7,7 @@ import { LoadingService } from 'src/app/components/loading/loading.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { Camping } from 'src/app/models/camping.model';
 import { CampingService } from 'src/app/services/camping.service';
+import { data } from 'autoprefixer';
 
 @Component({
   selector: 'app-create-camping',
