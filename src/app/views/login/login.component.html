@@ -1,5 +1,4 @@
 <header>
-
   <div class="flex justify-start items-start w-9 
   bg-white cursor-pointer bg-opacity-80 rounded-2xl ml-5 mt-1 hover:brightness-90 p-3" routerLink="/">
     <i class="fa fa-chevron-left cursor-pointer" aria-hidden="true"></i>
@@ -10,8 +9,9 @@
     </a>
   </div>
 </header>
-<div class="flex justify-center items-center top-7 p-1">
-  <form class="mt-7 items-center">
+
+<div class="flex flex-col items-center top-7">
+  <form class="mt-7 flex flex-col items-center">
     <div class="flex flex-col mb-4">
       <label class="font-semibold">Login</label>
       <input id="email" type="text"
@@ -21,29 +21,20 @@
     <div class="flex flex-col mb-4">
       <label class="font-semibold">Senha</label>
 
-      <div class="relative">
-        <input
-          id="password"
-          type="{{ passwordVisible ? 'text' : 'password' }}"
-          class="border rounded-lg h-12 w-314 px-3 mt-1 focus:outline-none focus:border-orangeDark text-black pr-12"
-          [(ngModel)]="credentials.password"
-          name="password"
-          matInput
-        />
-    
-        <button 
-          mat-icon-button
-          matSuffix
-          class="custom-button absolute right-12 top-2 h-full cursor-pointer" 
-          style="outline: none !important; box-shadow: none !important;"
-          (click)="onClickRevealPassword($event)"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="!passwordVisible"
-        >
-        <i class="material-icons">{{ passwordVisible ? 'visibility' : 'visibility_off' }}</i>
-      </button>
+      <div>
+        <input id="password" type="{{ passwordVisible ? 'text' : 'password' }}"
+          class="border rounded-lg h-12 w-314 px-3 mt-1 focus:outline-none focus:border-orangeDark text-black"
+          [(ngModel)]="credentials.password" name="password" matInput />
+        <div class="absolute mt-[-49px] ml-[265px]">
+
+          <button mat-icon-button matSuffix class="cursor-pointer hover:none bg-transparent"
+            (click)="onClickRevealPassword($event)" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="!passwordVisible">
+            <i class="material-icons">{{ passwordVisible ? 'visibility' : 'visibility_off' }}</i>
+          </button>
+        </div>
       </div>
-    
+
       <div class="flex items-center mt-1">
         <button id="btn-reset" routerLink="/reset-password" class="text-left text-10 ml-1 hover:bg-blue-200">
           <b>Esqueci minha senha</b>
