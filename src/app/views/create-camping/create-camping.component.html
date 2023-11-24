@@ -1,116 +1,89 @@
 <!-- Seção cadastro -->
-<app-title-section
-  [title]="camping.name === '' ? 'Adicionar Camping' : camping.name"
->
+<app-title-section [title]="camping.name === '' ? 'Adicionar Camping' : camping.name">
   <div class="flex gap-3 grid-cols-2">
     <div class="w-1/2">
       <div class="">
         <label for="title" class="">Nome:</label>
-        <input
-          [(ngModel)]="camping.name"
-          id="title"
-          name="title"
-          type="text"
-          class="w-full p-2 border rounded-lg text-black"
-        />
+        <input [(ngModel)]="camping.name" id="title" name="title" type="text"
+          class="w-full p-2 border rounded-lg focus:outline-none focus:border-orangeDark text-black" />
       </div>
       <div class="mt-2">
         <label for="title" class="">Descrição:</label>
-        <ckeditor
-          class="resize-none w-full h-[194px] p-2 border rounded-lg text-black"
-          [editor]="Editor"
-          [(ngModel)]="camping.description"
-          name="description"
-        >
+        <ckeditor class="resize-none w-full h-[194px] p-2 border rounded-lg text-black" [editor]="Editor"
+          [(ngModel)]="camping.description" name="description">
         </ckeditor>
       </div>
       <div class="mt-2">
         <label for="rules" class="">Regras:</label>
-        <ckeditor
-          class="resize-none w-full h-[194px] p-2 border rounded-lg text-black"
-          [editor]="Editor"
-          [(ngModel)]="camping.propertyRules"
-          name="propertyRules"
-        >
+        <ckeditor class="resize-none w-full h-[194px] p-2 border rounded-lg text-black" [editor]="Editor"
+          [(ngModel)]="camping.propertyRules" name="propertyRules">
         </ckeditor>
       </div>
     </div>
-    <div class="w-1/2">
-      <div class="flex flex-col items-center gap-3 mt-4">
-        <!-- <input
-          id="dropzone-file"
-          type="file"
-          (change)="onChangeArquivo($event)"
-        /> -->
-        <div class="flex flex-row items-center w-full">
-          <input
-            type="file"
-            id="camping"
-            hidden
-            (change)="onChangeArquivo($event)"
-          />
-          <label
-            for="camping"
-            class="block text-center text-sm w-full text-white mr-4 py-2 px-4 rounded-md border-0 font-semibold bg-blueDark hover:bg-blue-950 cursor-pointer"
-          >
-            Adicionar imagem à Galeria do camping
-          </label>
-        </div>
-        <div class="flex flex-row items-center w-full">
-          <input
-            type="file"
-            id="areaImage"
-            hidden
-            (change)="onChangeFotoAerea($event)"
-          />
-          <label
-            for="areaImage"
-            class="block text-center text-sm w-full text-white mr-4 py-2 px-4 rounded-md border-0 font-semibold bg-blueDark hover:bg-blue-950 cursor-pointer"
-          >
-            Selecionar Mapa/Foto aérea do Camping
-          </label>
-        </div>
 
-        Galeria do Camping
-        <div class="flex flex-row gap-2">
-          <div
-            *ngFor="let item of imgUrl"
-            class="hover:scale-125 transition-all duration-300"
-          >
-            <img [src]="item" alt="" class="w-40" />
-          </div>
-        </div>
-        Foto Aérea
-        <div class="flex flex-row gap-2">
-          <div class="hover:scale-125 transition-all duration-300">
-            <img [src]="areaImageUrl" alt="" class="w-40" />
+    <div class="flex flex-col items-center gap-8">
+
+      <!-- GALERIA CAMPING -->
+      <div class="flex flex-col items-center ml-52">
+        <label for="camping">
+          Galeria do Camping
+        </label>
+        <label for="camping" class="block text-center text-sm text-white py-2 px-4 rounded-md border-0 font-regular bg-blueDark hover:bg-blue-950 cursor-pointer mt-4">
+          <input type="file" id="camping" hidden (change)="onChangeArquivo($event)" />
+          Adicionar imagem
+        </label>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div *ngFor="let imageUrl of imgUrl" class="relative flex flex-col items-center hover:scale-125 transition-all duration-300 mt-4">
+            <img [src]="imageUrl" alt="" class="w-40 h-auto" />
+            <button type="button" (click)="removeImage(imageUrl)" class="absolute top-[-15px] right-0 p-2 text-red-500 hover:text-red-700 mt-2">
+              <i class="fas fa-times"></i>
+            </button>
           </div>
         </div>
       </div>
+    
+      <!-- FOTO AEREA -->
+      <div class="flex flex-col items-center ml-52 mt-4">
+        <label for="areaImage">
+          Foto Aérea
+        </label>
+        <label for="areaImage" class="block text-center text-sm text-white py-2 px-4 rounded-md border-0 font-regular bg-blueDark hover:bg-blue-950 cursor-pointer mt-4">
+          <input type="file" id="areaImage" hidden (change)="onChangeFotoAerea($event)" />
+          Adicionar imagem
+        </label>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div *ngIf="areaImageUrl" class="relative flex flex-col items-center hover:scale-125 transition-all duration-300 mt-4">
+            <img [src]="areaImageUrl" alt="" class="w-40 h-auto" />
+            <button type="button" (click)="removeAreaImage()" class="absolute top-[-15px] right-0 p-2 text-red-500 hover:text-red-700 mt-2">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    
     </div>
+
   </div>
 
-  <div class="flex flex-row justify-end mr-32 gap-3">
-    <button
-      (click)="cancel()"
-      class="border border-red-600 text-red-600 px-4 py-2 mt-4 rounded-md hover:bg-red-800 hover:text-white transition duration-300 ease-in-out"
-    >
+  <div class="flex flex-row justify-end mr-36 gap-3">
+    <button (click)="cancel()"
+      class="border border-red-600 text-red-600 px-4 py-2 mt-2 rounded-md hover:bg-red-800 hover:text-white transition duration-300 ease-in-out bg-transparent">
       Cancelar
     </button>
-    <button
+    <button [class.opacity-50]="isEditMode" [class.cursor-not-allowed]="isEditMode" [disabled]="isEditMode"
       (click)="submit()"
-      class="bg-blueMid text-white px-4 py-2 mt-4 rounded-md hover:brightness-110 transition duration-300 ease-in-out"
-    >
+      class="bg-blueMid text-white px-4 py-2 mt-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
       Cadastrar
+    </button>
+    <button *ngIf="isEditMode" (click)="submit()"
+      class="bg-blueMid text-white px-4 py-2 mt-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
+      Salvar
     </button>
   </div>
 </app-title-section>
 
 <!-- Seção listagem -->
-<!--bg-[#E5E5E5] bg-grays6 -->
-<section
-  class="camping-table mx-auto mt-7 mb-4 border w-3/4 bg-[#E5E5E5] p-4 rounded shadow-lg"
->
+<section class="camping-table mx-auto mt-7 mb-4 border w-3/4 bg-[#E5E5E5] p-4 rounded shadow-lg">
   <h2 class="text-2xl font-bold mb-4">Lista de Campings</h2>
 
   <!-- Linha divisória -->
@@ -129,25 +102,18 @@
       <tbody>
         <tr *ngFor="let item of campings">
           <td class="rounded-s-[5px]">
-            <img
-              *ngIf="item.images.length > 0"
-              [src]="item.images[0].url"
-              alt="Imagem do card"
-              class="h-12 w-20 object-cover rounded-[5px]"
-            />
+            <img *ngIf="item.images.length > 0" [src]="item.images[0].url" alt="Imagem do card"
+              class="h-12 w-20 object-cover rounded-[5px]" />
           </td>
           <td class="my-4 items-left">{{ item.name }}</td>
           <td class="my-4 text-xs text-right">
             {{ isActiveStatus(item.active) }}
           </td>
           <td class="my-4 rounded-e-[5px]">
-            <button class="text-[#F8931F] ml-4 hover:brightness-75">
+            <button (click)="edit(item)" class="text-[#F8931F] ml-4 hover:brightness-75">
               <i class="fas fa-pencil-alt"></i>
             </button>
-            <button
-              (click)="delet(item.id)"
-              class="text-[#F8931F] mx-4 hover:brightness-75"
-            >
+            <button (click)="delet(item.id)" class="text-[#F8931F] mx-4 hover:brightness-75">
               <i class="fas fa-trash"></i>
             </button>
           </td>
