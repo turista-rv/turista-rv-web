@@ -1,3 +1,5 @@
+import { CampingRulesComponent } from './views/rules-politics/camping-rules/camping-rules.component';
+import { CampingPoliticsComponent } from './views/rules-politics/camping-politics/camping-politics.component';
 import { adminGuard } from './guards/admin.guard';
 import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
 import { CampingsComponent } from './views/campings/campings.component';
@@ -9,9 +11,6 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './views/about/about.component';
-import { affiliateGuard } from './guards/affiliate.guard';
-import { guestGuard } from './guards/guest.guard';
 import { CreateCampingComponent } from './views/create-camping/create-camping.component';
 import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
 
@@ -31,10 +30,6 @@ const routes: Routes = [
   {
     path: 'reset-password',
     component: ResetPasswordComponent,
-  },
-  {
-    path: 'about',
-    component: AboutComponent,
   },
   {
     path: 'hostess',
@@ -57,6 +52,14 @@ const routes: Routes = [
   {
     path: 'camping-checkout',
     component: CampingCheckoutComponent,
+  },
+  {
+    path: 'camping-rules',
+    component: CampingRulesComponent,
+  },
+  {
+    path: 'camping-politics',
+    component: CampingPoliticsComponent,
   },
 ];
 

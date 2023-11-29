@@ -15,7 +15,6 @@ import { Interceptor } from './services/app.interceptor.module';
 import { FooterComponent } from './template/footer/footer.component';
 import { HeaderComponent } from './template/header/header.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
-import { AboutComponent } from './views/about/about.component';
 import { AdminPanelComponent } from './views/admin-panel/admin-panel.component';
 import { CreateCampingComponent } from './views/create-camping/create-camping.component';
 import { CampingsComponent } from './views/campings/campings.component';
@@ -54,6 +53,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CampingBoxComponent } from './components/camping-box/camping-box.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { TieredMenuModule } from 'primeng/tieredmenu';
+import { CampingRulesComponent } from './views/rules-politics/camping-rules/camping-rules.component';
+import { CampingPoliticsComponent } from './views/rules-politics/camping-politics/camping-politics.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,6 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
     HeaderComponent,
     FooterComponent,
     CreateAccountComponent,
-    AboutComponent,
     NavbarComponent,
     HostessComponent,
     AdminPanelComponent,
@@ -84,6 +84,8 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
     ImgUploadComponent,
     SidebarComponent,
     CampingBoxComponent,
+    CampingRulesComponent,
+    CampingPoliticsComponent,
     // ModalComponent,
     
   ],
