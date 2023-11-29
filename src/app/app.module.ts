@@ -45,6 +45,15 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { ImgUploadComponent } from './components/img-upload/img-upload.component';
+
+import { CommonModule } from '@angular/common';
+
+import { FileUploadModule } from 'primeng/fileupload';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CampingBoxComponent } from './components/camping-box/camping-box.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { TieredMenuModule } from 'primeng/tieredmenu';
 
 @NgModule({
   declarations: [
@@ -72,6 +81,11 @@ import { MatButtonModule } from '@angular/material/button';
     CaroselComponent,
     LoadingSkeletonComponent,
     LoadingComponent,
+    ImgUploadComponent,
+    SidebarComponent,
+    CampingBoxComponent,
+    // ModalComponent,
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -93,6 +107,11 @@ import { MatButtonModule } from '@angular/material/button';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatButtonModule,
+    CommonModule,
+		FormsModule,
+    // FileDemoComponent,
+		FileUploadModule,
+    TieredMenuModule,
   ],
   bootstrap: [AppComponent],
 })
