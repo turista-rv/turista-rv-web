@@ -4,46 +4,46 @@
 <main>
   <div
     class="bg-cover bg-center h-screen mx-auto w-100%"
-    style="background-image: url('../../../assets/img/background.png')"
-  ></div>
+    style="background-image: url('../../../assets/img/background.png')">
+  </div>
 
   <!-- Menu Suspenso -->
-  <section
-    class="container-card-explore grid grid-cols-3 gap-6 lg:grid-cols-3 xl:gap-x-9 sm:gap-x-4"
-  >
-    <div
-      class="background bg-white bg-opacity-80 rounded-lg shadow-lg relative"
-    >
-      <div class="tabs text-indigo-800">
+  <section class="container-card-explore grid grid-cols-3 mx-4">
+    <div class="background bg-white bg-opacity-80 rounded-lg shadow-lg relative">
+      <div class="tabs text-blueDark">
         <div class="tab flex justify-center items-center">
           <button
-            class="tablinks w-full"
+            class="tablinks"
             *ngFor="let tab of tabs; let i = index"
             (click)="changeTab(i)"
             [ngClass]="{
-              'bg-opacity-80 text-indigo-800 font-bold': activeTab === i,
-              'bg-indigo-950 text-white font-bold': activeTab !== i
+              'bg-opacity-80 text-blueDark font-bold': activeTab === i,
+              'bg-blueDark text-white font-bold': activeTab !== i
             }"
           >
-            <span *ngIf="i === 0" class="mr-2">
+            <span *ngIf="i === 1" class="mr-2">
+              <i class="fas fa-lightbulb"></i>
+            </span>
+            <span *ngIf="i === 2" class="mr-2">
               <i class="fas fa-campground"></i>
             </span>
-            <span *ngIf="i === 1" class="mr-2">
+            <span *ngIf="i === 3" class="mr-2">
+              <i class="fas fa-home"></i>
+            </span>
+            <span *ngIf="i === 4" class="mr-2">
               <i class="fas fa-caravan"></i>
             </span>
             {{ tab.title }}
           </button>
         </div>
-
-        <section
-          class="search-adventure flex justify-center items-center top-0 left-0 right-0 mb-32"
-        >
+        <!-- CAMPO DE BUSCA -->
+        <section class="search-adventure flex justify-center items-center mt-5 mb-32">
           <div class="relative">
             <input
               type="search"
               placeholder="Encontre sua próxima aventura..."
               class="border text-center rounded-lg pr-7 focus:outline-none focus:border-orangeDark text-md"
-              style="width: 400px; height: 40px"
+              style="width: 300px; height: 40px"
               id="searchInput"
               [(ngModel)]="searchTerm"
               (input)="filterCards()"
@@ -324,35 +324,30 @@
     </section>
 
     <!-- Seja um Afiliado -->
-    <section class="container mx-auto px-4 py-4">
-      <div
-        class="bg-black w-full rounded-tl-md rounded-bl-md flex flex-col sm:flex-row"
-      >
-        <div class="w-full sm:w-2/3">
+    <section class="container mx-auto px-4 py-4 w-full">
+      <div class="bg-black w-full h-500 rounded p-4 mb-4 relative">
+        <div class="h-auto w-full rounded">
           <img
             src="../../../assets/img/motorhomeNight.jpg"
             alt="motorhome estacionado a noite"
-            class="h-full w-full"
           />
         </div>
-        <div class="w-full sm:w-2/3 flex flex-col justify-between p-4 mx-4">
-          <div class="mb-3">
-            <h2 class="text-white text-center font-bold text-32">
+        <div class="w-full sm:w-2/3 flex flex-col justify-between p-4 mx-4 items-center sm:items-start top-0 left-0">
+          <div class="mb-3 text-center sm:text-left">
+            <h2 class="text-white font-bold text-32">
               Seja um Afiliado:
             </h2>
-            <p class="text-white sm:text-justify mt-4">
+            <p class="text-white mt-4">
               VOCÊ TEM TERRENO OCIOSO E QUER TRANSFORMAR CUSTO EM LUCRO?
             </p>
-            <p class="text-white sm:text-justify mt-4">
+            <p class="text-white mt-4">
               Entre em contato e venha fazer parte...
             </p>
           </div>
-          <div
-            class="w-full sm:w-2/3 flex justify-center sm:justify-end items-center p-4"
-          >
+          <div class="flex flex-col items-center">
             <button
               routerLink="/hostess"
-              class="bg-greenDark flex items-center text-white rounded-lg gap-3 text-18 w-150 h-55 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center p-5"
+              class="bg-greenDark flex items-center py-2 text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center"
             >
               Entrar em Contato
             </button>
@@ -360,6 +355,10 @@
         </div>
       </div>
     </section>
+    
+
+    
+    
 
     <!-- Newsletter -->
     <section class="container mx-auto px-4 py-4 w-full">
