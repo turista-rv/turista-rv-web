@@ -6,6 +6,7 @@ import { LoadingService } from 'src/app/components/loading/loading.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { Camping } from 'src/app/models/camping.model';
 import { CampingService } from 'src/app/services/camping.service';
+import { data } from 'autoprefixer';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class CreateCampingComponent implements OnInit {
   editingIndex: number | null = null;
   isEditMode: boolean = false;
   modalData: any = {};
+
   constructor(
     private campingService: CampingService,
     private _loading: LoadingService,
@@ -213,6 +215,7 @@ export class CreateCampingComponent implements OnInit {
 
   cancel(): void {
     this.showModal = false;
+
     this.isEditMode = false;
     this.editingIndex = null;
     this.camping = {
@@ -233,6 +236,7 @@ export class CreateCampingComponent implements OnInit {
       this.imgUrl.splice(index, 1);
       this.arquivoParaEnviar.splice(index, 1);
     }
+
   }
 
   removeAreaImage() {
