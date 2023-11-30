@@ -36,10 +36,10 @@
           </div>
         </div>
       </div>
-  
       <!-- FOTO AEREA -->
       <div class="flex flex-col items-center mt-4">
         <label for="areaImage">Foto Aérea</label>
+
         <label for="areaImage" class="block text-center text-sm text-white py-2 px-4 rounded-md border-0 font-regular bg-blueDark hover:bg-blue-950 cursor-pointer mt-4">
           <input type="file" id="areaImage" hidden (change)="onChangeFotoAerea($event)" />
           Adicionar imagem
@@ -53,6 +53,7 @@
           </div>
         </div>
       </div>
+  
     </div>
   
     <div class="items-center md:flex-row justify-end md:mr-0 md:justify-between gap-3 mt-6 md:mt-0 w-full">
@@ -70,6 +71,7 @@
   
 
 </app-modal>
+
 
 <!-- Seção de Botões -->
 <section class="manage-buttons mx-auto mt-7 mb-4 border w-3/4 bg-[#E5E5E5] p-4 rounded shadow-lg">
@@ -124,7 +126,9 @@
             {{ isActiveStatus(item.active) }}
           </td>
           <td class="my-4 rounded-e-[5px]">
+
             <button (click)="openModal()" (click)="edit(item)" class="text-[#F8931F] ml-4 hover:brightness-75">
+
               <i class="fas fa-pencil-alt"></i>
             </button>
             <button (click)="delet(item.id)" class="text-[#F8931F] mx-4 hover:brightness-75">
