@@ -63,24 +63,24 @@ export class HomeComponent {
 
   tabs: Tab[] = [
     {
-      title: 'Camping',
+      title: 'Pesquisar',
       content: 'Encontre o melhor lugar com conforto e segurança!',
     },
     {
-      title: 'Alojamento',
+      title: 'Smart Campings TuristaRV',
+      content: 'Encontre o melhor lugar com conforto e segurança!',
+    },
+    {
+      title: 'Campings',
       content: 'Conteúdo da Tab 2',
     },
     {
-      title: 'Tab 3',
+      title: 'Glampings e Chalés',
       content: 'Conteúdo da Tab 3',
     },
     {
-      title: 'Tab 4',
+      title: 'Experiências Atrações',
       content: 'Conteúdo da Tab 4',
-    },
-    {
-      title: 'Tab 5',
-      content: 'Conteúdo da Tab 5',
     },
   ];
 

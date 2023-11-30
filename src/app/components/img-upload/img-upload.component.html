@@ -1,0 +1,21 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card mt-2">
+            <p-fileUpload 
+                name="demo[]" url="./upload.php" 
+                chooseLabel="Adicionar Imagem"
+                uploadLabel="Enviar Arquivo"
+                cancelLabel="Cancelar"
+                (onUpload)="onUpload($event)" 
+                [multiple]="true"
+                accept="image/*" [maxFileSize]="1000000">
+            
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+        </div>
+    </div>
+</div>

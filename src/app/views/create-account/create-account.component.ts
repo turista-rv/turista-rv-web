@@ -20,7 +20,6 @@ export class CreateAccountComponent {
     rvPlate: '' || undefined,
     tugPlate: '' || undefined,
     touristType: 'ADMIRADOR',
-    vehicleType: '' || undefined,
   };
 
   documentNumber: string = ''
@@ -69,24 +68,6 @@ export class CreateAccountComponent {
     return invalidFields;
   }
 
-  private validateFields(): boolean {
-    if (
-      // !this.user.firstName ||
-      // !this.user.lastName ||
-      !this.user.name ||
-      !this.user.email ||
-      // !this.user.emailActive ||
-      // !this.user.dateBirth ||
-      // !this.user.dateBirth ||
-      !this.user.phone ||
-      this.user.email !== this.confirmEmail ||
-      this.user.password !== this.confirmPassword
-    ) {
-      console.error('Campos inválidos ou não preenchidos.');
-      return false;
-    }
-    return true;
-  }
 
   isPassport = false;
 

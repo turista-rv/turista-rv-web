@@ -1,9 +1,10 @@
 <header class="bg-gray-950 bg-opacity-90 justify-between">
   <div class="mt-7 ml-2 mr-12 w-220 sm:45 md:w-52 lg:w-60 xl:w-75">
     <img
+      class="cursor-pointer"
       src="../../../assets/img/LogoWtext.png"
       alt="logo"
-
+      routerLink="/"
     />
   </div>
 
@@ -65,7 +66,7 @@
       <li>
         <button
           *ngIf="!isLoggedIn"
-          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full relative"
+          class="bg-blueDark hover:brightness-75 text-white font-bold py-2 px-4 rounded-full relative"
         >
           <a routerLink="/login" class="group inline-block relative">
             <div class="text-center md:text-xs">Entrar</div>

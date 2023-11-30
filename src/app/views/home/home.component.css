@@ -1,28 +1,15 @@
 /* CONTAINER PRINCIPAL COM POSICIONAMENTO NOVO CONTEUDO HOME */
 
-.search-adventure {
-  margin-top: 2rem;
-}
 
-.tablinks-bg {
-  position: relative;
-}
-
-/* Adicione o pseudo-elemento para manter a proporção do width */
-.tablinks-bg::before {
-  content: "";
-  display: block;
-  padding-top: 60%;
-  /* Defina a proporção desejada (exemplo: 60% para uma proporção de 3:2) */
-}
 
 .container-card-explore {
   display: flex;
   margin-top: -14rem;
-  align-items: center;
   justify-content: center;
   /* border: 2px solid red; */
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card {
@@ -33,7 +20,7 @@
   cursor: context-menu;
 }
 
-.card:hover { 
+.card:hover {
   transform: matrix(1.00, 0.00, 0.00, 1.00, 0, -7);
   transition: 300ms;
 }
@@ -69,7 +56,7 @@ p {
 }
 
 
-/* Style dos botões dentro da aba */
+/* Style das abas */
 .tablinks {
   border: none;
   outline: none;
@@ -78,25 +65,37 @@ p {
   font-size: 17px;
   padding: 0.4rem;
   width: 100%;
-  height: 100%;
+  height: 60px;
 }
-
 
 /* Estilos para telas médias (tablets e laptops com telas médias) */
 @media only screen and (max-width: 767px) {
   .container-card-explore {
-    width: 100%;
-
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .tablinks {
     width: 100%;
+    height: 5rem;
     font-size: small;
   }
 
-  .search-adventure {
-    margin-top: 2rem;
+  span {
+    margin-bottom: 4px;
   }
+
+  /* Estilos para os ícones dentro do tablinks */
+  span {
+    position: relative;
+    top: 0;
+    /* Reseta a posição vertical */
+    transform: none;
+    /* Reseta a transformação vertical */
+  }
+
+  
 
   .card-explore {
     width: 100%;
@@ -143,17 +142,20 @@ p {
   height: 235px;
 }
 
-/* CARD SEJA UM AFILIADO */
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-
-@media only screen and (min-width: 1200px) {
+@media only screen and (max-width: 300px) {
   .container-card-explore {
     width: 100%;
-    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .tablinks {
+    width: 90%;
+    height: 5rem;
+    font-size: small;
+  }
+
+  .background{
+    width: 97%;
   }
 }

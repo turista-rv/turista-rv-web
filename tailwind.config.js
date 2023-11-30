@@ -32,15 +32,15 @@ module.exports = {
 
       colors: {
         transparent: 'transparent',
-        blueDark: '#0D7ABF',
+        blueDark: '#1278bf',
         blueMid: '#118FCF',
-        blueLight: '#1397D6',
+        blueLight: '#1da7e0',
 
-        greenDark: '#2BA245',
-        greenMid: '#CBE4B4',
-        greenLight: '#E5F0DB',
+        greenDark: '#036938',
+        greenMid: '#46ae4e',
+        greenLight: '#CBE4B4',
 
-        orangeDark: '#F8931F',
+        orangeDark: '#fabf00',
 
         //BASE
         grays1: '#1B1D1E',

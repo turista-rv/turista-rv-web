@@ -1,33 +1,28 @@
-<!-- Seção cadastro -->
-<app-title-section [title]="camping.name === '' ? 'Adicionar Camping' : camping.name">
-  <div class="flex gap-3 grid-cols-2">
-    <div class="w-1/2">
+<app-modal *ngIf="showModal" [title]="modalTitle" [formData]="modalFormData" (onSubmit)="submitForm($event)"
+  (onCancel)="cancelModal()">
+  <!-- Seção cadastro -->
+  <app-title-section [title]="camping.name === '' ? 'Adicionar Camping' : camping.name" class="items-center md:flex-row md:gap-3">
+    <!-- Coluna de Conteúdo -->
+    <div class="w-full md:w-1/2">
       <div class="">
         <label for="title" class="">Nome:</label>
-        <input [(ngModel)]="camping.name" id="title" name="title" type="text"
-          class="w-full p-2 border rounded-lg focus:outline-none focus:border-orangeDark text-black" />
+        <input [(ngModel)]="camping.name" id="title" name="title" type="text" class="w-full p-2 border rounded-lg focus:outline-none focus:border-orangeDark text-black" />
       </div>
       <div class="mt-2">
         <label for="title" class="">Descrição:</label>
-        <ckeditor class="resize-none w-full h-[194px] p-2 border rounded-lg text-black" [editor]="Editor"
-          [(ngModel)]="camping.description" name="description">
-        </ckeditor>
+        <ckeditor class="resize-none w-full h-[194px] p-2 border rounded-lg text-black" [editor]="Editor" [(ngModel)]="camping.description" name="description"></ckeditor>
       </div>
       <div class="mt-2">
         <label for="rules" class="">Regras:</label>
-        <ckeditor class="resize-none w-full h-[194px] p-2 border rounded-lg text-black" [editor]="Editor"
-          [(ngModel)]="camping.propertyRules" name="propertyRules">
-        </ckeditor>
+        <ckeditor class="resize-none w-full h-[194px] p-2 border rounded-lg text-black" [editor]="Editor" [(ngModel)]="camping.propertyRules" name="propertyRules"></ckeditor>
       </div>
     </div>
-
-    <div class="flex flex-col items-center gap-8">
-
+  
+    <!-- Coluna de Imagens -->
+    <div class="flex flex-col md:items-center md:gap-8 mt-4 md:ml-4 w-full md:w-1/2">
       <!-- GALERIA CAMPING -->
-      <div class="flex flex-col items-center ml-52">
-        <label for="camping">
-          Galeria do Camping
-        </label>
+      <div class="flex flex-col items-center">
+        <label for="camping">Galeria do Camping</label>
         <label for="camping" class="block text-center text-sm text-white py-2 px-4 rounded-md border-0 font-regular bg-blueDark hover:bg-blue-950 cursor-pointer mt-4">
           <input type="file" id="camping" hidden (change)="onChangeArquivo($event)" />
           Adicionar imagem
@@ -41,12 +36,10 @@
           </div>
         </div>
       </div>
-    
       <!-- FOTO AEREA -->
-      <div class="flex flex-col items-center ml-52 mt-4">
-        <label for="areaImage">
-          Foto Aérea
-        </label>
+      <div class="flex flex-col items-center mt-4">
+        <label for="areaImage">Foto Aérea</label>
+
         <label for="areaImage" class="block text-center text-sm text-white py-2 px-4 rounded-md border-0 font-regular bg-blueDark hover:bg-blue-950 cursor-pointer mt-4">
           <input type="file" id="areaImage" hidden (change)="onChangeFotoAerea($event)" />
           Adicionar imagem
@@ -60,28 +53,51 @@
           </div>
         </div>
       </div>
-    
+  
     </div>
+  
+    <div class="items-center md:flex-row justify-end md:mr-0 md:justify-between gap-3 mt-6 md:mt-0 w-full">
+      <button (click)="cancel()" (click)="openModal()" class="border border-red-600 text-red-600 px-4 py-2 mt-2 rounded-md hover:bg-red-800 hover:text-white transition duration-300 ease-in-out bg-transparent">
+        Cancelar
+      </button>
+      <button [class.opacity-50]="isEditMode" [class.cursor-not-allowed]="isEditMode" [disabled]="isEditMode" (click)="submit()" class="bg-blueDark text-white mx-2 px-4 py-2 mt-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
+        Cadastrar
+      </button>
+      <button *ngIf="isEditMode" (click)="submit()" class="bg-blueMid text-white px-4 py-2 mt-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
+        Salvar
+      </button>
+    </div>
+  </app-title-section>
+  
 
+</app-modal>
+
+
+<!-- Seção de Botões -->
+<section class="manage-buttons mx-auto mt-7 mb-4 border w-3/4 bg-[#E5E5E5] p-4 rounded shadow-lg">
+  <div class="flex flex-row justify-between items-end">
+    <div class="flex flex-row space-x-2 items-center">
+      <button
+        class="bg-greenDark flex items-center py-2 text-white rounded-lg w-[5.5rem] h-35 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center"
+        (click)="openModal()">
+        <i class="fa fa-sm fa-plus mr-2" aria-hidden="true"></i>
+        Novo
+      </button>
+      <button
+        class="bg-red-600 flex items-center py-2 text-white rounded-lg w-[5.5rem] h-35 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center"
+        (click)="deleteSelectedCampings()">
+        <i class="fa fa-sm fa-trash mr-2" aria-hidden="true"></i>
+        Deletar
+      </button>
+    </div>
+    <!-- <div class="flex space-x-2">
+      <button
+        class="bg-orangeDark flex items-center py-2 text-white rounded-lg w-[5rem] h-35 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center">Importar</button>
+      <button
+        class="bg-blueMid flex items-center py-2 text-white rounded-lg w-[5rem] h-35 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center">Exportar</button>
+    </div> -->
   </div>
-
-  <div class="flex flex-row justify-end mr-36 gap-3">
-    <button (click)="cancel()"
-      class="border border-red-600 text-red-600 px-4 py-2 mt-2 rounded-md hover:bg-red-800 hover:text-white transition duration-300 ease-in-out bg-transparent">
-      Cancelar
-    </button>
-    <button [class.opacity-50]="isEditMode" [class.cursor-not-allowed]="isEditMode" [disabled]="isEditMode"
-      (click)="submit()"
-      class="bg-blueMid text-white px-4 py-2 mt-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
-      Cadastrar
-    </button>
-    <button *ngIf="isEditMode" (click)="submit()"
-      class="bg-blueMid text-white px-4 py-2 mt-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
-      Salvar
-    </button>
-  </div>
-</app-title-section>
-
+</section>
 <!-- Seção listagem -->
 <section class="camping-table mx-auto mt-7 mb-4 border w-3/4 bg-[#E5E5E5] p-4 rounded shadow-lg">
   <h2 class="text-2xl font-bold mb-4">Lista de Campings</h2>
@@ -110,7 +126,9 @@
             {{ isActiveStatus(item.active) }}
           </td>
           <td class="my-4 rounded-e-[5px]">
-            <button (click)="edit(item)" class="text-[#F8931F] ml-4 hover:brightness-75">
+
+            <button (click)="openModal()" (click)="edit(item)" class="text-[#F8931F] ml-4 hover:brightness-75">
+
               <i class="fas fa-pencil-alt"></i>
             </button>
             <button (click)="delet(item.id)" class="text-[#F8931F] mx-4 hover:brightness-75">

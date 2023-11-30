@@ -40,10 +40,14 @@
     </div>
   </div>
 
+  <section class="camping-boxes">
+   <app-camping-box></app-camping-box>
+  </section>
+
   <h3 class="text-center mt-7">Visão aérea do camping</h3>
   <div *ngIf="camping.areaImage" class="flex justify-center items-center mb-7">
     <div class="mt-4">
-      <img [src]="camping.areaImage" alt="imagem aerea do"/>
+      <img [src]="camping.areaImage" alt="imagem aerea do" />
     </div>
   </div>
 </section>

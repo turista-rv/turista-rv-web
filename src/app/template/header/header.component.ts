@@ -38,6 +38,7 @@ export class HeaderComponent {
       }
     }
   }
+  
   logout() {
     this.AuthService.logoutUser();
     this.router.navigateByUrl('/login');

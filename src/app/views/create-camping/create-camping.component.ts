@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { finalize } from 'rxjs';
 import { LoadingService } from 'src/app/components/loading/loading.service';
@@ -8,6 +7,7 @@ import { ToasterService } from 'src/app/services/toaster.service';
 import { Camping } from 'src/app/models/camping.model';
 import { CampingService } from 'src/app/services/camping.service';
 import { data } from 'autoprefixer';
+
 
 @Component({
   selector: 'app-create-camping',
@@ -24,6 +24,10 @@ export class CreateCampingComponent implements OnInit {
     description: '',
   };
 
+  showModal = false;
+  modalTitle = '';
+  modalFormData: any; // Dados do formulário específico
+
   public Editor = ClassicEditor;
   image!: File;
   imgUrl: string[] = [];
@@ -34,6 +38,7 @@ export class CreateCampingComponent implements OnInit {
   selectedFileName: string = '';
   editingIndex: number | null = null;
   isEditMode: boolean = false;
+  modalData: any = {};
 
   constructor(
     private campingService: CampingService,
@@ -209,6 +214,8 @@ export class CreateCampingComponent implements OnInit {
   }
 
   cancel(): void {
+    this.showModal = false;
+
     this.isEditMode = false;
     this.editingIndex = null;
     this.camping = {
@@ -229,6 +236,7 @@ export class CreateCampingComponent implements OnInit {
       this.imgUrl.splice(index, 1);
       this.arquivoParaEnviar.splice(index, 1);
     }
+
   }
 
   removeAreaImage() {
@@ -238,4 +246,38 @@ export class CreateCampingComponent implements OnInit {
       fileInput.value = '';
     }
   }
+
+  deleteSelectedCampings(){
+
+  }
+  
+  // MODAL
+  openModal(campingToEdit: Camping | null = null) {
+    this.showModal = true;
+
+    if (campingToEdit) {
+      this.modalTitle = 'Editar Camping';
+      this.camping = { ...campingToEdit };
+      this.isEditMode = true;
+    } else {
+      this.modalTitle = 'Adicionar Camping';
+      this.camping = {
+        active: true,
+        name: '',
+        propertyRules: '',
+        images: [],
+        description: '',
+      };
+      this.isEditMode = false;
+    }
+  }
+
+    submitForm(formData: any) {
+      console.log('Formulário enviado:', formData);
+      this.showModal = false;
+    }
+  
+    cancelModal() {
+      this.showModal = false;
+    }
 }
