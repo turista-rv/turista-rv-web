@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li class="dropdown flex flex-col items-center">
-                <a href="motorhome-icon" class="group inline-block relative">
+                <a href="#" class="group inline-block relative">
                     <img src="../../../assets/icons/motorhome-icon.png" alt="menu motorhome"
                         class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:opacity-70"
                         width="38" height="38">
@@ -25,7 +25,7 @@
                         Motorhome
                     </div>
                 </a>
-                <div class="dropdown-content absolute right-[-17px] mt-[14px] w-40 rounded-md shadow-lg bg-white ring-1 ring-black"
+                <div class="dropdown-content absolute right-[-17px] mt-[12px] w-40 rounded-md shadow-lg bg-white ring-1 ring-black"
                     role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                     <div class="py-1" role="none">
                         <a routerLink="/admin-panel" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Cadastro Camping</a>
@@ -34,20 +34,17 @@
                     </div>
                 </div>
             </li>
-            <li class="dropdown flex flex-col items-center">
-                <a href="motorhome-icon" class="group inline-block relative">
-                    <div>
-                        <i class="fas fa-globe fa-2x" alt="menu motorhome"
-                            class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:opacity-70"
-                            width="38" height="38"></i>
-
-                    </div>
+            <li class="dropdown flex flex-col items-center mt-0.5">
+                <a href="#" class="group inline-block relative">
+                    <img src="../../../assets/icons/globe-icon.png" alt="menu idiomas"
+                        class="group-hover:transition duration-800 ease-in-out group-hover:filter group-hover:opacity-70"
+                        width="35" height="35">
                     <div
                         class="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute  left-1/2 transform -translate-x-1/2">
                         Idioma
                     </div>
                 </a>
-                <div class="dropdown-content absolute right-[-17px] mt-[14px] w-40 rounded-md shadow-lg bg-white ring-1 ring-black"
+                <div class="dropdown-content absolute right-[-17px] mt-[12px] w-40 rounded-md shadow-lg bg-white ring-1 ring-black"
                     role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                     <div class="py-1" role="none">
                         <a routerLink="" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">English</a>
@@ -56,27 +53,7 @@
                     </div>
                 </div>
             </li>
-            <!-- <div class="flex flex-col items-center">
-                <div>
-                    <button type="button" class="flex items-center text-white width-15">
-                        <i class="fas fa-globe fa-2x"></i>
-                        <a href="">
-                            <img src="../../../assets/icons/motorhome-icon.png" alt="menu motorhome"
-                            class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:opacity-70"
-                            width="38" height="38">
-                        </a>
-                    </button>
-                </div>
-                <div class="origin-top-right absolute right-[100px] mt-[55px] w-40 rounded-md shadow-lg bg-white ring-1 ring-black"
-                    role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                    <div class="py-1" role="none">
-                        <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">English</a>
-                        <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Português</a>
-                        <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Español</a>
-                    </div>
-                </div>
-            </div> -->
-
+          
             <div class="items-end group inline-block">
                 <button *ngIf="!isLoggedIn"
                     class="bg-blueDark hover:brightness-75 text-white font-bold py-2 px-3 rounded-full relative">
