@@ -142,7 +142,7 @@ p {
   height: 235px;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 300px) {
   .container-card-explore {
     width: 100%;
     margin-left: auto;

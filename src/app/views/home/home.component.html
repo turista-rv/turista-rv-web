@@ -12,8 +12,8 @@
       <div class="tabs text-blueDark">
         <div class="tab flex justify-center items-center">
           <button class="tablinks" *ngFor="let tab of tabs; let i = index" (click)="changeTab(i)" [ngClass]="{
-              'bg-opacity-80 text-blueDark font-bold': activeTab === i,
-              'bg-blueDark text-white font-bold': activeTab !== i
+              'bg-opacity-80 text-blueDark font-normal': activeTab === i,
+              'bg-blueDark text-white font-normal': activeTab !== i
             }">
             <span *ngIf="i === 1" class="mr-2">
               <i class="fas fa-lightbulb"></i>
