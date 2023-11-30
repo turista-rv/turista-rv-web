@@ -64,4 +64,6 @@ export class CampingsComponent implements OnInit {
     const currentDate = new Date();
     return !d || d >= currentDate;
   };
+
+  
 }

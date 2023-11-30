@@ -27,19 +27,12 @@ export class NavbarComponent {
 
   isLoggedIn: boolean = false;
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
 
-    const menuElement = this.el.nativeElement.querySelector('#menuHamburguer');
-    if (this.isMenuOpen) {
-      this.renderer.addClass(menuElement, 'navbar-below-header');
-    } else {
-      this.renderer.removeClass(menuElement, 'navbar-below-header');
-    }
-  }
 
   logout() {
     this.AuthService.logoutUser();
     this.router.navigateByUrl('/');
   }
+
+  
 }

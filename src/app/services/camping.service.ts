@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { api } from 'src/api';
 import { Camping } from '../models/camping.model';
+import { forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +31,17 @@ export class CampingService {
 
   delete(id: string) {
     return this.http.delete<any>(api.url + '/campings/' + id);
+  }
+
+  deleteMultiple(ids: string[]): Observable<any> {
+    const deleteRequests: Observable<any>[] = [];
+  
+    ids.forEach((id) => {
+      const deleteRequest = this.http.delete<any>(api.url + '/campings/' + id);
+      deleteRequests.push(deleteRequest);
+    });
+  
+    // Use forkJoin para combinar várias solicitações de exclusão
+    return forkJoin(deleteRequests);
   }
 }

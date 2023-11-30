@@ -1,95 +1,73 @@
 <app-modal *ngIf="showModal" [title]="modalTitle" [formData]="modalFormData" (onSubmit)="submitForm($event)"
   (onCancel)="cancelModal()">
   <!-- Seção cadastro -->
-  <app-title-section [title]="camping.name === '' ? 'Adicionar Camping' : camping.name"
-    class="flex flex-col md:flex-row md:gap-3">
+  <app-title-section [title]="camping.name === '' ? 'Adicionar Camping' : camping.name" class="items-center md:flex-row md:gap-3">
+    <!-- Coluna de Conteúdo -->
     <div class="w-full md:w-1/2">
       <div class="">
         <label for="title" class="">Nome:</label>
-        <input [(ngModel)]="camping.name" id="title" name="title" type="text"
-          class="w-full p-2 border rounded-lg focus:outline-none focus:border-orangeDark text-black" />
+        <input [(ngModel)]="camping.name" id="title" name="title" type="text" class="w-full p-2 border rounded-lg focus:outline-none focus:border-orangeDark text-black" />
       </div>
       <div class="mt-2">
         <label for="title" class="">Descrição:</label>
-        <ckeditor class="resize-none w-full h-[194px] p-2 border rounded-lg text-black" [editor]="Editor"
-          [(ngModel)]="camping.description" name="description">
-        </ckeditor>
+        <ckeditor class="resize-none w-full h-[194px] p-2 border rounded-lg text-black" [editor]="Editor" [(ngModel)]="camping.description" name="description"></ckeditor>
       </div>
       <div class="mt-2">
         <label for="rules" class="">Regras:</label>
-        <ckeditor class="resize-none w-full h-[194px] p-2 border rounded-lg text-black" [editor]="Editor"
-          [(ngModel)]="camping.propertyRules" name="propertyRules">
-        </ckeditor>
+        <ckeditor class="resize-none w-full h-[194px] p-2 border rounded-lg text-black" [editor]="Editor" [(ngModel)]="camping.propertyRules" name="propertyRules"></ckeditor>
       </div>
     </div>
-
-    <div class="flex flex-col md:items-center md:gap-8 mt-4 md:ml-4">
-      <!-- File Upload Section -->
-      <!-- <div class="file-upload flex flex-col items-center gap-8">
-        <div class="flex flex-col items-center">
-          <label for="camping">Galeria do Camping</label>
-          <app-img-upload></app-img-upload>
-        </div>
-      </div> -->
-
+  
+    <!-- Coluna de Imagens -->
+    <div class="flex flex-col md:items-center md:gap-8 mt-4 md:ml-4 w-full md:w-1/2">
       <!-- GALERIA CAMPING -->
       <div class="flex flex-col items-center">
         <label for="camping">Galeria do Camping</label>
-        <label for="camping"
-          class="block text-center text-sm text-white py-2 px-4 rounded-md border-0 font-regular bg-blueDark hover:bg-blue-950 cursor-pointer mt-4">
+        <label for="camping" class="block text-center text-sm text-white py-2 px-4 rounded-md border-0 font-regular bg-blueDark hover:bg-blue-950 cursor-pointer mt-4">
           <input type="file" id="camping" hidden (change)="onChangeArquivo($event)" />
           Adicionar imagem
         </label>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div *ngFor="let imageUrl of imgUrl"
-            class="relative flex flex-col items-center hover:scale-125 transition-all duration-300 mt-4">
+          <div *ngFor="let imageUrl of imgUrl" class="relative flex flex-col items-center hover:scale-125 transition-all duration-300 mt-4">
             <img [src]="imageUrl" alt="" class="w-40 h-auto" />
-            <button type="button" (click)="removeImage(imageUrl)"
-              class="absolute top-[-15px] right-0 p-2 text-red-500 hover:text-red-700 mt-2">
+            <button type="button" (click)="removeImage(imageUrl)" class="absolute top-[-15px] right-0 p-2 text-red-500 hover:text-red-700 mt-2">
               <i class="fas fa-times"></i>
             </button>
           </div>
         </div>
       </div>
-
+  
       <!-- FOTO AEREA -->
       <div class="flex flex-col items-center mt-4">
         <label for="areaImage">Foto Aérea</label>
-        <label for="areaImage"
-          class="block text-center text-sm text-white py-2 px-4 rounded-md border-0 font-regular bg-blueDark hover:bg-blue-950 cursor-pointer mt-4">
+        <label for="areaImage" class="block text-center text-sm text-white py-2 px-4 rounded-md border-0 font-regular bg-blueDark hover:bg-blue-950 cursor-pointer mt-4">
           <input type="file" id="areaImage" hidden (change)="onChangeFotoAerea($event)" />
           Adicionar imagem
         </label>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div *ngIf="areaImageUrl"
-            class="relative flex flex-col items-center hover:scale-125 transition-all duration-300 mt-4">
+          <div *ngIf="areaImageUrl" class="relative flex flex-col items-center hover:scale-125 transition-all duration-300 mt-4">
             <img [src]="areaImageUrl" alt="" class="w-40 h-auto" />
-            <button type="button" (click)="removeAreaImage()"
-              class="absolute top-[-15px] right-0 p-2 text-red-500 hover:text-red-700 mt-2">
+            <button type="button" (click)="removeAreaImage()" class="absolute top-[-15px] right-0 p-2 text-red-500 hover:text-red-700 mt-2">
               <i class="fas fa-times"></i>
             </button>
           </div>
         </div>
       </div>
-
     </div>
-
-    <div class="flex flex-col md:flex-row justify-end md:mr-0 md:justify-between gap-3 mt-4 md:mt-0">
-      <button (click)="cancel()" (click)="openModal()"
-        class="border border-red-600 text-red-600 px-4 py-2 mt-2 rounded-md hover:bg-red-800 hover:text-white transition duration-300 ease-in-out bg-transparent">
+  
+    <div class="items-center md:flex-row justify-end md:mr-0 md:justify-between gap-3 mt-6 md:mt-0 w-full">
+      <button (click)="cancel()" (click)="openModal()" class="border border-red-600 text-red-600 px-4 py-2 mt-2 rounded-md hover:bg-red-800 hover:text-white transition duration-300 ease-in-out bg-transparent">
         Cancelar
       </button>
-      <button [class.opacity-50]="isEditMode" [class.cursor-not-allowed]="isEditMode" [disabled]="isEditMode"
-        (click)="submit()"
-        class="bg-blueDark text-white px-4 py-2 mt-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
+      <button [class.opacity-50]="isEditMode" [class.cursor-not-allowed]="isEditMode" [disabled]="isEditMode" (click)="submit()" class="bg-blueDark text-white mx-2 px-4 py-2 mt-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
         Cadastrar
       </button>
-      <button *ngIf="isEditMode" (click)="submit()"
-        class="bg-blueMid text-white px-4 py-2 mt-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
+      <button *ngIf="isEditMode" (click)="submit()" class="bg-blueMid text-white px-4 py-2 mt-2 rounded-md hover:brightness-110 transition duration-300 ease-in-out">
         Salvar
       </button>
     </div>
   </app-title-section>
+  
 
 </app-modal>
 
