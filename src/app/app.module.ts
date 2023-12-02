@@ -55,6 +55,8 @@ import { ModalComponent } from './components/modal/modal.component';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { CampingRulesComponent } from './views/rules-politics/camping-rules/camping-rules.component';
 import { CampingPoliticsComponent } from './views/rules-politics/camping-politics/camping-politics.component';
+import { MotorReservaModule } from './motor-reserva/motor-reserva.module';
+import { AppAdminModule } from './motor-reserva/layout/app.admin.module';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,6 @@ import { CampingPoliticsComponent } from './views/rules-politics/camping-politic
     CampingRulesComponent,
     CampingPoliticsComponent,
     ModalComponent,
-    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -110,10 +111,12 @@ import { CampingPoliticsComponent } from './views/rules-politics/camping-politic
     MatSnackBarModule,
     MatButtonModule,
     CommonModule,
-		FormsModule,
+    FormsModule,
     // FileDemoComponent,
-		FileUploadModule,
+    FileUploadModule,
     TieredMenuModule,
+    MotorReservaModule,
+    AppAdminModule,
   ],
   bootstrap: [AppComponent],
 })
