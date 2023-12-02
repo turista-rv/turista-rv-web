@@ -44,4 +44,12 @@ export class CampingService {
     // Use forkJoin para combinar várias solicitações de exclusão
     return forkJoin(deleteRequests);
   }
+
+  imageDelete(id: string){
+    return this.http.delete<any>(api.url + '/images-camping/' + id);
+  }
+
+  areaImageDelete(id: string){
+    return this.http.delete<any>(api.url + '/campings/image-area' + id);
+  }
 }

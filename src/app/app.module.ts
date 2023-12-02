@@ -86,7 +86,7 @@ import { CampingPoliticsComponent } from './views/rules-politics/camping-politic
     CampingBoxComponent,
     CampingRulesComponent,
     CampingPoliticsComponent,
-    // ModalComponent,
+    ModalComponent,
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

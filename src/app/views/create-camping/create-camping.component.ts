@@ -22,10 +22,6 @@ export class CreateCampingComponent implements OnInit {
     description: '',
   };
 
-  showModal = false;
-  modalTitle = '';
-  modalFormData: any; // Dados do formulário específico
-
   public Editor = ClassicEditor;
   image!: File;
   imgUrl: string[] = [];
@@ -39,8 +35,12 @@ export class CreateCampingComponent implements OnInit {
   loading = true;
   editingIndex: number | null = null;
   isEditMode: boolean = false;
-  modalData: any = {};
 
+  showModal = false;
+  modalTitle = '';
+  modalFormData: any = {};
+
+  idImage: string[] = [];
 
   constructor(
     private campingService: CampingService,
@@ -69,14 +69,12 @@ export class CreateCampingComponent implements OnInit {
       },
     });
   }
-  
+
   onChangeArquivo(event: any) {
     this.image = event.target.files[0];
-    console.log(`event.target.files: ${this.image}`)
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files.length > 0) {
       this.selectedFileName = fileInput.files[0].name;
-      console.log(`selectedFileName ${this.selectedFileName}`)
       this.galleryImageUpload?.push(this.image);
       this.imgUrl.push(URL.createObjectURL(this.image));
       fileInput.value = '';
@@ -98,34 +96,53 @@ export class CreateCampingComponent implements OnInit {
     }
   }
 
-  submit() {
+  addImage(imageUrl: string) {
+    this.imgUrl.push(imageUrl);
+    this.camping.images = this.imgUrl.map(imageUrl => ({ url: imageUrl }));
+  }
+
+  submit(): void {
     this._loading.start();
-  
+
     const formData = new FormData();
-  
-    this.galleryImageUpload.forEach((imagem) => {
-      formData.append('images', imagem, imagem.name);
+
+    this.galleryImageUpload.forEach((image: File) => {
+      formData.append('images', image, image.name);
     });
-  
+
     if (this.areaImage) {
       formData.append('areaImage', this.areaImage, this.areaImageFileName);
-  }
-  
+    }
+
     formData.append('name', this.camping.name);
     formData.append('active', 'true');
     formData.append('description', this.camping.description as string);
     formData.append('propertyRules', this.camping.propertyRules as string);
-  
+
     if (this.isEditMode && this.editingIndex !== null) {
       const campingId = this.campings[this.editingIndex]?.id ?? '';
-  
-      // Utilizando a URL completa para a atualização
-      console.log('Form Data antes do update request:', formData);
+      formData.append('id', campingId);
+
+      for(let id of this.idImage){
+        this.campingService.imageDelete(id).subscribe({
+          next:(data:any) =>{
+            console.log(data)
+          }
+        })
+      }
+
+    if(this.camping.id){
+      this.campingService.areaImageDelete(this.camping.id).subscribe({
+        next:(data:any) =>{
+          console.log(data)
+        }
+      })
+    }
+
       this.campingService.update(formData)
         .pipe(finalize(() => this._loading.stop()))
         .subscribe({
           next: (data: any) => {
-            console.log('Update success:', data);
             this._toaster.success('Camping atualizado com sucesso');
             this.loadCampings();
             this.cancel();
@@ -136,12 +153,10 @@ export class CreateCampingComponent implements OnInit {
           },
         });
     } else {
-      console.log('Form Data antes da criação da request:', formData);
       this.campingService.create(formData)
         .pipe(finalize(() => this._loading.stop()))
         .subscribe({
           next: (data) => {
-            console.log('Create success:', data);
             this._toaster.success('Camping criado com sucesso');
             this.loadCampings();
             this.cancel();
@@ -154,25 +169,20 @@ export class CreateCampingComponent implements OnInit {
     }
   }
 
+
   edit(campingToEdit: Camping): void {
-    console.log(campingToEdit)
-    console.log("aqui")
+    this.camping.id = campingToEdit.id;
+
     this.http.get(campingToEdit.areaImage as unknown as string, { responseType: 'arraybuffer' }).subscribe(
       (response: ArrayBuffer) => {
-        console.log(response)
         const blob = new Blob([response], { type: 'image/jpeg' });
         const urlCreator = window.URL || window.webkitURL;
         const imageUrl = urlCreator.createObjectURL(blob);
-        console.log(imageUrl)
-        console.log(typeof this.imgUrl)
-
-
       },
-    )
+    );
     this.isEditMode = true;
     this.editingIndex = this.campings.indexOf(campingToEdit);
     this.camping = { ...campingToEdit };
-
     // Limpar a lista de imagens
     this.imgUrl = [];
     this.areaImageUrl = '';
@@ -196,7 +206,6 @@ export class CreateCampingComponent implements OnInit {
       this.campingService.delete(id as string)
         .subscribe({
           next: (msg) => {
-            console.log('Resposta do serviço:', msg);
             alert(msg.message);
             this.loadCampings();
           },
@@ -228,15 +237,21 @@ export class CreateCampingComponent implements OnInit {
   // MÉTODOS ICONES DE X DAS IMAGENS
 
   removeImage(imageUrl: string): void {
+    for (let image of this.camping.images) {
+      if(image.url === imageUrl){
+        if(image.id){
+          this.idImage.push(image.id)
+        }
+      }
+    }
     const index = this.imgUrl.indexOf(imageUrl);
     if (index !== -1) {
       this.imgUrl.splice(index, 1);
       this.galleryImageUpload.splice(index, 1);
     }
-
   }
 
-  removeAreaImage() {
+  removeAreaImage(): void {
     this.areaImageUrl = '';
     const fileInput = document.getElementById('areaImageUpload') as HTMLInputElement;
     if (fileInput) {
@@ -252,21 +267,23 @@ export class CreateCampingComponent implements OnInit {
   // MODAL
   openModal(campingToEdit: Camping | null = null) {
     this.showModal = true;
-  
     if (campingToEdit) {
       this.modalTitle = 'Editar Camping';
       this.camping = { ...campingToEdit };
       this.isEditMode = true;
-    } else {
-      this.modalTitle = 'Adicionar Camping';
-      this.resetForm(); 
-      this.imgUrl = [];
-      // this.removeAreaImage();
-      this.areaImageUrl = '';
-      this.isEditMode = false;
     }
   }
-  
+
+  itemsModal() {
+    this.modalTitle = this.camping.name === '' ? 'Adicionar Camping' : this.camping.name;
+    this.modalFormData = {
+      name: this.camping.name,
+      description: this.camping.description,
+      propertyRules: this.camping.propertyRules,
+      imgUrl: [],
+      areaImageUrl: '',
+    }
+  }
   resetForm() {
     this.camping = {
       active: true,
@@ -278,11 +295,7 @@ export class CreateCampingComponent implements OnInit {
   }
 
   submitForm(formData: any) {
-    console.log('Formulário enviado:', formData);
     this.showModal = false;
   }
 
-  cancelModal() {
-    this.showModal = false;
-  }
 }
