@@ -11,3 +11,14 @@ export interface Camping {
   active: boolean;
   description?: string;
 }
+
+export interface ICamping {
+  id?: string;
+  name: string;
+  images: Image[];
+  box?: Box[];
+  propertyRules: string[];
+  areaImage?: Image;
+  active: boolean;
+  description?: string;
+}

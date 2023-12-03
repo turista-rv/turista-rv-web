@@ -31,10 +31,6 @@ export class BoxTypeComponent {
 
   submitted: boolean = false;
 
-  cols: any[] = [];
-
-  statuses: any[] = [];
-
   rowsPerPageOptions = [5, 10, 20];
 
   constructor(
@@ -45,20 +41,6 @@ export class BoxTypeComponent {
 
   ngOnInit() {
     this.loadBoxTypes();
-
-    this.cols = [
-      { field: 'product', header: 'Product' },
-      { field: 'price', header: 'Price' },
-      { field: 'category', header: 'Category' },
-      { field: 'rating', header: 'Reviews' },
-      { field: 'inventoryStatus', header: 'Status' },
-    ];
-
-    this.statuses = [
-      { label: 'INSTOCK', value: 'instock' },
-      { label: 'LOWSTOCK', value: 'lowstock' },
-      { label: 'OUTOFSTOCK', value: 'outofstock' },
-    ];
   }
 
   loadBoxTypes(): void {
