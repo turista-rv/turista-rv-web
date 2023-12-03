@@ -46,8 +46,8 @@ export class CreateCampingComponent implements OnInit {
     private campingService: CampingService,
     private _loading: LoadingService,
     private _toaster: ToasterService,
-    private http: HttpClient,
-  ) { }
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     this.loadCampings();
@@ -88,7 +88,7 @@ export class CreateCampingComponent implements OnInit {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files.length > 0) {
       this.areaImageFileName = fileInput.files[0].name;
-      const convertImageToURL = URL.createObjectURL(this.areaImage as File)
+      const convertImageToURL = URL.createObjectURL(this.areaImage as File);
       this.areaImageUrl = convertImageToURL;
       fileInput.value = '';
     } else {
@@ -98,7 +98,7 @@ export class CreateCampingComponent implements OnInit {
 
   addImage(imageUrl: string) {
     this.imgUrl.push(imageUrl);
-    this.camping.images = this.imgUrl.map(imageUrl => ({ url: imageUrl }));
+    this.camping.images = this.imgUrl.map((imageUrl) => ({ url: imageUrl }));
   }
 
   submit(): void {
@@ -123,23 +123,24 @@ export class CreateCampingComponent implements OnInit {
       const campingId = this.campings[this.editingIndex]?.id ?? '';
       formData.append('id', campingId);
 
-      for(let id of this.idImage){
+      for (let id of this.idImage) {
         this.campingService.imageDelete(id).subscribe({
-          next:(data:any) =>{
-            console.log(data)
-          }
-        })
+          next: (data: any) => {
+            console.log(data);
+          },
+        });
       }
 
-    if(this.camping.id){
-      this.campingService.areaImageDelete(this.camping.id).subscribe({
-        next:(data:any) =>{
-          console.log(data)
-        }
-      })
-    }
+      if (this.camping.id) {
+        this.campingService.areaImageDelete(this.camping.id).subscribe({
+          next: (data: any) => {
+            console.log(data);
+          },
+        });
+      }
 
-      this.campingService.update(formData)
+      this.campingService
+        .update(formData)
         .pipe(finalize(() => this._loading.stop()))
         .subscribe({
           next: (data: any) => {
@@ -153,7 +154,8 @@ export class CreateCampingComponent implements OnInit {
           },
         });
     } else {
-      this.campingService.create(formData)
+      this.campingService
+        .create(formData)
         .pipe(finalize(() => this._loading.stop()))
         .subscribe({
           next: (data) => {
@@ -169,17 +171,18 @@ export class CreateCampingComponent implements OnInit {
     }
   }
 
-
   edit(campingToEdit: Camping): void {
     this.camping.id = campingToEdit.id;
 
-    this.http.get(campingToEdit.areaImage as unknown as string, { responseType: 'arraybuffer' }).subscribe(
-      (response: ArrayBuffer) => {
+    this.http
+      .get(campingToEdit.areaImage as unknown as string, {
+        responseType: 'arraybuffer',
+      })
+      .subscribe((response: ArrayBuffer) => {
         const blob = new Blob([response], { type: 'image/jpeg' });
         const urlCreator = window.URL || window.webkitURL;
         const imageUrl = urlCreator.createObjectURL(blob);
-      },
-    );
+      });
     this.isEditMode = true;
     this.editingIndex = this.campings.indexOf(campingToEdit);
     this.camping = { ...campingToEdit };
@@ -198,22 +201,23 @@ export class CreateCampingComponent implements OnInit {
 
   delet(id: string | undefined) {
     // Obtenha o nome do camping usando o ID
-    const campingToDelete = this.campings.find(camping => camping.id === id);
+    const campingToDelete = this.campings.find((camping) => camping.id === id);
     const campingName = campingToDelete ? campingToDelete.name : 'Camping';
 
-    const confirmDelete = confirm(`Tem certeza que deseja deletar o camping: "${campingName}" ?`);
+    const confirmDelete = confirm(
+      `Tem certeza que deseja deletar o camping: "${campingName}" ?`
+    );
     if (confirmDelete) {
-      this.campingService.delete(id as string)
-        .subscribe({
-          next: (msg) => {
-            alert(msg.message);
-            this.loadCampings();
-          },
-          error: (error: any) => {
-            this._toaster.error(error)
-            console.error('Erro ao tentar deletar Camping:', error);
-          },
-        });
+      this.campingService.delete(id as string).subscribe({
+        next: (msg) => {
+          alert(msg.message);
+          this.loadCampings();
+        },
+        error: (error: any) => {
+          this._toaster.error(error);
+          console.error('Erro ao tentar deletar Camping:', error);
+        },
+      });
     }
   }
 
@@ -238,9 +242,9 @@ export class CreateCampingComponent implements OnInit {
 
   removeImage(imageUrl: string): void {
     for (let image of this.camping.images) {
-      if(image.url === imageUrl){
-        if(image.id){
-          this.idImage.push(image.id)
+      if (image.url === imageUrl) {
+        if (image.id) {
+          this.idImage.push(image.id);
         }
       }
     }
@@ -253,16 +257,16 @@ export class CreateCampingComponent implements OnInit {
 
   removeAreaImage(): void {
     this.areaImageUrl = '';
-    const fileInput = document.getElementById('areaImageUpload') as HTMLInputElement;
+    const fileInput = document.getElementById(
+      'areaImageUpload'
+    ) as HTMLInputElement;
     if (fileInput) {
       fileInput.value = '';
     }
   }
 
   //DELETAR CAMPINGS SELECIONADOS CHECKBOX
-  deleteSelectedCampings() {
-
-  }
+  deleteSelectedCampings() {}
 
   // MODAL
   openModal(campingToEdit: Camping | null = null) {
@@ -275,14 +279,15 @@ export class CreateCampingComponent implements OnInit {
   }
 
   itemsModal() {
-    this.modalTitle = this.camping.name === '' ? 'Adicionar Camping' : this.camping.name;
+    this.modalTitle =
+      this.camping.name === '' ? 'Adicionar Camping' : this.camping.name;
     this.modalFormData = {
       name: this.camping.name,
       description: this.camping.description,
       propertyRules: this.camping.propertyRules,
       imgUrl: [],
       areaImageUrl: '',
-    }
+    };
   }
   resetForm() {
     this.camping = {
@@ -297,5 +302,4 @@ export class CreateCampingComponent implements OnInit {
   submitForm(formData: any) {
     this.showModal = false;
   }
-
 }

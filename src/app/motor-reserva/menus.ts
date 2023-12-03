@@ -1,48 +1,58 @@
 export const MENUS = [
-    {
-        label: 'Admin',
-        items: [
-            {
-                label: 'Dashboard',
-                icon: 'pi pi-fw pi-home',
-                routerLink: ['/'],
-            },
-            {
-                label: 'Orçamentos',
-                icon: 'pi pi-fw pi-dollar',
-                routerLink: ['/admin/orcamentos'],
-            },
-            {
-                label: 'Pedidos',
-                icon: 'pi pi-fw pi-box',
-                routerLink: ['/admin/pedidos/novo'],
-            },
-        ],
-    },
-    {
-        label: 'Pedidos',
-        items: [
-            {
-                label: 'Realizar Pedido',
-                icon: 'pi pi-fw pi-box',
-                routerLink: ['/admin/pedidos/novo'],
-            },
-            {
-                label: 'Meus Pedidos',
-                icon: 'pi pi-fw pi-box',
-                routerLink: ['/admin/pedidos/listar'],
-            },
-        ],
-    },
-    {
-        label: '4 Code SolutionS',
-        items: [
-            {
-                label: 'Visit Website',
-                icon: 'pi pi-fw pi-arrow-up-right',
-                url: ['https://4codesolutions.com/'],
-                target: '_blank',
-            },
-        ],
-    },
+  {
+    label: 'Admin',
+    items: [
+      {
+        label: 'Dashboard',
+        icon: 'fa fa-house',
+        routerLink: ['/admin'],
+      },
+    ],
+  },
+  {
+    label: 'ADMINISTRAÇÃO',
+    items: [
+      {
+        label: 'Campings',
+        icon: 'fa fa-house',
+        routerLink: ['/admin/campings'],
+      },
+      {
+        label: 'Smart Camping',
+        icon: 'fa fa-house',
+        routerLink: ['/admin/'],
+      },
+      {
+        label: 'Vagas',
+        icon: 'fa fa-house',
+        routerLink: ['/admin/box/boxes'],
+      },
+      {
+        label: 'Categorias de Vagas',
+        icon: 'fa fa-house',
+        routerLink: ['/admin/box/box-types'],
+      },
+      {
+        label: 'Atrações / Experiências',
+        icon: 'fa fa-house',
+        routerLink: ['/admin/'],
+      },
+      {
+        label: 'Reservas',
+        icon: 'fa fa-house',
+        routerLink: ['/admin/'],
+      },
+    ],
+  },
+  {
+    label: '4 Code SolutionS',
+    items: [
+      {
+        label: 'Visit Website',
+        icon: 'fa-solid fa-globe',
+        url: ['https://4codesolutions.com/'],
+        target: '_blank',
+      },
+    ],
+  },
 ];

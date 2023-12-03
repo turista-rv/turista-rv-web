@@ -1,7 +1,7 @@
 import { MatTabsModule } from '@angular/material/tabs';
 import { CarouselModule } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
@@ -58,6 +58,11 @@ import { CampingPoliticsComponent } from './views/rules-politics/camping-politic
 import { MotorReservaModule } from './motor-reserva/motor-reserva.module';
 import { AppAdminModule } from './motor-reserva/layout/app.admin.module';
 
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { LoadingModule } from './components/loading/loading.module';
+
+registerLocaleData(ptBr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +87,6 @@ import { AppAdminModule } from './motor-reserva/layout/app.admin.module';
     LeadsComponent,
     CaroselComponent,
     LoadingSkeletonComponent,
-    LoadingComponent,
     ImgUploadComponent,
     SidebarComponent,
     CampingBoxComponent,
@@ -117,7 +121,9 @@ import { AppAdminModule } from './motor-reserva/layout/app.admin.module';
     TieredMenuModule,
     MotorReservaModule,
     AppAdminModule,
+    LoadingModule,
   ],
   bootstrap: [AppComponent],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
 })
 export class AppModule {}

@@ -12,8 +12,8 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
-import { CreateCampingComponent } from './motor-reserva/camping/create-camping/create-camping.component';
 import { AppAdminComponent } from './motor-reserva/layout/app.admin.component';
+import { CreateCampingComponent } from './views/create-camping/create-camping.component';
 
 const routes: Routes = [
   {

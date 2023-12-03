@@ -1,16 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateCampingComponent } from './create-camping/create-camping.component';
+import { CampingComponent } from './camping/camping.component';
 
 const routes: Routes = [
   {
-    path: 'novo',
-    component: CreateCampingComponent,
-  },
-  {
     path: '',
-    redirectTo: 'novo',
-    pathMatch: 'full',
+    component: CampingComponent,
   },
 ];
 

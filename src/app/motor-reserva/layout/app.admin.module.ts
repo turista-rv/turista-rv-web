@@ -17,30 +17,33 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from './app.sidebar.component';
 import { AppAdminComponent } from './app.admin.component';
+import { LoadingComponent } from 'src/app/components/loading/loading.component';
+import { LoadingModule } from 'src/app/components/loading/loading.module';
 
 @NgModule({
-    declarations: [
-        AppMenuitemComponent,
-        AppTopBarComponent,
-        AppFooterComponent,
-        AppMenuComponent,
-        AppSidebarComponent,
-        AppAdminComponent,
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        InputTextModule,
-        SidebarModule,
-        BadgeModule,
-        RadioButtonModule,
-        InputSwitchModule,
-        RippleModule,
-        RouterModule,
-        AppConfigModule,
-    ],
-    exports: [AppAdminComponent],
+  declarations: [
+    AppMenuitemComponent,
+    AppTopBarComponent,
+    AppFooterComponent,
+    AppMenuComponent,
+    AppSidebarComponent,
+    AppAdminComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    SidebarModule,
+    BadgeModule,
+    RadioButtonModule,
+    InputSwitchModule,
+    RippleModule,
+    RouterModule,
+    AppConfigModule,
+    LoadingModule,
+  ],
+  exports: [AppAdminComponent],
 })
 export class AppAdminModule {}

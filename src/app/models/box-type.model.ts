@@ -1,8 +1,6 @@
 export interface BoxType {
   id?: string;
-  // acommodation?: Acommodation;
   name: string;
-  boxType: string;
-  price: string;
+  price: string | number;
   active: boolean;
 }
