@@ -1,3 +1,22 @@
-::ng-deep .p-multiselect {
-  max-width: 100% !important;
+
+
+::ng-deep p-button button {
+  background-color: #007BFF !important;
+}
+
+::ng-deep .p-fileupload-buttonbar {
+  display: flex;
+}
+
+::ng-deep .p-element.p-ripple.p-button-rounded.p-button-success.mr-2.p-button.p-component.p-button-icon-only {
+  background-color: #28a745;
+}
+
+::ng-deep .p-element.p-button-icon-only.p-button.p-component {
+  background-color: #007BFF
+
+}
+
+::ng-deep .p-element.p-ripple.p-button-rounded.p-button-warning.p-button.p-component.p-button-icon-only {
+  background-color: #e0a800;
 }

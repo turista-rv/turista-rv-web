@@ -22,10 +22,29 @@ interface Rule {
 export class CampingComponent implements OnInit {
   rules: Rule[] = RULES;
 
+  galleriaResponsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5,
+    },
+    {
+      breakpoint: '960px',
+      numVisible: 4,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+    },
+  ];
+
   selectedMulti: Rule[] = [];
 
-  galeriaUrls: string[] = [];
   galeriaFiles: File[] = [];
+  areaImageFile!: File | null;
 
   campings: Camping[] = [];
   camping: Camping = this.initializeCamping();
@@ -63,6 +82,7 @@ export class CampingComponent implements OnInit {
       .pipe(finalize(() => this._loading.stop()))
       .subscribe((data: Camping[]) => {
         this.campings = data;
+        console.log(data);
       });
   }
 
@@ -74,11 +94,14 @@ export class CampingComponent implements OnInit {
 
   initializeCamping() {
     return {
+      id: undefined,
       active: true,
       name: '',
       propertyRules: '',
       images: [],
       description: '',
+      areaImage: '',
+      areaImageName: '',
     };
   }
 
@@ -87,8 +110,12 @@ export class CampingComponent implements OnInit {
   }
 
   editCamping(camping: Camping) {
+    this.isEdit = true;
     this.camping = { ...camping };
+    const rules = this.camping.propertyRules.split(',');
+    this.selectedMulti = RULES.filter((r) => rules.includes(r.code));
     this.campingDialog = true;
+    console.log(this.camping);
   }
 
   deleteCamping(camping: Camping) {
@@ -127,14 +154,62 @@ export class CampingComponent implements OnInit {
 
   saveProduct() {
     this.submitted = true;
+    this._loading.start();
+    const formData = new FormData();
+
+    this.galeriaFiles.forEach((image: File) => {
+      formData.append('images', image, image.name);
+    });
+
+    if (this.areaImageFile) {
+      formData.append('areaImage', this.areaImageFile, this.areaImageFile.name);
+    }
+
+    let rules = '';
+    this.selectedMulti.map((rule, index) => {
+      if (index === this.selectedMulti.length - 1) rules += rule.code;
+      else rules += rule.code + ',';
+    });
+
+    console.log(rules);
+
+    formData.append('name', this.camping.name);
+    formData.append('active', this.camping.active ? 'true' : 'false');
+    formData.append('description', this.camping.description as string);
+    formData.append('propertyRules', rules);
     if (this.camping.id) {
+      formData.append('id', this.camping?.id);
+      this._service
+        .update(formData)
+        .pipe(finalize(() => this._loading.stop()))
+        .subscribe((data) => {
+          this._toaster.success('Camping atualizado com sucesso');
+          this.loadCampings();
+          this.isEdit = false;
+          this.cancel();
+        });
     } else {
+      this._service
+        .create(formData)
+        .pipe(finalize(() => this._loading.stop()))
+        .subscribe({
+          next: (data) => {
+            this._toaster.success('Camping criado com sucesso');
+            this.loadCampings();
+            this.cancel();
+          },
+          error: (error: any) => {
+            const errorMessage = `Erro ao criar camping, ${error}`;
+            this._toaster.error(errorMessage);
+          },
+        });
     }
   }
 
   hideDialog() {
     this.campingDialog = false;
     this.submitted = false;
+    this.cancel();
   }
 
   onGlobalFilter(table: Table, event: Event) {
@@ -147,5 +222,45 @@ export class CampingComponent implements OnInit {
 
   remove() {
     this.selectedMulti = [];
+  }
+
+  onSelectCampingImage(value: any) {
+    this.galeriaFiles = value.currentFiles;
+    console.log(this.galeriaFiles);
+  }
+  onSelectAreaImage(value: any) {
+    this.areaImageFile = value.currentFiles[0];
+    console.log(this.areaImageFile);
+  }
+
+  removeImage(id: string | undefined) {
+    console.log(id);
+  }
+
+  removeAreaImage(id: string | undefined): void {
+    console.log(id);
+  }
+
+  onRemoveAreaImage(value: any) {
+    this.areaImageFile = null;
+  }
+  onRemoveCampingImage(value: any) {
+    this.galeriaFiles = this.galeriaFiles.filter((file) => file !== value.file);
+  }
+  onClearCampingImage(value: any) {
+    this.galeriaFiles = [];
+  }
+
+  cancel() {
+    this.camping = this.initializeCamping();
+    this.selectedMulti = [];
+    this.galeriaFiles = [];
+    this.areaImageFile = null;
+    this.isEdit = false;
+    this.campingDialog = false;
+  }
+
+  getRules(rules: string[]): Rule[] {
+    return RULES.filter((r) => rules.includes(r.code));
   }
 }

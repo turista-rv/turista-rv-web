@@ -179,6 +179,7 @@ export class CreateCampingComponent implements OnInit {
         responseType: 'arraybuffer',
       })
       .subscribe((response: ArrayBuffer) => {
+        console.log(response);
         const blob = new Blob([response], { type: 'image/jpeg' });
         const urlCreator = window.URL || window.webkitURL;
         const imageUrl = urlCreator.createObjectURL(blob);

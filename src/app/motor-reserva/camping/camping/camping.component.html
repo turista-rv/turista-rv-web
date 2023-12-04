@@ -62,9 +62,7 @@
             <th style="width: 3rem">
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
-            <th pSortableColumn="id">
-              Código <p-sortIcon field="id"></p-sortIcon>
-            </th>
+
             <th pSortableColumn="image">
               Imagem <p-sortIcon field="image"></p-sortIcon>
             </th>
@@ -88,10 +86,7 @@
             <td>
               <p-tableCheckbox [value]="camping"></p-tableCheckbox>
             </td>
-            <td style="min-width: 10rem">
-              <span class="p-column-title">Code</span>
-              {{ camping.code || camping.id }}
-            </td>
+
             <td style="min-width: 10rem">
               <span class="p-column-title">Image</span>
               <img [src]="camping.images[0].url" width="100" class="shadow-4" />
@@ -104,7 +99,17 @@
               <span class="p-column-title">Price</span>
               <div [innerHTML]="camping.description"></div>
             </td>
-            <td></td>
+            <td>
+              <div class="flex gap-2 flex-wrap">
+                <div
+                  class="border rounded p-1"
+                  *ngFor="let rule of getRules(camping.propertyRules)"
+                >
+                  <i class="fa {{ rule.icon }}"></i>
+                  {{ rule.name }}
+                </div>
+              </div>
+            </td>
             <td style="min-width: 10rem">
               <i
                 class="fa-regular fa-circle-check fa-xl"
@@ -143,26 +148,34 @@
     <!-- Modal Novo Cadastro / Editar -->
     <p-dialog
       [(visible)]="campingDialog"
-      [style]="{ width: '450px', height: '80vh' }"
+      [style]="{ width: '70vw', height: '80vh' }"
       header="Product Details"
       [modal]="true"
       class="p-fluid"
     >
       <ng-template pTemplate="content">
-        <div class="field">
-          <label for="name">Name</label>
-          <input
-            type="text"
-            pInputText
-            id="name"
-            [(ngModel)]="camping.name"
-            required
-            autofocus
-            [ngClass]="{ 'ng-invalid ng-dirty': submitted && !camping.name }"
-          />
-          <small class="ng-dirty ng-invalid" *ngIf="submitted && !camping.name"
-            >Nome da Camping é obrigatório.</small
-          >
+        <div class="flex justify-between gap-5">
+          <div class="w-full">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              pInputText
+              id="name"
+              [(ngModel)]="camping.name"
+              required
+              autofocus
+              [ngClass]="{ 'ng-invalid ng-dirty': submitted && !camping.name }"
+            />
+            <small
+              class="ng-dirty ng-invalid"
+              *ngIf="submitted && !camping.name"
+              >Nome da Camping é obrigatório.</small
+            >
+          </div>
+          <div class="flex flex-col align-start justify-end">
+            <label for="status">Status</label>
+            <p-inputSwitch [(ngModel)]="camping.active"></p-inputSwitch>
+          </div>
         </div>
         <div class="mt-2">
           <label for="title" class="">Descrição:</label>
@@ -173,18 +186,7 @@
             name="description"
           ></ckeditor>
         </div>
-        <!-- <div class="formgrid grid mt-3">
-          <div class="field col">
-            <label for="price">Valor</label>
-            <p-inputNumber
-              id="price"
-              [(ngModel)]="camping.price"
-              mode="currency"
-              currency="BRL"
-            ></p-inputNumber>
-          </div>
-        </div> -->
-        <div class="flex flex-col">
+        <div class="relative flex flex-col">
           <label class="">Facilidades:</label>
           <p-multiSelect
             [options]="rules"
@@ -220,18 +222,66 @@
             </ng-template>
           </p-multiSelect>
           <i
-            class="absolute mt-4 fa fa-times fa-lg p-2 cursor-pointer"
-            style="margin-left: 372px; margin-top: 36px"
+            class="absolute right-0 mt-[35px] mr-[40px] fa fa-times fa-lg p-2 cursor-pointer"
             *ngIf="selectedMulti.length > 0"
             (click)="selectedMulti = []"
           ></i>
         </div>
         <div class="field grid mt-3">
-          <label for="status" class="row">Status</label>
-          <p-inputSwitch
-            [(ngModel)]="camping.active"
-            class="row"
-          ></p-inputSwitch>
+          <p-fileUpload
+            [showUploadButton]="false"
+            [multiple]="true"
+            accept="image/*"
+            [maxFileSize]="1000000"
+            cancelLabel="Cancelar"
+            chooseLabel="Selecionar imagens da galeria"
+            (onSelect)="onSelectCampingImage($event)"
+            (onRemove)="onRemoveCampingImage($event)"
+            (onClear)="onClearCampingImage($event)"
+          >
+          </p-fileUpload>
+          <p-fileUpload
+            [showUploadButton]="false"
+            class="mt-3"
+            [multiple]="false"
+            accept="image/*"
+            [maxFileSize]="1000000"
+            cancelLabel="Cancelar"
+            chooseLabel="Selecionar imagem aérea"
+            (onSelect)="onSelectAreaImage($event)"
+            (onRemove)="onRemoveAreaImage($event)"
+            (onClear)="onRemoveAreaImage($event)"
+          >
+          </p-fileUpload>
+        </div>
+        <div class="flex justify-between" *ngIf="isEdit">
+          <div class="flex flex-col">
+            <h4>Imagens da Galeria</h4>
+            <div
+              *ngFor="let image of camping.images"
+              class="relative flex flex-col items-center mt-4"
+            >
+              <img [src]="image.url" alt="" class="relative w-40 h-auto" />
+              <button
+                type="button"
+                (click)="removeImage(image.id)"
+                class="absolute top-[-15px] right-[18px] p-2 text-red-500 hover:text-red-700 mt-2"
+              >
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="relative">
+            <h4>Imagem aerea</h4>
+            <img [src]="camping.areaImage" alt="" class="w-40 h-auto" />
+            <button
+              type="button"
+              (click)="removeAreaImage(camping.id)"
+              class="absolute top-[25px] right-0 p-2 text-red-500 hover:text-red-700 mt-2"
+            >
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
         </div>
       </ng-template>
 

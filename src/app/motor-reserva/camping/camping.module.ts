@@ -1,3 +1,4 @@
+import { GalleriaModule } from 'primeng/galleria';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -46,6 +47,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     DialogModule,
     InputSwitchModule,
     CKEditorModule,
+    GalleriaModule,
   ],
 })
 export class CampingModule {}
