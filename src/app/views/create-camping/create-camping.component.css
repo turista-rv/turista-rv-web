@@ -25,12 +25,12 @@
 }
 
 input:focus {
-  border-color: rgb(248 147 31) !important;
+  border-color: #f8931f !important;
   box-shadow: none !important;
 }
 
 textarea:focus {
-  border-color: rgb(248 147 31) !important;
+  border-color: #f8931f !important;
   box-shadow: none !important;
 }
 

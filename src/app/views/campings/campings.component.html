@@ -1,54 +1,81 @@
 <app-header routerLink="/" class="cursor-pointer"></app-header>
 
-<section class="mt-28 ">
+<section class="mt-28">
+  <!-- Carrossel -->
   <div class="flex justify-center items-center">
     <app-carousel [items]="camping.images"></app-carousel>
   </div>
 
-  <div class="card-booking w-[370px] absolute ml-[50%] mr-7 mt-[10%] p-4
-   bg-white rounded-lg shadow-lg sm:[150px] md:w-[300px]">
-    <mat-form-field>
-      <mat-label>Enter a date range</mat-label>
+  <!-- Cartão de Reserva -->
+  <div class="booking-card absolute left-1/2 transform -translate-x-1/2 mt-16 p-4 bg-white rounded-lg shadow-lg sm:w-96 md:w-80">
+    <mat-form-field class="mb-4">
+      <mat-label>Selecione um intervalo de datas</mat-label>
       <mat-date-range-input [formGroup]="range" [rangePicker]="picker" [matDatepickerFilter]="myFilter">
-        <input matStartDate formControlName="start" placeholder="Start date" />
-        <input matEndDate formControlName="end" placeholder="End date" />
+        <input matStartDate formControlName="start" placeholder="Data de início" />
+        <input matEndDate formControlName="end" placeholder="Data de término" />
       </mat-date-range-input>
       <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
     <button (click)="sendMessageWhatsapp()"
-      class="mt-5 btn-booking bg-blueMid hover:brightness-110 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded">
+      class="mt-4 btn-booking bg-blue-500 hover:bg-blue-600 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded">
       Reservar
     </button>
   </div>
 
-  <div class="ml-16 mt-[10%]">
-    <div class="section-heading text-lg font-bold mb-2.5">
+  <!-- Informações do Camping -->
+  <div class="ml-4 mt-8">
+    <!-- Nome do Camping -->
+    <div class="section-heading text-2xl font-bold mb-4">
       {{ camping.name }}
     </div>
-    <div class="description mb-5 text-gray-800">
-      <div [innerHTML]="camping.description"></div>
-    </div>
-    <hr class="border-b-0 border-t border-gray-500/10 my-6 md:my-8 col-content bg-grey-200" data-testid="divider" />
 
-    <div class="section-heading text-lg font-bold mb-2.5">
+    <!-- Descrição do Camping -->
+    <div class="description mb-6 text-gray-800" [innerHTML]="camping.description"></div>
+
+    <!-- Regras e Políticas -->
+    <div class="section-heading text-2xl font-bold mb-4">
       Regras e Políticas
     </div>
-    <div class="policies mb-5 text-gray-800">
-      <div [innerHTML]="camping.propertyRules"></div>
+    <div class="policies mb-6 text-gray-800" [innerHTML]="camping.propertyRules"></div>
+  </div>
+
+  <!-- Visão aérea do Camping -->
+  <h3 class="text-center mt-8">Visão aérea do camping</h3>
+  <div *ngIf="camping.areaImage" class="flex justify-center items-center mb-8">
+    <img [src]="camping.areaImage" alt="Visão aérea do camping" class="mt-4 rounded" />
+  </div>
+  <!-- Rating e Comentários -->
+  <div class="ml-4 mt-8">
+    <!-- Rating -->
+    <div class="flex items-center mb-4">
+      <div class="flex items-center mb-4">
+        <span class="text-2xl font-bold mr-2">
+          <i class="fas fa-star text-yellow-500"></i> 4.5
+        </span>
+        <span class="text-gray-600">(15 avaliações)</span>
+      </div>
+      <!-- <span class="text-2xl font-bold mr-2">{{ camping.rating }}</span>
+      <span class="text-gray-600">({{ camping.numReviews }} avaliações)</span> -->
+    </div>
+    <div class="mt-4 text-blue-500 cursor-pointer underline">Mostrar Todos</div>
+    <!-- Comentários -->
+    <div class="text-gray-800">
+      <div class="font-bold mb-2">Usuário 1</div>
+        <div>Ótimo lugar para acampar! Recomendo.</div>
+        <hr class="border-t border-gray-500 my-2">
+        <div>
+          <div class="font-bold mb-2">Usuário 2</div>
+          <div>Excelente infraestrutura e paisagens incríveis.</div>
+          <hr class="border-t border-gray-500 my-2">
+        </div>
+      <!-- <div *ngFor="let review of camping.reviews">
+        <div class="font-bold mb-2">{{ review.username }}</div>
+        <div>{{ review.comment }}</div>
+        <hr class="border-t border-gray-500 my-2">
+      </div> -->
     </div>
   </div>
 
-
-  <!-- <section class="camping-boxes">
-   <app-camping-box></app-camping-box>
-
--->
-  <h3 class="text-center mt-7">Visão aérea do camping</h3>
-  <div *ngIf="camping.areaImage" class="flex justify-center items-center mb-7">
-    <div class="mt-4">
-
-    </div>
-  </div>
 </section>
