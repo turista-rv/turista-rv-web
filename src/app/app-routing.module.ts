@@ -11,8 +11,9 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateCampingComponent } from './views/create-camping/create-camping.component';
 import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
+import { AppAdminComponent } from './motor-reserva/layout/app.admin.component';
+import { CreateCampingComponent } from './views/create-camping/create-camping.component';
 
 const routes: Routes = [
   {
@@ -23,10 +24,10 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
-  {
-    path: 'create-account',
-    component: CreateAccountComponent,
-  },
+  // {
+  //   path: 'create-account',
+  //   component: CreateAccountComponent,
+  // },
   {
     path: 'reset-password',
     component: ResetPasswordComponent,
@@ -34,6 +35,20 @@ const routes: Routes = [
   {
     path: 'hostess',
     component: HostessComponent,
+  },
+  {
+    path: 'motor-reservas',
+    component: AppAdminComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./motor-reserva/motor-reserva.module').then(
+            (m) => m.MotorReservaModule
+          ),
+      },
+    ],
+    canActivate: [adminGuard],
   },
   {
     path: 'admin-panel',

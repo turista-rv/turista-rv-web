@@ -1,0 +1,373 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+          <div class="my-2">
+            <button
+              pButton
+              pRipple
+              label="Novo Camping"
+              icon="fa fa-plus"
+              class="p-button-success mr-2"
+              (click)="openNew()"
+            ></button>
+            <button
+              pButton
+              pRipple
+              label="Excluir"
+              icon="fa fa-trash"
+              class="p-button-danger"
+              (click)="deleteSelectedCampings()"
+              [disabled]="!selectedCampings || !selectedCampings.length"
+            ></button>
+          </div>
+        </ng-template>
+      </p-toolbar>
+
+      <p-table
+        #dt
+        [value]="campings"
+        responsiveLayout="scroll"
+        [rows]="10"
+        [globalFilterFields]="['name', 'rules']"
+        [paginator]="true"
+        [rowsPerPageOptions]="[10, 20, 30]"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="{first} até {last} de {totalRecords} registros"
+        [(selection)]="selectedCampings"
+        selectionMode="multiple"
+        [rowHover]="true"
+        dataKey="id"
+      >
+        <ng-template pTemplate="caption">
+          <div
+            class="flex flex-column md:flex-row md:justify-between md:items-center"
+          >
+            <h5 class="m-0">Administrar Campings</h5>
+            <span class="block mt-2 md:mt-0 p-input-icon-left">
+              <i class="fa fa-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="onGlobalFilter(dt, $event)"
+                placeholder="Pesquisar..."
+                class="w-full sm:w-auto"
+              />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 3rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+
+            <th>Imagem</th>
+            <th pSortableColumn="name">
+              Nome <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th>Facilidades</th>
+            <th pSortableColumn="active">
+              Status <p-sortIcon field="active"></p-sortIcon>
+            </th>
+            <th>Ações</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-camping>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="camping"></p-tableCheckbox>
+            </td>
+
+            <td
+              style="min-width: 10rem"
+              [ngClass]="{ 'text-red-700': !camping.active }"
+            >
+              <span class="p-column-title">Image</span>
+              <img
+                *ngIf="camping.images.length > 0"
+                [src]="camping.images[0].url"
+                width="100"
+                class="shadow-4"
+              />
+            </td>
+            <td
+              style="min-width: 10rem"
+              [ngClass]="{ 'text-red-700': !camping.active }"
+            >
+              <span class="p-column-title">Nome</span>
+              {{ camping.name }}
+            </td>
+            <td [ngClass]="{ 'text-red-700': !camping.active }">
+              <div class="flex gap-2 flex-wrap">
+                <div
+                  class="border rounded p-1"
+                  *ngFor="let rule of getRules(camping.propertyRules)"
+                >
+                  <i class="fa {{ rule.icon }}"></i>
+                  {{ rule.name }}
+                </div>
+              </div>
+            </td>
+            <td style="min-width: 10rem">
+              <i
+                class="fa-regular fa-circle-check fa-xl"
+                style="color: #039900"
+                *ngIf="camping.active"
+              ></i>
+              <i
+                class="fa-regular fa-circle-xmark fa-xl"
+                style="color: #db0000"
+                *ngIf="!camping.active"
+              ></i>
+            </td>
+            <td>
+              <div class="flex">
+                <button
+                  pButton
+                  pRipple
+                  icon="fa fa-pencil"
+                  class="p-button-rounded p-button-success mr-2"
+                  (click)="editCamping(camping)"
+                ></button>
+                <button
+                  pButton
+                  pRipple
+                  icon="fa fa-trash"
+                  class="p-button-rounded p-button-warning"
+                  (click)="deleteCamping(camping)"
+                ></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- Modal Novo Cadastro / Editar -->
+    <p-dialog
+      [(visible)]="campingDialog"
+      [style]="{ width: '70vw', height: '80vh' }"
+      [modal]="true"
+      class="p-fluid"
+    >
+      <ng-template pTemplate="content">
+        <div class="flex justify-between gap-5">
+          <div class="w-full">
+            <label for="name">Nome</label>
+            <input
+              type="text"
+              pInputText
+              id="name"
+              [(ngModel)]="camping.name"
+              required
+              autofocus
+              [ngClass]="{ 'ng-invalid ng-dirty': submitted && !camping.name }"
+            />
+            <small
+              class="ng-dirty ng-invalid"
+              *ngIf="submitted && !camping.name"
+              >Nome da Camping é obrigatório.</small
+            >
+          </div>
+          <div class="flex flex-col align-start justify-end">
+            <label for="status">Status</label>
+            <p-inputSwitch [(ngModel)]="camping.active"></p-inputSwitch>
+          </div>
+        </div>
+        <div class="mt-2">
+          <label for="title" class="">Descrição:</label>
+          <ckeditor
+            class="resize-none w-full h-[194px] p-2 border rounded-lg text-black"
+            [editor]="Editor"
+            [(ngModel)]="camping.description"
+            name="description"
+          ></ckeditor>
+        </div>
+        <div class="relative flex flex-col">
+          <label class="">Facilidades:</label>
+          <p-multiSelect
+            [options]="rules"
+            [(ngModel)]="selectedMulti"
+            placeholder="Selecione as opções"
+            optionLabel="name"
+            [filter]="true"
+            display="chip"
+            class="relative multiselect-custom mw-100"
+          >
+            <ng-template let-value pTemplate="selectedItems">
+              <div
+                class="inline-flex align-items-center gap-2 px-1"
+                *ngFor="
+                  let option of value;
+                  let i = index;
+                  trackBy: trackByFunction
+                "
+              >
+                <i
+                  [class]="'border rounded p-2 mt-1 fa fa-solid ' + option.icon"
+                ></i>
+              </div>
+              <div *ngIf="!value || value.length === 0">
+                Selecione as opções
+              </div>
+            </ng-template>
+            <ng-template let-rule pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                <i [class]="'mt-1 fa fa-solid ' + rule.icon"></i>
+                <div>{{ rule.name }}</div>
+              </div>
+            </ng-template>
+          </p-multiSelect>
+          <i
+            class="absolute right-0 mt-[35px] mr-[40px] fa fa-times fa-lg p-2 cursor-pointer"
+            *ngIf="selectedMulti.length > 0"
+            (click)="selectedMulti = []"
+          ></i>
+        </div>
+        <div class="field grid mt-3">
+          <p-fileUpload
+            [showUploadButton]="false"
+            [multiple]="true"
+            accept="image/*"
+            [maxFileSize]="1000000"
+            cancelLabel="Cancelar"
+            chooseLabel="Selecionar imagens da galeria"
+            (onSelect)="onSelectCampingImage($event)"
+            (onRemove)="onRemoveCampingImage($event)"
+            (onClear)="onClearCampingImage($event)"
+          >
+          </p-fileUpload>
+          <p-fileUpload
+            [showUploadButton]="false"
+            class="mt-3"
+            [multiple]="false"
+            accept="image/*"
+            [maxFileSize]="1000000"
+            cancelLabel="Cancelar"
+            chooseLabel="Selecionar imagem aérea"
+            (onSelect)="onSelectAreaImage($event)"
+            (onRemove)="onRemoveAreaImage($event)"
+            (onClear)="onRemoveAreaImage($event)"
+          >
+          </p-fileUpload>
+        </div>
+        <div class="flex justify-between" *ngIf="isEdit">
+          <div class="flex flex-col">
+            <h4>Imagens da Galeria</h4>
+            <div
+              *ngFor="let image of camping.images"
+              class="relative flex flex-col items-center mt-4"
+            >
+              <img [src]="image.url" alt="" class="relative w-40 h-auto" />
+              <button
+                type="button"
+                (click)="removeImage(image.id)"
+                class="absolute top-[-15px] right-[18px] p-2 text-red-500 hover:text-red-700 mt-2"
+              >
+                <i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="relative">
+            <h4>Imagem aerea</h4>
+            <img [src]="camping.areaImage" alt="" class="w-40 h-auto" />
+            <button
+              type="button"
+              (click)="removeAreaImage(camping.id)"
+              class="absolute top-[25px] right-0 p-2 text-red-500 hover:text-red-700 mt-2"
+            >
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          pRipple
+          label="Cancelar"
+          icon="fa fa-times"
+          class="p-button-text"
+          (click)="hideDialog()"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="Salvar"
+          icon="fa fa-check"
+          class="p-button-text"
+          [disabled]="!camping.name"
+          (click)="saveProduct()"
+        ></button>
+      </ng-template>
+    </p-dialog>
+
+    <!-- Modal Confirmação Deletar UM -->
+    <p-dialog
+      [(visible)]="deleteCampingDialog"
+      header="Confirm"
+      [modal]="true"
+      [style]="{ width: '450px' }"
+    >
+      <div class="flex align-items-center justify-content-center">
+        <i class="fa fa-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="camping"
+          >Tem certeza que deseja excluir o camping <b>{{ camping.name }}</b
+          >?</span
+        >
+      </div>
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          pRipple
+          icon="fa fa-times"
+          class="p-button-text"
+          label="Não"
+          (click)="deleteCampingDialog = false"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="fa fa-check"
+          class="p-button-text"
+          label="Sim"
+          (click)="confirmDelete(camping.id)"
+        ></button>
+      </ng-template>
+    </p-dialog>
+
+    <!-- Modal Confirmação Deletar Todos -->
+    <p-dialog
+      [(visible)]="deleteCampingsDialog"
+      header="Confirm"
+      [modal]="true"
+      [style]="{ width: '450px' }"
+    >
+      <div class="flex align-items-center justify-content-center">
+        <i class="fa fa-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span>Tem certeza que deseja excluir os registros selecionados?</span>
+      </div>
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          pRipple
+          icon="fa fa-times"
+          class="p-button-text"
+          label="Não"
+          (click)="deleteCampingsDialog = false"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="fa fa-check"
+          class="p-button-text"
+          label="Sim"
+          (click)="confirmDeleteSelected()"
+        ></button>
+      </ng-template>
+    </p-dialog>
+  </div>
+</div>
