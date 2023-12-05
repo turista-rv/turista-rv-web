@@ -19,7 +19,7 @@
     <i class="fa fa-ellipsis-v"></i>
   </button>
 
-  <div
+  <!-- <div
     #topbarmenu
     class="layout-topbar-menu"
     [ngClass]="{
@@ -27,9 +27,13 @@
         layoutService.state.profileSidebarVisible
     }"
   >
-    <button class="p-link layout-topbar-button" routerLink="/auth/login">
+    <button
+      class="p-link layout-topbar-button"
+      routerLink="/login"
+      (click)="navigateToLogin()"
+    >
       <i class="fa fa-user"></i>
       <span>Profile</span>
     </button>
-  </div>
+  </div> -->
 </div>

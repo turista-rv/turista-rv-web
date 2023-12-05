@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MessageService } from 'primeng/api';
 
 export interface ToasterModel {
   title: string;
@@ -12,32 +13,32 @@ export interface ToasterModel {
 export class ToasterService {
   toasts: ToasterModel[] = [];
 
-  constructor(private _snackbar: MatSnackBar) {}
+  constructor(private service: MessageService) {}
 
   success(msg: string) {
-    this._snackbar.open(msg, 'X', {
-      duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: 'success-snackbar',
+    this.service.add({
+      key: 'tst',
+      severity: 'success',
+      summary: '',
+      detail: msg,
     });
   }
 
   warning(msg: string) {
-    this._snackbar.open(msg, 'X', {
-      duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: 'warning-snackbar',
+    this.service.add({
+      key: 'tst',
+      severity: 'warn',
+      summary: '',
+      detail: msg,
     });
   }
 
   error(msg: string) {
-    this._snackbar.open(msg, 'X', {
-      duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: 'error-snackbar',
+    this.service.add({
+      key: 'tst',
+      severity: 'error',
+      summary: '',
+      detail: msg,
     });
   }
 }

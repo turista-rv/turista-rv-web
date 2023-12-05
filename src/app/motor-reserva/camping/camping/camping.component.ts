@@ -81,8 +81,10 @@ export class CampingComponent implements OnInit {
       .listCampings()
       .pipe(finalize(() => this._loading.stop()))
       .subscribe((data: Camping[]) => {
-        this.campings = data;
-        console.log(data);
+        if (data.length > 0) {
+          this.campings = data;
+          console.log(data);
+        }
       });
   }
 
@@ -129,26 +131,37 @@ export class CampingComponent implements OnInit {
     this.selectedCampings.forEach((camping) => {
       reqJoin.push(this._service.delete(camping.id as string));
     });
-    forkJoin(reqJoin).subscribe((res) => {
-      console.log(res);
-      this.loadCampings();
-      this.selectedCampings = [];
-    });
+    this._loading.start();
+    forkJoin(reqJoin).subscribe(
+      (res) => {
+        console.log(res);
+        this.loadCampings();
+        this.selectedCampings = [];
+      },
+      (e) => {
+        this._loading.stop();
+        this._toaster.error('Ocorreu um erro');
+      }
+    );
   }
 
   confirmDelete(id: string | undefined) {
     this.deleteCampingDialog = false;
     if (id) {
       this._loading.start();
-      this._service
-        .delete(id)
-        .pipe(finalize(() => this._loading.stop()))
-        .subscribe((response) => {
-          this._toaster.success('Categoria excluída com sucesso');
+      this._service.delete(id).subscribe(
+        (response) => {
+          this._toaster.success('Camping excluído com sucesso');
 
           this.camping = this.initializeCamping();
           this.loadCampings();
-        });
+          this.cancel();
+        },
+        (e) => {
+          this._loading.stop();
+          this._toaster.error('Ocorreu um erro');
+        }
+      );
     }
   }
 
@@ -179,30 +192,31 @@ export class CampingComponent implements OnInit {
     formData.append('propertyRules', rules);
     if (this.camping.id) {
       formData.append('id', this.camping?.id);
-      this._service
-        .update(formData)
-        .pipe(finalize(() => this._loading.stop()))
-        .subscribe((data) => {
+      this._service.update(formData).subscribe(
+        (data) => {
           this._toaster.success('Camping atualizado com sucesso');
           this.loadCampings();
           this.isEdit = false;
           this.cancel();
-        });
+        },
+        (e) => {
+          this._loading.stop();
+          this._toaster.error('Ocorreu um erro');
+        }
+      );
     } else {
-      this._service
-        .create(formData)
-        .pipe(finalize(() => this._loading.stop()))
-        .subscribe({
-          next: (data) => {
-            this._toaster.success('Camping criado com sucesso');
-            this.loadCampings();
-            this.cancel();
-          },
-          error: (error: any) => {
-            const errorMessage = `Erro ao criar camping, ${error}`;
-            this._toaster.error(errorMessage);
-          },
-        });
+      this._service.create(formData).subscribe({
+        next: (data) => {
+          this._toaster.success('Camping criado com sucesso');
+          this.loadCampings();
+          this.cancel();
+        },
+        error: (error: any) => {
+          this._loading.stop();
+          const errorMessage = `Erro ao criar camping, ${error}`;
+          this._toaster.error(errorMessage);
+        },
+      });
     }
   }
 
@@ -234,11 +248,37 @@ export class CampingComponent implements OnInit {
   }
 
   removeImage(id: string | undefined) {
-    console.log(id);
+    this._loading.start();
+    this._service
+      .imageDelete(id as string)
+      .pipe(finalize(() => this._loading.stop()))
+      .subscribe(
+        (data) => {
+          this._toaster.success('Imagem deletada com sucesso');
+          this.camping.images = this.camping.images.filter(
+            (image) => image.id !== id
+          );
+        },
+        (e) => {
+          this._toaster.error('Ocorreu um erro');
+        }
+      );
   }
 
   removeAreaImage(id: string | undefined): void {
-    console.log(id);
+    this._loading.start();
+    this._service
+      .areaImageDelete(id as string)
+      .pipe(finalize(() => this._loading.stop()))
+      .subscribe(
+        (data) => {
+          this._toaster.success('Imagem deletada com sucesso');
+          this.camping.areaImage = '';
+        },
+        (e) => {
+          this._toaster.error('Ocorreu um erro');
+        }
+      );
   }
 
   onRemoveAreaImage(value: any) {

@@ -61,6 +61,8 @@ import { AppAdminModule } from './motor-reserva/layout/app.admin.module';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { LoadingModule } from './components/loading/loading.module';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -121,9 +123,10 @@ registerLocaleData(ptBr);
     TieredMenuModule,
     MotorReservaModule,
     AppAdminModule,
+    ToastModule,
     LoadingModule,
   ],
   bootstrap: [AppComponent],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],
 })
 export class AppModule {}

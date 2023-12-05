@@ -5,7 +5,7 @@ export const MENUS = [
       {
         label: 'Dashboard',
         icon: 'fa fa-house',
-        routerLink: ['/admin'],
+        routerLink: ['/motor-reservas'],
       },
     ],
   },
@@ -14,33 +14,33 @@ export const MENUS = [
     items: [
       {
         label: 'Campings',
-        icon: 'fa fa-house',
-        routerLink: ['/admin/campings'],
+        icon: 'fa fa-compass',
+        routerLink: ['/motor-reservas/campings'],
       },
       {
         label: 'Smart Camping',
-        icon: 'fa fa-house',
-        routerLink: ['/admin/'],
-      },
-      {
-        label: 'Vagas',
-        icon: 'fa fa-house',
-        routerLink: ['/admin/box/boxes'],
+        icon: 'fa fa-regular fa-compass',
+        routerLink: ['/motor-reservas/'],
       },
       {
         label: 'Categorias de Vagas',
-        icon: 'fa fa-house',
-        routerLink: ['/admin/box/box-types'],
+        icon: 'fa fa-tag',
+        routerLink: ['/motor-reservas/box/box-types'],
+      },
+      {
+        label: 'Vagas',
+        icon: 'fa fa-caravan',
+        routerLink: ['/motor-reservas/box/boxes'],
       },
       {
         label: 'Atrações / Experiências',
-        icon: 'fa fa-house',
-        routerLink: ['/admin/'],
+        icon: 'fa fa-person-walking',
+        routerLink: ['/motor-reservas/'],
       },
       {
         label: 'Reservas',
-        icon: 'fa fa-house',
-        routerLink: ['/admin/'],
+        icon: 'fa fa-calendar-days',
+        routerLink: ['/motor-reservas/'],
       },
     ],
   },

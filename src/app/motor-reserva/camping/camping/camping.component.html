@@ -7,7 +7,7 @@
             <button
               pButton
               pRipple
-              label="Nova Categoria"
+              label="Novo Camping"
               icon="fa fa-plus"
               class="p-button-success mr-2"
               (click)="openNew()"
@@ -30,7 +30,7 @@
         [value]="campings"
         responsiveLayout="scroll"
         [rows]="10"
-        [globalFilterFields]="['name']"
+        [globalFilterFields]="['name', 'rules']"
         [paginator]="true"
         [rowsPerPageOptions]="[10, 20, 30]"
         [showCurrentPageReport]="true"
@@ -44,7 +44,7 @@
           <div
             class="flex flex-column md:flex-row md:justify-between md:items-center"
           >
-            <h5 class="m-0">Administrar Categorias</h5>
+            <h5 class="m-0">Administrar Campings</h5>
             <span class="block mt-2 md:mt-0 p-input-icon-left">
               <i class="fa fa-search"></i>
               <input
@@ -63,18 +63,11 @@
               <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
             </th>
 
-            <th pSortableColumn="image">
-              Imagem <p-sortIcon field="image"></p-sortIcon>
-            </th>
+            <th>Imagem</th>
             <th pSortableColumn="name">
               Nome <p-sortIcon field="name"></p-sortIcon>
             </th>
-            <th pSortableColumn="description">
-              Descrição <p-sortIcon field="description"></p-sortIcon>
-            </th>
-            <th pSortableColumn="Rules">
-              Facilidades <p-sortIcon field="Rules"></p-sortIcon>
-            </th>
+            <th>Facilidades</th>
             <th pSortableColumn="active">
               Status <p-sortIcon field="active"></p-sortIcon>
             </th>
@@ -87,19 +80,26 @@
               <p-tableCheckbox [value]="camping"></p-tableCheckbox>
             </td>
 
-            <td style="min-width: 10rem">
+            <td
+              style="min-width: 10rem"
+              [ngClass]="{ 'text-red-700': !camping.active }"
+            >
               <span class="p-column-title">Image</span>
-              <img [src]="camping.images[0].url" width="100" class="shadow-4" />
+              <img
+                *ngIf="camping.images.length > 0"
+                [src]="camping.images[0].url"
+                width="100"
+                class="shadow-4"
+              />
             </td>
-            <td style="min-width: 10rem">
+            <td
+              style="min-width: 10rem"
+              [ngClass]="{ 'text-red-700': !camping.active }"
+            >
               <span class="p-column-title">Nome</span>
               {{ camping.name }}
             </td>
-            <td style="min-width: 8rem">
-              <span class="p-column-title">Price</span>
-              <div [innerHTML]="camping.description"></div>
-            </td>
-            <td>
+            <td [ngClass]="{ 'text-red-700': !camping.active }">
               <div class="flex gap-2 flex-wrap">
                 <div
                   class="border rounded p-1"
@@ -149,14 +149,13 @@
     <p-dialog
       [(visible)]="campingDialog"
       [style]="{ width: '70vw', height: '80vh' }"
-      header="Product Details"
       [modal]="true"
       class="p-fluid"
     >
       <ng-template pTemplate="content">
         <div class="flex justify-between gap-5">
           <div class="w-full">
-            <label for="name">Name</label>
+            <label for="name">Nome</label>
             <input
               type="text"
               pInputText
@@ -300,6 +299,7 @@
           label="Salvar"
           icon="fa fa-check"
           class="p-button-text"
+          [disabled]="!camping.name"
           (click)="saveProduct()"
         ></button>
       </ng-template>
@@ -315,7 +315,7 @@
       <div class="flex align-items-center justify-content-center">
         <i class="fa fa-exclamation-triangle mr-3" style="font-size: 2rem"></i>
         <span *ngIf="camping"
-          >Tem certeza que deseja excluir a categoria <b>{{ camping.name }}</b
+          >Tem certeza que deseja excluir o camping <b>{{ camping.name }}</b
           >?</span
         >
       </div>
@@ -348,7 +348,7 @@
     >
       <div class="flex align-items-center justify-content-center">
         <i class="fa fa-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-        <span>Are you sure you want to delete selected products?</span>
+        <span>Tem certeza que deseja excluir os registros selecionados?</span>
       </div>
       <ng-template pTemplate="footer">
         <button

@@ -97,16 +97,22 @@ export class BoxTypeComponent {
       this._service
         .delete(id)
         .pipe(finalize(() => this._loading.stop()))
-        .subscribe((response) => {
-          this._toaster.success('Categoria excluída com sucesso');
+        .subscribe(
+          (response) => {
+            this._toaster.success('Categoria excluída com sucesso');
 
-          this.boxType = {
-            name: '',
-            active: true,
-            price: '',
-          };
-          this.loadBoxTypes();
-        });
+            this.boxType = {
+              name: '',
+              active: true,
+              price: '',
+            };
+            this.loadBoxTypes();
+          },
+          (e) => {
+            this._toaster.error('Ocorreu um erro');
+            this._loading.stop();
+          }
+        );
     }
   }
 
@@ -115,20 +121,21 @@ export class BoxTypeComponent {
     if (this.boxType.id) {
       this.boxType.price = +this.boxType.price;
       this._loading.start();
-      this._service
-        .update(this.boxType)
-        .pipe(finalize(() => this._loading.stop()))
-        .subscribe((response) => {
+      this._service.update(this.boxType).subscribe(
+        (response) => {
           this._toaster.success('Categoria atualizada com sucesso');
           this.boxTypeDialog = false;
           this.loadBoxTypes();
-        });
+        },
+        (e) => {
+          this._toaster.error('Ocorreu um erro');
+          this._loading.stop();
+        }
+      );
     } else {
       this._loading.start();
-      this._service
-        .create(this.boxType)
-        .pipe(finalize(() => this._loading.stop()))
-        .subscribe((data) => {
+      this._service.create(this.boxType).subscribe(
+        (data) => {
           this._toaster.success('Categoria criada com sucesso');
           this.boxType = {
             name: '',
@@ -137,7 +144,12 @@ export class BoxTypeComponent {
           };
           this.boxTypeDialog = false;
           this.loadBoxTypes();
-        });
+        },
+        (e) => {
+          this._toaster.error('Ocorreu um erro');
+          this._loading.stop();
+        }
+      );
     }
   }
 

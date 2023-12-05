@@ -37,7 +37,7 @@ const routes: Routes = [
     component: HostessComponent,
   },
   {
-    path: 'admin',
+    path: 'motor-reservas',
     component: AppAdminComponent,
     children: [
       {
@@ -48,6 +48,7 @@ const routes: Routes = [
           ),
       },
     ],
+    canActivate: [adminGuard],
   },
   {
     path: 'admin-panel',
