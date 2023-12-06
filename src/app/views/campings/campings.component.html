@@ -8,8 +8,8 @@
       [circular]="true"
       [autoplayInterval]="3000"
       [showIndicators]="false"
-      class="h-[30vh] md:h-[60vh] block">
-
+      class="h-[30vh] md:h-[60vh] block"
+    >
       <ng-template let-image pTemplate="item">
         <div class="flex justify-center">
           <img
@@ -72,10 +72,10 @@
 <p-dialog
   [(visible)]="visible"
   [modal]="true"
-  [style]="{ width: '90vw' }"
+  class="w-[90vw] md-[50vw]"
   [draggable]="false"
   [resizable]="false"
- >
+>
   <div class="flex flex-col gap-3 w-full h-full">
     <p-calendar
       class="w-full"
@@ -119,12 +119,11 @@
     </div>
     <!-- <mat-calendar [(selected)]="dataEntrada" ></mat-calendar> -->
     <div class="lg:flex lg:justify-center lg:items-center mt-4">
-
       <p-button
-      label="Confirmar Data"
-      icon="fa fa-arrow-right"
-      iconPos="right"
-      (click)="verificarDisponibilidade()"
+        label="Confirmar Data"
+        icon="fa fa-arrow-right"
+        iconPos="right"
+        (click)="verificarDisponibilidade()"
       ></p-button>
     </div>
   </div>
