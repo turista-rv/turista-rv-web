@@ -1,81 +1,130 @@
 <app-header routerLink="/" class="cursor-pointer"></app-header>
 
-<section class="mt-28">
-  <!-- Carrossel -->
-  <div class="flex justify-center items-center">
-    <app-carousel [items]="camping.images"></app-carousel>
-  </div>
+<div class="max-w-5xl m-auto">
+  <section class="mt-28">
+    <p-carousel
+      *ngIf="camping.images"
+      [value]="camping.images"
+      [circular]="true"
+      [autoplayInterval]="3000"
+      [showIndicators]="false"
+      class="h-[30vh] md:h-[60vh] block"
+    >
+      <ng-template let-image pTemplate="item">
+        <div class="flex justify-center">
+          <img
+            [src]="image.url"
+            class="object-cover h-[30vh] md:h-[60vh] rounded-3xl shadow-xl"
+          />
+        </div>
+      </ng-template>
+    </p-carousel>
 
-  <!-- Cartão de Reserva -->
-  <div class="booking-card absolute left-1/2 transform -translate-x-1/2 mt-16 p-4 bg-white rounded-lg shadow-lg sm:w-96 md:w-80">
-    <mat-form-field class="mb-4">
-      <mat-label>Selecione um intervalo de datas</mat-label>
-      <mat-date-range-input [formGroup]="range" [rangePicker]="picker" [matDatepickerFilter]="myFilter">
-        <input matStartDate formControlName="start" placeholder="Data de início" />
-        <input matEndDate formControlName="end" placeholder="Data de término" />
-      </mat-date-range-input>
-      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
-    <button (click)="sendMessageWhatsapp()"
-      class="mt-4 btn-booking bg-blue-500 hover:bg-blue-600 transition duration-300 ease-in-out text-white font-bold py-2 px-4 rounded">
-      Reservar
-    </button>
-  </div>
-
-  <!-- Informações do Camping -->
-  <div class="ml-4 mt-8">
-    <!-- Nome do Camping -->
-    <div class="section-heading text-2xl font-bold mb-4">
-      {{ camping.name }}
+    <div class="mt-4">
+      <div class="text-4xl text-center w-full font-bold mb-8">
+        {{ camping.name }}
+      </div>
+      <div class="flex-1 description mb-5 text-gray-800">
+        <div [innerHTML]="camping.description"></div>
+      </div>
     </div>
 
-    <!-- Descrição do Camping -->
-    <div class="description mb-6 text-gray-800" [innerHTML]="camping.description"></div>
-
-    <!-- Regras e Políticas -->
-    <div class="section-heading text-2xl font-bold mb-4">
+    <div class="section-heading text-lg font-bold mb-2.5 ml-5">
       Regras e Políticas
     </div>
-    <div class="policies mb-6 text-gray-800" [innerHTML]="camping.propertyRules"></div>
-  </div>
-
-  <!-- Visão aérea do Camping -->
-  <h3 class="text-center mt-8">Visão aérea do camping</h3>
-  <div *ngIf="camping.areaImage" class="flex justify-center items-center mb-8">
-    <img [src]="camping.areaImage" alt="Visão aérea do camping" class="mt-4 rounded" />
-  </div>
-  <!-- Rating e Comentários -->
-  <div class="ml-4 mt-8">
-    <!-- Rating -->
-    <div class="flex items-center mb-4">
-      <div class="flex items-center mb-4">
-        <span class="text-2xl font-bold mr-2">
-          <i class="fas fa-star text-yellow-500"></i> 4.5
-        </span>
-        <span class="text-gray-600">(15 avaliações)</span>
-      </div>
-      <!-- <span class="text-2xl font-bold mr-2">{{ camping.rating }}</span>
-      <span class="text-gray-600">({{ camping.numReviews }} avaliações)</span> -->
-    </div>
-    <div class="mt-4 text-blue-500 cursor-pointer underline">Mostrar Todos</div>
-    <!-- Comentários -->
-    <div class="text-gray-800">
-      <div class="font-bold mb-2">Rogério Freitas</div>
-        <div>Ótimo lugar para acampar! Recomendo.</div>
-        <hr class="border-t border-gray-500 my-2">
-        <div>
-          <div class="font-bold mb-2">Marcia Carneiro</div>
-          <div>Excelente infraestrutura e paisagens incríveis.</div>
-          <hr class="border-t border-gray-500 my-2">
+    <div class="flex flex-wrap gap-4">
+      <div
+        class="card w-[120px] h-[120px] hover:bg-zinc-200 grow"
+        style="padding: 15px"
+        *ngFor="let rule of getRules"
+      >
+        <div class="flex flex-col justify-center items-center h-full">
+          <i class="fa {{ rule.icon }}"></i>
+          <span class="text-center">{{ rule.name }}</span>
         </div>
-      <!-- <div *ngFor="let review of camping.reviews">
-        <div class="font-bold mb-2">{{ review.username }}</div>
-        <div>{{ review.comment }}</div>
-        <hr class="border-t border-gray-500 my-2">
-      </div> -->
+      </div>
     </div>
-  </div>
+    <div class="flex justify-center items-center">
+      <div class="w-[50%]">
+        <p-button
+          class="mt-4"
+          label="Verificar Disponibilidade"
+          icon="fa fa-calendar"
+          iconPos="right"
+          (click)="visible = true"
+        ></p-button>
+      </div>
+    </div>
+    <h3 *ngIf="camping.areaImage" class="text-center mt-7">
+      Visão aérea do camping
+    </h3>
+    <div
+      *ngIf="camping.areaImage"
+      class="flex justify-center items-center mb-7"
+    >
+      <img [src]="camping.areaImage" alt="" class="h-[400px] object-cover" />
+    </div>
+  </section>
+</div>
 
-</section>
+<!-- modal -->
+
+<p-dialog
+  header="Header"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="flex flex-col gap-3 w-full h-full">
+    <p-calendar
+      class="w-full"
+      [(ngModel)]="selectionDate"
+      (onSelect)="onSelectDate($event)"
+      [inline]="true"
+      selectionMode="range"
+    ></p-calendar>
+    <div class="flex gap-5 grow justify-center">
+      <p-chip
+        *ngIf="dataEntrada"
+        [label]="'Check-in: ' + getFormatedDate(dataEntrada)"
+        icon="fa fa-calendar-plus"
+      ></p-chip>
+      <p-chip
+        *ngIf="dataSaida"
+        [label]="'Check-out: ' + getFormatedDate(dataSaida)"
+        icon="fa fa-calendar-minus"
+      ></p-chip>
+    </div>
+    <div class="flex flex-col justify-center items-center mt-4">
+      <h6>Selecione um tipo de Veículo</h6>
+      <div class="flex justify-center w-full">
+        <div
+          class="flex justify-center items-center text-white h-10 rounded-sm cursor-pointer bg-[#1da7e0] p-4 w-52"
+          [style]="
+            tipoVeiculo === 'MotorHome' ? 'background-color: #1278bf' : ''
+          "
+          (click)="tipoVeiculo = 'MotorHome'"
+        >
+          MotorHome
+        </div>
+        <div
+          class="flex justify-center items-center text-white h-10 rounded-sm cursor-pointer bg-[#1da7e0] p-4 w-52"
+          [style]="tipoVeiculo === 'Trailer' ? 'background-color: #1278bf' : ''"
+          (click)="tipoVeiculo = 'Trailer'"
+        >
+          Trailer
+        </div>
+      </div>
+    </div>
+    <!-- <mat-calendar [(selected)]="dataEntrada" ></mat-calendar> -->
+    <p-button
+      class="mt-4"
+      label="Verificar Disponibilidade"
+      icon="fa fa-arrow-right"
+      iconPos="right"
+      (click)="verificarDisponibilidade()"
+    ></p-button>
+  </div>
+</p-dialog>
