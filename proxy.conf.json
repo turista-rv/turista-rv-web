@@ -1,0 +1,7 @@
+{
+  "https://storage.googleapis.com": {
+    "target": "",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

@@ -1,5 +1,5 @@
 import { AuthService } from './../../services/auth.service';
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { LoginUser } from './../../models/LoginUser.model';
@@ -20,12 +20,18 @@ export class LoginComponent {
   passwordVisible = false;
   pointerType = false;
 
+  rotaOrigem: string | null = null;
+
   constructor(
     private AuthService: AuthService,
     private router: Router,
     private elementRef: ElementRef,
     private _toaster: ToasterService
-  ) { }
+  ) {}
+
+  ngOnInit(): void {
+    this.rotaOrigem = localStorage.getItem('rotaOrigemLogin') ?? null;
+  }
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
@@ -54,21 +60,26 @@ export class LoginComponent {
       .subscribe({
         next: () => {
           this.isLoggedIn = true;
-          this.router.navigateByUrl('/');
+          if (this.rotaOrigem) {
+            this.router.navigateByUrl(this.rotaOrigem);
+            localStorage.removeItem('rotaOrigemLogin');
+          } else {
+            this.router.navigateByUrl('/');
+            localStorage.removeItem('rotaOrigemLogin');
+          }
         },
         error: (error: any) => {
           this.AuthService.clearLocalStorage();
           const errorMessage = `${error}`;
           this._toaster.error(errorMessage);
-        }
+        },
       });
   }
 
-  onClickRevealPassword(event:MouseEvent) {
+  onClickRevealPassword(event: MouseEvent) {
     event.preventDefault();
     // Prevent revealing the password when enter button is pressed.
-  
-      this.passwordVisible = !this.passwordVisible;
-    
+
+    this.passwordVisible = !this.passwordVisible;
   }
 }

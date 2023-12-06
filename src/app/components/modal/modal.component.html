@@ -1,20 +1,17 @@
-<div class="modal-overlay" (click)="cancel()">
-    <div class="modal" (click)="preventClosing($event)">
-        <div class="modal-header">
-            <h3>{{ title }}</h3>
-            <button (click)="cancel()" class="focus:outline-none">
-                <i class="fa fa-times text-black hover:bg-grays5 rounded-full p-1"></i>
-            </button>
-        </div>
-        <div class="modal-body">
-         
-            <label for="itemName">Nome:</label>
-            
-            <input id="title" name="title" type="text" class="w-full p-2 border rounded-lg focus:outline-none focus:border-orangeDark text-black" />
-          
-        </div>
-        <div class="modal-footer">
-            <button (click)="submitForm()" #submitButton>Salvar</button>
-        </div>
+<div class="modal-overlay" >
+  <div class="modal">
+      <div class="modal-header">
+        <h3>{{ title }}</h3>
+        <button (click)="closeModal()" class="focus:outline-none">
+          <i class="fa fa-times text-black hover:bg-grays5 rounded-full"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+      <!-- <div class="modal-footer">
+        <button (click)="submitForm()">Salvar</button>
+      </div> -->
     </div>
-</div>
+  </div>
+  

@@ -1,0 +1,18 @@
+
+::ng-deep .p-calendar {
+  width: 100%;
+}
+
+::ng-deep .p-button {
+  background-color: #1278bf;
+  width: 100%;
+}
+
+::ng-deep .p-datepicker table td > span.p-highlight {
+  background-color: #1da7e0;
+}
+
+.card:hover {
+  transform: matrix(1.00, 0.00, 0.00, 1.00, 0, -7);
+  transition: 300ms;
+}

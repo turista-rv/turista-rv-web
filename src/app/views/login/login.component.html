@@ -27,7 +27,7 @@
           [(ngModel)]="credentials.password" name="password" matInput />
         <div class="absolute mt-[-49px] ml-[265px]">
 
-          <button mat-icon-button matSuffix class="cursor-pointer hover:none bg-transparent"
+          <button mat-icon-button matSuffix class="cursor-pointer flex justify-center items-center mt-1"
             (click)="onClickRevealPassword($event)" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="!passwordVisible">
             <i class="material-icons">{{ passwordVisible ? 'visibility' : 'visibility_off' }}</i>
@@ -51,7 +51,7 @@
     <btn-filled label="Entrar" [customColor]="'greenDark'" class="h-12 w-314 items-center" (click)="onSubmit()">
     </btn-filled>
 
-    <div class="flex mt-2">
+    <div class="flex mt-5">
       <div class="text-12">Não possui cadastro?</div>
       <button id="btn-register" routerLink="/create-account" class="text-10 ml-1 hover:bg-blue-200">
         <b>Clique aqui!</b>

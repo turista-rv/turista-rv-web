@@ -46,15 +46,22 @@
         </a>
       </li>
       <li>
-        <a routerLink="/admin-panel" href="motorhome-icon" class="relative">
+        <a routerLink="/motor-reservas" href="motorhome-icon" class="relative">
           <div
             class="text-center md:text-xs group-hover:opacity-100 transition-opacity duration-300"
           >
-            Motorhome
+            Motor de Reservas
           </div>
         </a>
       </li>
       <li>
+        <select name="" id="">
+          <option value="2">Português</option>
+          <option value="1">English</option>
+          <option value="3">Español</option>
+        </select>
+      </li>
+      <!-- <li>
         <a routerLink="/about" href="mount-icon" class="relative">
           <div
             class="text-center md:text-xs group-hover:opacity-100 transition-opacity duration-300"
@@ -62,14 +69,14 @@
             Sobre
           </div>
         </a>
-      </li>
+      </li> -->
       <li>
         <button
           *ngIf="!isLoggedIn"
-          class="bg-blueDark hover:brightness-75 text-white font-bold py-2 px-4 rounded-full relative"
+          class="btn-entrar bg-blueDark hover:brightness-75 text-white font-bold py-2 px-4 rounded-full relative"
         >
-          <a routerLink="/login" class="group inline-block relative">
-            <div class="text-center md:text-xs">Entrar</div>
+          <a routerLink="/login" class="group inline-block relative focus:outline-none">
+            <div class="btn-text-center md:text-xs">Entrar</div>
           </a>
         </button>
         <button

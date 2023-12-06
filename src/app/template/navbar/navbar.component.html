@@ -1,73 +1,112 @@
 <nav class="p-4">
-
-    <!-- Menu de navegação (exibido em telas menores) -->
-    <section class="flex items-center space-x-3 ">
-        <ul id="menuHamburguer" class="hidden md:flex md:space-x-5 md:text-white" [ngClass]="{'active': isMenuOpen}">
-
-            <li class="flex flex-col items-center">
-                <a routerLink="/" href="mount-icon" class="group inline-block relative">
-                    <img src="../../../assets/icons/mountain-icon.png" alt="menu de lugares"
-                        class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:opacity-70"
-                        width="38" height="38">
-                    <div
-                        class="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute  left-1/2 transform -translate-x-1/2">
-                        Lugares
-                    </div>
-                </a>
-            </li>
-            <li class="dropdown flex flex-col items-center">
-                <a href="#" class="group inline-block relative">
-                    <img src="../../../assets/icons/motorhome-icon.png" alt="menu motorhome"
-                        class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:opacity-70"
-                        width="38" height="38">
-                    <div
-                        class="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute  left-1/2 transform -translate-x-1/2">
-                        Motorhome
-                    </div>
-                </a>
-                <div class="dropdown-content absolute right-[-17px] mt-[12px] w-40 rounded-md shadow-lg bg-white ring-1 ring-black"
+  <!-- Menu de navegação (exibido em telas menores) -->
+  <section class="flex items-center space-x-3">
+    <ul
+      id="menuHamburguer"
+      class="hidden md:flex md:space-x-5 md:text-white"
+      [ngClass]="{ active: isMenuOpen }"
+    >
+      <li class="flex flex-col items-center">
+        <a routerLink="/" href="mount-icon" class="group inline-block relative">
+          <img
+            src="../../../assets/icons/mountain-icon.png"
+            alt="menu de lugares"
+            class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:opacity-70"
+            width="38"
+            height="38"
+          />
+          <div
+            class="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute left-1/2 transform -translate-x-1/2"
+          >
+            Lugares
+          </div>
+        </a>
+      </li>
+      <li class="dropdown flex flex-col items-center">
+        <a routerLink="/motor-reservas" class="group inline-block relative">
+          <img
+            src="../../../assets/icons/motorhome-icon.png"
+            alt="menu motorhome"
+            class="group-hover:transition duration-300 ease-in-out group-hover:filter group-hover:opacity-70"
+            width="38"
+            height="38"
+          />
+          <div
+            class="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute left-1/2 transform -translate-x-1/2"
+          >
+            Motor de Reservas
+          </div>
+        </a>
+        <!-- <div class="dropdown-content absolute right-[-17px] mt-[12px] w-40 rounded-md shadow-lg bg-white ring-1 ring-black"
                     role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                     <div class="py-1" role="none">
                         <a routerLink="/admin-panel" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Cadastro Camping</a>
                         <a routerLink="" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Cadastro Smart Camping</a>
                         <a routerLink="" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Reservas</a>
                     </div>
-                </div>
-            </li>
-            <li class="dropdown flex flex-col items-center mt-0.5">
-                <a href="#" class="group inline-block relative">
-                    <img src="../../../assets/icons/globe-icon.png" alt="menu idiomas"
-                        class="group-hover:transition duration-800 ease-in-out group-hover:filter group-hover:opacity-70"
-                        width="35" height="35">
-                    <div
-                        class="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute  left-1/2 transform -translate-x-1/2">
-                        Idioma
-                    </div>
-                </a>
-                <div class="dropdown-content absolute right-[-17px] mt-[12px] w-40 rounded-md shadow-lg bg-white ring-1 ring-black"
-                    role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                    <div class="py-1" role="none">
-                        <a routerLink="" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">English</a>
-                        <a routerLink="" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Português</a>
-                        <a routerLink="" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">Español</a>
-                    </div>
-                </div>
-            </li>
-          
-            <div class="items-end group inline-block">
-                <button *ngIf="!isLoggedIn"
-                    class="bg-blueDark hover:brightness-75 text-white font-bold py-2 px-3 rounded-full relative">
-                    <div class="text-center lg:text-xs md:text-xs" routerLink="/login">
-                        Entrar
-                    </div>
-                </button>
-                <button *ngIf="isLoggedIn" (click)="logout()"
-                    class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full relative">
-                    <div class="text-center md:text-xs">
-                        Sair
-                    </div>
-                </button>
-            </div>
-        </ul>
-    </section>
+                </div> -->
+      </li>
+      <li class="dropdown flex flex-col items-center mt-0.5">
+        <a href="#" class="group inline-block relative">
+          <img
+            src="../../../assets/icons/globe-icon.png"
+            alt="menu idiomas"
+            class="group-hover:transition duration-800 ease-in-out group-hover:filter group-hover:opacity-70"
+            width="35"
+            height="35"
+          />
+          <div
+            class="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute left-1/2 transform -translate-x-1/2"
+          >
+            Idioma
+          </div>
+        </a>
+        <div
+          class="dropdown-content absolute right-[-17px] mt-[12px] w-40 rounded-md shadow-lg bg-white ring-1 ring-black"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="options-menu"
+        >
+          <div class="py-1" role="none">
+            <a
+              routerLink=""
+              class="text-gray-700 block px-4 py-2 text-sm"
+              role="menuitem"
+              >English</a
+            >
+            <a
+              routerLink=""
+              class="text-gray-700 block px-4 py-2 text-sm"
+              role="menuitem"
+              >Português</a
+            >
+            <a
+              routerLink=""
+              class="text-gray-700 block px-4 py-2 text-sm"
+              role="menuitem"
+              >Español</a
+            >
+          </div>
+        </div>
+      </li>
+
+      <div class="items-end group inline-block">
+        <button
+          *ngIf="!isLoggedIn"
+          class="bg-blueDark hover:brightness-75 text-white font-bold py-2 px-3 rounded-full relative"
+        >
+          <div class="btn-text-center md:text-xs" routerLink="/login">
+            Entrar
+          </div>
+        </button>
+        <button
+          *ngIf="isLoggedIn"
+          (click)="logout()"
+          class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-4 rounded-full"
+        >
+          <div class="text-center md:text-xs">Sair</div>
+        </button>
+      </div>
+    </ul>
+  </section>
 </nav>

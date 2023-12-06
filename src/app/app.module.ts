@@ -1,7 +1,7 @@
+import { GalleriaModule } from 'primeng/galleria';
 import { MatTabsModule } from '@angular/material/tabs';
-import { CarouselModule } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
@@ -55,7 +55,23 @@ import { ModalComponent } from './components/modal/modal.component';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { CampingRulesComponent } from './views/rules-politics/camping-rules/camping-rules.component';
 import { CampingPoliticsComponent } from './views/rules-politics/camping-politics/camping-politics.component';
+import { MotorReservaModule } from './motor-reserva/motor-reserva.module';
+import { AppAdminModule } from './motor-reserva/layout/app.admin.module';
 
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { LoadingModule } from './components/loading/loading.module';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { CarouselModule } from 'primeng/carousel';
+import { CalendarModule } from 'primeng/calendar';
+import { ButtonModule } from 'primeng/button';
+import { ChipModule } from 'primeng/chip';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { MatSelectModule } from '@angular/material/select';
+import { SelectButtonModule } from 'primeng/selectbutton';
+registerLocaleData(ptBr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,14 +96,12 @@ import { CampingPoliticsComponent } from './views/rules-politics/camping-politic
     LeadsComponent,
     CaroselComponent,
     LoadingSkeletonComponent,
-    LoadingComponent,
     ImgUploadComponent,
     SidebarComponent,
     CampingBoxComponent,
     CampingRulesComponent,
     CampingPoliticsComponent,
-    // ModalComponent,
-    
+    ModalComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -101,7 +115,6 @@ import { CampingPoliticsComponent } from './views/rules-politics/camping-politic
     CKEditorModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    CarouselModule,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
@@ -110,11 +123,25 @@ import { CampingPoliticsComponent } from './views/rules-politics/camping-politic
     MatSnackBarModule,
     MatButtonModule,
     CommonModule,
-		FormsModule,
+    FormsModule,
     // FileDemoComponent,
-		FileUploadModule,
+    FileUploadModule,
     TieredMenuModule,
+    MotorReservaModule,
+    AppAdminModule,
+    ToastModule,
+    ButtonModule,
+    LoadingModule,
+    GalleriaModule,
+    CarouselModule,
+    CalendarModule,
+    ChipModule,
+    DropdownModule,
+    MatSelectModule,
+    SelectButtonModule,
+    DialogModule,
   ],
   bootstrap: [AppComponent],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],
 })
 export class AppModule {}

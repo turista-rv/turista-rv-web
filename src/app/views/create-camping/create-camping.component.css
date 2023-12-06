@@ -2,11 +2,10 @@
   margin: 0 auto;
   width: 100%;
   max-width: 700px;
-  overflow-x: auto; /* responsividade telas menores */
-  border-collapse: separate;  /* espaçamento entre as linhas */
-  border-spacing: 0 10px; /* espaçamento entre as linhas needed */
+  overflow-x: auto; 
+  border-collapse: separate;  
+  border-spacing: 0 10px; 
 }
-
 
 #tabela th{
   padding: 6px;
@@ -14,11 +13,11 @@
 }
 
 #tabela tr:not(:last-child) {
-  margin-bottom: 10px; /* cria espaçamento entre as linhas */
+  margin-bottom: 10px; 
 }
 
 #tabela td {
-  border: 1px solid white; /* borda apenas nos cantos da linha*/
+  border: 1px solid white; 
   background-color: white;
   padding: 6px;
   /* min-width: 100px; */
@@ -26,12 +25,12 @@
 }
 
 input:focus {
-  border-color: rgb(248 147 31) !important;
+  border-color: #f8931f !important;
   box-shadow: none !important;
 }
 
 textarea:focus {
-  border-color: rgb(248 147 31) !important;
+  border-color: #f8931f !important;
   box-shadow: none !important;
 }
 
