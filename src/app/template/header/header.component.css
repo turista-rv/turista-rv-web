@@ -59,3 +59,13 @@ nav.active li {
 nav.active a[href="/login"] {
   margin-left: auto;
 }
+
+::ng-deep .btn-entrar .btn-text-center{
+  color: white;
+}
+
+
+::ng-deep .text-center{
+  color: black;
+  background-color: white;
+}
