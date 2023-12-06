@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Camping } from 'src/app/models/camping.model';
 import { CampingService } from 'src/app/services/camping.service';
+import { RULES, IRules } from './../../utils/rules-enum';
 
 @Component({
   selector: 'app-campings',
@@ -13,15 +13,35 @@ import { CampingService } from 'src/app/services/camping.service';
 export class CampingsComponent implements OnInit {
   camping!: Camping;
   id: string | null = null;
-  dataEntrada: Date = new Date();
-  dataSaida: Date = new Date();
-
-  public Editor = ClassicEditor;
+  dataEntrada!: Date;
+  selectionDate!: any;
+  dataSaida!: Date;
+  tipoVeiculo!: string;
+  visible = false;
+  responsiveOptions: any[] = [
+    {
+      breakpoint: '1024px',
+      numVisible: 5,
+    },
+    {
+      breakpoint: '768px',
+      numVisible: 3,
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 1,
+    },
+  ];
 
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
+
+  get getRules(): IRules[] {
+    const rules = this.camping.propertyRules.split(',');
+    return RULES.filter((r) => rules.includes(r.code));
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -65,5 +85,18 @@ export class CampingsComponent implements OnInit {
     return !d || d >= currentDate;
   };
 
-  
+  onSelectDate(event: any) {
+    this.dataEntrada = this.selectionDate[0];
+    this.dataSaida = this.selectionDate[1];
+  }
+
+  verificarDisponibilidade(): void {
+    console.log(this.dataEntrada, this.dataSaida);
+  }
+
+  getFormatedDate(date: Date): string {
+    return `${date.getDate().toString().padStart(2, '0')}/${
+      date.getMonth() + 1
+    }/${date.getFullYear()}`;
+  }
 }

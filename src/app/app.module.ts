@@ -1,5 +1,5 @@
+import { GalleriaModule } from 'primeng/galleria';
 import { MatTabsModule } from '@angular/material/tabs';
-import { CarouselModule } from '@coreui/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -63,7 +63,14 @@ import { registerLocaleData } from '@angular/common';
 import { LoadingModule } from './components/loading/loading.module';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-
+import { CarouselModule } from 'primeng/carousel';
+import { CalendarModule } from 'primeng/calendar';
+import { ButtonModule } from 'primeng/button';
+import { ChipModule } from 'primeng/chip';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { MatSelectModule } from '@angular/material/select';
+import { SelectButtonModule } from 'primeng/selectbutton';
 registerLocaleData(ptBr);
 @NgModule({
   declarations: [
@@ -108,7 +115,6 @@ registerLocaleData(ptBr);
     CKEditorModule,
     BrowserAnimationsModule,
     MatTabsModule,
-    CarouselModule,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
@@ -124,7 +130,16 @@ registerLocaleData(ptBr);
     MotorReservaModule,
     AppAdminModule,
     ToastModule,
+    ButtonModule,
     LoadingModule,
+    GalleriaModule,
+    CarouselModule,
+    CalendarModule,
+    ChipModule,
+    DropdownModule,
+    MatSelectModule,
+    SelectButtonModule,
+    DialogModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],

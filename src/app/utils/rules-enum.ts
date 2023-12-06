@@ -1,3 +1,9 @@
+export interface IRules {
+  name: string;
+  code: string;
+  icon: string;
+}
+
 export const RULES = [
   { name: 'Banheiro', icon: 'fa-toilet', code: 'BAN' },
   { name: 'Chuveiro com água quente', icon: 'fa-shower', code: 'CHV' },
