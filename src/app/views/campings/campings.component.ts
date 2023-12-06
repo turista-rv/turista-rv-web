@@ -90,6 +90,7 @@ export class CampingsComponent implements OnInit {
       start: this.dataEntrada,
       end: this.dataSaida,
     });
+
   }
 
   verificarDisponibilidade(): void {
