@@ -58,8 +58,6 @@ import { CampingPoliticsComponent } from './views/rules-politics/camping-politic
 import { MotorReservaModule } from './motor-reserva/motor-reserva.module';
 import { AppAdminModule } from './motor-reserva/layout/app.admin.module';
 
-import ptBr from '@angular/common/locales/pt';
-import { registerLocaleData } from '@angular/common';
 import { LoadingModule } from './components/loading/loading.module';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -71,7 +69,8 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { MatSelectModule } from '@angular/material/select';
 import { SelectButtonModule } from 'primeng/selectbutton';
-registerLocaleData(ptBr);
+import { CampingSearchComponent } from './views/camping-search/camping-search.component';
+import { DataViewModule } from 'primeng/dataview';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,6 +101,7 @@ registerLocaleData(ptBr);
     CampingRulesComponent,
     CampingPoliticsComponent,
     ModalComponent,
+    CampingSearchComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -123,7 +123,6 @@ registerLocaleData(ptBr);
     MatSnackBarModule,
     MatButtonModule,
     CommonModule,
-    FormsModule,
     // FileDemoComponent,
     FileUploadModule,
     TieredMenuModule,
@@ -140,6 +139,7 @@ registerLocaleData(ptBr);
     MatSelectModule,
     SelectButtonModule,
     DialogModule,
+    DataViewModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],
