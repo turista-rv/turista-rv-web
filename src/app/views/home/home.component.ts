@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Leads } from './../../models/LeadsUser.model';
 import { LeadsService } from './../../services/leads.service';
 import { LoadingService } from 'src/app/components/loading/loading.service';
+import { SkeletonService } from 'src/app/components/skeleton/skeleton.service';
 
 interface ImageInfo {
   imageFileName: string;

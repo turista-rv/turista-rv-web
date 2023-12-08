@@ -71,6 +71,8 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { MatSelectModule } from '@angular/material/select';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { SkeletonModule } from './components/skeleton/skeleton.module';
 registerLocaleData(ptBr);
 @NgModule({
   declarations: [
@@ -140,6 +142,7 @@ registerLocaleData(ptBr);
     MatSelectModule,
     SelectButtonModule,
     DialogModule,
+    SkeletonModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],

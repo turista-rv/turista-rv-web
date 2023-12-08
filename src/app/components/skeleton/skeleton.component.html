@@ -1,0 +1,23 @@
+<ng-container *ngIf="skeleton.isLoading">
+  <ng-container [ngSwitch]="mode">
+    <p-skeleton *ngSwitchCase="'rectangle'" [width]="width" [height]="height"
+      ><ng-container></ng-container
+    ></p-skeleton>
+
+    <p-skeleton
+      *ngSwitchCase="'rounded'"
+      [width]="width"
+      [height]="height"
+      [borderRadius]="borderRadius"
+      ><ng-container></ng-container
+    ></p-skeleton>
+
+    <p-skeleton *ngSwitchCase="'square'" [size]="size"
+      ><ng-container></ng-container
+    ></p-skeleton>
+
+    <p-skeleton *ngSwitchCase="'circle'" shape="circle" [size]="size"
+      ><ng-container></ng-container
+    ></p-skeleton>
+  </ng-container>
+</ng-container>

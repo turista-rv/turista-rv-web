@@ -2,19 +2,29 @@
   <app-header></app-header>
 </header>
 <main>
-  <div class="bg-cover bg-center h-screen mx-auto w-100%"
-    style="background-image: url('../../../assets/img/background.png')">
-  </div>
+  <div
+    class="bg-cover bg-center h-screen mx-auto w-100%"
+    style="background-image: url('../../../assets/img/background.png')"
+  ></div>
 
   <!-- Menu Suspenso d-->
-  <section class="container-card-explore grid grid-cols-3 gap-6 lg:grid-cols-3 xl:gap-x-9 sm:gap-x-4">
-    <div class="background bg-white bg-opacity-80 rounded-lg shadow-lg relative">
+  <section
+    class="container-card-explore grid grid-cols-3 gap-6 lg:grid-cols-3 xl:gap-x-9 sm:gap-x-4"
+  >
+    <div
+      class="background bg-white bg-opacity-80 rounded-lg shadow-lg relative"
+    >
       <div class="tabs text-blueDark">
         <div class="tab flex justify-center items-center">
-          <button class="tablinks" *ngFor="let tab of tabs; let i = index" (click)="changeTab(i)" [ngClass]="{
+          <button
+            class="tablinks"
+            *ngFor="let tab of tabs; let i = index"
+            (click)="changeTab(i)"
+            [ngClass]="{
               'bg-opacity-80 text-blueDark font-normal': activeTab === i,
               'bg-blueDark text-white font-normal': activeTab !== i
-            }">
+            }"
+          >
             <span *ngIf="i === 1" class="mr-2">
               <i class="fas fa-lightbulb"></i>
             </span>
@@ -31,25 +41,40 @@
           </button>
         </div>
         <!-- CAMPO DE BUSCA -->
-        <section class="search-adventure flex justify-center items-center mt-5 mb-32">
+        <section
+          class="search-adventure flex justify-center items-center mt-5 mb-28"
+        >
           <div class="relative">
-            <input type="search" placeholder="Encontre sua próxima aventura..."
+            <input
+              type="search"
+              placeholder="Encontre sua próxima aventura..."
               class="border text-center rounded-lg pr-7 focus:outline-none focus:border-orangeDark text-md"
-              style="width: 300px; height: 40px" id="searchInput" [(ngModel)]="searchTerm" (input)="filterCards()" />
+              style="width: 300px; height: 40px"
+              id="searchInput"
+              [(ngModel)]="searchTerm"
+              (input)="filterCards()"
+            />
             <div class="absolute inset-y-0 right-0 flex items-center pr-1">
-              <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="35" height="35" viewBox="0,0,256,256">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0"
+                y="0"
+                width="35"
+                height="35"
+                viewBox="0,0,256,256"
+              >
                 <g fill="#f8931f" fill-rule="nonzero">
                   <g transform="scale(5.33333,5.33333)">
                     <path
-                      d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z">
-                    </path>
+                      d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z"
+                    ></path>
                   </g>
                 </g>
               </svg>
             </div>
           </div>
         </section>
-        <div class="card-explore flex justify-center items-center mt-4">
+        <div class="card-explore flex justify-center items-center">
           <app-camping-show *ngIf="activeTab == 0"></app-camping-show>
         </div>
       </div>
@@ -57,7 +82,7 @@
   </section>
 
   <!-- VANTAGENS DO SMART CAMPING -->
-  <div class="z-10 mt-10">
+  <div class="z-10 mt-2">
     <h2 class="text-center text-2xl font-regular mb-4">
       No <b class="smart-text"> Smart Camping</b> você encontra o que realmente
       importa...
@@ -65,11 +90,15 @@
 
     <!-- EXPERIENCIAS -->
     <section class="flex flex-wrap justify-center mt-10">
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
+      <div
+        class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2"
+      >
         <div class="background">
-          <img src="../../../assets/icons/freedom.png" class="object-cover mt-7 w-full h-full"
-            style="width: 50px; height: 50px" />
-
+          <img
+            src="../../../assets/icons/freedom.png"
+            class="object-cover mt-7 w-full h-full"
+            style="width: 50px; height: 50px"
+          />
         </div>
         <h5 class="smart-text text-lg font-bold">LIBERDADE</h5>
         <p class="p-3">
@@ -78,9 +107,14 @@
         </p>
       </div>
 
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-        <img src="../../../assets/icons/autonomy.png" class="object-cover mt-7 w-full h-full"
-          style="width: 50px; height: 50px" />
+      <div
+        class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2"
+      >
+        <img
+          src="../../../assets/icons/autonomy.png"
+          class="object-cover mt-7 w-full h-full"
+          style="width: 50px; height: 50px"
+        />
         <h5 class="smart-text text-lg font-bold">AUTONOMIA</h5>
         <p class="p-3">
           Reservas de vagas antecipadas ou no momento da chegada. Pagamento na
@@ -89,9 +123,14 @@
         </p>
       </div>
 
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-        <img src="../../../assets/icons/economy.png" class="object-cover mt-7 w-full h-full"
-          style="width: 50px; height: 50px" />
+      <div
+        class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2"
+      >
+        <img
+          src="../../../assets/icons/economy.png"
+          class="object-cover mt-7 w-full h-full"
+          style="width: 50px; height: 50px"
+        />
         <h5 class="smart-text text-lg font-bold">ECONOMIA</h5>
         <p class="p-3">
           Valor de diária cobrado por veículo. Preços compatíveis com serviços
@@ -100,9 +139,14 @@
       </div>
     </section>
     <section class="flex flex-wrap justify-center mt-5">
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-        <img src="../../../assets/icons/experiences.png" class="object-cover mt-7 w-full h-full"
-          style="width: 50px; height: 50px" />
+      <div
+        class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2"
+      >
+        <img
+          src="../../../assets/icons/experiences.png"
+          class="object-cover mt-7 w-full h-full"
+          style="width: 50px; height: 50px"
+        />
         <h5 class="smart-text text-lg font-bold">EXPERIÊNCIAS</h5>
         <p class="p-3">
           Atividades para sua viagem ou passeio. Atrativos, restaurantes, bares,
@@ -110,9 +154,14 @@
         </p>
       </div>
 
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-        <img src="../../../assets/icons/peace.png" class="object-cover mt-7 w-full h-full"
-          style="width: 50px; height: 50px" />
+      <div
+        class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2"
+      >
+        <img
+          src="../../../assets/icons/peace.png"
+          class="object-cover mt-7 w-full h-full"
+          style="width: 50px; height: 50px"
+        />
         <h5 class="smart-text text-lg font-bold">TRANQUILIDADE</h5>
         <p class="p-3">
           Local cercado e com câmeras de monitoramento, com armazenamento de
@@ -120,9 +169,14 @@
         </p>
       </div>
 
-      <div class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2">
-        <img src="../../../assets/icons/confort.png" class="object-cover mt-7 w-full h-full"
-          style="width: 50px; height: 50px" />
+      <div
+        class="card bg-white rounded-lg shadow-lg overflow-hidden w-80 h-80 mb-2 mx-2"
+      >
+        <img
+          src="../../../assets/icons/confort.png"
+          class="object-cover mt-7 w-full h-full"
+          style="width: 50px; height: 50px"
+        />
         <h5 class="smart-text text-lg font-bold">COMODIDADES</h5>
         <p class="p-3">
           Priorizamos boa localização e acesso, próximos a conveniências,
@@ -137,20 +191,27 @@
       <div class="overflow-y-scroll">
         <h4 class="text-blueMid mb-12 text-22 font-bold">Novidades:</h4>
 
-        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-x-12 justify-center items-center mt-3">
+        <div
+          class="grid grid-cols-1 gap-6 lg:grid-cols-3 xl:gap-x-12 justify-center items-center mt-3"
+        >
           <div class="card-news mb-2">
             <div
-              class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+              class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+            >
               <div class="flex">
                 <div
                   class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
-                  data-te-ripple-init data-te-ripple-color="light">
-                  <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/024.webp"
-                    class="object-cover w-full h-full" />
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                >
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/standard/city/024.webp"
+                    class="object-cover w-full h-full"
+                  />
                   <a href="#!">
                     <div
-                      class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
-                    </div>
+                      class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]"
+                    ></div>
                   </a>
                 </div>
               </div>
@@ -164,8 +225,12 @@
                   arcu, non vehicula nisl dui quis diam. Mauris ut risus eget
                   massa volutpat feugiat. Donec.
                 </p>
-                <a href="#!" data-te-ripple-init data-te-ripple-color="light"
-                  class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                <a
+                  href="#!"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                >
                   Saiba Mais
                 </a>
               </div>
@@ -174,18 +239,22 @@
 
           <div class="card-news mb-2">
             <div
-              class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+              class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+            >
               <div class="flex">
                 <div
                   class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
-                  data-te-ripple-init data-te-ripple-color="light">
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                >
                   <img
                     src="https://www.segueviagem.com.br/wp-content/uploads/2022/04/pomerode-Credito-editorial-William-Avila-Shutterstock.com-shutterstock_2109732470.jpg"
-                    class="w-full" />
+                    class="w-full"
+                  />
                   <a href="#!">
                     <div
-                      class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
-                    </div>
+                      class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]"
+                    ></div>
                   </a>
                 </div>
               </div>
@@ -199,8 +268,12 @@
                   diam orci, nec ornare metus semper sed. Integer volutpat
                   ornare erat sit amet rutrum.
                 </p>
-                <a href="#!" data-te-ripple-init data-te-ripple-color="light"
-                  class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                <a
+                  href="#!"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                >
                   Saiba Mais
                 </a>
               </div>
@@ -209,16 +282,22 @@
 
           <div class="card-news mb-2">
             <div
-              class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+              class="relative block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+            >
               <div class="flex">
                 <div
                   class="relative mx-4 -mt-4 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
-                  data-te-ripple-init data-te-ripple-color="light">
-                  <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/081.webp" class="w-full" />
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                >
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/standard/city/081.webp"
+                    class="w-full"
+                  />
                   <a href="#!">
                     <div
-                      class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
-                    </div>
+                      class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]"
+                    ></div>
                   </a>
                 </div>
               </div>
@@ -234,8 +313,12 @@
                   arcu, non vehicula nisl dui quis diam. Mauris ut risus eget
                   massa volutpat feugiat. Donec.
                 </p>
-                <a href="#!" data-te-ripple-init data-te-ripple-color="light"
-                  class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                <a
+                  href="#!"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  class="inline-block rounded-full bg-blueDark px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blueMid hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                >
                   Saiba Mais
                 </a>
               </div>
@@ -247,32 +330,40 @@
 
     <!-- Seja um Afiliado -->
     <section class="container mx-auto px-4 py-4 w-full">
-      <div class="bg-black w-full h-500 rounded mb-4 relative flex flex-col sm:flex-row">
+      <div
+        class="bg-black w-full h-500 rounded mb-4 relative flex flex-col sm:flex-row"
+      >
         <div class="h-auto sm:w-2/3 mb-4 sm:mb-0">
-          <img src="../../../assets/img/motorhomeNight.jpg" alt="motorhome estacionado à noite"
-            class="w-full h-full sm:w-auto rounded-l-lg" />
+          <img
+            src="../../../assets/img/motorhomeNight.jpg"
+            alt="motorhome estacionado à noite"
+            class="w-full h-full sm:w-auto rounded-l-lg"
+          />
         </div>
-        <div class="w-full sm:w-1/3 flex flex-col p-4 mt-2 items-center sm:items-start">
-          <div class="mb-14 mt-4 text-center ">
-            <h2 class="text-white font-bold text-32">
-              Seja um Afiliado:
-            </h2>
+        <div
+          class="w-full sm:w-1/3 flex flex-col p-4 mt-2 items-center sm:items-start"
+        >
+          <div class="mb-14 mt-4 text-center">
+            <h2 class="text-white font-bold text-32">Seja um Afiliado:</h2>
             <p class="text-white mt-4 text-md">
               VOCÊ TEM TERRENO OCIOSO E QUER TRANSFORMAR CUSTO
-              <br> EM LUCRO?
+              <br />
+              EM LUCRO?
             </p>
             <p class="text-white mt-7 mb-4">
-              Entre em contato e venha fazer parte, aproveite os benefícios da nossa plataforma.
+              Entre em contato e venha fazer parte, aproveite os benefícios da
+              nossa plataforma.
             </p>
-            <button routerLink="/hostess"
-              class="bg-greenDark py-2 text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center">
+            <button
+              routerLink="/hostess"
+              class="bg-greenDark py-2 text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center"
+            >
               Entrar em Contato
             </button>
           </div>
         </div>
       </div>
     </section>
-
 
     <!-- Newsletter -->
     <section class="container mx-auto px-4 py-4 w-full">
@@ -285,18 +376,32 @@
           </p>
 
           <div class="flex flex-col mx-auto items-center">
-            <input type="text" [(ngModel)]="leads.name" placeholder="Digite seu nome"
-              class="md:w-400 sm:w-90 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black" />
+            <input
+              type="text"
+              [(ngModel)]="leads.name"
+              placeholder="Digite seu nome"
+              class="md:w-400 sm:w-90 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black"
+            />
 
-            <input type="email" [(ngModel)]="leads.email" placeholder="Digite seu melhor e-mail"
-              class="md:w-400 sm:w-90 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black" />
+            <input
+              type="email"
+              [(ngModel)]="leads.email"
+              placeholder="Digite seu melhor e-mail"
+              class="md:w-400 sm:w-90 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black"
+            />
 
-            <input type="text" [(ngModel)]="leads.phone" placeholder="Digite seu whatsapp"
-              class="md:w-400 sm:w-90 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black" />
+            <input
+              type="text"
+              [(ngModel)]="leads.phone"
+              placeholder="Digite seu whatsapp"
+              class="md:w-400 sm:w-90 px-4 py-2 mb-2 rounded border border-black focus:outline-none focus:border-orangeDark text-black"
+            />
 
             <button
               class="bg-greenDark flex items-center py-2 text-white rounded-lg gap-3 text-18 w-200 h-55 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center"
-              (click)="submitForm()" type="button">
+              (click)="submitForm()"
+              type="button"
+            >
               Cadastrar
             </button>
           </div>

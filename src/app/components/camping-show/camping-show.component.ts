@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { debounceTime, delay, finalize } from 'rxjs';
 import { Camping } from 'src/app/models/camping.model';
 import { CampingService } from 'src/app/services/camping.service';
-import { LoadingService } from '../loading/loading.service';
-import { finalize } from 'rxjs';
+import { SkeletonService } from '../skeleton/skeleton.service';
 
 @Component({
   selector: 'app-camping-show',
@@ -15,16 +15,16 @@ export class CampingShowComponent {
   constructor(
     private campingService: CampingService,
     private router: Router,
-    private _loading: LoadingService
+    private skeleton: SkeletonService
   ) {}
 
   ngOnInit(): void {
-    this._loading.start();
+    this.skeleton.start();
     this.campingService
       .listCampings()
       .pipe(
         finalize(() => {
-          this._loading.stop();
+          this.skeleton.stop();
         })
       )
       .subscribe((data) => {
