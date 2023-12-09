@@ -71,6 +71,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CampingSearchComponent } from './views/camping-search/camping-search.component';
 import { DataViewModule } from 'primeng/dataview';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { SkeletonModule } from './components/skeleton/skeleton.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -140,6 +142,7 @@ import { DataViewModule } from 'primeng/dataview';
     SelectButtonModule,
     DialogModule,
     DataViewModule,
+    SkeletonModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],
