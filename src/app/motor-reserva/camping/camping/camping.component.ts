@@ -83,7 +83,6 @@ export class CampingComponent implements OnInit {
       .subscribe((data: Camping[]) => {
         if (data.length > 0) {
           this.campings = data;
-          console.log(data);
         }
       });
   }
