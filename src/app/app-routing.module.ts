@@ -1,3 +1,5 @@
+import { CampingBoxComponent } from './components/camping-box/camping-box.component';
+import { CampingSearchComponent } from './views/camping-search/camping-search.component';
 import { CampingRulesComponent } from './views/rules-politics/camping-rules/camping-rules.component';
 import { CampingPoliticsComponent } from './views/rules-politics/camping-politics/camping-politics.component';
 import { adminGuard } from './guards/admin.guard';
@@ -75,6 +77,14 @@ const routes: Routes = [
   {
     path: 'camping-politics',
     component: CampingPoliticsComponent,
+  },
+  {
+    path: 'camping-search',
+    component: CampingSearchComponent,
+  },
+  {
+    path: 'camping-box',
+    component: CampingBoxComponent,
   },
 ];
 
