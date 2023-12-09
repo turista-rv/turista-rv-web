@@ -73,6 +73,7 @@ import { CampingSearchComponent } from './views/camping-search/camping-search.co
 import { DataViewModule } from 'primeng/dataview';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SkeletonModule } from './components/skeleton/skeleton.module';
+import { SliderModule } from 'primeng/slider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -143,6 +144,7 @@ import { SkeletonModule } from './components/skeleton/skeleton.module';
     DialogModule,
     DataViewModule,
     SkeletonModule,
+    SliderModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],

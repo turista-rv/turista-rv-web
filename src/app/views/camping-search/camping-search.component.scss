@@ -16,3 +16,82 @@
     background-color:  #036938;
     color: white; 
   }
+
+
+  .slider-container {
+    position: relative;
+    padding: 0.7rem;
+    
+    .slider-label {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      white-space: nowrap;
+  
+      &.left {
+        left: 0;
+      }
+  
+      &.right {
+        right: 0;
+      }
+    }
+  
+    .left {
+      transform: translate(-100%, -80%);
+    }
+  
+    .right {
+      transform: translate(100%, -80%);
+    }
+  }
+  
+  
+
+  // MENU FILTRO CELULAR
+.filter-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Estilo para o container do menu lateral */
+.menu-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  transition: transform 0.3s ease;
+  transform: translateX(100%);
+  z-index: 900;
+}
+
+/* Estilo para o menu aberto */
+.menu-container.open {
+  transform: translateX(0);
+}
+
+/* Estilo para o botão de fechar o menu lateral */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Estilo para deslocar o conteúdo principal quando o menu está aberto */
+.content-container.shifted {
+  transform: translateX(-300px);
+  transition: transform 0.3s ease;
+}

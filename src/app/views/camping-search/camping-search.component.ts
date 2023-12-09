@@ -3,6 +3,7 @@ import { CampingService } from 'src/app/services/camping.service';
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { RULES } from 'src/app/utils/rules-enum';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 interface Rule {
   name: string;
@@ -16,28 +17,27 @@ interface Rule {
   styleUrls: ['./camping-search.component.scss']
 })
 
-
 export class CampingSearchComponent implements OnInit {
   camping: Camping[] = [];
   sortOptions!: SelectItem[];
   rules: Rule[] = RULES;
 
   sortOrder!: number;
-
   sortField!: string;
   sortKey: any;
-  rangeValues: number[] = [35, 200];
+  rangeValues: number[] = [0, 50];
   selectedCategory: string = 'all';
-  selectedPrice: number[] = [35, 200];
+  isSmallScreen: boolean = false;
+  showFilters: boolean = false;
+  showFiltersButton = true;
 
   ratingValue: number = 4;
   category = 'Smart Camping';
 
-getRules(): Rule[] {
-  return RULES.slice(0, 4);
-}
-
-  constructor(private _service: CampingService) { }
+  constructor(
+    private _service: CampingService,
+    private breakpointObserver: BreakpointObserver
+  ) { }
 
   ngOnInit(): void {
     this.loadCampings();
@@ -46,16 +46,32 @@ getRules(): Rule[] {
       { label: 'Maior preço', value: 'baseValue' },
       { label: 'Distância', value: '' }
     ];
+
+    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall])
+      .subscribe(result => {
+        this.isSmallScreen = result.matches;
+      });
   }
 
   loadCampings() {
     this._service.listCampings().subscribe((data: Camping[]) => {
       if (data.length > 0) {
         this.camping = data;
-      
       }
     });
   }
+
+  toggleFilters(): void {
+    this.showFilters = !this.showFilters;
+    if (this.showFilters) {
+      this.isSmallScreen ? this.hideFiltersButton() : (this.showFiltersButton = false);
+    }
+  }
+  
+  hideFiltersButton(): void {
+    this.showFiltersButton = false;
+  }
+  
   selectCategory(category: string) {
     this.selectedCategory = category;
     this.loadCampings();
@@ -81,7 +97,8 @@ getRules(): Rule[] {
     }
   }
 
-
+  getRules(camping: Camping): Rule[] {
+    const ruleCodes = camping.propertyRules.slice(0, 4);
+    return camping?.propertyRules?.length > 0 ? RULES.filter(r => camping.propertyRules.includes(r.code)) : [];
+  }
 }
-
-
