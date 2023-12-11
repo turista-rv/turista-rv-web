@@ -1,20 +1,27 @@
 <div class="flex flex-col sm:flex-row justify-center">
   <div class="flex xl:w-1/5 lg:1/5 sm:w-full justify-center">
     <div class="p-4" *ngIf="showFiltersButton && !(showFilters && !isSmallScreen)">
-      <button class="block sm:hidden p-2 border rounded-md border-blueDark text-slate-500" (click)="toggleFilters()">Filtros</button>
+      <button class="block sm:hidden p-2 border rounded-md border-blueDark text-slate-500"
+        (click)="toggleFilters()">Filtros</button>
     </div>
-  
+
     <div class="sm:w-full md:w-full lg:w-full xl:w-full p-4" [ngClass]="{'hidden': !showFilters && isSmallScreen}">
-    <div class="card flex h-[890px] flex-col justify-content-center">
+      <div class="card flex h-[890px] flex-col justify-content-center">
+        <div id="miniMap" style="height: 200px;"></div>
         <h2 class="mb-3">Filtros</h2>
         <div class="mb-3">
           <label class="font-semibold">Categoria:</label>
           <div class="flex flex-wrap gap-2 mt-3">
-            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'all'}" (click)="selectCategory('all')">Todos</button>
-            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'smart'}"(click)="selectCategory('smart')">Smart Campings</button>
-            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'campings'}"(click)="selectCategory('campings')">Campings</button>
-            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'glampings'}"(click)="selectCategory('glampings')">Glampings/Chalés</button>
-            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'experiences'}"(click)="selectCategory('experiences')">Experiências/Atrações</button>
+            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'all'}"
+              (click)="selectCategory('all')">Todos</button>
+            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'smart'}"
+              (click)="selectCategory('smart')">Smart Campings</button>
+            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'campings'}"
+              (click)="selectCategory('campings')">Campings</button>
+            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'glampings'}"
+              (click)="selectCategory('glampings')">Glampings/Chalés</button>
+            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'experiences'}"
+              (click)="selectCategory('experiences')">Experiências/Atrações</button>
           </div>
         </div>
         <div class="mb-10">
@@ -28,7 +35,7 @@
               {{ rangeValues[1] }}
             </div>
           </div>
-          
+
         </div>
         <button class="absolute top-4 right-5 p-2" (click)="toggleFilters()">
           <i class="fa fa-times text-grays4"></i>
@@ -36,8 +43,8 @@
       </div>
     </div>
   </div>
-  
- <!-- TABELA -->
+
+  <!-- TABELA -->
   <div class="flex-grow p-4">
     <p-dataView #dv [value]="camping" [sortField]="sortField" [sortOrder]="sortOrder">
       <ng-template pTemplate="header">
@@ -54,33 +61,37 @@
               <img
                 class="w-full sm:w-[200px] h-auto object-cover sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round mb-4 sm:mb-0 rounded"
                 *ngIf="camping.images.length > 0" [src]="camping.images[0].url" />
-                <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                  <div class="text-2xl font-bold text-900">{{ camping.name }}</div>
-                  <!-- <p-rating [(ngModel)]="rating" [readonly]="true" [cancel]="false"></p-rating> -->
-                  <div class="flex align-items-center gap-3">
-                    <span class="flex align-items-center gap-2">
-                      <i class="pi pi-tag"></i>
-                      <span class="font-semibold">{{ category }}</span>
-                    </span>
+              <div
+                class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                <div class="text-2xl font-bold text-900">{{ camping.name }}</div>
+                <!-- <p-rating [(ngModel)]="rating" [readonly]="true" [cancel]="false"></p-rating> -->
+                <div class="flex align-items-center gap-3">
+                  <span class="flex align-items-center gap-2">
+                    <i class="pi pi-tag"></i>
+                    <span class="font-semibold">{{ category }}</span>
+                  </span>
 
-                    <div class="flex gap-2 flex-wrap">
-                      <ng-container *ngIf="isSmallScreen; else showRules">
-                          <ng-container *ngFor="let rule of getRules(camping).slice(0, 4)">
-                            <i class="fa {{ rule?.icon }}" title="{{ rule?.name }}"></i>
-                          </ng-container>
+                  <div class="flex gap-2 flex-wrap">
+                    <ng-container *ngIf="isSmallScreen; else showRules">
+                      <ng-container *ngFor="let rule of getRules(camping).slice(0, 4)">
+                        <i class="fa {{ rule?.icon }}" title="{{ rule?.name }}"></i>
                       </ng-container>
-                    
-                      <ng-template #showRules>
-                        <div *ngFor="let rule of getRules(camping).slice(0, 4)" title="{{ rule?.name }}" style="cursor: default;">
-                          <i class="fa {{ rule?.icon }}"></i>
-                          {{ rule?.code }}
-                        </div>
-                      </ng-template>
-                    </div>
-                  </div>
+                    </ng-container>
 
-                <div class="flex flex-row-end sm:flex-column align-items justify-center sm:align-items-end gap-3 sm:gap-2">
-                  <span class="text-2xl font-semibold">R$ 50,00</span><p class="font-semibold text-1">/noite</p>
+                    <ng-template #showRules>
+                      <div *ngFor="let rule of getRules(camping).slice(0, 4)" title="{{ rule?.name }}"
+                        style="cursor: default;">
+                        <i class="fa {{ rule?.icon }}"></i>
+                        {{ rule?.code }}
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+
+                <div
+                  class="flex flex-row-end sm:flex-column align-items justify-center sm:align-items-end gap-3 sm:gap-2">
+                  <span class="text-2xl font-semibold">R$ 50,00</span>
+                  <p class="font-semibold text-1">/noite</p>
                   <!-- <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded"
                     [disabled]="camping.inventoryStatus === 'OUTOFSTOCK'">
                     <i class="fas fa-shopping-cart"></i>
@@ -93,3 +104,4 @@
       </ng-template>
     </p-dataView>
   </div>
+</div>

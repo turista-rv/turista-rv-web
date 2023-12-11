@@ -74,6 +74,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SkeletonModule } from './components/skeleton/skeleton.module';
 import { SliderModule } from 'primeng/slider';
+
 @NgModule({
   declarations: [
     AppComponent,
