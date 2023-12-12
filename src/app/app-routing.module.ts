@@ -83,7 +83,7 @@ const routes: Routes = [
     component: CampingSearchComponent,
   },
   {
-    path: 'camping-box',
+    path: 'camping-box/:id',
     component: CampingBoxComponent,
   },
 ];

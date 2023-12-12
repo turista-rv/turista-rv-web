@@ -95,3 +95,25 @@
   transform: translateX(-300px);
   transition: transform 0.3s ease;
 }
+
+
+/* RATING */
+
+.p-rating .p-rating-star::before {
+  content: none !important;
+}
+
+.p-rating {
+  background: none !important; 
+  border: none !important; 
+}
+
+/* Seletor para as estrelas ativas */
+::ng .p-rating-star-on {
+  color: yellow !important; 
+}
+
+.p-rating-star.p-rating-star-off {
+  color: #ccc !important; 
+}
+

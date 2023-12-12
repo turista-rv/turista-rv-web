@@ -74,6 +74,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SkeletonModule } from './components/skeleton/skeleton.module';
 import { SliderModule } from 'primeng/slider';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   declarations: [
@@ -146,6 +147,7 @@ import { SliderModule } from 'primeng/slider';
     DataViewModule,
     SkeletonModule,
     SliderModule,
+    RatingModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],

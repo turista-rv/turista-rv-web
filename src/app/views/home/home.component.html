@@ -41,44 +41,60 @@
           </button>
         </div>
         <!-- CAMPO DE BUSCA -->
-        <section
-          class="search-adventure flex justify-center items-center mt-5 mb-28"
-        >
+        <section class="flex flex-col search-adventure justify-center items-center mt-5 mb-7 relative">
           <div class="relative">
             <input
               type="search"
-              placeholder="Encontre sua próxima aventura..."
+              placeholder="Para onde você deseja ir?"
               class="border text-center rounded-lg pr-7 focus:outline-none focus:border-orangeDark text-md"
-              style="width: 300px; height: 40px"
+              style="width: 340px; height: 40px"
               id="searchInput"
               [(ngModel)]="searchTerm"
               (input)="filterCards()"
             />
-            <div class="absolute inset-y-0 right-0 flex items-center pr-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                x="0"
-                y="0"
-                width="35"
-                height="35"
-                viewBox="0,0,256,256"
-              >
-                <g fill="#f8931f" fill-rule="nonzero">
-                  <g transform="scale(5.33333,5.33333)">
-                    <path
-                      d="M20.5,6c-7.99037,0 -14.5,6.50964 -14.5,14.5c0,7.99036 6.50963,14.5 14.5,14.5c3.45636,0 6.63371,-1.22096 9.12891,-3.25l9.81055,9.81055c0.37623,0.39185 0.9349,0.54969 1.46055,0.41265c0.52565,-0.13704 0.93616,-0.54754 1.07319,-1.07319c0.13704,-0.52565 -0.0208,-1.08432 -0.41265,-1.46055l-9.81055,-9.81055c2.02904,-2.4952 3.25,-5.67255 3.25,-9.12891c0,-7.99036 -6.50963,-14.5 -14.5,-14.5zM20.5,9c6.36905,0 11.5,5.13096 11.5,11.5c0,3.10261 -1.2238,5.90572 -3.20898,7.9707c-0.12237,0.08994 -0.23037,0.19794 -0.32031,0.32031c-2.06499,1.98518 -4.86809,3.20898 -7.9707,3.20898c-6.36905,0 -11.5,-5.13096 -11.5,-11.5c0,-6.36904 5.13095,-11.5 11.5,-11.5z"
-                    ></path>
-                  </g>
-                </g>
-              </svg>
+            <button class="absolute inset-y-0 right-0 flex items-center mx-2 cursor-pointer" (click)="searchCampings()" routerLink="/camping-search">
+              <i class="fas fa-search text-xl" style="color: #fabf00;"></i>
+            </button>
+          </div>
+          
+          <!-- BOTÕES DE DATAS -->
+          <div class="relative gap-4 mt-4">
+            <button type="button" class="border p-4 border-grays3 rounded text-black" (click)="toggleCalendar()">
+              <ng-container *ngIf="selectedDates.length > 0; else noDates">
+                {{ getFormatedDate(selectedDates[0]) }}
+                <span class="arrow-icon">&#10140;</span>
+                {{ getFormatedDate(selectedDates[selectedDates.length - 1]) }}
+              </ng-container>
+              <ng-template #noDates>
+                Check-In
+                <span class="arrow-icon">&#10140;</span>
+                Check-Out
+              </ng-template>
+              <i class="fas fa-calendar ml-2"></i>
+            </button>
+          
+            <!-- Conteúdo do calendário -->
+            <div *ngIf="showCalendar" class="absolute top-0 right-0 z-50 mt-16">
+              <div class="relative">
+                <p-calendar
+                  class="w-full max-h-[300px]"
+                  [(ngModel)]="selectedDates"
+                  (onSelect)="onSelectDate($event)"
+                  [inline]="true"
+                  selectionMode="range"
+                ></p-calendar>
+              </div>
             </div>
           </div>
         </section>
+        
+        
         <div class="card-explore flex justify-center items-center">
           <app-camping-show *ngIf="activeTab == 0"></app-camping-show>
         </div>
       </div>
     </div>
+   
   </section>
 
   <!-- VANTAGENS DO SMART CAMPING -->

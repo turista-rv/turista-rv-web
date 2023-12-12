@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, HostListener } from '@angular/core';
 import { Leads } from './../../models/LeadsUser.model';
 import { LeadsService } from './../../services/leads.service';
-import { LoadingService } from 'src/app/components/loading/loading.service';
-import { SkeletonService } from 'src/app/components/skeleton/skeleton.service';
 
 interface ImageInfo {
   imageFileName: string;
@@ -21,14 +19,22 @@ interface Tab {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  constructor(private leadsService: LeadsService) {}
+  
+  constructor(
+    private leadsService: LeadsService,
+    private elRef: ElementRef,
+    private renderer: Renderer2
+  ) {}
 
+  selectionDate!: any;
+  dataEntrada!: Date;
+  dataSaida!: Date;
   activeTab: number = 0;
+  showCalendar: boolean = false;
+  selectedDates: Date[] = [];
 
-  searchTerm: string = ''; // Variável para armazenar o termo de pesquisa
-  cards: any[] = [
-    /* Seus dados de cards aqui */
-  ];
+  searchTerm: string = ''; 
+  cards: any[] = [];
 
   leads: Leads = {
     name: '',
@@ -42,6 +48,14 @@ export class HomeComponent {
 
   isDropdownVisible: boolean = false;
 
+  ngOnInit() {
+    document.addEventListener('click', (event) => this.handleDocumentClick(event));
+  }
+
+  ngOnDestroy() {
+    document.removeEventListener('click', (event) => this.handleDocumentClick(event));
+  }
+
   toggleDropdown(): void {
     this.isDropdownVisible = !this.isDropdownVisible;
   }
@@ -54,11 +68,40 @@ export class HomeComponent {
     });
   }
 
-  handleDateClick(arg: any) {
-    alert('Date clicked: ' + arg.dateStr);
+  searchCampings(): void {
+    const queryParams: any = {};
+    if (this.dataEntrada && this.dataSaida) {
+      queryParams.start = this.getFormatedDate(this.dataEntrada);
+      queryParams.end = this.getFormatedDate(this.dataSaida);
+    }
+    if (this.searchTerm) {
+      queryParams.search = this.searchTerm;
+    }
   }
 
-  //METODO ABAS INTERATIVAS
+  onSelectDate(event: any) {
+    this.dataEntrada = this.selectedDates[0];
+    this.dataSaida = this.selectedDates[this.selectedDates.length - 1];
+
+    if (this.dataEntrada && this.dataSaida) {
+      this.showCalendar = false;
+    }
+  }
+
+  getFormatedDate(date: Date): string {
+    return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: Event): void {
+    if (!this.elRef.nativeElement.contains(event.target)) {
+      this.showCalendar = false;
+    }
+  }
+
+  toggleCalendar(): void {
+    this.showCalendar = !this.showCalendar;
+  }
 
   activeTabClass: string = '0';
 
