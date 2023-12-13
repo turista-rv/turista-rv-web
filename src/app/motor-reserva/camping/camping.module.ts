@@ -33,7 +33,6 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     FormsModule,
     FileUploadModule,
     TableModule,
-    FileUploadModule,
     FormsModule,
     ButtonModule,
     RippleModule,

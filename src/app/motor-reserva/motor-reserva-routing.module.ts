@@ -18,6 +18,11 @@ import { RouterModule } from '@angular/router';
         loadChildren: () =>
           import('./reservas/reservas.module').then((m) => m.ReservasModule),
       },
+      {
+        path: 'gallery-images',
+        loadChildren: () =>
+          import('./image/image.module').then((m) => m.ImageModule),
+      },
     ]),
   ],
   exports: [RouterModule],
