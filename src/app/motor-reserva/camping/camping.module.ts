@@ -1,3 +1,4 @@
+import { SkeletonModule } from './../../components/skeleton/skeleton.module';
 import { GalleriaModule } from 'primeng/galleria';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { NgModule } from '@angular/core';
@@ -32,7 +33,6 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     FormsModule,
     FileUploadModule,
     TableModule,
-    FileUploadModule,
     FormsModule,
     ButtonModule,
     RippleModule,
@@ -48,6 +48,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     InputSwitchModule,
     CKEditorModule,
     GalleriaModule,
+    SkeletonModule,
   ],
 })
 export class CampingModule {}

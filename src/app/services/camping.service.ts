@@ -6,7 +6,7 @@ import { Camping } from '../models/camping.model';
 import { forkJoin } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CampingService {
   constructor(private http: HttpClient) {}

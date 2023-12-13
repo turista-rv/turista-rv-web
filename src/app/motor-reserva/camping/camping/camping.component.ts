@@ -1,4 +1,4 @@
-import { finalize, forkJoin } from 'rxjs';
+import { delay, finalize, forkJoin } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Table } from 'primeng/table';
 import { LoadingService } from 'src/app/components/loading/loading.service';
@@ -7,6 +7,7 @@ import { CampingService } from 'src/app/services/camping.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { RULES } from 'src/app/utils/rules-enum';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { SkeletonService } from 'src/app/components/skeleton/skeleton.service';
 
 interface Rule {
   name: string;
@@ -68,7 +69,7 @@ export class CampingComponent implements OnInit {
   constructor(
     private _service: CampingService,
     private _toaster: ToasterService,
-    private _loading: LoadingService
+    public _loading: SkeletonService
   ) {}
 
   ngOnInit() {
@@ -83,7 +84,6 @@ export class CampingComponent implements OnInit {
       .subscribe((data: Camping[]) => {
         if (data.length > 0) {
           this.campings = data;
-          console.log(data);
         }
       });
   }
