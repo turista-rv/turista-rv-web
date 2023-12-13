@@ -48,10 +48,8 @@
       </div>
     </div>
 
-    <button class="h-55 w-314 mt-3 items-center hover" (click)="onSubmit()"
-      class="h-55 w-314 mt-3 bg-greenDark flex items-center py-2 text-white rounded-lg gap-3 text-18 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center">
-      Entrar
-    </button>
+    <btn-filled label="Entrar" [customColor]="'greenDark'" class="h-12 w-314 items-center" (click)="onSubmit()">
+    </btn-filled>
 
     <div class="flex mt-5">
       <div class="text-12">Não possui cadastro?</div>
@@ -63,14 +61,12 @@
     <btn-outline id="btn-google" label="Entrar com Google" class="h-55 w-314 items-center" [addMarginBottom]="true">
       <img src="../../../assets/icons/google-icon.svg" alt="google-icon" />
     </btn-outline>
-
-    <button id="btn-facebook" label="Entrar com Facebook" class="h-55 w-314 mt-3 items-center hover"
-      class="h-55 w-314 mt-3 bg-blueDark flex items-center py-2 text-white rounded-lg gap-3 text-18 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center">
+    <btn-filled id="btn-facebook" label="Entrar com Facebook" class="h-55 w-314 mt-3 items-center hover"
+      [customColor]="'blueDark'" [addMarginBottom]="true">
       <img src="../../../assets/icons/facebook-icon.svg" alt="facebook-icon" />
-      Entrar com Facebook
-    </button>
+    </btn-filled>
     <button id="btn-apple" label=""
-      class="h-55 w-314 mt-3 bg-grays1 flex items-center py-2 text-white rounded-lg gap-3 text-18 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center">
+      class="h-55 w-314 mt-3 bg-grays1 flex items-center py-2 text-white rounded-lg gap-3 text-18 hover:brightness-110 transition duration-300 ease-in-out justify-center text-center font-bold">
       <img src="../../../assets/icons/apple-icon.svg" alt="apple-icon" />
       Entrar com Apple
     </button>

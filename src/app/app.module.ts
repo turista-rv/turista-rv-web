@@ -58,6 +58,8 @@ import { CampingPoliticsComponent } from './views/rules-politics/camping-politic
 import { MotorReservaModule } from './motor-reserva/motor-reserva.module';
 import { AppAdminModule } from './motor-reserva/layout/app.admin.module';
 
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 import { LoadingModule } from './components/loading/loading.module';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -69,13 +71,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { MatSelectModule } from '@angular/material/select';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { CampingSearchComponent } from './views/camping-search/camping-search.component';
-import { DataViewModule } from 'primeng/dataview';
-import { SkeletonComponent } from './components/skeleton/skeleton.component';
-import { SkeletonModule } from './components/skeleton/skeleton.module';
-import { SliderModule } from 'primeng/slider';
-import { RatingModule } from 'primeng/rating';
-
+registerLocaleData(ptBr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,7 +102,6 @@ import { RatingModule } from 'primeng/rating';
     CampingRulesComponent,
     CampingPoliticsComponent,
     ModalComponent,
-    CampingSearchComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -128,6 +123,7 @@ import { RatingModule } from 'primeng/rating';
     MatSnackBarModule,
     MatButtonModule,
     CommonModule,
+    FormsModule,
     // FileDemoComponent,
     FileUploadModule,
     TieredMenuModule,
@@ -144,10 +140,6 @@ import { RatingModule } from 'primeng/rating';
     MatSelectModule,
     SelectButtonModule,
     DialogModule,
-    DataViewModule,
-    SkeletonModule,
-    SliderModule,
-    RatingModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],

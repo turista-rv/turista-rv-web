@@ -10,7 +10,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthService {
   token: string | null;
-  user: LoginUser | null = null;
 
   private isLoggedInSubject: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
@@ -34,7 +33,6 @@ export class AuthService {
       .pipe(
         map((data: LoginUser) => {
           this.isLoggedInSubject.next(true);
-          localStorage.setItem('user', JSON.stringify(data.user));
           return data;
         }),
         catchError((error: any) => {
@@ -46,7 +44,6 @@ export class AuthService {
 
   logoutUser(): void {
     this.clearLocalStorage();
-    this.user = null;
     this.isLoggedInSubject.next(false);
   }
 

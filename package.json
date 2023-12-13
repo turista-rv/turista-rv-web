@@ -10,8 +10,7 @@
     "build": "ng build",
     "build-dev": "ng build --configuration development",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "postinstall": "node scripts/copy-file.js"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -52,7 +51,6 @@
     "@angular-devkit/build-angular": "^16.2.1",
     "@angular/cli": "~16.2.1",
     "@angular/compiler-cli": "^16.2.0",
-    "@types/googlemaps": "^3.43.3",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",

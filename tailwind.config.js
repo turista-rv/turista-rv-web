@@ -100,9 +100,6 @@ module.exports = {
         '400': '400px',
         '600': '600px',
       },
-      backgroundColor: {
-        'button': 'inherit',
-      },
     },
   },
 
