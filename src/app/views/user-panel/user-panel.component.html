@@ -1,0 +1,67 @@
+<div class="flex h-screen">
+    <!-- Menu lateral -->
+    <div class="p-sidebar flex-none bg-white shadow-md">
+        <div class="flex bg-gray-800 p-4 justify-center items-center">
+            <h1 class="text-lg font-semibold text-white">Minha Conta</h1>
+        </div>
+        <div class="p-sidebar-content flex flex-col items-center">
+            <p-panelMenu [model]="items"></p-panelMenu>
+        </div>
+    </div>
+
+    <!-- Conteúdo principal -->
+<div class="flex flex-grow p-8 items-center justify-center">
+    <div class="flex flex-col items-center">
+
+        <!-- Detalhes da Conta -->
+        <div class="bg-white rounded p-4 w-[60rem] mb-7 shadow-md transition-transform transform"
+        [ngClass]="{'editing': isCardEditing('Detalhes da Conta'), 'hover:scale-105 focus-within:scale-105 focus-within:shadow-lg': isEditing['Detalhes da Conta']}">
+       <h2 class="text-2xl font-semibold mb-4">Detalhes da Conta</h2>
+   
+       <div class="mb-4">
+           <label class="text-gray-600">Nome:</label>
+           <div class="text-black font-semibold" [attr.contentEditable]="isEditing['Detalhes da Conta'] ? 'true' : 'false'">Felipe Silva</div>
+       </div>
+   
+       <div class="mb-4">
+           <label class="text-gray-600">Endereço de E-mail:</label>
+           <div class="text-black font-semibold" [attr.contentEditable]="isEditing['Detalhes da Conta'] ? 'true' : 'false'">lipe__ds@hotmail.com</div>
+       </div>
+   
+       <div class="mb-4">
+           <label class="text-gray-600">Telefone:</label>
+           <div class="text-black font-semibold" [attr.contentEditable]="isEditing['Detalhes da Conta'] ? 'true' : 'false'">-</div>
+       </div>
+   
+       <div class="mb-4">
+           <label class="text-gray-600">Endereço:</label>
+           <div class="text-black font-semibold" [attr.contentEditable]="isEditing['Detalhes da Conta'] ? 'true' : 'false'">-</div>
+       </div>
+   
+       <ng-container *ngIf="isEditing['Detalhes da Conta']; else displayButtons">
+           <button class="bg-greenDark text-white px-4 py-2 rounded" (click)="saveChanges('Detalhes da Conta')">Salvar</button>
+           <button class="bg-red-500 text-white px-4 py-2 rounded ml-2" (click)="cancelChanges('Detalhes da Conta')">Cancelar</button>
+       </ng-container>
+   
+       <ng-template #displayButtons>
+           <button class="bg-blueDark text-white px-4 py-2 rounded" (click)="toggleEditing('Detalhes da Conta')">Editar</button>
+       </ng-template>
+   </div>
+   
+
+        <!-- Segurança da Conta -->
+        <div class="bg-white rounded p-4 w-[60rem] shadow-md">
+            <h2 class="text-2xl font-semibold mb-4">Segurança da Conta</h2>
+            <div><input type="password"></div>
+
+            <ng-container *ngIf="isEditing['Segurança da Conta']; else displayButtonsSecurity">
+                <button class="bg-green-500 text-white px-4 py-2 rounded" (click)="saveChanges('Segurança da Conta')">Salvar</button>
+                <button class="bg-red-500 text-white px-4 py-2 rounded ml-2" (click)="cancelChanges('Segurança da Conta')">Cancelar</button>
+            </ng-container>
+
+            <ng-template #displayButtonsSecurity>
+                <button class="bg-blueDark text-white px-4 py-2 rounded" (click)="toggleEditing('Segurança da Conta')">Editar</button>
+            </ng-template>
+        </div>
+    </div>
+</div>

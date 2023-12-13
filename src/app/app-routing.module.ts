@@ -1,3 +1,4 @@
+import { UserPanelComponent } from './views/user-panel/user-panel.component';
 import { CampingBoxComponent } from './components/camping-box/camping-box.component';
 import { CampingSearchComponent } from './views/camping-search/camping-search.component';
 import { CampingRulesComponent } from './views/rules-politics/camping-rules/camping-rules.component';
@@ -85,6 +86,10 @@ const routes: Routes = [
   {
     path: 'camping-box/:id',
     component: CampingBoxComponent,
+  },
+  {
+    path: 'user-panel',
+    component: UserPanelComponent,
   },
 ];
 

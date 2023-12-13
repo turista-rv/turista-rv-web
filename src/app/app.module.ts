@@ -75,7 +75,8 @@ import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SkeletonModule } from './components/skeleton/skeleton.module';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
-
+import { UserPanelComponent } from './views/user-panel/user-panel.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,6 +108,7 @@ import { RatingModule } from 'primeng/rating';
     CampingPoliticsComponent,
     ModalComponent,
     CampingSearchComponent,
+    UserPanelComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -148,6 +150,7 @@ import { RatingModule } from 'primeng/rating';
     SkeletonModule,
     SliderModule,
     RatingModule,
+    PanelMenuModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],

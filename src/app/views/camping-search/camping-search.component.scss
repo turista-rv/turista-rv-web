@@ -46,8 +46,6 @@
       transform: translate(100%, -80%);
     }
   }
-  
-  
 
   // MENU FILTRO CELULAR
 .filter-btn {
@@ -99,21 +97,21 @@
 
 /* RATING */
 
-.p-rating .p-rating-star::before {
+::ng-deep .p-rating .p-rating-star::before {
   content: none !important;
 }
 
-.p-rating {
+::ng-deep .p-rating {
   background: none !important; 
   border: none !important; 
 }
 
 /* Seletor para as estrelas ativas */
-::ng .p-rating-star-on {
+::ng-deep .p-rating-star-on {
   color: yellow !important; 
 }
 
-.p-rating-star.p-rating-star-off {
+::ng-deep .p-rating-star.p-rating-star-off {
   color: #ccc !important; 
 }
 
