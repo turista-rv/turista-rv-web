@@ -7,8 +7,8 @@ import { SkeletonService } from './skeleton.service';
 })
 export class SkeletonComponent {
   @Input() mode: 'rectangle' | 'circle' | 'rounded' | 'square' = 'rectangle';
-  @Input() height: string = '2rem';
-  @Input() width: string = '6rem';
+  @Input() height: string = '100%';
+  @Input() width: string = '100%';
   @Input() borderRadius: string = '16px';
   @Input() size: string = '2rem';
 

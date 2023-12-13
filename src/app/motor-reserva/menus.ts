@@ -42,6 +42,11 @@ export const MENUS = [
         icon: 'fa fa-calendar-days',
         routerLink: ['/motor-reservas/'],
       },
+      {
+        label: 'Galeria de Imagens',
+        icon: 'fa fa-image',
+        routerLink: ['/motor-reservas/gallery-images/'],
+      },
     ],
   },
   {

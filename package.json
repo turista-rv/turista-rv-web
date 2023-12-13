@@ -10,7 +10,8 @@
     "build": "ng build",
     "build-dev": "ng build --configuration development",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postinstall": "node scripts/copy-file.js"
   },
   "private": true,
   "dependencies": {
