@@ -11,10 +11,6 @@ export interface Camping {
   areaImageName?: string;
   active: boolean;
   description?: string;
-  //rating: number;
-  // price: number | null;
-  // baseValue: number | null; 
-  // category: string; 
 }
 
 export interface ICamping {

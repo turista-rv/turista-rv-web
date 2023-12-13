@@ -37,12 +37,9 @@ export class CampingsComponent implements OnInit {
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
-  
 
   get getRules(): IRules[] {
     const rules = this.camping.propertyRules.split(',');
-    const x = RULES.filter((r) => rules.includes(r.code));
-    console.log(x)
     return RULES.filter((r) => rules.includes(r.code));
   }
 
