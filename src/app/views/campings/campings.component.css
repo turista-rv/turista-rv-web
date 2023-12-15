@@ -1,9 +1,4 @@
 
-::ng-deep .p-dialog{
-  height: 55rem;
-  width: 30rem;
-}
-
 ::ng-deep .p-calendar {
   width: 100%;
 }

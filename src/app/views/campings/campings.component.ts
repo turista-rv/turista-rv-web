@@ -46,7 +46,7 @@ export class CampingsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private campingService: CampingService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -61,16 +61,18 @@ export class CampingsComponent implements OnInit {
   }
 
   sendMessageWhatsapp() {
-    console.log("sendMessageWhatsapp ativado")
     const range = this.range.value;
     if (range.start && range.end) {
-      const dataIni = `${range.start.getDate()}/${range.start.getMonth() + 1}/${range.start.getFullYear()}`;
-      const dataFim = `${range.end.getDate()}/${range.end.getMonth() + 1}/${range.end.getFullYear()}`;
-      const campingName = this.camping.name || '';
-      const mensagemWhatsapp = `Olá, gostaria de fazer uma reserva para ${campingName} de ${dataIni} até ${dataFim}!`;
+      const dataIni = `${range.start.getDate()}/${
+        range.start.getMonth() + 1
+      }/${range.start.getFullYear()}`;
+      const dataFim = `${range.end.getDate()}/${
+        range.end.getMonth() + 1
+      }/${range.end.getFullYear()}`;
+      const mensagemWhatsapp = `Olá, gostaria de fazer uma reserva para de ${dataIni} até ${dataFim}!`;
 
       window.open(
-        `http://wa.me/554733719046?text=${encodeURIComponent(
+        `http://wa.me/5553999356737?text=${encodeURIComponent(
           mensagemWhatsapp
         )}`,
         '_blank'
@@ -86,11 +88,6 @@ export class CampingsComponent implements OnInit {
   onSelectDate(event: any) {
     this.dataEntrada = this.selectionDate[0];
     this.dataSaida = this.selectionDate[1];
-    this.range.setValue({
-      start: this.dataEntrada,
-      end: this.dataSaida,
-    });
-
   }
 
   verificarDisponibilidade(): void {
@@ -98,7 +95,8 @@ export class CampingsComponent implements OnInit {
   }
 
   getFormatedDate(date: Date): string {
-    return `${date.getDate().toString().padStart(2, '0')}/${date.getMonth() + 1
-      }/${date.getFullYear()}`;
+    return `${date.getDate().toString().padStart(2, '0')}/${
+      date.getMonth() + 1
+    }/${date.getFullYear()}`;
   }
 }
