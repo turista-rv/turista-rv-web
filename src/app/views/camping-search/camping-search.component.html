@@ -13,25 +13,39 @@
         <div class="mb-7">
           <label class="font-semibold">Categoria:</label>
           <div class="flex flex-wrap gap-2 mt-3 mb-5">
-            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'all'}"
-              (click)="selectCategory('all')">Todos</button>
-            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'smart'}"
-              (click)="selectCategory('smart')">Smart Campings</button>
-            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'campings'}"
-              (click)="selectCategory('campings')">Campings</button>
-            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'glampings'}"
-              (click)="selectCategory('glampings')">Glampings/Chalés</button>
-            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'experiences'}"
-              (click)="selectCategory('experiences')">Experiências/Atrações</button>
+              <button class="category-button" 
+                [ngClass]="{'selected': selectedCategory === 'all'}"
+                (click)="selectCategory('all')">Todos
+              </button>
+
+              <button class="category-button" 
+                [ngClass]="{'selected': selectedCategory === 'smart'}"
+                (click)="selectCategory('smart')">Smart Campings
+              </button>
+
+              <button class="category-button" 
+                [ngClass]="{'selected': selectedCategory === 'campings'}"
+                (click)="selectCategory('campings')">Campings
+              </button>
+
+              <button class="category-button" 
+                [ngClass]="{'selected': selectedCategory === 'glampings'}"
+                (click)="selectCategory('glampings')">Glampings/Chalés
+              </button>
+
+              <button class="category-button" [ngClass]="{'selected': selectedCategory === 'experiences'}"
+                (click)="selectCategory('experiences')">Experiências/Atrações
+              </button>
           </div>
         </div>
+
         <div class="mb-5">
           <label class="font-semibold">Preço por noite:</label>
           <div class="gap-2 mt-3 slider-container">
             <div class="slider-label left">
               {{ rangeValues[0] }}
             </div>
-            <p-slider [(ngModel)]="rangeValues" [range]="true" (onSlideEnd)="onPriceChange()"></p-slider>
+            <p-slider [(ngModel)]="rangeValues" [range]="true" (onSlideEnd)="onBaseValueChange()"></p-slider>
             <div class="slider-label right">
               {{ rangeValues[1] }}
             </div>
@@ -59,26 +73,41 @@
         <div class="grid grid-cols-3">
           <!-- Coluna 1 -->
           <div class="col-span-1" style="max-width: 400px;">
-             <a [routerLink]="['/camping-box', camping.id]" class="flex items-center">
+            <a [routerLink]="['/camping-box', camping.id]" class="flex items-center">
               <img class="w-[300px] h-[200px] object-cover rounded-l" *ngIf="camping.images.length > 0"
                 [src]="camping.images[0].url" />
             </a>
           </div>
-  
+
           <!-- Coluna 2 -->
-          <div class="col-span-1" [ngClass]="{'mt-4': isSmallScreen, 'ml-4': !isSmallScreen}" style="max-width: 600px;"> 
+          <div class="col-span-1" [ngClass]="{'mt-4': isSmallScreen, 'ml-4': !isSmallScreen}" style="max-width: 600px;">
             <div class="flex flex-col sm:flex-row xl:flex-row xl:align-items-start">
               <div class="flex flex-col align-items-center mt-4">
+
                 <p-rating [(ngModel)]="ratingValue" [readonly]="true" [cancel]="false" class="custom-rating" style="margin-top: 4px;"></p-rating>
-                <div class="text-24 font-bold">{{ camping.name }}</div>
-                <hr class="border-blueMid" style="width: 920px; max-width: 90%; margin-top: 4px; margin-bottom: 10px;">
-          
-                <span class="flex flex-col align-items-center gap-4">
-                  <i class="pi pi-tag"></i>
-                  <span class="text-slate-400 font-semibold">Categoria: {{ category }}</span>
-                </span>
-          
-                <div class="flex mt-1 gap-4 flex-wrap">
+
+                <div class="items-center">
+                  <span class="text-24 font-bold">{{ camping.name }}</span>
+                  <hr class="border-blueMid" style="width: 920px; max-width: 90%; margin-top: 1px; margin-bottom: 10px;">
+                </div>
+
+
+                
+                <div class="flex mt-1 gap-4">
+                  <div *ngIf="camping.categories && camping.categories.length > 0">
+                    <div class="flex items-center">
+                      <h4 class="mr-2">Categorias:</h4>
+                      <div class="flex">
+                        <ng-container *ngFor="let category of camping.categories; let last = last">
+                          <span class="text-grays4 font-bold mr-2">{{ category.category.name }}</span>
+                          <span *ngIf="!last" class="text-grays4 mr-2">-</span>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="flex mt-2 gap-2 flex-wrap">
                   <ng-container *ngFor="let rule of getRules(camping).slice(0, 4); let i = index">
                     <i class="fa {{ rule?.icon }}" title="{{ rule?.name }}"></i>
                     <span *ngIf="!isSmallScreen">{{ rule?.name }}</span>
@@ -87,11 +116,12 @@
               </div>
             </div>
           </div>
-  
+          
+
           <!-- Coluna 3 (Preço) -->
           <div class="col-span-1 flex items-center justify-center xl:justify-end order-last">
             <div class="flex flex-row-end p-4 align-items justify-center sm:flex-column sm:align-items-end sm:gap-2">
-              <span class="text-2xl font-semibold">R$ 50,00</span>
+              <span class="text-2xl font-semibold">R$ {{camping.baseValue}}</span>
               <p class="font-semibold text-1">/noite</p>
               <!-- <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded"
                 [disabled]="camping.inventoryStatus === 'OUTOFSTOCK'">
@@ -103,7 +133,7 @@
       </ng-template>
     </p-dataView>
   </div>
-  
+
 
 
 
