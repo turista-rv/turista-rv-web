@@ -13,29 +13,25 @@
         <div class="mb-7">
           <label class="font-semibold">Categoria:</label>
           <div class="flex flex-wrap gap-2 mt-3 mb-5">
-              <button class="category-button" 
-                [ngClass]="{'selected': selectedCategory === 'all'}"
-                (click)="selectCategory('all')">Todos
-              </button>
+            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'all'}"
+              (click)="selectCategory('all')">Todos
+            </button>
 
-              <button class="category-button" 
-                [ngClass]="{'selected': selectedCategory === 'smart'}"
-                (click)="selectCategory('smart')">Smart Campings
-              </button>
+            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'smart'}"
+              (click)="selectCategory('smart')">Smart Campings
+            </button>
 
-              <button class="category-button" 
-                [ngClass]="{'selected': selectedCategory === 'campings'}"
-                (click)="selectCategory('campings')">Campings
-              </button>
+            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'campings'}"
+              (click)="selectCategory('campings')">Campings
+            </button>
 
-              <button class="category-button" 
-                [ngClass]="{'selected': selectedCategory === 'glampings'}"
-                (click)="selectCategory('glampings')">Glampings/Chalés
-              </button>
+            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'glampings'}"
+              (click)="selectCategory('glampings')">Glampings/Chalés
+            </button>
 
-              <button class="category-button" [ngClass]="{'selected': selectedCategory === 'experiences'}"
-                (click)="selectCategory('experiences')">Experiências/Atrações
-              </button>
+            <button class="category-button" [ngClass]="{'selected': selectedCategory === 'experiences'}"
+              (click)="selectCategory('experiences')">Experiências/Atrações
+            </button>
           </div>
         </div>
 
@@ -72,11 +68,15 @@
       <ng-template pTemplate="listItem" let-camping let-i="index">
         <div class="grid grid-cols-3">
           <!-- Coluna 1 -->
-          <div class="col-span-1" style="max-width: 400px;">
-            <a [routerLink]="['/camping-box', camping.id]" class="flex items-center">
-              <img class="w-[300px] h-[200px] object-cover rounded-l" *ngIf="camping.images.length > 0"
-                [src]="camping.images[0].url" />
-            </a>
+          <div class="col-span-1" style="max-width: 300px;" class="mr-4">
+              <ng-container *ngIf="camping.images && camping.images.length > 0">
+                <p-carousel [value]="camping.images" [numVisible]="1" [circular]="true" [autoplayInterval]="0"
+                [showIndicators]="true" [showNavigators]="false">
+                  <ng-template let-image pTemplate="item">
+                    <img class="w-[300px] h-[200px] object-cover rounded-l" [src]="image?.image?.url" />
+                  </ng-template>
+                </p-carousel>
+              </ng-container>
           </div>
 
           <!-- Coluna 2 -->
@@ -84,29 +84,27 @@
             <div class="flex flex-col sm:flex-row xl:flex-row xl:align-items-start">
               <div class="flex flex-col align-items-center mt-4">
 
-                <p-rating [(ngModel)]="ratingValue" [readonly]="true" [cancel]="false" class="custom-rating" style="margin-top: 4px;"></p-rating>
+                <p-rating [(ngModel)]="ratingValue" [readonly]="true" [cancel]="false" class="custom-rating"
+                  style="margin-top: 4px;"></p-rating>
 
                 <div class="items-center">
                   <span class="text-24 font-bold">{{ camping.name }}</span>
-                  <hr class="border-blueMid" style="width: 920px; max-width: 90%; margin-top: 1px; margin-bottom: 10px;">
+                  <hr class="border-blueMid"
+                    style="width: 920px; max-width: 90%; margin-top: 1px; margin-bottom: 10px;">
                 </div>
 
-
-                
                 <div class="flex mt-1 gap-4">
                   <div *ngIf="camping.categories && camping.categories.length > 0">
-                    <div class="flex items-center">
-                      <h4 class="mr-2">Categorias:</h4>
-                      <div class="flex">
-                        <ng-container *ngFor="let category of camping.categories; let last = last">
-                          <span class="text-grays4 font-bold mr-2">{{ category.category.name }}</span>
-                          <span *ngIf="!last" class="text-grays4 mr-2">-</span>
-                        </ng-container>
-                      </div>
+                    <div class="flex flex-wrap">
+                      <h4 class="mr-2 flex-shrink-0">Categorias:</h4>
+                      <ng-container *ngFor="let category of camping.categories; let last = last">
+                        <span class="text-grays4 font-semibold mr-2 mt-2">{{ category.category.name }}</span>
+                        <span *ngIf="!last" class="text-grays4 font-bold mr-2 mt-1">-</span>
+                      </ng-container>
                     </div>
                   </div>
                 </div>
-               
+
                 <div class="flex mt-2 gap-2 flex-wrap">
                   <ng-container *ngFor="let rule of getRules(camping).slice(0, 4); let i = index">
                     <i class="fa {{ rule?.icon }}" title="{{ rule?.name }}"></i>
@@ -116,7 +114,7 @@
               </div>
             </div>
           </div>
-          
+
 
           <!-- Coluna 3 (Preço) -->
           <div class="col-span-1 flex items-center justify-center xl:justify-end order-last">
