@@ -16,16 +16,18 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { RatingModule } from 'primeng/rating';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { DropdownModule } from '@coreui/angular';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputMaskModule } from 'primeng/inputmask';
+import { DropdownModule } from 'primeng/dropdown';
+import { CampingCategoryComponent } from './camping-category/camping-category.component';
 
 @NgModule({
-  declarations: [CampingComponent],
+  declarations: [CampingComponent, CampingCategoryComponent],
   imports: [
     CommonModule,
     CampingRoutingModule,
@@ -49,6 +51,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     CKEditorModule,
     GalleriaModule,
     SkeletonModule,
+    DropdownModule,
+    InputMaskModule,
   ],
 })
 export class CampingModule {}

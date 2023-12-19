@@ -18,8 +18,8 @@
               label="Excluir"
               icon="fa fa-trash"
               class="p-button-danger"
-              (click)="deleteSelectedBoxTypes()"
-              [disabled]="!selectedBoxTypes || !selectedBoxTypes.length"
+              (click)="deleteBoxTypesDialog = true"
+              [disabled]="!selectedCategories || !selectedCategories.length"
             ></button>
           </div>
         </ng-template>
@@ -27,7 +27,7 @@
 
       <p-table
         #dt
-        [value]="boxTypes"
+        [value]="categories"
         responsiveLayout="scroll"
         [rows]="10"
         [globalFilterFields]="['name']"
@@ -35,7 +35,7 @@
         [rowsPerPageOptions]="[10, 20, 30]"
         [showCurrentPageReport]="true"
         currentPageReportTemplate="{first} até {last} de {totalRecords} registros"
-        [(selection)]="selectedBoxTypes"
+        [(selection)]="selectedCategories"
         selectionMode="multiple"
         [rowHover]="true"
         dataKey="id"
@@ -69,10 +69,7 @@
               Nome <p-sortIcon field="name"></p-sortIcon>
             </th>
             <th pSortableColumn="price">
-              Tipo de Cobrança <p-sortIcon field="price"></p-sortIcon>
-            </th>
-            <th pSortableColumn="active">
-              Status <p-sortIcon field="active"></p-sortIcon>
+              Descrição <p-sortIcon field="price"></p-sortIcon>
             </th>
             <th>Ações</th>
           </tr>
@@ -82,39 +79,17 @@
             <td>
               <p-tableCheckbox [value]="boxType"></p-tableCheckbox>
             </td>
-            <td
-              style="width: 20%; min-width: 10rem"
-              [ngClass]="{ 'text-red-700': !boxType.active }"
-            >
+            <td style="width: 20%; min-width: 10rem">
               <span class="p-column-title">Code</span>
               {{ boxType.code || boxType.id }}
             </td>
-            <td
-              style="width: 30%; min-width: 10rem"
-              [ngClass]="{ 'text-red-700': !boxType.active }"
-            >
+            <td style="width: 30%; min-width: 10rem">
               <span class="p-column-title">Nome</span>
               {{ boxType.name }}
             </td>
-            <td style="width: 14%; min-width: 10rem">
-              <i
-                class="fa-regular fa-circle-check fa-xl"
-                style="color: #039900"
-                *ngIf="boxType.active"
-              ></i>
-              <i
-                class="fa-regular fa-circle-xmark fa-xl"
-                style="color: #db0000"
-                *ngIf="!boxType.active"
-              ></i>
-            </td>
             <td>
-              <span *ngIf="boxType.typeOfCharge === 'PERSON'"
-                >Cobrança por pessoa</span
-              >
-              <span *ngIf="boxType.typeOfCharge === 'BOOKING'"
-                >Cobrança por reserva</span
-              >
+              <span class="p-column-title">Descrição</span>
+              {{ boxType.description }}
             </td>
             <td>
               <div class="flex">
@@ -153,12 +128,12 @@
             type="text"
             pInputText
             id="name"
-            [(ngModel)]="boxType.name"
+            [(ngModel)]="category.name"
             required
             autofocus
-            [ngClass]="{ 'ng-invalid ng-dirty': submitted && !boxType.name }"
+            [ngClass]="{ 'ng-invalid ng-dirty': submitted && !category.name }"
           />
-          <small class="ng-dirty ng-invalid" *ngIf="submitted && !boxType.name"
+          <small class="ng-dirty ng-invalid" *ngIf="submitted && !category.name"
             >Nome da Categoria é obrigatório.</small
           >
         </div>
@@ -168,36 +143,8 @@
             type="textarea"
             pInputText
             id="name"
-            [(ngModel)]="boxType.description"
+            [(ngModel)]="category.description"
           />
-        </div>
-        <div class="formgrid grid mt-3">
-          <span>Tipo de Cobrança</span>
-          <div class="field col">
-            <div class="field-checkbox">
-              <p-radioButton
-                inputId="PERSON"
-                value="PERSON"
-                [(ngModel)]="boxType.typeOfCharge"
-              ></p-radioButton>
-              <label for="PERSON" class="ml-2">Cobrança por Pessoa</label>
-            </div>
-            <div class="field-checkbox">
-              <p-radioButton
-                inputId="BOOKING"
-                value="BOOKING"
-                [(ngModel)]="boxType.typeOfCharge"
-              ></p-radioButton>
-              <label for="BOOKING" class="ml-2">Cobrança pela Reserva</label>
-            </div>
-          </div>
-        </div>
-        <div class="field grid mt-3">
-          <label for="status" class="row">Status</label>
-          <p-inputSwitch
-            [(ngModel)]="boxType.active"
-            class="row"
-          ></p-inputSwitch>
         </div>
       </ng-template>
 
@@ -208,7 +155,7 @@
           label="Cancelar"
           icon="fa fa-times"
           class="p-button-text"
-          (click)="hideDialog()"
+          (click)="boxTypeDialog = false; this.submitted = false"
         ></button>
         <button
           pButton
@@ -230,8 +177,8 @@
     >
       <div class="flex align-items-center justify-content-center">
         <i class="fa fa-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-        <span *ngIf="boxType"
-          >Tem certeza que deseja excluir a categoria <b>{{ boxType.name }}</b
+        <span *ngIf="category"
+          >Tem certeza que deseja excluir a categoria <b>{{ category.name }}</b
           >?</span
         >
       </div>
@@ -250,7 +197,7 @@
           icon="fa fa-check"
           class="p-button-text"
           label="Sim"
-          (click)="confirmDelete(boxType.id)"
+          (click)="confirmDelete(category.id)"
         ></button>
       </ng-template>
     </p-dialog>

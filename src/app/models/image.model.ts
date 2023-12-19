@@ -1,9 +1,7 @@
 import { Camping } from './camping.model';
 
 export interface Image {
-  id?: string;
-  camping?: Camping;
-  url: string;
+  image: { id: string; url: string; name: string };
 }
 
 export interface ImageModel {

@@ -41,7 +41,9 @@
           </button>
         </div>
         <!-- CAMPO DE BUSCA -->
-        <section class="flex flex-col search-adventure justify-center items-center mt-5 mb-7 relative">
+        <section
+          class="flex flex-col search-adventure justify-center items-center mt-5 mb-7 relative"
+        >
           <div class="relative">
             <input
               type="search"
@@ -52,14 +54,22 @@
               [(ngModel)]="searchTerm"
               (input)="filterCards()"
             />
-            <button class="absolute inset-y-0 right-0 flex items-center mx-2 cursor-pointer" (click)="searchCampings()" routerLink="/camping-search">
-              <i class="fas fa-search text-xl" style="color: #fabf00;"></i>
+            <button
+              class="absolute inset-y-0 right-0 flex items-center mx-2 cursor-pointer"
+              (click)="searchCampings()"
+              routerLink="/camping-search"
+            >
+              <i class="fas fa-search text-xl" style="color: #fabf00"></i>
             </button>
           </div>
-          
+
           <!-- BOTÕES DE DATAS -->
           <div class="relative gap-4 mt-4">
-            <button type="button" class="border p-4 border-grays3 rounded text-black" (click)="toggleCalendar()">
+            <button
+              type="button"
+              class="border p-4 border-grays3 rounded text-black"
+              (click)="toggleCalendar()"
+            >
               <ng-container *ngIf="selectedDates.length > 0; else noDates">
                 {{ getFormatedDate(selectedDates[0]) }}
                 <span class="arrow-icon">&#10140;</span>
@@ -72,7 +82,7 @@
               </ng-template>
               <i class="fas fa-calendar ml-2"></i>
             </button>
-          
+
             <!-- Conteúdo do calendário -->
             <div *ngIf="showCalendar" class="absolute top-0 right-0 z-50 mt-16">
               <div class="relative">
@@ -87,14 +97,14 @@
             </div>
           </div>
         </section>
-        
-        
+
         <div class="card-explore flex justify-center items-center">
           <app-camping-show *ngIf="activeTab == 0"></app-camping-show>
+          <!-- Vai receber a categoria da aba -->
+          <app-camping-show *ngIf="activeTab == 1"></app-camping-show>
         </div>
       </div>
     </div>
-   
   </section>
 
   <!-- VANTAGENS DO SMART CAMPING -->

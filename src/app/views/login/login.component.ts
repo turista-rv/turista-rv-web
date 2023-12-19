@@ -59,6 +59,7 @@ export class LoginComponent {
       )
       .subscribe({
         next: () => {
+          this.AuthService.startTokenRefresh();
           this.isLoggedIn = true;
           if (this.rotaOrigem) {
             this.router.navigateByUrl(this.rotaOrigem);

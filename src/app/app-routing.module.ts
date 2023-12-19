@@ -16,7 +16,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
 import { AppAdminComponent } from './motor-reserva/layout/app.admin.component';
-import { CreateCampingComponent } from './views/create-camping/create-camping.component';
 
 const routes: Routes = [
   {
@@ -56,11 +55,6 @@ const routes: Routes = [
   {
     path: 'admin-panel',
     component: AdminPanelComponent,
-    canActivate: [adminGuard],
-  },
-  {
-    path: 'create-camping',
-    component: CreateCampingComponent,
     canActivate: [adminGuard],
   },
   {

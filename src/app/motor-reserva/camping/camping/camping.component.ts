@@ -1,15 +1,23 @@
-import { delay, finalize, forkJoin } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Table } from 'primeng/table';
-import { LoadingService } from 'src/app/components/loading/loading.service';
+import { finalize, forkJoin, take } from 'rxjs';
+import { SkeletonService } from 'src/app/components/skeleton/skeleton.service';
+import { User } from 'src/app/models/LoginUser.model';
 import { Camping } from 'src/app/models/camping.model';
+import {
+  CategoryModelUpdate,
+  TypeCategory,
+} from 'src/app/models/category.model';
+import { Image } from 'src/app/models/image.model';
+import { BuscaCepService } from 'src/app/services/busca-cep.service';
 import { CampingService } from 'src/app/services/camping.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { ImageService } from 'src/app/services/image.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { RULES } from 'src/app/utils/rules-enum';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { SkeletonService } from 'src/app/components/skeleton/skeleton.service';
 
-interface Rule {
+export interface Rule {
   name: string;
   code: string;
   icon: string;
@@ -21,6 +29,7 @@ interface Rule {
   styleUrls: ['./camping.component.css'],
 })
 export class CampingComponent implements OnInit {
+  @ViewChild('numeroInput') numeroInput!: ElementRef;
   rules: Rule[] = RULES;
 
   galleriaResponsiveOptions: any[] = [
@@ -44,11 +53,11 @@ export class CampingComponent implements OnInit {
 
   selectedMulti: Rule[] = [];
 
-  galeriaFiles: File[] = [];
-  areaImageFile!: File | null;
-
   campings: Camping[] = [];
+
   camping: Camping = this.initializeCamping();
+
+  categories: CategoryModelUpdate[] = [];
 
   isEdit = false;
 
@@ -66,14 +75,95 @@ export class CampingComponent implements OnInit {
 
   public Editor = ClassicEditor;
 
+  user = JSON.parse(localStorage.getItem('user') as string) as User;
+
+  images: Image[] = [];
+
+  countries = [
+    { name: 'Argentina', code: 'AR' },
+    { name: 'Bolivia', code: 'BO' },
+    { name: 'Brazil', code: 'BR' },
+    { name: 'Chile', code: 'CL' },
+    { name: 'Colombia', code: 'CO' },
+    { name: 'Ecuador', code: 'EC' },
+    { name: 'Guyana', code: 'GY' },
+    { name: 'Paraguay', code: 'PY' },
+    { name: 'Peru', code: 'PE' },
+    { name: 'Suriname', code: 'SR' },
+    { name: 'Uruguay', code: 'UY' },
+    { name: 'Venezuela', code: 'VE' },
+  ];
+
+  selectedCountry: any;
+
+  getUrlFlag(code: string) {
+    return `https://flagsapi.com/${code.toUpperCase()}/flat/64.png`;
+  }
+
   constructor(
     private _service: CampingService,
     private _toaster: ToasterService,
-    public _loading: SkeletonService
+    public _loading: SkeletonService,
+    private _imageService: ImageService,
+    private _categoryService: CategoryService,
+    private _buscaCep: BuscaCepService
   ) {}
 
   ngOnInit() {
     this.loadCampings();
+    this.loadImages();
+    this.loadCategories();
+  }
+
+  loadCategories() {
+    this._categoryService
+      .listByType(TypeCategory.CAMPING)
+      .subscribe((categories) => {
+        categories.map((value) => {
+          this.categories.push({ category: { ...value } });
+        });
+      });
+  }
+
+  verifyCep() {
+    const cep = this.camping.address.zipCode
+      .toString()
+      .replace('.', '')
+      .replace('-', '')
+      .replace('_', '');
+
+    if (cep.length > 7) {
+      this.buscaCep(+cep);
+    }
+  }
+
+  buscaCep(cep: number) {
+    this._loading.start();
+    this._buscaCep
+      .buscaCep(cep)
+      .pipe(
+        take(1),
+        finalize(() => this._loading.stop())
+      )
+      .subscribe((response) => {
+        if (!response.erro) {
+          this.camping.address.city = response.localidade;
+          this.camping.address.district = response.bairro;
+          this.camping.address.state = response.uf;
+          this.camping.address.street = response.logradouro;
+          this.numeroInput.nativeElement.focus();
+        } else {
+          this._toaster.warning('Cep não encontrado');
+        }
+      });
+  }
+
+  loadImages(): void {
+    this._imageService.listImages().subscribe((data) => {
+      data.map((value) => {
+        this.images.push({ image: { ...value } });
+      });
+    });
   }
 
   loadCampings(): void {
@@ -94,7 +184,7 @@ export class CampingComponent implements OnInit {
     this.campingDialog = true;
   }
 
-  initializeCamping() {
+  initializeCamping(): Camping {
     return {
       id: undefined,
       active: true,
@@ -104,6 +194,21 @@ export class CampingComponent implements OnInit {
       description: '',
       areaImage: '',
       areaImageName: '',
+      categories: [],
+      user: this.user,
+      baseValue: 0,
+      address: {
+        id: undefined,
+        city: '',
+        country: '',
+        district: '',
+        num: 0,
+        state: '',
+        street: '',
+        zipCode: 0,
+        complement: '',
+        reference: '',
+      },
     };
   }
 
@@ -117,7 +222,6 @@ export class CampingComponent implements OnInit {
     const rules = this.camping.propertyRules.split(',');
     this.selectedMulti = RULES.filter((r) => rules.includes(r.code));
     this.campingDialog = true;
-    console.log(this.camping);
   }
 
   deleteCamping(camping: Camping) {
@@ -134,7 +238,6 @@ export class CampingComponent implements OnInit {
     this._loading.start();
     forkJoin(reqJoin).subscribe(
       (res) => {
-        console.log(res);
         this.loadCampings();
         this.selectedCampings = [];
       },
@@ -168,15 +271,6 @@ export class CampingComponent implements OnInit {
   saveProduct() {
     this.submitted = true;
     this._loading.start();
-    const formData = new FormData();
-
-    this.galeriaFiles.forEach((image: File) => {
-      formData.append('images', image, image.name);
-    });
-
-    if (this.areaImageFile) {
-      formData.append('areaImage', this.areaImageFile, this.areaImageFile.name);
-    }
 
     let rules = '';
     this.selectedMulti.map((rule, index) => {
@@ -184,15 +278,20 @@ export class CampingComponent implements OnInit {
       else rules += rule.code + ',';
     });
 
-    console.log(rules);
+    this.camping.propertyRules = rules;
 
-    formData.append('name', this.camping.name);
-    formData.append('active', this.camping.active ? 'true' : 'false');
-    formData.append('description', this.camping.description as string);
-    formData.append('propertyRules', rules);
+    const cep = this.camping.address.zipCode
+      .toString()
+      .replace('.', '')
+      .replace('-', '')
+      .replace('_', '');
+
+    this.camping.address.zipCode = +cep;
+    this.camping.address.num = +this.camping.address.num;
+    this.camping.baseValue = +this.camping.baseValue;
+
     if (this.camping.id) {
-      formData.append('id', this.camping?.id);
-      this._service.update(formData).subscribe(
+      this._service.update(this.camping).subscribe(
         (data) => {
           this._toaster.success('Camping atualizado com sucesso');
           this.loadCampings();
@@ -205,7 +304,7 @@ export class CampingComponent implements OnInit {
         }
       );
     } else {
-      this._service.create(formData).subscribe({
+      this._service.create(this.camping).subscribe({
         next: (data) => {
           this._toaster.success('Camping criado com sucesso');
           this.loadCampings();
@@ -238,64 +337,9 @@ export class CampingComponent implements OnInit {
     this.selectedMulti = [];
   }
 
-  onSelectCampingImage(value: any) {
-    this.galeriaFiles = value.currentFiles;
-    console.log(this.galeriaFiles);
-  }
-  onSelectAreaImage(value: any) {
-    this.areaImageFile = value.currentFiles[0];
-    console.log(this.areaImageFile);
-  }
-
-  removeImage(id: string | undefined) {
-    this._loading.start();
-    this._service
-      .imageDelete(id as string)
-      .pipe(finalize(() => this._loading.stop()))
-      .subscribe(
-        (data) => {
-          this._toaster.success('Imagem deletada com sucesso');
-          this.camping.images = this.camping.images.filter(
-            (image) => image.id !== id
-          );
-        },
-        (e) => {
-          this._toaster.error('Ocorreu um erro');
-        }
-      );
-  }
-
-  removeAreaImage(id: string | undefined): void {
-    this._loading.start();
-    this._service
-      .areaImageDelete(id as string)
-      .pipe(finalize(() => this._loading.stop()))
-      .subscribe(
-        (data) => {
-          this._toaster.success('Imagem deletada com sucesso');
-          this.camping.areaImage = '';
-        },
-        (e) => {
-          this._toaster.error('Ocorreu um erro');
-        }
-      );
-  }
-
-  onRemoveAreaImage(value: any) {
-    this.areaImageFile = null;
-  }
-  onRemoveCampingImage(value: any) {
-    this.galeriaFiles = this.galeriaFiles.filter((file) => file !== value.file);
-  }
-  onClearCampingImage(value: any) {
-    this.galeriaFiles = [];
-  }
-
   cancel() {
     this.camping = this.initializeCamping();
     this.selectedMulti = [];
-    this.galeriaFiles = [];
-    this.areaImageFile = null;
     this.isEdit = false;
     this.campingDialog = false;
   }

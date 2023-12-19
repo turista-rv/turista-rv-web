@@ -19,6 +19,13 @@ import { RouterModule } from '@angular/router';
           import('./reservas/reservas.module').then((m) => m.ReservasModule),
       },
       {
+        path: 'attractions',
+        loadChildren: () =>
+          import('./attraction/attraction.module').then(
+            (m) => m.AttractionModule
+          ),
+      },
+      {
         path: 'gallery-images',
         loadChildren: () =>
           import('./image/image.module').then((m) => m.ImageModule),

@@ -1,94 +1,74 @@
-import { finalize, forkJoin } from 'rxjs';
 import { Component } from '@angular/core';
 import { Table } from 'primeng/table';
+import { finalize, forkJoin } from 'rxjs';
 import { LoadingService } from 'src/app/components/loading/loading.service';
-import { BoxType, TypeOfCharge } from 'src/app/models/box-type.model';
-import { BoxTypeService } from 'src/app/services/box-type.service';
+import { Category, TypeCategory } from 'src/app/models/category.model';
+import { CategoryService } from 'src/app/services/category.service';
 import { ToasterService } from 'src/app/services/toaster.service';
-import { Observable } from '@ckeditor/ckeditor5-utils';
 
 @Component({
-  selector: 'app-box-type',
-  templateUrl: './box-type.component.html',
-  styleUrls: ['./box-type.component.css'],
+  selector: 'app-attraction-category',
+  templateUrl: './attraction-category.component.html',
+  styles: [],
 })
-export class BoxTypeComponent {
+export class AttractionCategoryComponent {
   boxTypeDialog: boolean = false;
 
   deleteBoxTypeDialog: boolean = false;
 
   deleteBoxTypesDialog: boolean = false;
 
-  boxTypes: BoxType[] = [];
-
-  boxType: BoxType = this.intializeBoxType();
-
-  selectedBoxTypes: BoxType[] = [];
+  categories: Category[] = [];
+  category: Category = this.intializeCategory();
+  selectedCategories: Category[] = [];
 
   submitted: boolean = false;
 
   rowsPerPageOptions = [5, 10, 20];
 
   constructor(
-    private _service: BoxTypeService,
+    private _service: CategoryService,
     private _toaster: ToasterService,
     private _loading: LoadingService
   ) {}
 
   ngOnInit() {
-    this.loadBoxTypes();
+    this.loadCategories();
   }
 
-  loadBoxTypes(): void {
+  loadCategories(): void {
     this._loading.start();
     this._service
-      .list()
+      .listByType(TypeCategory.ATTRACTION)
       .pipe(finalize(() => this._loading.stop()))
       .subscribe((data) => {
-        this.boxTypes = data;
+        this.categories = data;
       });
   }
 
-  intializeBoxType(): BoxType {
+  intializeCategory(): Category {
     return {
+      id: undefined,
       name: '',
-      active: true,
       description: '',
-      typeOfCharge: TypeOfCharge.PERSON,
+      type: TypeCategory.ATTRACTION,
     };
   }
 
   openNew() {
-    this.boxType = this.intializeBoxType();
+    this.category = this.intializeCategory();
     this.submitted = false;
     this.boxTypeDialog = true;
   }
 
-  deleteSelectedBoxTypes() {
-    this.deleteBoxTypesDialog = true;
-  }
-
-  editBoxType(boxType: BoxType) {
-    this.boxType = { ...boxType };
+  editBoxType(category: Category) {
+    this.category = { ...category };
     this.boxTypeDialog = true;
   }
 
-  deleteBoxType(boxType: BoxType) {
+  deleteBoxType(category: Category) {
     this.deleteBoxTypeDialog = true;
-    this.boxType = { ...boxType };
-  }
-
-  confirmDeleteSelected() {
-    this.deleteBoxTypesDialog = false;
-    let reqJoin: any[] = [];
-    this.selectedBoxTypes.forEach((boxType) => {
-      reqJoin.push(this._service.delete(boxType.id as string));
-    });
-    forkJoin(reqJoin).subscribe((res) => {
-      console.log(res);
-      this.loadBoxTypes();
-      this.selectedBoxTypes = [];
-    });
+    this.category = { ...category };
   }
 
   confirmDelete(id: string | undefined) {
@@ -102,8 +82,8 @@ export class BoxTypeComponent {
           (response) => {
             this._toaster.success('Categoria excluída com sucesso');
 
-            this.boxType = this.intializeBoxType();
-            this.loadBoxTypes();
+            this.category = this.intializeCategory();
+            this.loadCategories();
           },
           (e) => {
             this._toaster.error('Ocorreu um erro');
@@ -113,15 +93,28 @@ export class BoxTypeComponent {
     }
   }
 
+  confirmDeleteSelected() {
+    this.deleteBoxTypesDialog = false;
+    let reqJoin: any[] = [];
+    this.selectedCategories.forEach((category) => {
+      reqJoin.push(this._service.delete(category.id as string));
+    });
+    forkJoin(reqJoin).subscribe((res) => {
+      console.log(res);
+      this.loadCategories();
+      this.selectedCategories = [];
+    });
+  }
+
   saveProduct() {
     this.submitted = true;
-    if (this.boxType.id) {
+    if (this.category.id) {
       this._loading.start();
-      this._service.update(this.boxType).subscribe(
+      this._service.update(this.category).subscribe(
         (response) => {
           this._toaster.success('Categoria atualizada com sucesso');
           this.boxTypeDialog = false;
-          this.loadBoxTypes();
+          this.loadCategories();
         },
         (e) => {
           this._toaster.error('Ocorreu um erro');
@@ -130,12 +123,12 @@ export class BoxTypeComponent {
       );
     } else {
       this._loading.start();
-      this._service.create(this.boxType).subscribe(
+      this._service.create(this.category).subscribe(
         (data) => {
           this._toaster.success('Categoria criada com sucesso');
-          this.boxType = this.intializeBoxType();
+          this.category = this.intializeCategory();
           this.boxTypeDialog = false;
-          this.loadBoxTypes();
+          this.loadCategories();
         },
         (e) => {
           this._toaster.error('Ocorreu um erro');
@@ -143,11 +136,6 @@ export class BoxTypeComponent {
         }
       );
     }
-  }
-
-  hideDialog() {
-    this.boxTypeDialog = false;
-    this.submitted = false;
   }
 
   onGlobalFilter(table: Table, event: Event) {

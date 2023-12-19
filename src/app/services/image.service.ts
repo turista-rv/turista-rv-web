@@ -19,4 +19,8 @@ export class ImageService {
   upload(formData: FormData): Observable<string> {
     return this._http.post<string>(this._url, formData);
   }
+
+  delete(id: string): Observable<any> {
+    return this._http.delete<any>(this._url + '/' + id);
+  }
 }

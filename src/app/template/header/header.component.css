@@ -64,6 +64,3 @@ nav.active a[href="/login"] {
   color: white;
 }
 
-::ng-deep .text-center{
-  color: black;
-}

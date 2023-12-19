@@ -1,6 +1,8 @@
 import { Component, ElementRef, Renderer2, HostListener } from '@angular/core';
 import { Leads } from './../../models/LeadsUser.model';
 import { LeadsService } from './../../services/leads.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { TypeCategory } from 'src/app/models/category.model';
 
 interface ImageInfo {
   imageFileName: string;
@@ -19,9 +21,9 @@ interface Tab {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  
   constructor(
     private leadsService: LeadsService,
+    private _categoryService: CategoryService,
     private elRef: ElementRef,
     private renderer: Renderer2
   ) {}
@@ -33,7 +35,7 @@ export class HomeComponent {
   showCalendar: boolean = false;
   selectedDates: Date[] = [];
 
-  searchTerm: string = ''; 
+  searchTerm: string = '';
   cards: any[] = [];
 
   leads: Leads = {
@@ -49,11 +51,23 @@ export class HomeComponent {
   isDropdownVisible: boolean = false;
 
   ngOnInit() {
-    document.addEventListener('click', (event) => this.handleDocumentClick(event));
+    document.addEventListener('click', (event) =>
+      this.handleDocumentClick(event)
+    );
+
+    this._categoryService
+      .listByType(TypeCategory.CAMPING)
+      .subscribe((categories) => {
+        categories.forEach((category) => {
+          this.tabs.push({ title: category.name, content: '' });
+        });
+      });
   }
 
   ngOnDestroy() {
-    document.removeEventListener('click', (event) => this.handleDocumentClick(event));
+    document.removeEventListener('click', (event) =>
+      this.handleDocumentClick(event)
+    );
   }
 
   toggleDropdown(): void {
@@ -89,7 +103,11 @@ export class HomeComponent {
   }
 
   getFormatedDate(date: Date): string {
-    return `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+    return `${date.getDate().toString().padStart(2, '0')}/${(
+      date.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, '0')}/${date.getFullYear()}`;
   }
 
   @HostListener('document:click', ['$event'])
@@ -105,28 +123,7 @@ export class HomeComponent {
 
   activeTabClass: string = '0';
 
-  tabs: Tab[] = [
-    {
-      title: 'Pesquisar',
-      content: 'Encontre o melhor lugar com conforto e segurança!',
-    },
-    {
-      title: 'Smart Campings TuristaRV',
-      content: 'Encontre o melhor lugar com conforto e segurança!',
-    },
-    {
-      title: 'Campings',
-      content: 'Conteúdo da Tab 2',
-    },
-    {
-      title: 'Glampings e Chalés',
-      content: 'Conteúdo da Tab 3',
-    },
-    {
-      title: 'Experiências Atrações',
-      content: 'Conteúdo da Tab 4',
-    },
-  ];
+  tabs: Tab[] = [];
 
   scrollTabs(direction: number) {
     const newActiveTab = this.activeTab + direction;

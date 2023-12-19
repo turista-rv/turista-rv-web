@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Image, ImageModel } from '../../../models/image.model';
 import { ImageService } from 'src/app/services/image.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/LoginUser.model';
 import { PaginatorState } from 'primeng/paginator';
 import { SkeletonService } from 'src/app/components/skeleton/skeleton.service';
+import { FileUpload } from 'primeng/fileupload';
+import { ToasterService } from 'src/app/services/toaster.service';
 
 interface PageEvent {
   first: number;
@@ -19,6 +21,7 @@ interface PageEvent {
   styleUrls: ['./image.component.css'],
 })
 export class ImageComponent {
+  @ViewChild('upload') upload!: FileUpload;
   totalImages: ImageModel[] = [];
   images: ImageModel[] = [];
   formData: FormData = new FormData();
@@ -30,7 +33,8 @@ export class ImageComponent {
 
   constructor(
     private _imageService: ImageService,
-    public skeleton: SkeletonService
+    public skeleton: SkeletonService,
+    private toaster: ToasterService
   ) {}
 
   ngOnInit(): void {
@@ -61,9 +65,23 @@ export class ImageComponent {
     this.formData.append('idUser', user.id as string);
 
     this._imageService.upload(this.formData).subscribe((data) => {
-      console.log(data);
-      this.formData = new FormData();
+      this.formData.delete('images');
+      this.formData.delete('idUser');
+      this.listImages();
+      this.upload.clear();
     });
+  }
+
+  deleteImage(id: string): void {
+    this._imageService.delete(id).subscribe(
+      (data) => {
+        this.toaster.success(data.message);
+        this.listImages();
+      },
+      (error) => {
+        this.toaster.error(error);
+      }
+    );
   }
 
   onPageChange(event: PaginatorState) {

@@ -7,6 +7,7 @@
     chooseLabel="Selecionar imagens da galeria"
     (onSelect)="onSelectImages($event)"
     (onBeforeUpload)="onSendImages()"
+    #upload
   >
   </p-fileUpload>
 </div>
@@ -22,7 +23,10 @@
         imageClass="object-fill"
         [imageStyle]="{ height: '130px', objectFit: 'cover' }"
       ></p-image>
-      <i class="fa fa-trash absolute bottom-3 text-red-800 cursor-pointer"></i>
+      <i
+        class="fa fa-trash absolute bottom-3 text-red-800 cursor-pointer"
+        (click)="deleteImage(image.id)"
+      ></i>
     </div>
   </div>
 </div>
