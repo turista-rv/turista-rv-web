@@ -11,7 +11,6 @@ export interface Camping {
   box?: Box[];
   propertyRules: string;
   areaImage?: string;
-  areaImageName?: string;
   active: boolean;
   description?: string;
   categories?: CategoryModelUpdate[];
@@ -19,6 +18,7 @@ export interface Camping {
   baseValue: number;
   address: Address;
   readonly clickCounter?: number;
+  phone?: number;
 }
 
 export interface CampingInsert {

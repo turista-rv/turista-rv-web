@@ -149,7 +149,7 @@
                 *ngIf="camping.images.length > 0"
                 [src]="camping.images[0].image.url"
                 width="100"
-                class="shadow-4"
+                class="w-36 aspect-video rounded-2xl shadow-lg"
               />
             </td>
             <td
@@ -236,6 +236,20 @@
               >Nome do Camping é obrigatório.</small
             >
           </div>
+          <div>
+            <label class="font-bold">Telefone</label>
+            <p-inputMask
+              [(ngModel)]="camping.phone"
+              mask="(99)99999-9999"
+              [required]="true"
+              [ngClass]="{ 'ng-invalid ng-dirty': submitted && !camping.phone }"
+            ></p-inputMask>
+            <small
+              class="ng-dirty ng-invalid"
+              *ngIf="submitted && !camping.phone"
+              >Telefone é Obrigatório.</small
+            >
+          </div>
           <div class="flex flex-col align-start justify-end">
             <label for="status">Status</label>
             <p-inputSwitch [(ngModel)]="camping.active"></p-inputSwitch>
@@ -259,8 +273,16 @@
             [(ngModel)]="camping.baseValue"
             mode="currency"
             currency="BRL"
+            [ngClass]="{
+              'ng-invalid ng-dirty': submitted && !camping.baseValue
+            }"
           >
           </p-inputNumber>
+          <small
+            class="ng-dirty ng-invalid"
+            *ngIf="submitted && !camping.baseValue"
+            >Valor mínimo é Obrigatório.</small
+          >
         </div>
         <div class="relative flex flex-col mt-2">
           <label class="font-bold">Facilidades:</label>
@@ -308,7 +330,11 @@
               placeholder="Selecione as imagens da Galeria"
               optionLabel="name"
               [showClear]="true"
+              appendTo="body"
               class="relative multiselect-custom mw-100"
+              [ngClass]="{
+                'ng-invalid ng-dirty': submitted && camping.images.length === 0
+              }"
             >
               <ng-template let-value pTemplate="selectedItems">
                 <div
@@ -331,7 +357,7 @@
               <ng-template let-item pTemplate="item">
                 <div class="flex items-center gap-2">
                   <img [src]="item.image.url" class="w-36 aspect-video mt-1" />
-                  <span>{{ item.image.name }}</span>
+                  <!-- <span>{{ item.image.name }}</span> -->
                 </div>
               </ng-template>
             </p-multiSelect>
@@ -344,6 +370,8 @@
               placeholder="Selecione a imagem aérea"
               optionValue="image.url"
               optionLabel="image.name"
+              appendTo="body"
+              [showClear]="true"
               class="relative multiselect-custom mw-100"
             >
               <ng-template pTemplate="selectedItem">
@@ -352,7 +380,7 @@
               <ng-template let-item pTemplate="item">
                 <div class="flex items-center gap-2">
                   <img [src]="item.image.url" class="w-48 aspect-video mt-2" />
-                  <span>{{ item.image.name }}</span>
+                  <!-- <span>{{ item.image.name }}</span> -->
                 </div>
               </ng-template>
             </p-dropdown>
@@ -365,6 +393,7 @@
             [(ngModel)]="camping.categories"
             placeholder="Selecione as Categorias"
             optionLabel="category.name"
+            appendTo="body"
             [filter]="true"
             display="chip"
             [showClear]="true"
@@ -381,11 +410,20 @@
                 [(ngModel)]="camping.address.zipCode"
                 mask="99.999-999"
                 (ngModelChange)="verifyCep()"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': submitted && !camping.address.zipCode
+                }"
               ></p-inputMask>
             </div>
             <div class="w-full">
               <label class="font-bold">Rua</label>
-              <input pInputText [(ngModel)]="camping.address.street" required />
+              <input
+                pInputText
+                [(ngModel)]="camping.address.street"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': submitted && !camping.address.street
+                }"
+              />
             </div>
             <div class="">
               <label class="font-bold">Número</label>
@@ -393,6 +431,9 @@
                 pInputText
                 [(ngModel)]="camping.address.num"
                 #numeroInput
+                [ngClass]="{
+                  'ng-invalid ng-dirty': submitted && !camping.address.num
+                }"
               />
             </div>
           </div>
@@ -402,16 +443,30 @@
               <input
                 pInputText
                 [(ngModel)]="camping.address.district"
-                required
+                [ngClass]="{
+                  'ng-invalid ng-dirty': submitted && !camping.address.district
+                }"
               />
             </div>
             <div class="field col-12 sm:col-5">
               <label class="font-bold">Cidade</label>
-              <input pInputText [(ngModel)]="camping.address.city" required />
+              <input
+                pInputText
+                [(ngModel)]="camping.address.city"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': submitted && !camping.address.city
+                }"
+              />
             </div>
             <div class="field col-12 sm:col-3">
               <label class="font-bold">Estado</label>
-              <input pInputText [(ngModel)]="camping.address.state" required />
+              <input
+                pInputText
+                [(ngModel)]="camping.address.state"
+                [ngClass]="{
+                  'ng-invalid ng-dirty': submitted && !camping.address.state
+                }"
+              />
             </div>
           </div>
           <div>
@@ -424,6 +479,9 @@
               filterBy="name"
               [showClear]="true"
               placeholder="Selecione um país"
+              [ngClass]="{
+                'ng-invalid ng-dirty': submitted && !selectedCountry
+              }"
             >
               <ng-template pTemplate="selectedItem">
                 <div
@@ -467,7 +525,6 @@
           label="Salvar"
           icon="fa fa-check"
           class="p-button-text"
-          [disabled]="!camping.name"
           (click)="saveProduct()"
         ></button>
       </ng-template>

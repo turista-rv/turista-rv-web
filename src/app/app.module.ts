@@ -69,6 +69,9 @@ import { LoadingModule } from './components/loading/loading.module';
 import { SkeletonModule } from './components/skeleton/skeleton.module';
 import { CampingSearchComponent } from './views/camping-search/camping-search.component';
 import { UserPanelComponent } from './views/user-panel/user-panel.component';
+import { ScheduleCheckoutComponent } from './views/schedule-checkout/schedule-checkout.component';
+import { CardModule } from 'primeng/card';
+import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,6 +103,7 @@ import { UserPanelComponent } from './views/user-panel/user-panel.component';
     ModalComponent,
     CampingSearchComponent,
     UserPanelComponent,
+    ScheduleCheckoutComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -130,6 +134,7 @@ import { UserPanelComponent } from './views/user-panel/user-panel.component';
     ButtonModule,
     LoadingModule,
     GalleriaModule,
+    InputNumberModule,
     CarouselModule,
     CalendarModule,
     ChipModule,
@@ -142,6 +147,7 @@ import { UserPanelComponent } from './views/user-panel/user-panel.component';
     SliderModule,
     RatingModule,
     PanelMenuModule,
+    CardModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],

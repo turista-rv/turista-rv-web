@@ -192,8 +192,7 @@ export class CampingComponent implements OnInit {
       propertyRules: '',
       images: [],
       description: '',
-      areaImage: '',
-      areaImageName: '',
+      areaImage: undefined,
       categories: [],
       user: this.user,
       baseValue: 0,
@@ -209,6 +208,7 @@ export class CampingComponent implements OnInit {
         complement: '',
         reference: '',
       },
+      phone: 0,
     };
   }
 
@@ -222,6 +222,9 @@ export class CampingComponent implements OnInit {
     const rules = this.camping.propertyRules.split(',');
     this.selectedMulti = RULES.filter((r) => rules.includes(r.code));
     this.campingDialog = true;
+    this.selectedCountry = this.countries.find(
+      (c) => c.name === camping.address.country
+    );
   }
 
   deleteCamping(camping: Camping) {
@@ -270,52 +273,69 @@ export class CampingComponent implements OnInit {
 
   saveProduct() {
     this.submitted = true;
-    this._loading.start();
+    if (
+      this.camping.name &&
+      this.camping.phone &&
+      this.camping.baseValue &&
+      this.camping.address.state &&
+      this.camping.address.street &&
+      this.camping.address.num &&
+      this.camping.address.zipCode &&
+      this.camping.address.district &&
+      this.selectedCountry &&
+      this.camping.address.city &&
+      this.camping.images.length > 0
+    ) {
+      this._loading.start();
 
-    let rules = '';
-    this.selectedMulti.map((rule, index) => {
-      if (index === this.selectedMulti.length - 1) rules += rule.code;
-      else rules += rule.code + ',';
-    });
-
-    this.camping.propertyRules = rules;
-
-    const cep = this.camping.address.zipCode
-      .toString()
-      .replace('.', '')
-      .replace('-', '')
-      .replace('_', '');
-
-    this.camping.address.zipCode = +cep;
-    this.camping.address.num = +this.camping.address.num;
-    this.camping.baseValue = +this.camping.baseValue;
-
-    if (this.camping.id) {
-      this._service.update(this.camping).subscribe(
-        (data) => {
-          this._toaster.success('Camping atualizado com sucesso');
-          this.loadCampings();
-          this.isEdit = false;
-          this.cancel();
-        },
-        (e) => {
-          this._loading.stop();
-          this._toaster.error('Ocorreu um erro');
-        }
-      );
-    } else {
-      this._service.create(this.camping).subscribe({
-        next: (data) => {
-          this._toaster.success('Camping criado com sucesso');
-          this.loadCampings();
-          this.cancel();
-        },
-        error: (error: any) => {
-          this._loading.stop();
-          const errorMessage = `Erro ao criar camping, ${error}`;
-          this._toaster.error(errorMessage);
-        },
+      let rules = '';
+      this.selectedMulti.map((rule, index) => {
+        if (index === this.selectedMulti.length - 1) rules += rule.code;
+        else rules += rule.code + ',';
       });
+
+      this.camping.propertyRules = rules;
+
+      const cep = this.camping.address.zipCode
+        .toString()
+        .replace('.', '')
+        .replace('-', '')
+        .replace('_', '');
+
+      this.camping.address.country = this.selectedCountry.name;
+      this.camping.address.zipCode = +cep;
+      this.camping.address.num = +this.camping.address.num;
+      this.camping.baseValue = +this.camping.baseValue;
+
+      if (this.camping.id) {
+        this._service.update(this.camping).subscribe(
+          (data) => {
+            this._toaster.success('Camping atualizado com sucesso');
+            this.loadCampings();
+            this.isEdit = false;
+            this.cancel();
+          },
+          (e) => {
+            this._loading.stop();
+            this._toaster.error('Ocorreu um erro');
+          }
+        );
+      } else {
+        this._service.create(this.camping).subscribe({
+          next: (data) => {
+            this._toaster.success('Camping criado com sucesso');
+            this.loadCampings();
+            this.cancel();
+          },
+          error: (error: any) => {
+            this._loading.stop();
+            const errorMessage = `Erro ao criar camping, ${error}`;
+            this._toaster.error(errorMessage);
+          },
+        });
+      }
+    } else {
+      this._toaster.warning('Verifique os campos obrigatórios');
     }
   }
 

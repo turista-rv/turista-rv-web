@@ -16,6 +16,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
 import { AppAdminComponent } from './motor-reserva/layout/app.admin.component';
+import { ScheduleCheckoutComponent } from './views/schedule-checkout/schedule-checkout.component';
 
 const routes: Routes = [
   {
@@ -84,6 +85,10 @@ const routes: Routes = [
   {
     path: 'user-panel',
     component: UserPanelComponent,
+  },
+  {
+    path: 'schedule-checkout',
+    component: ScheduleCheckoutComponent,
   },
 ];
 

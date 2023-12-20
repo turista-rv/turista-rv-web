@@ -30,9 +30,9 @@
         </div>
         <!-- CAMPO DE BUSCA -->
         <section
-          class="flex flex-col search-adventure justify-center items-center mt-5 mb-7 relative"
+          class="flex flex-col search-adventure justify-center items-center mt-5 mb-36 relative"
         >
-          <div class="relative">
+          <!-- <div class="relative">
             <input
               type="search"
               placeholder="Para onde você deseja ir?"
@@ -41,18 +41,18 @@
               id="searchInput"
               [(ngModel)]="searchTerm"
               (input)="filterCards()"
-            />
-            <button
+            /> -->
+          <!-- <button
               class="absolute inset-y-0 right-0 flex items-center mx-2 cursor-pointer"
               (click)="searchCampings()"
               routerLink="/camping-search"
             >
               <i class="fas fa-search text-xl" style="color: #fabf00"></i>
-            </button>
-          </div>
+            </button> -->
+          <!-- </div> -->
 
           <!-- BOTÕES DE DATAS -->
-          <div class="relative gap-4 mt-4">
+          <!-- <div class="relative gap-4 mt-4">
             <button
               type="button"
               class="border p-4 border-grays3 rounded text-black"
@@ -71,7 +71,6 @@
               <i class="fas fa-calendar ml-2"></i>
             </button>
 
-            <!-- Conteúdo do calendário -->
             <div *ngIf="showCalendar" class="absolute top-0 right-0 z-50 mt-16">
               <div class="relative">
                 <p-calendar
@@ -83,7 +82,7 @@
                 ></p-calendar>
               </div>
             </div>
-          </div>
+          </div> -->
         </section>
 
         <div class="card-explore flex justify-center items-center">
