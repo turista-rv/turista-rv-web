@@ -3,6 +3,10 @@ import { Leads } from './../../models/LeadsUser.model';
 import { LeadsService } from './../../services/leads.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { TypeCategory } from 'src/app/models/category.model';
+import { SkeletonService } from 'src/app/components/skeleton/skeleton.service';
+import { CampingService } from 'src/app/services/camping.service';
+import { finalize } from 'rxjs';
+import { Camping } from 'src/app/models/camping.model';
 
 interface ImageInfo {
   imageFileName: string;
@@ -10,9 +14,9 @@ interface ImageInfo {
 }
 
 interface Tab {
+  idCategory: string;
   title: string;
   content: string;
-  images?: ImageInfo[];
 }
 
 @Component({
@@ -21,11 +25,14 @@ interface Tab {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  idCategory: string = '0';
   constructor(
     private leadsService: LeadsService,
     private _categoryService: CategoryService,
     private elRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    public skeleton: SkeletonService,
+    private campingService: CampingService
   ) {}
 
   selectionDate!: any;
@@ -34,6 +41,7 @@ export class HomeComponent {
   activeTab: number = 0;
   showCalendar: boolean = false;
   selectedDates: Date[] = [];
+  campings: Camping[] = [];
 
   searchTerm: string = '';
   cards: any[] = [];
@@ -59,7 +67,28 @@ export class HomeComponent {
       .listByType(TypeCategory.CAMPING)
       .subscribe((categories) => {
         categories.forEach((category) => {
-          this.tabs.push({ title: category.name, content: '' });
+          this.tabs.push({
+            idCategory: category.id as string,
+            title: category.name,
+            content: '',
+          });
+        });
+      });
+
+    this.skeleton.start();
+    this.campingService
+      .listActives() //list by category
+      .pipe(
+        finalize(() => {
+          this.skeleton.stop();
+        })
+      )
+      .subscribe((data) => {
+        this.campings = data.sort((a, b) => {
+          const clickCounterA = a.clickCounter || 0;
+          const clickCounterB = b.clickCounter || 0;
+
+          return clickCounterB - clickCounterA;
         });
       });
   }
@@ -123,7 +152,13 @@ export class HomeComponent {
 
   activeTabClass: string = '0';
 
-  tabs: Tab[] = [];
+  tabs: Tab[] = [
+    {
+      idCategory: '0',
+      title: 'Pesquisar',
+      content: 'Encontre o melhor lugar com conforto e segurança!',
+    },
+  ];
 
   scrollTabs(direction: number) {
     const newActiveTab = this.activeTab + direction;
@@ -132,9 +167,47 @@ export class HomeComponent {
     }
   }
 
-  changeTab(index: number): void {
+  changeTab(tab: Tab, index: number): void {
     console.log('trocou de aba', index);
+    this.idCategory = tab.idCategory;
     this.activeTab = index;
+
+    if (tab.idCategory === '0') {
+      this.skeleton.start();
+      this.campingService
+        .listActives() //list by category
+        .pipe(
+          finalize(() => {
+            this.skeleton.stop();
+          })
+        )
+        .subscribe((data) => {
+          this.campings = data.sort((a, b) => {
+            const clickCounterA = a.clickCounter || 0;
+            const clickCounterB = b.clickCounter || 0;
+
+            return clickCounterB - clickCounterA;
+          });
+        });
+    } else {
+      this.skeleton.start();
+
+      this.campingService
+        .listByCategory(tab.idCategory)
+        .pipe(
+          finalize(() => {
+            this.skeleton.stop();
+          })
+        )
+        .subscribe((data) => {
+          this.campings = data.sort((a, b) => {
+            const clickCounterA = a.clickCounter || 0;
+            const clickCounterB = b.clickCounter || 0;
+
+            return clickCounterB - clickCounterA;
+          });
+        });
+    }
   }
 
   submitForm() {
@@ -142,6 +215,11 @@ export class HomeComponent {
       this.leadsService.sendLeads(this.leads).subscribe(
         (response) => {
           alert('Dados enviados com sucesso!');
+          this.leads = {
+            email: '',
+            name: '',
+            phone: '',
+          };
         },
         (error) => {
           alert('Erro ao enviar dados: ' + error.message);

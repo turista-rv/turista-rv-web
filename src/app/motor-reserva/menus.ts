@@ -1,11 +1,21 @@
 export const MENUS = [
   {
-    label: 'Admin',
+    label: 'ADMINASTRAÇÃO',
     items: [
       {
         label: 'Dashboard',
         icon: 'fa fa-house',
         routerLink: ['/motor-reservas'],
+      },
+      {
+        label: 'Postagens',
+        icon: 'fa fa-house',
+        routerLink: ['/motor-reservas/posts'],
+      },
+      {
+        label: 'Leads',
+        icon: 'fa fa-house',
+        routerLink: ['/motor-reservas/leads'],
       },
     ],
   },

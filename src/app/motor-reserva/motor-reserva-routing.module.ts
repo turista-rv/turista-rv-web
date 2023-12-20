@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { PostsComponent } from '../views/posts/posts.component';
+import { LeadsComponent } from '../views/leads/leads.component';
 
 @NgModule({
   imports: [
@@ -29,6 +31,14 @@ import { RouterModule } from '@angular/router';
         path: 'gallery-images',
         loadChildren: () =>
           import('./image/image.module').then((m) => m.ImageModule),
+      },
+      {
+        path: 'posts',
+        component: PostsComponent,
+      },
+      {
+        path: 'leads',
+        component: LeadsComponent,
       },
     ]),
   ],

@@ -127,6 +127,7 @@
               Nome <p-sortIcon field="name"></p-sortIcon>
             </th>
             <th>Facilidades</th>
+            <th>Popularidade</th>
             <th pSortableColumn="active">
               Status <p-sortIcon field="active"></p-sortIcon>
             </th>
@@ -168,6 +169,9 @@
                   {{ rule.name }}
                 </div>
               </div>
+            </td>
+            <td>
+              {{ camping.clickCounter }}
             </td>
             <td style="min-width: 10rem">
               <i

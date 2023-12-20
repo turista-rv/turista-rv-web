@@ -80,9 +80,14 @@
         <th style="width: 3rem">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th pSortableColumn="id">
-          Código <p-sortIcon field="id"></p-sortIcon>
+        <th>Imagem</th>
+        <th pSortableColumn="name">
+          Nome <p-sortIcon field="name"></p-sortIcon>
         </th>
+        <th>Categoria</th>
+        <th>Tipo de Cobrança</th>
+        <th>Conveniências</th>
+        <th>Active</th>
         <th>Ações</th>
       </tr>
     </ng-template>
@@ -91,12 +96,54 @@
         <td>
           <p-tableCheckbox [value]="box"></p-tableCheckbox>
         </td>
-        <td
-          style="width: 20%; min-width: 10rem"
-          [ngClass]="{ 'text-red-700': !box.active }"
-        >
-          <span class="p-column-title">Code</span>
-          {{ box.code || box.id }}
+        <td>
+          <span class="p-column-title">Imagem</span>
+          <img
+            [src]="box.images[0].image.url"
+            alt=""
+            class="w-36 aspect-video rounded-2xl shadow-lg"
+          />
+        </td>
+        <td [ngClass]="{ 'text-red-700': !box.active }">
+          <span class="p-column-title">Nome</span>
+          {{ box.name }}
+        </td>
+        <td [ngClass]="{ 'text-red-700': !box.active }">
+          <span class="p-column-title">Categoria</span>
+          {{ box.boxType.name }}
+        </td>
+        <td [ngClass]="{ 'text-red-700': !box.active }">
+          <span class="p-column-title">Cobraça</span>
+          {{
+            box.boxType.typeOfCharge == "PERSON"
+              ? "Cobrança por Pessoa"
+              : "Cobrança por Reserva"
+          }}
+        </td>
+        <td [ngClass]="{ 'text-red-700': !box.active }">
+          <span class="p-column-title">Convenicências</span>
+
+          <div class="flex gap-2 flex-wrap">
+            <div
+              class="border rounded p-1"
+              *ngFor="let rule of getRules(box.convenience)"
+            >
+              <i class="fa {{ rule.icon }}"></i>
+              {{ rule.name }}
+            </div>
+          </div>
+        </td>
+        <td style="width: 10rem">
+          <i
+            class="fa-regular fa-circle-check fa-xl"
+            style="color: #0b655b"
+            *ngIf="box.active"
+          ></i>
+          <i
+            class="fa-regular fa-circle-xmark fa-xl"
+            style="color: #db0000"
+            *ngIf="!box.active"
+          ></i>
         </td>
         <td>
           <div class="flex">
@@ -131,20 +178,26 @@
   header="Vaga"
 >
   <ng-template pTemplate="content">
-    <div class="field">
-      <label for="name">Name</label>
-      <input
-        type="text"
-        pInputText
-        id="name"
-        [(ngModel)]="box.name"
-        required
-        autofocus
-        [ngClass]="{ 'ng-invalid ng-dirty': submitted && !box.name }"
-      />
-      <small class="ng-dirty ng-invalid" *ngIf="submitted && !box.name"
-        >Nome é obrigatório.</small
-      >
+    <div class="flex">
+      <div class="field w-full pr-3">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          pInputText
+          id="name"
+          [(ngModel)]="box.name"
+          required
+          autofocus
+          [ngClass]="{ 'ng-invalid ng-dirty': submitted && !box.name }"
+        />
+        <small class="ng-dirty ng-invalid" *ngIf="submitted && !box.name"
+          >Nome é obrigatório.</small
+        >
+      </div>
+      <div class="field w-16">
+        <label for="status" class="row">Status</label>
+        <p-inputSwitch [(ngModel)]="box.active" class="row"></p-inputSwitch>
+      </div>
     </div>
     <div class="field">
       <label for="category">Categoria</label>
@@ -168,6 +221,7 @@
           optionLabel="name"
           [filter]="true"
           display="chip"
+          appendTo="body"
           class="relative multiselect-custom mw-100"
         >
           <ng-template let-value pTemplate="selectedItems">
@@ -227,10 +281,6 @@
           </div>
         </ng-template>
       </p-multiSelect>
-    </div>
-    <div class="field grid mt-3">
-      <label for="status" class="row">Status</label>
-      <p-inputSwitch [(ngModel)]="box.active" class="row"></p-inputSwitch>
     </div>
   </ng-template>
 

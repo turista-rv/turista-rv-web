@@ -19,24 +19,12 @@
           <button
             class="tablinks"
             *ngFor="let tab of tabs; let i = index"
-            (click)="changeTab(i)"
+            (click)="changeTab(tab, i)"
             [ngClass]="{
               'bg-opacity-80 text-blueDark font-normal': activeTab === i,
               'bg-blueDark text-white font-normal': activeTab !== i
             }"
           >
-            <span *ngIf="i === 1" class="mr-2">
-              <i class="fas fa-lightbulb"></i>
-            </span>
-            <span *ngIf="i === 2" class="mr-2">
-              <i class="fas fa-campground"></i>
-            </span>
-            <span *ngIf="i === 3" class="mr-2">
-              <i class="fas fa-home"></i>
-            </span>
-            <span *ngIf="i === 4" class="mr-2">
-              <i class="fas fa-caravan"></i>
-            </span>
             {{ tab.title }}
           </button>
         </div>
@@ -99,9 +87,7 @@
         </section>
 
         <div class="card-explore flex justify-center items-center">
-          <app-camping-show *ngIf="activeTab == 0"></app-camping-show>
-          <!-- Vai receber a categoria da aba -->
-          <app-camping-show *ngIf="activeTab == 1"></app-camping-show>
+          <app-camping-show [data]="campings"></app-camping-show>
         </div>
       </div>
     </div>
@@ -109,7 +95,7 @@
 
   <!-- VANTAGENS DO SMART CAMPING -->
   <div class="z-10 mt-2">
-    <h2 class="text-center text-2xl font-regular mb-4">
+    <h2 class="text-center text-2xl font-regular mb-4 mx-2">
       No <b class="smart-text"> Smart Camping</b> você encontra o que realmente
       importa...
     </h2>

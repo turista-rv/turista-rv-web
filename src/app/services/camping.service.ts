@@ -57,4 +57,14 @@ export class CampingService {
   imcrementClick(id: string): Observable<any> {
     return this.http.patch(api.url + '/campings/click/' + id, {});
   }
+
+  listActives(): Observable<Camping[]> {
+    return this.http.get<Camping[]>(api.url + '/campings/actives');
+  }
+
+  listByCategory(id: string): Observable<Camping[]> {
+    return this.http.get<Camping[]>(
+      api.url + '/campings/actives/category/' + id
+    );
+  }
 }

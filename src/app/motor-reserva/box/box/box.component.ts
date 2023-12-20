@@ -60,6 +60,10 @@ export class BoxComponent {
     }
   }
 
+  getRules(rules: string[]): Rule[] {
+    return RULES.filter((r) => rules.includes(r.code));
+  }
+
   loadImages(): void {
     this._imageService.listImages().subscribe((data) => {
       data.map((value) => {
@@ -189,6 +193,7 @@ export class BoxComponent {
           this.boxTypeDialog = false;
           this.loadBoxes();
           this.selectedMulti = [];
+          this._loading.stop();
         },
         (e) => {
           this._toaster.error('Ocorreu um erro');
@@ -204,6 +209,7 @@ export class BoxComponent {
           this.boxTypeDialog = false;
           this.loadBoxes();
           this.selectedMulti = [];
+          this._loading.stop();
         },
         (e) => {
           this._toaster.error('Ocorreu um erro');
