@@ -96,6 +96,14 @@
               <span class="p-column-title">Nome</span>
               {{ boxType.name }}
             </td>
+            <td>
+              <span *ngIf="boxType.typeOfCharge === 'PERSON'"
+                >Cobrança por pessoa</span
+              >
+              <span *ngIf="boxType.typeOfCharge === 'BOOKING'"
+                >Cobrança por reserva</span
+              >
+            </td>
             <td style="width: 14%; min-width: 10rem">
               <i
                 class="fa-regular fa-circle-check fa-xl"
@@ -107,14 +115,6 @@
                 style="color: #db0000"
                 *ngIf="!boxType.active"
               ></i>
-            </td>
-            <td>
-              <span *ngIf="boxType.typeOfCharge === 'PERSON'"
-                >Cobrança por pessoa</span
-              >
-              <span *ngIf="boxType.typeOfCharge === 'BOOKING'"
-                >Cobrança por reserva</span
-              >
             </td>
             <td>
               <div class="flex">
