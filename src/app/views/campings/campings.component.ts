@@ -76,7 +76,7 @@ export class CampingsComponent implements OnInit {
       const mensagemWhatsapp = `Olá, gostaria de fazer uma reserva para ${campingName} de ${dataIni} até ${dataFim}!`;
 
       window.open(
-        `http://wa.me/${this.camping.phone}?text=${encodeURIComponent(
+        `http://wa.me/55${this.camping.phone}?text=${encodeURIComponent(
           mensagemWhatsapp
         )}`,
         '_blank'

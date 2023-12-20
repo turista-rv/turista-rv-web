@@ -208,7 +208,7 @@ export class CampingComponent implements OnInit {
         complement: '',
         reference: '',
       },
-      phone: 0,
+      phone: '',
     };
   }
 
@@ -302,6 +302,11 @@ export class CampingComponent implements OnInit {
         .replace('-', '')
         .replace('_', '');
 
+      this.camping.phone = this.camping.phone
+        .replace('(', '')
+        .replace(')', '')
+        .replace('-', '')
+        .replace(' ', '');
       this.camping.address.country = this.selectedCountry.name;
       this.camping.address.zipCode = +cep;
       this.camping.address.num = +this.camping.address.num;

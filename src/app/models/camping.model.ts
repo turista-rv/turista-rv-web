@@ -18,7 +18,7 @@ export interface Camping {
   baseValue: number;
   address: Address;
   readonly clickCounter?: number;
-  phone?: number;
+  phone?: string;
 }
 
 export interface CampingInsert {
