@@ -35,7 +35,6 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
   searchTerm: string = '';
 
   ratingValue = 4;
-  category = 'Smart Camping';
 
   constructor(
     private campingService: CampingService,
@@ -57,9 +56,6 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
         this.isSmallScreen = result.matches;
       });
 
-    if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
-      this.initMap();
-    }
 
     // Verificar se existem parâmetros na URL
     this.route.queryParams.subscribe((params) => {
@@ -80,6 +76,16 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  getRules(camping: Camping): Rule[] {
+    const ruleCodes = camping.propertyRules.slice(0, 4);
+    return camping?.propertyRules?.length > 0 ? RULES.filter((r) => camping.propertyRules.includes(r.code)) : [];
+  }
+
+ 
+
+  // Métodos de Filtros
+  // -----------------------------------------
 
   toggleFilters(): void {
     this.showFilters = !this.showFilters;
@@ -103,7 +109,7 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
     this.loadCampings();
   }
 
-  onPriceChange(): void {
+  onBaseValueChange(): void {
     this.loadCampings();
   }
 
@@ -119,12 +125,11 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getRules(camping: Camping): Rule[] {
-    const ruleCodes = camping.propertyRules.slice(0, 4);
-    return camping?.propertyRules?.length > 0 ? RULES.filter((r) => camping.propertyRules.includes(r.code)) : [];
+  filterCards(): void {
   }
 
   // Mini mapa Google
+
   initMap(): void {
     const mapOptions = {
       center: { lat: -27.5969, lng: 48.5495 }, // Coordenadas iniciais
@@ -134,13 +139,8 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
     const map = new google.maps.Map(document.getElementById('miniMap'), mapOptions);
   }
 
-  // Inicializa o mapa quando a página for carregada
   ngAfterViewInit(): void {
     this.initMap();
   }
 
-  filterCards(): void {
-    // Implemente a lógica de filtro de cards com base em this.searchTerm
-  }
-  
 }
