@@ -34,7 +34,7 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
   sortOrder!: number;
   sortField!: string;
   sortKey: any;
-  rangeValues: number[] = [0, 300];
+  rangeValues: number[] = [0, 600];
   maxRangeValue: number = 999; 
   selectedCategory = 'all';
   isSmallScreen = false;
