@@ -2,7 +2,7 @@ import { finalize, forkJoin } from 'rxjs';
 import { Component } from '@angular/core';
 import { Table } from 'primeng/table';
 import { LoadingService } from 'src/app/components/loading/loading.service';
-import { BoxType } from 'src/app/models/box-type.model';
+import { BoxType, TypeOfCharge } from 'src/app/models/box-type.model';
 import { BoxTypeService } from 'src/app/services/box-type.service';
 import { ToasterService } from 'src/app/services/toaster.service';
 import { Observable } from '@ckeditor/ckeditor5-utils';
@@ -21,11 +21,7 @@ export class BoxTypeComponent {
 
   boxTypes: BoxType[] = [];
 
-  boxType: BoxType = {
-    name: '',
-    active: true,
-    price: '',
-  };
+  boxType: BoxType = this.intializeBoxType();
 
   selectedBoxTypes: BoxType[] = [];
 
@@ -53,12 +49,17 @@ export class BoxTypeComponent {
       });
   }
 
-  openNew() {
-    this.boxType = {
+  intializeBoxType(): BoxType {
+    return {
       name: '',
       active: true,
-      price: '',
+      description: '',
+      typeOfCharge: TypeOfCharge.PERSON,
     };
+  }
+
+  openNew() {
+    this.boxType = this.intializeBoxType();
     this.submitted = false;
     this.boxTypeDialog = true;
   }
@@ -101,11 +102,7 @@ export class BoxTypeComponent {
           (response) => {
             this._toaster.success('Categoria excluída com sucesso');
 
-            this.boxType = {
-              name: '',
-              active: true,
-              price: '',
-            };
+            this.boxType = this.intializeBoxType();
             this.loadBoxTypes();
           },
           (e) => {
@@ -119,7 +116,6 @@ export class BoxTypeComponent {
   saveProduct() {
     this.submitted = true;
     if (this.boxType.id) {
-      this.boxType.price = +this.boxType.price;
       this._loading.start();
       this._service.update(this.boxType).subscribe(
         (response) => {
@@ -137,11 +133,7 @@ export class BoxTypeComponent {
       this._service.create(this.boxType).subscribe(
         (data) => {
           this._toaster.success('Categoria criada com sucesso');
-          this.boxType = {
-            name: '',
-            active: true,
-            price: '',
-          };
+          this.boxType = this.intializeBoxType();
           this.boxTypeDialog = false;
           this.loadBoxTypes();
         },

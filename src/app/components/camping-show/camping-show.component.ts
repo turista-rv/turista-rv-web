@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Camping } from 'src/app/models/camping.model';
-import { CampingService } from 'src/app/services/camping.service';
-import { LoadingService } from '../loading/loading.service';
-import { finalize } from 'rxjs';
+import { SkeletonService } from '../skeleton/skeleton.service';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-camping-show',
@@ -11,29 +10,37 @@ import { finalize } from 'rxjs';
   styleUrls: ['./camping-show.component.css'],
 })
 export class CampingShowComponent {
+  @Input() set data(value: Camping[]) {
+    this.campingBCKP = value;
+    if (this.isMobile) {
+      this.campings = value.slice(0, 3);
+    } else {
+      this.campings = value.slice(0, 6);
+    }
+  }
+  isMobile: boolean = false;
   campings: Camping[] = [];
+  campingBCKP: Camping[] = [];
   constructor(
-    private campingService: CampingService,
     private router: Router,
-    private _loading: LoadingService
+    public skeleton: SkeletonService,
+    private breakpoint: BreakpointObserver
   ) {}
 
   ngOnInit(): void {
-    this._loading.start();
-    this.campingService
-      .listCampings()
-      .pipe(
-        finalize(() => {
-          this._loading.stop();
-        })
-      )
-      .subscribe((data) => {
-        this.campings = data;
-      });
+    this.breakpoint.observe([Breakpoints.XSmall]).subscribe((result) => {
+      console.log(result);
+      if (result.matches) {
+        this.isMobile = true;
+        this.campings = this.campingBCKP.slice(0, 3);
+      } else {
+        this.isMobile = false;
+        this.campings = this.campingBCKP.slice(0, 6);
+      }
+    });
   }
 
-  redirectToCampingDetails(campingId: string): void {
-    // Redirecione para a rota de detalhes do camping com o ID como parâmetro
+  redirectToCampingDetails(campingId: string | undefined): void {
     this.router.navigate(['/campings', campingId]);
   }
 }

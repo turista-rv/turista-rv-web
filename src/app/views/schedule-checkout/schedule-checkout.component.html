@@ -1,0 +1,62 @@
+<div class="flex flex-col gap-5 md:flex-row">
+  <p-card header="Informações da Reserva">
+    <p class="m-0">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
+      consequuntur error repudiandae numquam deserunt quisquam repellat libero
+      asperiores earum nam nobis, culpa ratione quam perferendis esse,
+      cupiditate neque quas!
+    </p>
+  </p-card>
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="flex gap-1 items-center px-[14px] pt-[14px]">
+        <i class="fa fa-calendar-check mt-1"></i>
+        <span class="font-bold text-2xl">Reserva</span>
+      </div>
+      <hr class="mx-[14px]" />
+    </ng-template>
+    <ng-template pTemplate="cotent">
+      <div class="flex flex-col xl:flex-row gap-3">
+        <img
+          src="https://placehold.co/600x400"
+          class="w-full xl:w-1/3"
+          alt=""
+        />
+        <div class="flex flex-col w-full">
+          <div class="flex w-full font-semibold">
+            <div class="flex justify-between w-full">
+              <span>Nome da Vaga</span>
+              <span>R$ 100,00</span>
+            </div>
+          </div>
+          <small>Tipo de cobrança</small>
+
+          <p-inputNumber
+            class="border-1"
+            [showButtons]="true"
+            buttonLayout="horizontal"
+            decrementButtonClass="p-button-text text-slate-600 hover:text-slate-950 py-1 px-1"
+            incrementButtonClass="p-button-outlined"
+            incrementButtonIcon="pi pi-plus"
+            decrementButtonIcon="pi pi-minus"
+          ></p-inputNumber>
+        </div>
+      </div>
+      <hr />
+      <div class="py-2 mt-3 border-bottom-1 surface-border ng-tns-c39-2">
+        <div class="flex justify-between align-items-center mb-3 ng-tns-c39-2">
+          <span class="text-900 ng-tns-c39-2">Subtotal</span
+          ><span class="text-900 ng-tns-c39-2">$12.00</span>
+        </div>
+        <div class="flex justify-between align-items-center mb-3 ng-tns-c39-2">
+          <span class="text-900 ng-tns-c39-2">Shipping</span
+          ><span class="text-900 ng-tns-c39-2">Free</span>
+        </div>
+        <div class="flex justify-between align-items-center mb-3 ng-tns-c39-2">
+          <span class="text-900 ng-tns-c39-2">Total</span
+          ><span class="text-900 font-bold ng-tns-c39-2">$12.00</span>
+        </div>
+      </div>
+    </ng-template>
+  </p-card>
+</div>

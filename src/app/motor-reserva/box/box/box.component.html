@@ -1,1 +1,376 @@
-<p>box works!</p>
+<div class="card px-6 py-6">
+  <div class="my-2 flex flex-col md:flex-row gap-3 max-w-full">
+    <div>
+      <label class="font-bold mr-2">Camping</label>
+      <p-dropdown
+        [options]="campings"
+        [(ngModel)]="camping"
+        (ngModelChange)="onChangeCamping()"
+        placeholder="Selecione para continuar..."
+        optionLabel="name"
+        class="relative multiselect-custom mr-3 w-full"
+      ></p-dropdown>
+    </div>
+    <button
+      pButton
+      pRipple
+      label="Nova Vaga"
+      icon="fa fa-plus"
+      class="p-button-success mr-2"
+      (click)="openNew()"
+      [disabled]="!camping"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Excluir"
+      icon="fa fa-trash"
+      class="p-button-danger"
+      (click)="deleteSelectedBoxTypes()"
+      [disabled]="!selectedBoxTypes || !selectedBoxTypes.length"
+    ></button>
+  </div>
+
+  <div class="flex flex-col gap-5" *ngIf="_skeleton.isLoading">
+    <div
+      class="flex gap-4 flex-col md:flex-row justify-between"
+      *ngFor="let item of arraySkeleton"
+    >
+      <app-skeleton width="12rem" height="2rem"></app-skeleton>
+      <app-skeleton width="12rem" height="2rem"></app-skeleton>
+      <app-skeleton width="12rem" height="2rem"></app-skeleton>
+      <app-skeleton width="12rem" height="2rem"></app-skeleton>
+    </div>
+  </div>
+  <p-table
+    *ngIf="camping && !_skeleton.isLoading"
+    #dt
+    [value]="boxes"
+    responsiveLayout="stack"
+    [rows]="10"
+    [globalFilterFields]="['name']"
+    [paginator]="true"
+    [rowsPerPageOptions]="[10, 20, 30]"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="{first} até {last} de {totalRecords} registros"
+    [(selection)]="selectedBoxTypes"
+    selectionMode="multiple"
+    [rowHover]="true"
+    dataKey="id"
+  >
+    <ng-template pTemplate="caption">
+      <div
+        class="flex flex-column md:flex-row md:justify-between md:items-center"
+      >
+        <h5 class="m-0">Administrar Vagas</h5>
+        <span class="block mt-2 md:mt-0 p-input-icon-left">
+          <i class="fa fa-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="onGlobalFilter(dt, $event)"
+            placeholder="Pesquisar..."
+            class="w-full sm:w-auto"
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th>Imagem</th>
+        <th pSortableColumn="name">
+          Nome <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th>Categoria</th>
+        <th>Tipo de Cobrança</th>
+        <th>Conveniências</th>
+        <th>Valor</th>
+        <th>Active</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-box>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="box"></p-tableCheckbox>
+        </td>
+        <td>
+          <span class="p-column-title">Imagem</span>
+          <img
+            [src]="box.images[0].image.url"
+            alt=""
+            class="w-36 aspect-video rounded-2xl shadow-lg"
+          />
+        </td>
+        <td [ngClass]="{ 'text-red-700': !box.active }">
+          <span class="p-column-title">Nome</span>
+          {{ box.name }}
+        </td>
+        <td [ngClass]="{ 'text-red-700': !box.active }">
+          <span class="p-column-title">Categoria</span>
+          {{ box.boxType.name }}
+        </td>
+        <td [ngClass]="{ 'text-red-700': !box.active }">
+          <span class="p-column-title">Cobraça</span>
+          {{
+            box.boxType.typeOfCharge == "PERSON"
+              ? "Cobrança por Pessoa"
+              : "Cobrança por Reserva"
+          }}
+        </td>
+        <td [ngClass]="{ 'text-red-700': !box.active }">
+          <span class="p-column-title">Convenicências</span>
+
+          <div class="flex gap-2 flex-wrap">
+            <div
+              class="border rounded p-1"
+              *ngFor="let rule of getRules(box.convenience)"
+            >
+              <i class="fa {{ rule.icon }}"></i>
+              {{ rule.name }}
+            </div>
+          </div>
+        </td>
+        <td>
+          {{ box.price }}
+        </td>
+        <td style="width: 10rem">
+          <i
+            class="fa-regular fa-circle-check fa-xl"
+            style="color: #0b655b"
+            *ngIf="box.active"
+          ></i>
+          <i
+            class="fa-regular fa-circle-xmark fa-xl"
+            style="color: #db0000"
+            *ngIf="!box.active"
+          ></i>
+        </td>
+        <td>
+          <div class="flex">
+            <button
+              pButton
+              pRipple
+              icon="fa fa-pencil"
+              class="p-button-rounded p-button-success mr-2"
+              (click)="editBoxType(box)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="fa fa-trash"
+              class="p-button-rounded p-button-warning"
+              (click)="deleteBoxType(box)"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<!-- Modal Novo Cadastro / Editar -->
+<p-dialog
+  [(visible)]="boxTypeDialog"
+  [style]="{ width: '50vw' }"
+  [breakpoints]="{ '900px': '85vw' }"
+  [modal]="true"
+  class="p-fluid"
+  header="Vaga"
+>
+  <ng-template pTemplate="content">
+    <div class="flex">
+      <div class="field w-full pr-3">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          pInputText
+          id="name"
+          [(ngModel)]="box.name"
+          required
+          autofocus
+          [ngClass]="{ 'ng-invalid ng-dirty': submitted && !box.name }"
+        />
+        <small class="ng-dirty ng-invalid" *ngIf="submitted && !box.name"
+          >Nome é obrigatório.</small
+        >
+      </div>
+      <div class="field w-16">
+        <label for="status" class="row">Status</label>
+        <p-inputSwitch [(ngModel)]="box.active" class="row"></p-inputSwitch>
+      </div>
+    </div>
+    <div class="field">
+      <label for="category">Categoria</label>
+      <p-dropdown
+        [options]="boxTypes"
+        [(ngModel)]="box.boxType"
+        optionLabel="name"
+        [filter]="true"
+        filterBy="name"
+        [showClear]="true"
+        placeholder="Selecione uma categoria"
+      ></p-dropdown>
+    </div>
+    <div class="field">
+      <div class="field flex-1 grid mt-3">
+        <label class="font-bold">Galeria de Imagens:</label>
+        <p-multiSelect
+          [options]="images"
+          [(ngModel)]="box.images"
+          placeholder="Selecione as imagens da Galeria"
+          optionLabel="name"
+          [filter]="true"
+          display="chip"
+          appendTo="body"
+          class="relative multiselect-custom mw-100"
+        >
+          <ng-template let-value pTemplate="selectedItems">
+            <div
+              class="inline-flex align-items-center gap-2 px-1"
+              *ngFor="let option of value; let i = index"
+            >
+              <img [src]="option.image.url" class="w-12 aspect-video mt-2" />
+            </div>
+            <div *ngIf="!value || value.length === 0">Selecione as opções</div>
+          </ng-template>
+          <ng-template let-item pTemplate="item">
+            <div class="flex align-items-center gap-2">
+              <img [src]="item.image.url" class="w-48 aspect-video mt-2" />
+            </div>
+          </ng-template>
+        </p-multiSelect>
+      </div>
+    </div>
+    <div class="flex-auto">
+      <label for="integeronly" class="font-bold">Valor da diária</label>
+      <p-inputNumber
+        inputId="integeronly"
+        [(ngModel)]="box.price"
+        mode="currency"
+        currency="BRL"
+      >
+      </p-inputNumber>
+    </div>
+    <div class="relative flex flex-col mt-2">
+      <label class="font-bold">Facilidades:</label>
+      <p-multiSelect
+        [options]="rules"
+        [(ngModel)]="selectedMulti"
+        [showClear]="true"
+        placeholder="Selecione as opções"
+        optionLabel="name"
+        appendTo="body"
+        [filter]="true"
+        display="chip"
+        class="relative multiselect-custom mw-100"
+      >
+        <ng-template let-value pTemplate="selectedItems">
+          <div
+            class="inline-flex align-items-center gap-2 px-1"
+            *ngFor="let option of value; let i = index"
+          >
+            <i
+              [class]="'border rounded p-2 mt-1 fa fa-solid ' + option.icon"
+            ></i>
+          </div>
+          <div *ngIf="!value || value.length === 0">Selecione as opções</div>
+        </ng-template>
+        <ng-template let-rule pTemplate="item">
+          <div class="flex align-items-center gap-2">
+            <i [class]="'mt-1 fa fa-solid ' + rule.icon"></i>
+            <div>{{ rule.name }}</div>
+          </div>
+        </ng-template>
+      </p-multiSelect>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancelar"
+      icon="fa fa-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+      [disabled]=""
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Salvar"
+      icon="fa fa-check"
+      class="p-button-text"
+      (click)="saveProduct()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<!-- Modal Confirmação Deletar UM -->
+<p-dialog
+  [(visible)]="deleteBoxTypeDialog"
+  header="Confirm"
+  [modal]="true"
+  [style]="{ width: '450px' }"
+>
+  <div class="flex align-items-center justify-content-center">
+    <i class="fa fa-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+    <span *ngIf="box"
+      >Tem certeza que deseja excluir a categoria <b>{{ box.name }}</b
+      >?</span
+    >
+  </div>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      icon="fa fa-times"
+      class="p-button-text"
+      label="Não"
+      (click)="deleteBoxTypeDialog = false"
+    ></button>
+    <button
+      pButton
+      pRipple
+      icon="fa fa-check"
+      class="p-button-text"
+      label="Sim"
+      (click)="confirmDelete(box.id)"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<!-- Modal Confirmação Deletar Todos -->
+<p-dialog
+  [(visible)]="deleteBoxTypesDialog"
+  header="Confirm"
+  [modal]="true"
+  [style]="{ width: '450px' }"
+>
+  <div class="flex align-items-center justify-content-center">
+    <i class="fa fa-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+    <span>Tem certeza que deseja excluir todos os registros selecionados?</span>
+  </div>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      icon="fa fa-times"
+      class="p-button-text"
+      label="Não"
+      (click)="deleteBoxTypesDialog = false"
+    ></button>
+    <button
+      pButton
+      pRipple
+      icon="fa fa-check"
+      class="p-button-text"
+      label="Sim"
+      (click)="confirmDeleteSelected()"
+    ></button>
+  </ng-template>
+</p-dialog>

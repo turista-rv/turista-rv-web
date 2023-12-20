@@ -69,7 +69,7 @@
               Nome <p-sortIcon field="name"></p-sortIcon>
             </th>
             <th pSortableColumn="price">
-              Valor <p-sortIcon field="price"></p-sortIcon>
+              Tipo de Cobrança <p-sortIcon field="price"></p-sortIcon>
             </th>
             <th pSortableColumn="active">
               Status <p-sortIcon field="active"></p-sortIcon>
@@ -96,12 +96,13 @@
               <span class="p-column-title">Nome</span>
               {{ boxType.name }}
             </td>
-            <td
-              style="width: 14%; min-width: 8rem"
-              [ngClass]="{ 'text-red-700': !boxType.active }"
-            >
-              <span class="p-column-title">Price</span>
-              {{ boxType.price | currency : "BRL" }}
+            <td>
+              <span *ngIf="boxType.typeOfCharge === 'PERSON'"
+                >Cobrança por pessoa</span
+              >
+              <span *ngIf="boxType.typeOfCharge === 'BOOKING'"
+                >Cobrança por reserva</span
+              >
             </td>
             <td style="width: 14%; min-width: 10rem">
               <i
@@ -161,15 +162,34 @@
             >Nome da Categoria é obrigatório.</small
           >
         </div>
+        <div class="field">
+          <label for="name">Descrição</label>
+          <input
+            type="textarea"
+            pInputText
+            id="name"
+            [(ngModel)]="boxType.description"
+          />
+        </div>
         <div class="formgrid grid mt-3">
+          <span>Tipo de Cobrança</span>
           <div class="field col">
-            <label for="price">Valor</label>
-            <p-inputNumber
-              id="price"
-              [(ngModel)]="boxType.price"
-              mode="currency"
-              currency="BRL"
-            ></p-inputNumber>
+            <div class="field-checkbox">
+              <p-radioButton
+                inputId="PERSON"
+                value="PERSON"
+                [(ngModel)]="boxType.typeOfCharge"
+              ></p-radioButton>
+              <label for="PERSON" class="ml-2">Cobrança por Pessoa</label>
+            </div>
+            <div class="field-checkbox">
+              <p-radioButton
+                inputId="BOOKING"
+                value="BOOKING"
+                [(ngModel)]="boxType.typeOfCharge"
+              ></p-radioButton>
+              <label for="BOOKING" class="ml-2">Cobrança pela Reserva</label>
+            </div>
           </div>
         </div>
         <div class="field grid mt-3">

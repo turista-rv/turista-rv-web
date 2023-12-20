@@ -1,3 +1,6 @@
+import { UserPanelComponent } from './views/user-panel/user-panel.component';
+import { CampingBoxComponent } from './components/camping-box/camping-box.component';
+import { CampingSearchComponent } from './views/camping-search/camping-search.component';
 import { CampingRulesComponent } from './views/rules-politics/camping-rules/camping-rules.component';
 import { CampingPoliticsComponent } from './views/rules-politics/camping-politics/camping-politics.component';
 import { adminGuard } from './guards/admin.guard';
@@ -13,7 +16,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CampingCheckoutComponent } from './views/camping-checkout/camping-checkout.component';
 import { AppAdminComponent } from './motor-reserva/layout/app.admin.component';
-import { CreateCampingComponent } from './views/create-camping/create-camping.component';
+import { ScheduleCheckoutComponent } from './views/schedule-checkout/schedule-checkout.component';
 
 const routes: Routes = [
   {
@@ -56,11 +59,6 @@ const routes: Routes = [
     canActivate: [adminGuard],
   },
   {
-    path: 'create-camping',
-    component: CreateCampingComponent,
-    canActivate: [adminGuard],
-  },
-  {
     path: 'campings/:id',
     component: CampingsComponent,
   },
@@ -75,6 +73,22 @@ const routes: Routes = [
   {
     path: 'camping-politics',
     component: CampingPoliticsComponent,
+  },
+  {
+    path: 'camping-search',
+    component: CampingSearchComponent,
+  },
+  {
+    path: 'camping-box/:id',
+    component: CampingBoxComponent,
+  },
+  {
+    path: 'user-panel',
+    component: UserPanelComponent,
+  },
+  {
+    path: 'schedule-checkout',
+    component: ScheduleCheckoutComponent,
   },
 ];
 

@@ -1,0 +1,238 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card px-6 py-6">
+      <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+          <div class="my-2">
+            <button
+              pButton
+              pRipple
+              label="Nova Categoria"
+              icon="fa fa-plus"
+              class="p-button-success mr-2"
+              (click)="openNew()"
+            ></button>
+            <button
+              pButton
+              pRipple
+              label="Excluir"
+              icon="fa fa-trash"
+              class="p-button-danger"
+              (click)="deleteBoxTypesDialog = true"
+              [disabled]="!selectedCategories || !selectedCategories.length"
+            ></button>
+          </div>
+        </ng-template>
+      </p-toolbar>
+
+      <p-table
+        #dt
+        [value]="categories"
+        responsiveLayout="scroll"
+        [rows]="10"
+        [globalFilterFields]="['name']"
+        [paginator]="true"
+        [rowsPerPageOptions]="[10, 20, 30]"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="{first} até {last} de {totalRecords} registros"
+        [(selection)]="selectedCategories"
+        selectionMode="multiple"
+        [rowHover]="true"
+        dataKey="id"
+      >
+        <ng-template pTemplate="caption">
+          <div
+            class="flex flex-column md:flex-row md:justify-between md:items-center"
+          >
+            <h5 class="m-0">Administrar Categorias</h5>
+            <span class="block mt-2 md:mt-0 p-input-icon-left">
+              <i class="fa fa-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="onGlobalFilter(dt, $event)"
+                placeholder="Pesquisar..."
+                class="w-full sm:w-auto"
+              />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 3rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="id">
+              Código <p-sortIcon field="id"></p-sortIcon>
+            </th>
+            <th pSortableColumn="name">
+              Nome <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="price">
+              Descrição <p-sortIcon field="price"></p-sortIcon>
+            </th>
+            <th>Ações</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-boxType>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="boxType"></p-tableCheckbox>
+            </td>
+            <td style="width: 20%; min-width: 10rem">
+              <span class="p-column-title">Code</span>
+              {{ boxType.code || boxType.id }}
+            </td>
+            <td style="width: 30%; min-width: 10rem">
+              <span class="p-column-title">Nome</span>
+              {{ boxType.name }}
+            </td>
+            <td>
+              <span class="p-column-title">Descrição</span>
+              {{ boxType.description }}
+            </td>
+            <td>
+              <div class="flex">
+                <button
+                  pButton
+                  pRipple
+                  icon="fa fa-pencil"
+                  class="p-button-rounded p-button-success mr-2"
+                  (click)="editBoxType(boxType)"
+                ></button>
+                <button
+                  pButton
+                  pRipple
+                  icon="fa fa-trash"
+                  class="p-button-rounded p-button-warning"
+                  (click)="deleteBoxType(boxType)"
+                ></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- Modal Novo Cadastro / Editar -->
+    <p-dialog
+      [(visible)]="boxTypeDialog"
+      [style]="{ width: '450px' }"
+      [modal]="true"
+      class="p-fluid"
+    >
+      <ng-template pTemplate="content">
+        <div class="field">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            pInputText
+            id="name"
+            [(ngModel)]="category.name"
+            required
+            autofocus
+            [ngClass]="{ 'ng-invalid ng-dirty': submitted && !category.name }"
+          />
+          <small class="ng-dirty ng-invalid" *ngIf="submitted && !category.name"
+            >Nome da Categoria é obrigatório.</small
+          >
+        </div>
+        <div class="field">
+          <label for="name">Descrição</label>
+          <input
+            type="textarea"
+            pInputText
+            id="name"
+            [(ngModel)]="category.description"
+          />
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          pRipple
+          label="Cancelar"
+          icon="fa fa-times"
+          class="p-button-text"
+          (click)="boxTypeDialog = false; this.submitted = false"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="Salvar"
+          icon="fa fa-check"
+          class="p-button-text"
+          (click)="saveProduct()"
+        ></button>
+      </ng-template>
+    </p-dialog>
+
+    <!-- Modal Confirmação Deletar UM -->
+    <p-dialog
+      [(visible)]="deleteBoxTypeDialog"
+      header="Confirm"
+      [modal]="true"
+      [style]="{ width: '450px' }"
+    >
+      <div class="flex align-items-center justify-content-center">
+        <i class="fa fa-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="category"
+          >Tem certeza que deseja excluir a categoria <b>{{ category.name }}</b
+          >?</span
+        >
+      </div>
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          pRipple
+          icon="fa fa-times"
+          class="p-button-text"
+          label="Não"
+          (click)="deleteBoxTypeDialog = false"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="fa fa-check"
+          class="p-button-text"
+          label="Sim"
+          (click)="confirmDelete(category.id)"
+        ></button>
+      </ng-template>
+    </p-dialog>
+
+    <!-- Modal Confirmação Deletar Todos -->
+    <p-dialog
+      [(visible)]="deleteBoxTypesDialog"
+      header="Confirm"
+      [modal]="true"
+      [style]="{ width: '450px' }"
+    >
+      <div class="flex align-items-center justify-content-center">
+        <i class="fa fa-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span
+          >Tem certeza que deseja excluir todos os registros selecionados?</span
+        >
+      </div>
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          pRipple
+          icon="fa fa-times"
+          class="p-button-text"
+          label="Não"
+          (click)="deleteBoxTypesDialog = false"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="fa fa-check"
+          class="p-button-text"
+          label="Sim"
+          (click)="confirmDeleteSelected()"
+        ></button>
+      </ng-template>
+    </p-dialog>
+  </div>
+</div>

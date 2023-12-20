@@ -1,0 +1,133 @@
+<header style="z-index: 1000;">
+  <app-header></app-header>
+</header>
+
+<div class="flex flex-col sm:flex-row justify-center mt-[7rem]">
+  <div class="flex xl:w-1/4 lg:1/5 sm:w-full justify-center">
+    <div class="p-4" *ngIf="showFiltersButton && !(showFilters && !isSmallScreen)">
+      <button class="block sm:hidden p-2 border rounded-md border-blueDark text-slate-500"
+        (click)="toggleFilters()">Filtros
+      </button>
+    </div>
+
+    <div class="sm:w-full md:w-full lg:w-full xl:w-full p-4" [ngClass]="{'hidden': !showFilters && isSmallScreen}">
+      <div class="card flex h-[890px] flex-col justify-content-center">
+        <div id="miniMap" class="mt-10" style="height: 200px;"></div>
+        <h2 class="mb-7">Filtros</h2>
+        <div class="mb-7">
+          <label class="font-semibold">Categoria:</label>
+          <div class="flex flex-wrap gap-2 mt-3 mb-5">
+            <button class="category-button" 
+                    [ngClass]="{'selected': selectedCategory === 'all'}"
+                    (click)="selectCategory('all')">Todos
+            </button>
+            
+            <button *ngFor="let categoryButton of categoryButtons"
+                    class="category-button" 
+                    [ngClass]="{'selected': selectedCategory === categoryButton.id}"
+                    (click)="selectCategory(categoryButton.id)">
+              {{ categoryButton.label }}
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-5">
+          <label class="font-semibold">Preço por noite:</label>
+          <div class="gap-2 mt-3 slider-container">
+            <div class="slider-label left">
+              {{ rangeValues[0] }}
+            </div>
+            <p-slider [(ngModel)]="rangeValues" [range]="true" [max]="600" (onSlideEnd)="onBaseValueChange()"></p-slider>
+            <div class="slider-label right">
+              {{ rangeValues[1] }}
+            </div>
+          </div>
+        </div>
+        
+        <button class="absolute top-4 right-5 p-2" (click)="closeFiltersButton()">
+          <i class="fa fa-times text-grays4"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <a class="text-black" [routerLink]="['/camping-box', camping.id]"> -->
+  <!-- TABELA -->
+  <div class="flex-grow p-4 tabela-ajustada mt-[0.2rem]">
+    <p-dataView #dv [value]="camping" [sortField]="sortField" [sortOrder]="sortOrder">
+      <ng-template pTemplate="header">
+        <div class="flex flex-column md:flex-row md:justify-content-between">
+          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Classificar por"
+            styleClass="mb-2 md:mb-0" (ngModelChange)="onSortKeyChange()"></p-dropdown>
+        </div>
+      </ng-template>
+      
+      
+      <ng-template pTemplate="listItem" let-camping let-i="index">
+        <div class="grid grid-cols-3">
+          <!-- Coluna 1 -->
+          <div class="col-span-1" style="max-width: 300px;" class="mr-4">
+            <ng-container *ngIf="camping.images && camping.images.length > 0">
+              <p-carousel [value]="camping.images" [numVisible]="1" [circular]="true" [autoplayInterval]="0"
+                [showIndicators]="false" [showNavigators]="false">
+                <ng-template let-image pTemplate="item">
+                  <img class="w-[300px] h-[200px] object-cover rounded-l" [src]="image?.image?.url" />
+                </ng-template>
+              </p-carousel>
+            </ng-container>
+          </div>
+
+          <!-- Coluna 2 -->
+          <div class="col-span-1" [ngClass]="{'mt-4': isSmallScreen, 'ml-4': !isSmallScreen}" style="max-width: 600px;">
+            <div class="flex flex-col sm:flex-row md:flex-row xl:flex-row xl:align-items-start">
+              <div class="flex flex-col align-items-center mt-4">
+
+                <p-rating [(ngModel)]="ratingValue" [readonly]="true" [cancel]="false" class="custom-rating"
+                  class="sm:mt-1 md:mt-1; lg:mt-4 xl:mt-4"></p-rating>
+                <span class="camping-name">{{ camping.name }}</span>
+                <hr class="linha" class="border-blueMid">
+
+                <div class="flex mt-1 gap-4">
+                  <div *ngIf="camping.categories && camping.categories.length > 0">
+                    <div class="category-container">
+                      <span class="categorias-text">Categorias:</span>
+                      <div class="flex flex-wrap">
+                        <ng-container *ngFor="let category of camping.categories; let last = last">
+                          <div class="gap-4">
+                            <span class="category text-grays4">{{ category.category.name }}</span>
+                            <span *ngIf="!last" class="separator text-grays2">-</span>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap mt-6 gap-2">
+                  <ng-container *ngFor="let rule of getRules(camping).slice(0, 4); let i = index">
+                    <i class="fa {{ rule?.icon }}" title="{{ rule?.name }}"></i>
+                    <span class="rules" *ngIf="!isSmallScreen">{{ rule?.name }}</span>
+                  </ng-container>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna 3 -->
+          <div class="col-span-1 flex items-center justify-center xl:justify-end order-last">
+            <div class="flex flex-row-end p-4 align-items justify-center sm:flex-column sm:align-items-end sm:gap-2">
+              <span class="text-2xl font-semibold">R$ {{camping.baseValue }}</span>
+              <p class="font-semibold text-1">/noite</p>
+              <!-- <button pButton icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded"
+                [disabled]="camping.inventoryStatus === 'OUTOFSTOCK'">
+                <i class="fas fa-shopping-cart"></i>
+              </button> | currency 'BRL'-->
+            </div>
+          </div>
+
+        </div>
+      </ng-template>
+    </p-dataView>
+  </div>
+</div>

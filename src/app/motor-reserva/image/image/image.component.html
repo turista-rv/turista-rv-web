@@ -1,0 +1,64 @@
+<div class="w-full">
+  <p-fileUpload
+    [multiple]="true"
+    accept="image/*"
+    [maxFileSize]="1000000"
+    cancelLabel="Cancelar"
+    chooseLabel="Selecionar imagens da galeria"
+    (onSelect)="onSelectImages($event)"
+    (onBeforeUpload)="onSendImages()"
+    #upload
+  >
+  </p-fileUpload>
+</div>
+
+<div class="flex flex-wrap gap-3 mt-4">
+  <div *ngFor="let image of images">
+    <div class="card aspect-video h-50 relative">
+      <p-image
+        [src]="image.url"
+        [alt]="image.name"
+        [preview]="true"
+        width="250"
+        imageClass="object-fill"
+        [imageStyle]="{ height: '130px', objectFit: 'cover' }"
+      ></p-image>
+      <i
+        class="fa fa-trash absolute bottom-3 text-red-800 cursor-pointer"
+        (click)="deleteImage(image.id)"
+      ></i>
+    </div>
+  </div>
+</div>
+
+<!-- skeleton -->
+<div class="flex flex-wrap gap-3 mt-4" *ngIf="skeleton.isLoading">
+  <div class="card aspect-video h-[200px] relative">
+    <app-skeleton></app-skeleton>
+  </div>
+  <div class="card aspect-video h-[200px] relative">
+    <app-skeleton></app-skeleton>
+  </div>
+  <div class="card aspect-video h-[200px] relative">
+    <app-skeleton></app-skeleton>
+  </div>
+  <div class="card aspect-video h-[200px] relative">
+    <app-skeleton></app-skeleton>
+  </div>
+  <div class="card aspect-video h-[200px] relative">
+    <app-skeleton></app-skeleton>
+  </div>
+  <div class="card aspect-video h-[200px] relative">
+    <app-skeleton></app-skeleton>
+  </div>
+</div>
+
+<div class="card flex w-full justify-center mt-4">
+  <p-paginator
+    (onPageChange)="onPageChange($event)"
+    [first]="first"
+    [rows]="rows"
+    [totalRecords]="totalImages.length"
+    [rowsPerPageOptions]="[10, 20, 30]"
+  ></p-paginator>
+</div>

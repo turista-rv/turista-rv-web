@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { api } from 'src/api';
 import { Camping } from '../models/camping.model';
-import { forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +10,8 @@ import { forkJoin } from 'rxjs';
 export class CampingService {
   constructor(private http: HttpClient) {}
 
-  create(formData: FormData): Observable<Camping> {
-    return this.http.post<Camping>(api.url + '/campings', formData);
+  create(camping: Camping): Observable<Camping> {
+    return this.http.post<Camping>(api.url + '/campings', camping);
   }
 
   listCampings(): Observable<Camping[]> {
@@ -23,10 +22,8 @@ export class CampingService {
     return this.http.get<Camping>(api.url + '/campings/' + id);
   }
 
-  update(formData: FormData): Observable<Camping> {
-    // formData.append('id', id);
-
-    return this.http.put<Camping>(api.url + '/campings', formData);
+  update(camping: Camping): Observable<Camping> {
+    return this.http.put<Camping>(api.url + '/campings', camping);
   }
 
   delete(id: string) {
@@ -55,5 +52,19 @@ export class CampingService {
 
   downloadImage(url: string): Observable<Blob> {
     return this.http.get(url, { responseType: 'blob' });
+  }
+
+  imcrementClick(id: string): Observable<any> {
+    return this.http.patch(api.url + '/campings/click/' + id, {});
+  }
+
+  listActives(): Observable<Camping[]> {
+    return this.http.get<Camping[]>(api.url + '/campings/actives');
+  }
+
+  listByCategory(id: string): Observable<Camping[]> {
+    return this.http.get<Camping[]>(
+      api.url + '/campings/actives/category/' + id
+    );
   }
 }

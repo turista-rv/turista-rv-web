@@ -19,6 +19,8 @@ import { BoxRoutingModule } from './box-routing.module';
 import { BoxTypeService } from 'src/app/services/box-type.service';
 import { BoxComponent } from './box/box.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SkeletonModule } from 'src/app/components/skeleton/skeleton.module';
 
 @NgModule({
   declarations: [BoxTypeComponent, BoxComponent],
@@ -35,10 +37,12 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     RatingModule,
     InputTextModule,
     InputTextareaModule,
+    MultiSelectModule,
     DropdownModule,
     RadioButtonModule,
     InputNumberModule,
     DialogModule,
+    SkeletonModule,
     InputSwitchModule,
   ],
   providers: [BoxTypeService],

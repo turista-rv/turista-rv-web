@@ -1,16 +1,26 @@
 export const MENUS = [
   {
-    label: 'Admin',
+    label: 'ADMINASTRAÇÃO',
     items: [
       {
         label: 'Dashboard',
         icon: 'fa fa-house',
         routerLink: ['/motor-reservas'],
       },
+      {
+        label: 'Postagens',
+        icon: 'fa fa-house',
+        routerLink: ['/motor-reservas/posts'],
+      },
+      {
+        label: 'Leads',
+        icon: 'fa fa-house',
+        routerLink: ['/motor-reservas/leads'],
+      },
     ],
   },
   {
-    label: 'ADMINISTRAÇÃO',
+    label: 'CAMPINGS',
     items: [
       {
         label: 'Campings',
@@ -18,29 +28,69 @@ export const MENUS = [
         routerLink: ['/motor-reservas/campings'],
       },
       {
-        label: 'Smart Camping',
-        icon: 'fa fa-regular fa-compass',
-        routerLink: ['/motor-reservas/'],
-      },
-      {
-        label: 'Categorias de Vagas',
+        label: 'Categoria de Campings',
         icon: 'fa fa-tag',
-        routerLink: ['/motor-reservas/box/box-types'],
+        routerLink: ['/motor-reservas/campings/categories'],
       },
+    ],
+  },
+  {
+    label: 'VAGAS',
+    items: [
       {
         label: 'Vagas',
         icon: 'fa fa-caravan',
         routerLink: ['/motor-reservas/box/boxes'],
       },
       {
+        label: 'Categorias de Vagas',
+        icon: 'fa fa-tag',
+        routerLink: ['/motor-reservas/box/box-types'],
+      },
+    ],
+  },
+  {
+    label: 'ATRAÇÕES',
+    items: [
+      {
         label: 'Atrações / Experiências',
         icon: 'fa fa-person-walking',
-        routerLink: ['/motor-reservas/'],
+        routerLink: ['/motor-reservas/attractions'],
       },
+      {
+        label: 'Categoria de Atrações',
+        icon: 'fa fa-tag',
+        routerLink: ['/motor-reservas/attractions/categories'],
+      },
+    ],
+  },
+  {
+    label: 'RESERVAS',
+    items: [
       {
         label: 'Reservas',
         icon: 'fa fa-calendar-days',
         routerLink: ['/motor-reservas/'],
+      },
+    ],
+  },
+  {
+    label: 'RELATÓRIOS',
+    items: [
+      {
+        label: 'Financeiro',
+        icon: 'fa fa-money-bill',
+        routerLink: ['/motor-reservas/'],
+      },
+    ],
+  },
+  {
+    label: 'IMAGENS',
+    items: [
+      {
+        label: 'Galeria de Imagens',
+        icon: 'fa fa-image',
+        routerLink: ['/motor-reservas/gallery-images/'],
       },
     ],
   },

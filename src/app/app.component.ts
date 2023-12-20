@@ -14,6 +14,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('keepLogged') === 'true') {
       this.AuthService.setIsLoggedIn();
+      this.AuthService.refreshToken().subscribe((token) => {
+        localStorage.setItem('token', token.accessToken);
+        console.info('Token atualizado com sucesso');
+      });
     }
   }
 }

@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, HostListener } from '@angular/core';
 import { Leads } from './../../models/LeadsUser.model';
 import { LeadsService } from './../../services/leads.service';
-import { LoadingService } from 'src/app/components/loading/loading.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { TypeCategory } from 'src/app/models/category.model';
+import { SkeletonService } from 'src/app/components/skeleton/skeleton.service';
+import { CampingService } from 'src/app/services/camping.service';
+import { finalize } from 'rxjs';
+import { Camping } from 'src/app/models/camping.model';
 
 interface ImageInfo {
   imageFileName: string;
@@ -9,9 +14,9 @@ interface ImageInfo {
 }
 
 interface Tab {
+  idCategory: string;
   title: string;
   content: string;
-  images?: ImageInfo[];
 }
 
 @Component({
@@ -20,14 +25,26 @@ interface Tab {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  constructor(private leadsService: LeadsService) {}
+  idCategory: string = '0';
+  constructor(
+    private leadsService: LeadsService,
+    private _categoryService: CategoryService,
+    private elRef: ElementRef,
+    private renderer: Renderer2,
+    public skeleton: SkeletonService,
+    private campingService: CampingService
+  ) {}
 
+  selectionDate!: any;
+  dataEntrada!: Date;
+  dataSaida!: Date;
   activeTab: number = 0;
+  showCalendar: boolean = false;
+  selectedDates: Date[] = [];
+  campings: Camping[] = [];
 
-  searchTerm: string = ''; // Variável para armazenar o termo de pesquisa
-  cards: any[] = [
-    /* Seus dados de cards aqui */
-  ];
+  searchTerm: string = '';
+  cards: any[] = [];
 
   leads: Leads = {
     name: '',
@@ -41,6 +58,51 @@ export class HomeComponent {
 
   isDropdownVisible: boolean = false;
 
+  ngOnInit() {
+    document.addEventListener('click', (event) =>
+      this.handleDocumentClick(event)
+    );
+
+    this._categoryService
+      .listByType(TypeCategory.CAMPING)
+      .subscribe((categories) => {
+        categories.forEach((category) => {
+          this.tabs.push({
+            idCategory: category.id as string,
+            title: category.name,
+            content: '',
+          });
+        });
+      });
+
+    document.addEventListener('click', (event) =>
+      this.handleDocumentClick(event)
+    );
+
+    this.skeleton.start();
+    this.campingService
+      .listActives()
+      .pipe(
+        finalize(() => {
+          this.skeleton.stop();
+        })
+      )
+      .subscribe((data) => {
+        this.campings = data.sort((a, b) => {
+          const clickCounterA = a.clickCounter || 0;
+          const clickCounterB = b.clickCounter || 0;
+
+          return clickCounterB - clickCounterA;
+        });
+      });
+  }
+
+  ngOnDestroy() {
+    document.removeEventListener('click', (event) =>
+      this.handleDocumentClick(event)
+    );
+  }
+
   toggleDropdown(): void {
     this.isDropdownVisible = !this.isDropdownVisible;
   }
@@ -53,34 +115,52 @@ export class HomeComponent {
     });
   }
 
-  handleDateClick(arg: any) {
-    alert('Date clicked: ' + arg.dateStr);
+  searchCampings(): void {
+    const queryParams: any = {};
+    if (this.dataEntrada && this.dataSaida) {
+      queryParams.start = this.getFormatedDate(this.dataEntrada);
+      queryParams.end = this.getFormatedDate(this.dataSaida);
+    }
+    if (this.searchTerm) {
+      queryParams.search = this.searchTerm;
+    }
   }
 
-  //METODO ABAS INTERATIVAS
+  onSelectDate(event: any) {
+    this.dataEntrada = this.selectedDates[0];
+    this.dataSaida = this.selectedDates[this.selectedDates.length - 1];
+
+    if (this.dataEntrada && this.dataSaida) {
+      this.showCalendar = false;
+    }
+  }
+
+  getFormatedDate(date: Date): string {
+    return `${date.getDate().toString().padStart(2, '0')}/${(
+      date.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, '0')}/${date.getFullYear()}`;
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event: Event): void {
+    if (!this.elRef.nativeElement.contains(event.target)) {
+      this.showCalendar = false;
+    }
+  }
+
+  toggleCalendar(): void {
+    this.showCalendar = !this.showCalendar;
+  }
 
   activeTabClass: string = '0';
 
   tabs: Tab[] = [
     {
+      idCategory: '0',
       title: 'Pesquisar',
       content: 'Encontre o melhor lugar com conforto e segurança!',
-    },
-    {
-      title: 'Smart Campings TuristaRV',
-      content: 'Encontre o melhor lugar com conforto e segurança!',
-    },
-    {
-      title: 'Campings',
-      content: 'Conteúdo da Tab 2',
-    },
-    {
-      title: 'Glampings e Chalés',
-      content: 'Conteúdo da Tab 3',
-    },
-    {
-      title: 'Experiências Atrações',
-      content: 'Conteúdo da Tab 4',
     },
   ];
 
@@ -91,9 +171,47 @@ export class HomeComponent {
     }
   }
 
-  changeTab(index: number): void {
+  changeTab(tab: Tab, index: number): void {
     console.log('trocou de aba', index);
+    this.idCategory = tab.idCategory;
     this.activeTab = index;
+
+    if (tab.idCategory === '0') {
+      this.skeleton.start();
+      this.campingService
+        .listActives() //list by category
+        .pipe(
+          finalize(() => {
+            this.skeleton.stop();
+          })
+        )
+        .subscribe((data) => {
+          this.campings = data.sort((a, b) => {
+            const clickCounterA = a.clickCounter || 0;
+            const clickCounterB = b.clickCounter || 0;
+
+            return clickCounterB - clickCounterA;
+          });
+        });
+    } else {
+      this.skeleton.start();
+
+      this.campingService
+        .listByCategory(tab.idCategory)
+        .pipe(
+          finalize(() => {
+            this.skeleton.stop();
+          })
+        )
+        .subscribe((data) => {
+          this.campings = data.sort((a, b) => {
+            const clickCounterA = a.clickCounter || 0;
+            const clickCounterB = b.clickCounter || 0;
+
+            return clickCounterB - clickCounterA;
+          });
+        });
+    }
   }
 
   submitForm() {
@@ -101,6 +219,11 @@ export class HomeComponent {
       this.leadsService.sendLeads(this.leads).subscribe(
         (response) => {
           alert('Dados enviados com sucesso!');
+          this.leads = {
+            email: '',
+            name: '',
+            phone: '',
+          };
         },
         (error) => {
           alert('Erro ao enviar dados: ' + error.message);

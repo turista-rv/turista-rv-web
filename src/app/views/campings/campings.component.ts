@@ -40,6 +40,7 @@ export class CampingsComponent implements OnInit {
 
   get getRules(): IRules[] {
     const rules = this.camping.propertyRules.split(',');
+    const x = RULES.filter((r) => rules.includes(r.code));
     return RULES.filter((r) => rules.includes(r.code));
   }
 
@@ -53,11 +54,13 @@ export class CampingsComponent implements OnInit {
       this.id = params.get('id');
     });
 
-    if (this.id)
+    if (this.id) {
       this.campingService.listCampings().subscribe((data) => {
         let camping = data.filter((value) => value.id === this.id);
         this.camping = camping[0];
       });
+      this.campingService.imcrementClick(this.id).subscribe((data) => {});
+    }
   }
 
   sendMessageWhatsapp() {
@@ -69,10 +72,11 @@ export class CampingsComponent implements OnInit {
       const dataFim = `${range.end.getDate()}/${
         range.end.getMonth() + 1
       }/${range.end.getFullYear()}`;
-      const mensagemWhatsapp = `Olá, gostaria de fazer uma reserva para de ${dataIni} até ${dataFim}!`;
+      const campingName = this.camping.name || '';
+      const mensagemWhatsapp = `Olá, gostaria de fazer uma reserva para ${campingName} de ${dataIni} até ${dataFim}!`;
 
       window.open(
-        `http://wa.me/5553999356737?text=${encodeURIComponent(
+        `http://wa.me/55${this.camping.phone}?text=${encodeURIComponent(
           mensagemWhatsapp
         )}`,
         '_blank'
@@ -88,6 +92,10 @@ export class CampingsComponent implements OnInit {
   onSelectDate(event: any) {
     this.dataEntrada = this.selectionDate[0];
     this.dataSaida = this.selectionDate[1];
+    this.range.setValue({
+      start: this.dataEntrada,
+      end: this.dataSaida,
+    });
   }
 
   verificarDisponibilidade(): void {
