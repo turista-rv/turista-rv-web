@@ -5,6 +5,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Camping } from 'src/app/models/camping.model';
 import { CampingService } from 'src/app/services/camping.service';
 import { ActivatedRoute } from '@angular/router';
+import { CategoryService } from 'src/app/services/category.service';
+import { TypeCategory } from 'src/app/models/category.model';
 /// <reference types="@types/googlemaps" />
 declare const google: any;
 
@@ -12,6 +14,11 @@ interface Rule {
   name: string;
   code: string;
   icon: string;
+}
+
+interface CategoryButton {
+  id: string;
+  label: string;
 }
 
 @Component({
@@ -27,20 +34,22 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
   sortOrder!: number;
   sortField!: string;
   sortKey: any;
-  rangeValues: number[] = [0, 50];
+  rangeValues: number[] = [0, 300];
+  maxRangeValue: number = 999; 
   selectedCategory = 'all';
   isSmallScreen = false;
   showFilters = false;
   showFiltersButton = true;
   searchTerm: string = '';
-
   ratingValue = 4;
+  categoryButtons: CategoryButton[] = [];
 
   constructor(
     private campingService: CampingService,
     private breakpointObserver: BreakpointObserver,
     private route: ActivatedRoute,
-  ) {}
+    private _categoryService: CategoryService,
+  ) { }
 
   ngOnInit(): void {
     this.loadCampings();
@@ -55,7 +64,16 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
       .subscribe((result) => {
         this.isSmallScreen = result.matches;
       });
-
+    this.categoryButtons.unshift({ id: 'all', label: 'Todos' });
+    this._categoryService
+      .listByType(TypeCategory.CAMPING)
+      .subscribe((categories) => {
+        this.categoryButtons = categories.map(category => ({
+          id: category.id as string,
+          label: category.name,
+        }));
+      });
+    this.categoryButtons.unshift({ id: 'all', label: 'Todos' });
 
     // Verificar se existem parâmetros na URL
     this.route.queryParams.subscribe((params) => {
@@ -72,17 +90,25 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
   loadCampings(): void {
     this.campingService.listCampings().subscribe((data: Camping[]) => {
       if (data.length > 0) {
-        this.camping = data;
+        if (this.selectedCategory !== 'all') {
+          data = data.filter(c => c.categories && c.categories.some(cat => cat.category && cat.category.id === this.selectedCategory));
+        }
+  
+        // Ordenar os campings antes de aplicar os filtros
+        data = data.sort((a, b) => a.baseValue - b.baseValue);
+  
+        // Aplicar os filtros
+        this.camping = data.filter(c => c.baseValue >= this.rangeValues[0] && c.baseValue <= this.rangeValues[1] && c.baseValue <= this.maxRangeValue);
       }
     });
   }
+  
+  
 
   getRules(camping: Camping): Rule[] {
     const ruleCodes = camping.propertyRules.slice(0, 4);
     return camping?.propertyRules?.length > 0 ? RULES.filter((r) => camping.propertyRules.includes(r.code)) : [];
   }
-
- 
 
   // Métodos de Filtros
   // -----------------------------------------
@@ -112,18 +138,22 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
   onBaseValueChange(): void {
     this.loadCampings();
   }
-
-  onSortChange(event: any): void {
-    const value = event.value;
-
-    if (value.indexOf('!') === 0) {
-      this.sortOrder = -1;
-      this.sortField = value.substring(1, value.length);
-    } else {
-      this.sortOrder = 1;
-      this.sortField = value;
-    }
+  onSortKeyChange(): void {
+    this.loadCampings();
   }
+  
+  
+  // onSortChange(event: any): void {
+  //   const value = event.value;
+
+  //   if (value.indexOf('!') === 0) {
+  //     this.sortOrder = -1;
+  //     this.sortField = value.substring(1, value.length);
+  //   } else {
+  //     this.sortOrder = 1;
+  //     this.sortField = value;
+  //   }
+  // }
 
   filterCards(): void {
   }
@@ -142,5 +172,4 @@ export class CampingSearchComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.initMap();
   }
-
 }

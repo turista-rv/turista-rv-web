@@ -1,53 +1,47 @@
-:host ::ng-deep .p-dataview {
-    // border-left: 10px solid #eff3f8;
-    border-right: 17px solid #eff3f8;
-  }
-  
-  .category-button {
-    padding: 8px 12px;
-    background-color: #46AE4E; 
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+/* Estilos comuns */
+.category-button {
+  padding: 8px 12px;
+  background-color: #46AE4E; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  .category-button.selected {
-    background-color:  #036938;
-    color: white; 
-  }
+.category-button.selected {
+  background-color:  #036938;
+  color: white; 
+}
 
+.slider-container {
+  position: relative;
+  padding: 0.7rem;
 
-  .slider-container {
-    position: relative;
-    padding: 0.7rem;
-    
-    .slider-label {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 14px;
-      white-space: nowrap;
-  
-      &.left {
-        left: 0;
-      }
-  
-      &.right {
-        right: 0;
-      }
+  .slider-label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    white-space: nowrap;
+
+    &.left {
+      left: 0;
     }
-  
-    .left {
-      transform: translate(-100%, -80%);
-    }
-  
-    .right {
-      transform: translate(100%, -80%);
+
+    &.right {
+      right: 0;
     }
   }
 
-  // MENU FILTRO CELULAR
+  .left {
+    transform: translate(-100%, -80%);
+  }
+
+  .right {
+    transform: translate(100%, -80%);
+  }
+}
+
 .filter-btn {
   position: fixed;
   top: 1rem;
@@ -59,7 +53,6 @@
   z-index: 1000;
 }
 
-/* Estilo para o container do menu lateral */
 .menu-container {
   position: fixed;
   top: 0;
@@ -77,7 +70,6 @@
   transform: translateX(0);
 }
 
-/* Estilo para o botão de fechar o menu lateral */
 .close-btn {
   position: absolute;
   top: 1rem;
@@ -94,9 +86,7 @@
   transition: transform 0.3s ease;
 }
 
-
-/* RATING */
-
+/* Estilo para as estrelas no rating */
 ::ng-deep .p-rating .p-rating-star::before {
   content: none !important;
 }
@@ -114,4 +104,76 @@
 ::ng-deep .p-rating-star.p-rating-star-off {
   color: #ccc !important; 
 }
+.camping-name{
+  font-weight: bold;
+  font-size: 22px !important;
+}
 
+.category, .separator {
+  font-size: 12px !important;
+  margin-right: 4px !important;
+  gap: 7px !important;
+}
+
+
+/* RESPONSIVIDADE */
+@media screen and (max-width: 1023px) and (orientation: portrait){
+  .camping-name {
+    font-size: 14px !important;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+
+  .categorias-text {
+    font-size: 14px !important;
+    gap: 4px;
+  }
+
+  .linha {
+    max-width: 240px;
+  }
+
+  .category-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .category, .separator {
+    font-size: 12px !important;
+    margin-right: 4px !important;
+    gap: 7px !important;
+  }
+
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+    .tabela-ajustada {
+      width: 900px;
+    }
+  
+    .tabela-ajustada .header {
+      width: 1900px;
+    }
+  .camping-name {
+    font-size: 14px !important;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+
+  .categorias-text {
+    font-size: 16px !important;
+    gap: 8px;
+  }
+
+  .linha {
+    max-width: 400px;
+  }
+
+  .category, .separator {
+    font-size: 12px !important;
+    margin-right: 4px !important;
+    gap: 7px !important;
+  }
+
+}

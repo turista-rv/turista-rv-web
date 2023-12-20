@@ -75,20 +75,33 @@ export class HomeComponent {
         });
       });
 
-    this.skeleton.start();
-    this.campingService
-      .listActives() //list by category
-      .pipe(
-        finalize(() => {
-          this.skeleton.stop();
-        })
-      )
-      .subscribe((data) => {
-        this.campings = data.sort((a, b) => {
-          const clickCounterA = a.clickCounter || 0;
-          const clickCounterB = b.clickCounter || 0;
+      document.addEventListener('click', (event) =>
+      this.handleDocumentClick(event)
+    );
 
-          return clickCounterB - clickCounterA;
+    this._categoryService
+      .listByType(TypeCategory.CAMPING)
+      .subscribe((categories) => {
+        categories.forEach((category) => {
+          this.tabs.push({
+            idCategory: category.id as string,
+            title: category.name,
+            content: '',
+          });
+        });
+      });document.addEventListener('click', (event) =>
+      this.handleDocumentClick(event)
+    );
+
+    this._categoryService
+      .listByType(TypeCategory.CAMPING)
+      .subscribe((categories) => {
+        categories.forEach((category) => {
+          this.tabs.push({
+            idCategory: category.id as string,
+            title: category.name,
+            content: '',
+          });
         });
       });
   }
